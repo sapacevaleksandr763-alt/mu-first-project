@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Александр Сапачёв</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    background: #060c1f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background-image:
+      radial-gradient(ellipse at 25% 15%, rgba(109,92,255,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 85%, rgba(80,120,255,0.10) 0%, transparent 50%);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 500px;
+    background: linear-gradient(160deg, #0e1830 0%, #111d3a 100%);
+    border-radius: 30px;
+    padding: 48px 40px 42px;
+    text-align: center;
+    border: 1px solid rgba(109,92,255,0.22);
+    box-shadow:
+      0 4px 60px rgba(0,0,0,0.55),
+      0 0 90px rgba(109,92,255,0.07),
+      0 0 0 1px rgba(255,255,255,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px;
+    height: 230px;
+    background: radial-gradient(ellipse, rgba(109,92,255,0.26) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: rgba(109,92,255,0.11);
+    border: 1px solid rgba(109,92,255,0.26);
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6d5cff, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 auto 22px;
+    letter-spacing: -1px;
+    box-shadow:
+      0 0 0 3px rgba(109,92,255,0.22),
+      0 0 32px rgba(109,92,255,0.46);
+  }
+
+  .name {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #c084fc 0%, #818cf8 52%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: -1.5px;
+    filter: drop-shadow(0 0 24px rgba(192,132,252,0.46));
+  }
+
+  .specialty {
+    font-size: 13px;
+    color: #818cf8;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .dot { color: #3d5070; margin: 0 10px; font-weight: 400; }
+
+  .bio {
+    font-size: 15px;
+    line-height: 1.68;
+    color: #8fa3c8;
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+
+  .socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    color: #55698f;
+    text-decoration: none;
+    will-change: transform;
+    transition:
+      transform   0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow  0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      background  0.18s ease,
+      border-color 0.18s ease,
+      color       0.18s ease;
+  }
+
+  .social-link:hover {
+    transform: translateY(-5px);
+    background: rgba(109,92,255,0.16);
+    border-color: rgba(109,92,255,0.42);
+    box-shadow: 0 10px 28px rgba(109,92,255,0.32);
+    color: #c084fc;
+  }
+
+  .social-link svg { width: 21px; height: 21px; fill: currentColor; }
+
+  .cta-btn {
+    display: block;
+    max-width: 256px;
+    margin: 0 auto 22px;
+    background: linear-gradient(135deg, #7465ff 0%, #6d5cff 40%, #9333ea 100%);
+    color: white;
+    text-decoration: none;
+    padding: 15px 38px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    will-change: transform;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.14),
+      0 4px 24px rgba(109,92,255,0.46);
+    transition:
+      transform  0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-3px) scale(1.025);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.18),
+      0 12px 36px rgba(109,92,255,0.62);
+  }
+
+  .contacts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 13px;
+    color: #3d5070;
+    line-height: 1.7;
+  }
+
+  .contacts a {
+    color: #6d7ef8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.16s ease;
+  }
+
+  .contacts a:hover { color: #c084fc; }
+
+  .contacts .sep { color: #2d3f5a; }
+
+  @media (max-width: 480px) {
+    .card { padding: 34px 22px 30px; border-radius: 24px; }
+    .name { font-size: 32px; }
+    .avatar { width: 68px; height: 68px; font-size: 22px; }
+    .cta-btn { max-width: 100%; font-size: 15px; padding: 14px 28px; }
+    .contacts { flex-direction: column; gap: 2px; }
+    .contacts .sep { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="badge">Персональная визитка</div>
+
+  <div class="avatar">АС</div>
+
+  <div class="name">Александр Сапачёв</div>
+  <div class="specialty">
+    Нейросети <span class="dot">·</span> Вайбкодинг
+  </div>
+
+  <p class="bio">Помогаю использовать нейросети и современные цифровые инструменты для работы, творчества и создания полезных решений.</p>
+
+  <div class="socials">
+
+    <!-- Telegram -->
+    <a href="https://t.me/nasledieariev" target="_blank" class="social-link" title="Telegram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:sapacevaleksandr763@gmail.com" class="social-link" title="Email">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a1 1 0 0 0 1.228 0L20 9.044 20.002 18H4z"/>
+      </svg>
+    </a>
+
+    <!-- GitHub -->
+    <a href="#" class="social-link" title="GitHub">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+      </svg>
+    </a>
+
+  </div>
+
+  <a href="https://t.me/nasledieariev" target="_blank" class="cta-btn">Написать мне</a>
+
+  <div class="contacts">
+    <a href="https://t.me/nasledieariev" target="_blank">t.me/nasledieariev</a>
+    <span class="sep">·</span>
+    <a href="mailto:sapacevaleksandr763@gmail.com">sapacevaleksandr763@gmail.com</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 18px 16px; background: #07182e; font-family: 'Inter', Arial, sans-serif; color: white; }
+
+  .hero { background: linear-gradient(145deg, #0f1c3d 0%, #121f4a 100%); border-radius: 24px; padding: 38px 32px; text-align: center; margin-bottom: 18px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(109,92,255,0.16) 0%, transparent 70%); pointer-events: none; }
+  .hero::after  { content: ''; position: absolute; bottom: -50px; left: -50px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(192,132,252,0.10) 0%, transparent 70%); pointer-events: none; }
+
+  .logo { font-size: 44px; font-weight: 800; background: linear-gradient(135deg, #c084fc, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; letter-spacing: -1.5px; }
+  .tagline { font-size: 12px; color: #818cf8; margin-bottom: 14px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; }
+  .description { font-size: 15px; line-height: 1.6; color: #a5b4fc; margin: 0 auto 22px; max-width: 680px; }
+
+  .cta-btn { display: inline-block; background: linear-gradient(135deg, #6d5cff, #9333ea); color: white; text-decoration: none; padding: 13px 30px; border-radius: 12px; font-weight: 700; font-size: 15px; letter-spacing: 0.2px; box-shadow: 0 4px 20px rgba(109,92,255,0.42); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(109,92,255,0.58); }
+
+  .contact { margin-top: 10px; font-size: 12px; color: #4b5e8a; }
+  .contact a { color: #818cf8; text-decoration: none; font-weight: 500; }
+  .contact a:hover { color: #c084fc; }
+
+  .section-title { text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 12px; color: #eef2ff; letter-spacing: -0.4px; }
+
+  .cards { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+  .card { flex: 1; min-width: 200px; background: linear-gradient(145deg, #111f42, #13224a); border-radius: 18px; padding: 18px 20px; border: 1px solid rgba(109,92,255,0.15); }
+  .card-icon { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #4f46e5, #7c3aed); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #eef2ff; }
+  .card-text { font-size: 13px; line-height: 1.55; color: #7c88b8; }
+
+  .reviews { background: linear-gradient(145deg, #0f1c3d, #0d1a37); border-radius: 24px; padding: 20px 22px; }
+  .review { background: rgba(17,34,71,0.85); border-radius: 12px; padding: 13px 16px; margin-bottom: 10px; border: 1px solid rgba(99,102,241,0.13); }
+  .review:last-child { margin-bottom: 0; }
+  .review-stars { color: #a78bfa; font-size: 12px; margin-bottom: 5px; letter-spacing: 3px; }
+  .review-text { color: #c7d2fe; font-size: 13px; line-height: 1.55; margin-bottom: 6px; }
+  .review-author { font-size: 12px; color: #4b5e8a; font-weight: 500; }
+</style>
+</head>
+<body>
+<div style="max-width:980px; margin:0 auto;">
+
+  <div class="hero">
+    <div class="logo">Task Flow</div>
+    <div class="tagline">умный планировщик задач</div>
+    <div class="description">Наводит порядок в задачах, помогает фокусироваться на главном и не терять важное — для предпринимателей, фрилансеров и небольших команд.</div>
+    <a href="https://t.me/nasledieariev" target="_blank" class="cta-btn">Попробовать Task Flow</a>
+    <div class="contact">Связаться: <a href="https://t.me/nasledieariev" target="_blank">t.me/nasledieariev</a></div>
+  </div>
+
+  <div class="section-title">Преимущества</div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">Фокус на главном</div>
+      <div class="card-text">Приоритеты выделяются быстро — второстепенное не мешает.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">Порядок в работе</div>
+      <div class="card-text">Задачи, дедлайны и этапы всегда под рукой и под контролем.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Экономия времени</div>
+      <div class="card-text">Меньше рутины, быстрее результат и выше продуктивность.</div>
+    </div>
+  </div>
+
+  <div class="reviews">
+    <div class="section-title">Отзывы</div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Стало меньше пропущенных задач и больше результата.</div>
+      <div class="review-author">— Алексей М., предприниматель</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Простой инструмент — держит фокус и не даёт забыть важное.</div>
+      <div class="review-author">— Ирина К., фрилансер</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Подходит и для личных задач, и для проектов. Аккуратно и удобно.</div>
+      <div class="review-author">— Дмитрий В., менеджер проектов</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
