@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { LessonShell } from '@/components/LessonShell';
 import { analyzeText, formatErrors, formatRecommendations } from '@/lib/text-analyzer';
 import { checkVocabAnswer } from '@/lib/vocab-checker';
-import { checkTheoryAnswer, THEORY_QUESTIONS } from '@/lib/theory-checker';
+import { checkTheoryAnswer, THEORY_LESSON, type TheoryState } from '@/lib/theory-checker';
 
 interface LessonModeClientProps {
   mode: string;
@@ -66,6 +66,7 @@ export default function LessonModeClient({ mode, config }: LessonModeClientProps
   const router = useRouter();
   const [stats, setStats] = useState({ correct: 0, total: 0 });
   const [step, setStep] = useState(0);
+  const [theoryState, setTheoryState] = useState<TheoryState>({ step: 0, awaitingRetry: null });
   const [hasInteracted, setHasInteracted] = useState(false);
   const [finished, setFinished] = useState(false);
 
@@ -93,11 +94,11 @@ export default function LessonModeClient({ mode, config }: LessonModeClientProps
     }
 
     if (mode === 'theory-test') {
-      const result = checkTheoryAnswer(message, step);
+      const result = checkTheoryAnswer(message, theoryState, THEORY_LESSON);
+      setTheoryState(result.nextState);
       if (result.status === 'correct') {
         correct = true;
-        setStep(result.nextStep);
-        if (result.nextStep >= THEORY_QUESTIONS.length) {
+        if (result.nextState.step >= THEORY_LESSON.length && !result.nextState.awaitingRetry) {
           setFinished(true);
         }
       } else if (result.status === 'finished') {

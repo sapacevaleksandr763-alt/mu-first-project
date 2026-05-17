@@ -3,18 +3,16 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { LessonShell } from '@/components/LessonShell';
-import { checkTheoryAnswer, THEORY_QUESTIONS } from '@/lib/theory-checker';
+import { checkTheoryAnswer, THEORY_PREVIEW, type TheoryState } from '@/lib/theory-checker';
 
 export default function TheoryTestPage() {
-  const [step, setStep] = useState(0);
+  const [state, setState] = useState<TheoryState>({ step: 0, awaitingRetry: null });
   const [finished, setFinished] = useState(false);
 
   const handleSend = (message: string) => {
-    const result = checkTheoryAnswer(message, step);
-    if (result.status === 'correct') {
-      setStep(result.nextStep);
-    }
-    if (result.status === 'finished' || (result.status === 'correct' && result.nextStep >= THEORY_QUESTIONS.length)) {
+    const result = checkTheoryAnswer(message, state, THEORY_PREVIEW);
+    setState(result.nextState);
+    if (result.status === 'finished' || (result.status === 'correct' && result.nextState.step >= THEORY_PREVIEW.length && !result.nextState.awaitingRetry)) {
       setFinished(true);
     }
     return {
@@ -33,20 +31,18 @@ export default function TheoryTestPage() {
           Короткий тест с вопросами по правилам русского языка. Напиши свой ответ, а я объясню, почему он правильный или нет.
         </p>
 
-        {!finished && (
+        {!finished ? (
           <LessonShell
-            intro={`Привет! ${THEORY_QUESTIONS[0].question}`}
+            intro={`Привет! ${THEORY_PREVIEW[0].question}`}
             placeholder="Напиши ответ на вопрос"
             botReply=""
             hint="Подумай, на какой вопрос отвечает это слово: «кто?», «что?», «что делать?» или «какой?»."
             onSend={handleSend}
           />
-        )}
-
-        {finished && (
+        ) : (
           <div className="mt-8 rounded-[32px] border border-slate-200 bg-brand-50 p-6 text-center">
-            <p className="text-lg font-semibold text-slate-800">Тест завершён! Ты ответил на все вопросы.</p>
-            <p className="mt-2 text-sm text-slate-600">Перейди к уроку, чтобы пройти тест с подсчётом результатов.</p>
+            <p className="text-lg font-semibold text-slate-800">Тест завершён!</p>
+            <p className="mt-2 text-sm text-slate-600">Перейди к уроку для полной тренировки по частям речи.</p>
           </div>
         )}
 
