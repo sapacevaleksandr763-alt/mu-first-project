@@ -5,7 +5,7 @@ const modes = [
   { title: 'Объяснить тему', description: 'Простое объяснение темы для 2 класса.', href: '/modes/explain-topic' },
   { title: 'Сделать упражнение', description: 'Решаем задание шаг за шагом.', href: '/modes/exercise' },
   { title: 'Помочь с сочинением', description: 'Помощь в выборе темы и написании.', href: '/modes/write-essay' },
-  { title: 'Проверить по фото', description: 'Интерфейс для будущей проверки по фото.', href: '/modes/photo-check' },
+  { title: 'Проверить по фото', description: 'Проверка сочинения по фото или вручную с разбором ошибок.', href: '/modes/photo-check' },
   { title: 'Словарный диктант', description: 'Тренировка слов и правописания.', href: '/modes/vocab-dictation' },
   { title: 'Тест по теории', description: 'Короткий тест по правилам языка.', href: '/modes/theory-test' },
 ];

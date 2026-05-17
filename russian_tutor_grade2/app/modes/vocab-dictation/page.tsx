@@ -1,9 +1,25 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { LessonShell } from '@/components/LessonShell';
+import { checkVocabAnswer } from '@/lib/vocab-checker';
 
 export default function VocabDictationPage() {
+  const [step, setStep] = useState(0);
+
+  const handleSend = (message: string) => {
+    const result = checkVocabAnswer(message, step);
+    if (result.status === 'correct') {
+      setStep(result.nextWordIndex);
+    }
+    return {
+      response: result.response,
+      correct: result.status === 'correct',
+      note: result.note,
+    };
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl rounded-[32px] border border-slate-200 bg-white p-8 shadow-soft sm:p-10">
@@ -14,10 +30,11 @@ export default function VocabDictationPage() {
         </p>
 
         <LessonShell
-          intro="Привет! Сейчас покажем слово. Напиши его так, как слышишь, а я расскажу, правильно ли получилось."
+          intro="Привет! Напиши слово «малыш», и я проверю его. После обязательных слов можешь проверить любое слово."
           placeholder="Напиши слово"
-          botReply="Хорошо! Если слово выглядит как 'малыш', то ты написал правильно. Молодец! Если хочешь, повторим ещё одно слово."
+          botReply=""
           hint="Попробуй написать слово медленно, как по букве."
+          onSend={handleSend}
         />
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">

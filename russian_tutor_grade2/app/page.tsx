@@ -5,7 +5,7 @@ const modes = [
   { title: 'Объяснить тему', description: 'Коротко и просто о правилах русского языка.', href: '/modes/explain-topic' },
   { title: 'Сделать упражнение', description: 'Решим задание вместе шаг за шагом.', href: '/modes/exercise' },
   { title: 'Помочь с сочинением', description: 'Подберём тему и напишем текст вместе.', href: '/modes/write-essay' },
-  { title: 'Проверить по фото', description: 'Пока интерфейс-заглушка для будущего OCR.', href: '/modes/photo-check' },
+  { title: 'Проверить по фото', description: 'Проверка сочинения по фото или вручную с разбором ошибок.', href: '/modes/photo-check' },
   { title: 'Словарный диктант', description: 'Тренируем слова и написание по одному слову.', href: '/modes/vocab-dictation' },
   { title: 'Тест по теории', description: 'Короткие вопросы с ответами и объяснением.', href: '/modes/theory-test' },
 ];

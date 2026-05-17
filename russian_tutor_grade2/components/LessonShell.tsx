@@ -17,6 +17,7 @@ type LessonShellResponse = {
   response: string;
   correct?: boolean;
   note?: string;
+  sections?: { title: string; content: string }[];
 };
 
 type LessonResultFeedback = {
@@ -26,6 +27,7 @@ type LessonResultFeedback = {
 type Message = {
   role: 'assistant' | 'user';
   text: string;
+  sections?: { title: string; content: string }[];
 };
 
 export function LessonShell({
@@ -56,7 +58,7 @@ export function LessonShell({
       const nextMessages: Message[] = [
         ...current,
         { role: 'user', text: value },
-        { role: 'assistant', text: result.response },
+        { role: 'assistant', text: result.response, sections: result.sections },
       ];
       if (result.note) {
         nextMessages.push({ role: 'assistant', text: result.note });
@@ -80,7 +82,18 @@ export function LessonShell({
             className={`rounded-3xl p-4 ${message.role === 'assistant' ? 'bg-slate-100 text-slate-800' : 'bg-brand-50 text-slate-900'} ${message.role === 'assistant' ? 'self-start' : 'self-end'}`}
           >
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">{message.role === 'assistant' ? 'Репетитор' : 'Ты'}</p>
-            <p className="mt-2 text-base leading-7">{message.text}</p>
+            {message.sections ? (
+              <div className="mt-3 space-y-3">
+                {message.sections.map((section, i) => (
+                  <div key={i} className="rounded-2xl border border-slate-200 bg-white p-4">
+                    <h3 className="text-sm font-semibold text-slate-800">{section.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-700 whitespace-pre-line">{section.content}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-2 text-base leading-7">{message.text}</p>
+            )}
           </div>
         ))}
       </div>
