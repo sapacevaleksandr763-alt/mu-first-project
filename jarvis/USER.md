@@ -11,8 +11,8 @@
 
 ## Технический уровень
 
-Стек: (заполнится из разговоров)
-Опыт с AI: (заполнится из разговоров)
+Стек: Figma, Next.js/React, HTML/CSS/JS, Node.js
+Опыт с AI: Claude Code (VS Code extension + VPS)
 
 ## Коммуникация
 
