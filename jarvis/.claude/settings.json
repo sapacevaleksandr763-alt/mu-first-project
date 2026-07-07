@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "WebFetch(*)",
+      "WebSearch(*)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(rm -f *)",
+      "Bash(shutdown*)",
+      "Bash(reboot*)",
+      "Bash(halt*)",
+      "Bash(kill*)",
+      "Bash(killall*)",
+      "Bash(pkill*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git branch -D*)",
+      "Bash(*DROP TABLE*)",
+      "Bash(*DELETE FROM*)",
+      "Bash(*TRUNCATE*)",
+      "Bash(cat .env*)",
+      "Bash(cat *.env)"
+    ]
+  },
+  "reasoning_effort": "xhigh"
+}
