@@ -55,7 +55,12 @@
 
 ## Ключевые решения
 
-*Пока пусто. Появится по мере работы.*
+- **2026-07-07:** Установлена архитектура Агента из Ntmib/jarvis-architect + 4 скилла:
+  - `discovery-interview` (parcadei/Continuous-Claude-v3)
+  - `content-creator` (Shubhamsaboo/awesome-llm-apps)
+  - `fullstack-developer` (Shubhamsaboo/awesome-llm-apps)
+  - `frontend-design` (anthropics/skills)
+  - Плагин Superpowers (xhigh reasoning) включён в settings.json
 
 ---
 

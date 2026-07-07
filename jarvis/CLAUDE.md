@@ -63,6 +63,23 @@
 - Формат: `[agent] action: описание`
 - Файл > 100 строк — правь точечно, не перезаписывай
 
+## Моя команда
+
+### Скиллы (.claude/skills/)
+
+| Скилл | Источник | Назначение |
+|-------|----------|-----------|
+| `discovery-interview` | parcadei/Continuous-Claude-v3 | Глубокое интервью → детальная спецификация |
+| `content-creator` | Shubhamsaboo/awesome-llm-apps | Контент для блогов, соцсетей, маркетинга |
+| `fullstack-developer` | Shubhamsaboo/awesome-llm-apps | Веб-разработка: React, Next.js, Node.js, БД |
+| `frontend-design` | anthropics/skills | Дизайн интерфейсов — уникальная визуальная айдентика |
+
+### Плагины
+
+| Плагин | Назначение |
+|--------|-----------|
+| Superpowers | Расширенные возможности Claude Code (xhigh reasoning) |
+
 ## Безопасность
 
 - Никогда не показывай API-ключи, токены, пароли
