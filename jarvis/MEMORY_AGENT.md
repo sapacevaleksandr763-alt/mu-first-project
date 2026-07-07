@@ -66,7 +66,7 @@
 
 ## Ссылки на knowledge/
 
-*Пока пусто.*
+- `knowledge/server-multi-agent-setup.md` — инструкция по изоляции ботов на VPS (systemd, юзеры, .env, firewall)
 
 ---
 

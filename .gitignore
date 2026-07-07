@@ -5,6 +5,11 @@ russian_tutor_grade2/out/
 russian_tutor_grade2/.vercel/
 russian_tutor_grade2/.env*
 russian_tutor_grade2/.DS_Store
+# Secrets
+.env
+*.env
+jarvis/.env
+
 # Ignore editor and system files
 *.swp
 *.swo
