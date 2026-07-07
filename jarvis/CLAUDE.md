@@ -73,6 +73,7 @@
 | `content-creator` | Shubhamsaboo/awesome-llm-apps | Контент для блогов, соцсетей, маркетинга |
 | `fullstack-developer` | Shubhamsaboo/awesome-llm-apps | Веб-разработка: React, Next.js, Node.js, БД |
 | `frontend-design` | anthropics/skills | Дизайн интерфейсов — уникальная визуальная айдентика |
+| `ui-ux-pro-max` | nextlevelbuilder/skillsmp | UI/UX-интеллект: 50+ стилей, 161 палитра, 99 UX-гайдлайнов, 10 стеков |
 
 ### Плагины
 
