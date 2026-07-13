@@ -1,5 +1,8 @@
 import asyncio
 import html
+import logging
+import time
+from collections import defaultdict
 from aiogram import Bot, Dispatcher, Router, F
 from aiogram.types import (
     Message, CallbackQuery,
@@ -13,6 +16,20 @@ from groq import AsyncGroq
 
 from config import TELEGRAM_BOT_TOKEN, GROQ_API_KEY, GROQ_MODEL
 from prompts import PROMPTS, REFINE_PROMPT
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+RATE_LIMIT_SECONDS = 5
+_last_request: dict[int, float] = defaultdict(float)
+
+
+def _is_rate_limited(user_id: int) -> bool:
+    now = time.monotonic()
+    if now - _last_request[user_id] < RATE_LIMIT_SECONDS:
+        return True
+    _last_request[user_id] = now
+    return False
 
 router = Router()
 groq_client = AsyncGroq(api_key=GROQ_API_KEY)
@@ -131,6 +148,10 @@ async def handle_topic(message: Message, state: FSMContext):
     await state.update_data(topic=topic, last_result=None)
     await state.set_state(None)
 
+    if _is_rate_limited(message.from_user.id):
+        await message.answer("⏳ Подожди несколько секунд перед следующим запросом.")
+        return
+
     wait_msg = await message.answer("⏳ Генерирую...")
 
     try:
@@ -140,8 +161,9 @@ async def handle_topic(message: Message, state: FSMContext):
         await wait_msg.delete()
         await message.answer(result, reply_markup=after_generation_keyboard())
     except Exception as e:
+        logger.error("Ошибка генерации для user=%s: %s", message.from_user.id, e)
         await wait_msg.delete()
-        await message.answer(f"❌ Ошибка генерации: {e}")
+        await message.answer("❌ Произошла ошибка при генерации. Попробуй ещё раз.")
 
 
 # ── Inline-кнопки после генерации ───────────────────────
@@ -156,6 +178,10 @@ async def refine_text(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
         return
 
+    if _is_rate_limited(callback.from_user.id):
+        await callback.answer("⏳ Подожди несколько секунд.")
+        return
+
     wait_msg = await callback.message.answer("✏️ Дорабатываю...")
 
     try:
@@ -164,8 +190,9 @@ async def refine_text(callback: CallbackQuery, state: FSMContext):
         await wait_msg.delete()
         await callback.message.answer(result, reply_markup=after_generation_keyboard())
     except Exception as e:
+        logger.error("Ошибка доработки для user=%s: %s", callback.from_user.id, e)
         await wait_msg.delete()
-        await callback.message.answer(f"❌ Ошибка: {e}")
+        await callback.message.answer("❌ Произошла ошибка. Попробуй ещё раз.")
 
     await callback.answer()
 
@@ -181,6 +208,10 @@ async def regenerate(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
         return
 
+    if _is_rate_limited(callback.from_user.id):
+        await callback.answer("⏳ Подожди несколько секунд.")
+        return
+
     wait_msg = await callback.message.answer("🔄 Генерирую новый вариант...")
 
     try:
@@ -190,8 +221,9 @@ async def regenerate(callback: CallbackQuery, state: FSMContext):
         await wait_msg.delete()
         await callback.message.answer(result, reply_markup=after_generation_keyboard())
     except Exception as e:
+        logger.error("Ошибка регенерации для user=%s: %s", callback.from_user.id, e)
         await wait_msg.delete()
-        await callback.message.answer(f"❌ Ошибка: {e}")
+        await callback.message.answer("❌ Произошла ошибка. Попробуй ещё раз.")
 
     await callback.answer()
 
@@ -230,6 +262,10 @@ async def handle_free_text(message: Message, state: FSMContext):
     topic = message.text
     await state.update_data(content_type="post", topic=topic, last_result=None)
 
+    if _is_rate_limited(message.from_user.id):
+        await message.answer("⏳ Подожди несколько секунд перед следующим запросом.")
+        return
+
     wait_msg = await message.answer("⏳ Пишу пост...")
 
     try:
@@ -238,8 +274,9 @@ async def handle_free_text(message: Message, state: FSMContext):
         await wait_msg.delete()
         await message.answer(result, reply_markup=after_generation_keyboard())
     except Exception as e:
+        logger.error("Ошибка генерации поста для user=%s: %s", message.from_user.id, e)
         await wait_msg.delete()
-        await message.answer(f"❌ Ошибка: {e}")
+        await message.answer("❌ Произошла ошибка. Попробуй ещё раз.")
 
 
 # ── Запуск ───────────────────────────────────────────────
@@ -249,7 +286,7 @@ async def main():
     dp = Dispatcher()
     dp.include_router(router)
 
-    print("🤖 Бот запущен!")
+    logger.info("Бот запущен")
     await dp.start_polling(bot)
 
 

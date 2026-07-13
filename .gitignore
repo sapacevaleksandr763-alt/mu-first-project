@@ -9,6 +9,7 @@ russian_tutor_grade2/.DS_Store
 .env
 *.env
 jarvis/.env
+agent_setup/.env
 
 # Ignore editor and system files
 *.swp

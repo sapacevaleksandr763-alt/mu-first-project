@@ -1,9 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:raw.githubusercontent.com)",
-      "PowerShell($env:SSH_PASS = 'HFTTFbf6!8%V'; .\\\\.venv\\\\Scripts\\\\python.exe ssh_helper.py 'CLAUDE_REAL=$\\(readlink -f $\\(which claude 2>/dev/null\\) 2>/dev/null\\) && if [ -n \\\\\"$CLAUDE_REAL\\\\\" ]; then chmod -R a+rX $\\(dirname \\\\\"$CLAUDE_REAL\\\\\"\\) 2>/dev/null; chmod -R a+rX $\\(dirname $\\(dirname \\\\\"$CLAUDE_REAL\\\\\"\\)\\) 2>/dev/null; chmod -R a+rX $\\(dirname $\\(dirname $\\(dirname \\\\\"$CLAUDE_REAL\\\\\"\\)\\)\\) 2>/dev/null; fi && echo OK')",
-      "PowerShell($env:SSH_PASS = 'HFTTFbf6!8%V'; .\\\\.venv\\\\Scripts\\\\python.exe ssh_helper.py \"sysctl -w net.ipv6.conf.all.disable_ipv6=1 2>/dev/null; sysctl -w net.ipv6.conf.default.disable_ipv6=1 2>/dev/null; echo OK\")"
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
