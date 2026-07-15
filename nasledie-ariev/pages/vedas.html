@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Славянские Веды — священные тексты предков. Велесова Книга, Песни Птицы Гамаюн, Книга Коляды и другие источники мудрости." />
+  <title>Веды — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .veda-card{
+      background:var(--bg-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:all var(--transition);
+      margin-bottom:24px;
+    }
+    .veda-card:hover{
+      border-color:rgba(201,168,76,0.4);
+      box-shadow:0 6px 28px rgba(0,0,0,0.35);
+    }
+    .veda-card__header{
+      display:flex;align-items:center;gap:18px;
+      padding:24px 28px;
+      border-bottom:1px solid var(--border);
+      background:rgba(201,168,76,0.04);
+    }
+    .veda-card__icon{font-size:2.2rem;flex-shrink:0}
+    .veda-card__name{
+      font-family:var(--font-head);
+      font-size:1.2rem;
+      color:var(--gold);
+    }
+    .veda-card__period{
+      font-size:0.72rem;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      color:var(--text-muted);
+      margin-top:2px;
+    }
+    .veda-card__body{padding:24px 28px}
+    .veda-card__desc{
+      font-size:0.92rem;
+      color:var(--text-muted);
+      line-height:1.8;
+      margin-bottom:16px;
+    }
+    .veda-card__quote{
+      padding:16px 20px;
+      background:rgba(201,168,76,0.05);
+      border-left:3px solid var(--gold);
+      border-radius:0 var(--radius) var(--radius) 0;
+      font-size:0.88rem;
+      color:var(--text-muted);
+      font-style:italic;
+      line-height:1.7;
+    }
+    .veda-card__quote strong{color:var(--gold);font-style:normal}
+    .vedas-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:0;
+    }
+    @media(max-width:768px){
+      .veda-card__header{padding:18px 20px}
+      .veda-card__body{padding:18px 20px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="vedas.html" class="nav__link nav__link--active">Веды</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᚹ</span>
+      <h1 class="page-hero__title">Славянские<br /><em>Веды</em></h1>
+      <p class="page-hero__sub">Священные тексты предков — источники мудрости, переданные через тысячелетия</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="page-intro">
+        <p>Слово «Веды» происходит от «ведать» — знать. Славянские Веды — это собрание священных текстов, мифов, гимнов и поучений, хранящих мудрость предков. Часть из них дошла до нас через устную традицию, часть — через спорные, но вдохновляющие списки. Здесь — ключевые источники.</p>
+      </div>
+
+      <div class="vedas-grid">
+
+        <div class="veda-card">
+          <div class="veda-card__header">
+            <div class="veda-card__icon">📜</div>
+            <div>
+              <div class="veda-card__name">Велесова Книга</div>
+              <div class="veda-card__period">IX в. (спорная датировка)</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Самый известный и дискуссионный памятник. Написана на деревянных дощечках, найденных (по легенде) в 1919 году. Описывает историю славян за 1500 лет — от праотца Богумира до IX века. Академическая наука считает её подделкой XX века, но для родноверов это священный текст, сохранивший голос предков.</p>
+            <div class="veda-card__quote"><strong>Из текста:</strong> «Мы — славяне, и славим Богов наших, и никогда не просим, и никогда не молим о благах для себя. И славим силу Их, ибо они — наши заступники и хранители.»</div>
+          </div>
+        </div>
+
+        <div class="veda-card">
+          <div class="veda-card__header">
+            <div class="veda-card__icon">🐦</div>
+            <div>
+              <div class="veda-card__name">Песни Птицы Гамаюн</div>
+              <div class="veda-card__period">Реконструкция А. Асова</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Поэтическое изложение славянской космогонии — как был сотворён мир, как родились боги, как появились люди. Птица Гамаюн — вещая птица, знающая всё обо всём. Кто услышит её песню — обретёт мудрость. Текст восстановлен Александром Асовым на основе фольклорных источников.</p>
+            <div class="veda-card__quote"><strong>Из текста:</strong> «Расскажи, Гамаюн, птица вещая, о рождении Рода небесного, расскажи о делах златокрылых Богов. Ты поведай нам о рождении мира, расскажи, Гамаюн, как он сотворён.»</div>
+          </div>
+        </div>
+
+        <div class="veda-card">
+          <div class="veda-card__header">
+            <div class="veda-card__icon">☀️</div>
+            <div>
+              <div class="veda-card__name">Книга Коляды</div>
+              <div class="veda-card__period">Реконструкция мифов</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Собрание мифов о годовом круге — от зимнего солнцестояния (Коляды) через весну, лето, осень и обратно к зиме. Каждый миф привязан к сезону и празднику. Коляда — бог молодого солнца, рождающегося в самую длинную ночь. Его книга — это календарь Вселенной, записанный в образах.</p>
+            <div class="veda-card__quote"><strong>Суть:</strong> Годовой цикл как история богов — рождение Солнца (Коляда), расцвет (Ярило), пик силы (Купало), угасание (Авсень) и новое рождение. Вечный круговорот жизни.</div>
+          </div>
+        </div>
+
+        <div class="veda-card">
+          <div class="veda-card__header">
+            <div class="veda-card__icon">🌊</div>
+            <div>
+              <div class="veda-card__name">Голубиная Книга</div>
+              <div class="veda-card__period">XII–XVI вв. (записи)</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Духовный стих в форме вопросов и ответов: «Откуда пошёл белый свет? Откуда солнце красное?» Голубиная (Глубинная) Книга упала с неба — в ней все ответы мироздания. Уникальный пример двоеверия: в ней переплетены дохристианские образы с христианскими наслоениями.</p>
+            <div class="veda-card__quote"><strong>Из текста:</strong> «Восходила книга Голубиная, Голубиная книга Божественная. В долину, в ширину она сорок локот, поперёк-то книга двадцать локот, в толщину-то книга тридцать локот.»</div>
+          </div>
+        </div>
+
+        <div class="veda-card">
+          <div class="veda-card__header">
+            <div class="veda-card__icon">📖</div>
+            <div>
+              <div class="veda-card__name">Слово о Полку Игореве</div>
+              <div class="veda-card__period">XII в.</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Литературный памятник, в котором сохранились языческие образы: Боян — внук Велеса, Дева-обида, Стрибожьи внуки (ветры), Даждьбожьи внуки (русичи). Хотя текст написан в христианскую эпоху, автор свободно обращается к богам предков — свидетельство живого двоеверия в XII веке.</p>
+            <div class="veda-card__quote"><strong>Из текста:</strong> «Боян бо вещий, аще кому хотяше песнь творити, то растекашется мыслию по древу, серым вълком по земли, шизым орлом под облакы.»</div>
+          </div>
+        </div>
+
+        <div class="veda-card">
+          <div class="veda-card__header">
+            <div class="veda-card__icon">🔥</div>
+            <div>
+              <div class="veda-card__name">Русские Веды (Сварожий Круг)</div>
+              <div class="veda-card__period">Современная реконструкция</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Современные попытки восстановить целостную систему славянского мировоззрения. Включают описание 16 чертогов Сварожьего Круга, систему летоисчисления, тотемных животных, обрядовый календарь. Не имеют статуса исторических документов, но формируют живую практику родноверия.</p>
+            <div class="veda-card__quote"><strong>Суть:</strong> Сварожий Круг — славянский зодиак из 16 чертогов (вместо 12). Каждый чертог связан с богом-покровителем и священным древом. Даёт основу для славянской астрологии.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="content-block" style="text-align:center;padding:48px 0;">
+        <p style="color:var(--text-muted);margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto;">Хочешь узнать, какой Чертог Сварожьего Круга тебе соответствует?</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="quiz-chertog.html" class="btn btn--primary">Определить свой Чертог</a>
+          <a href="gods.html" class="btn btn--ghost">Славянские Боги</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

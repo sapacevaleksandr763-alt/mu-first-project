@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Галерея славянской культуры — образы богов, рунические символы, обережные узоры и природа предков." />
+  <title>Галерея — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:48px;
+    }
+    .gallery-item{
+      background:var(--bg-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:all var(--transition);
+      cursor:pointer;
+    }
+    .gallery-item:hover{
+      border-color:rgba(201,168,76,0.5);
+      transform:translateY(-4px);
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    }
+    .gallery-item__img{
+      width:100%;
+      aspect-ratio:4/3;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--bg-3);
+      font-size:3.5rem;
+    }
+    .gallery-item__info{padding:16px 18px}
+    .gallery-item__title{
+      font-family:var(--font-head);
+      font-size:0.88rem;
+      color:var(--gold);
+      margin-bottom:4px;
+    }
+    .gallery-item__cat{
+      font-size:0.72rem;
+      color:var(--text-muted);
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+    .gallery-filter{
+      display:flex;gap:10px;flex-wrap:wrap;
+      justify-content:center;margin-bottom:8px;
+    }
+    .gallery-filter__btn{
+      padding:8px 18px;
+      border:1px solid var(--border);
+      border-radius:20px;
+      background:transparent;
+      color:var(--text-muted);
+      font-family:var(--font-head);
+      font-size:0.75rem;
+      letter-spacing:0.08em;
+      cursor:pointer;
+      transition:all var(--transition);
+    }
+    .gallery-filter__btn:hover,.gallery-filter__btn.active{
+      border-color:var(--gold);color:var(--gold);
+      background:rgba(201,168,76,0.08);
+    }
+    @media(max-width:768px){
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:480px){
+      .gallery-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="gallery.html" class="nav__link nav__link--active">Галерея</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᛊ</span>
+      <h1 class="page-hero__title">Галерея<br /><em>Образов</em></h1>
+      <p class="page-hero__sub">Визуальная коллекция славянской культуры — боги, символы, обряды, природа</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="gallery-filter">
+        <button class="gallery-filter__btn active" data-cat="all">Все</button>
+        <button class="gallery-filter__btn" data-cat="gods">Боги</button>
+        <button class="gallery-filter__btn" data-cat="symbols">Символы</button>
+        <button class="gallery-filter__btn" data-cat="nature">Природа</button>
+        <button class="gallery-filter__btn" data-cat="rituals">Обряды</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-cat="gods"><div class="gallery-item__img">⚡</div><div class="gallery-item__info"><div class="gallery-item__title">Перун Громовержец</div><div class="gallery-item__cat">Боги</div></div></div>
+        <div class="gallery-item" data-cat="gods"><div class="gallery-item__img">🐻</div><div class="gallery-item__info"><div class="gallery-item__title">Велес — Хозяин Нави</div><div class="gallery-item__cat">Боги</div></div></div>
+        <div class="gallery-item" data-cat="gods"><div class="gallery-item__img">🔥</div><div class="gallery-item__info"><div class="gallery-item__title">Сварог — Бог-Кузнец</div><div class="gallery-item__cat">Боги</div></div></div>
+        <div class="gallery-item" data-cat="gods"><div class="gallery-item__img">🌸</div><div class="gallery-item__info"><div class="gallery-item__title">Лада — Богиня Любви</div><div class="gallery-item__cat">Боги</div></div></div>
+        <div class="gallery-item" data-cat="gods"><div class="gallery-item__img">🕸</div><div class="gallery-item__info"><div class="gallery-item__title">Макошь — Пряха Судьбы</div><div class="gallery-item__cat">Боги</div></div></div>
+        <div class="gallery-item" data-cat="gods"><div class="gallery-item__img">☀️</div><div class="gallery-item__info"><div class="gallery-item__title">Даждьбог — Солнце</div><div class="gallery-item__cat">Боги</div></div></div>
+        <div class="gallery-item" data-cat="symbols"><div class="gallery-item__img">☀️</div><div class="gallery-item__info"><div class="gallery-item__title">Коловрат</div><div class="gallery-item__cat">Символы</div></div></div>
+        <div class="gallery-item" data-cat="symbols"><div class="gallery-item__img">✡</div><div class="gallery-item__info"><div class="gallery-item__title">Звезда Руси</div><div class="gallery-item__cat">Символы</div></div></div>
+        <div class="gallery-item" data-cat="symbols"><div class="gallery-item__img">🌀</div><div class="gallery-item__info"><div class="gallery-item__title">Символ Рода</div><div class="gallery-item__cat">Символы</div></div></div>
+        <div class="gallery-item" data-cat="symbols"><div class="gallery-item__img">ᚱ</div><div class="gallery-item__info"><div class="gallery-item__title">Руна Райдо</div><div class="gallery-item__cat">Символы</div></div></div>
+        <div class="gallery-item" data-cat="symbols"><div class="gallery-item__img">ᚠ</div><div class="gallery-item__info"><div class="gallery-item__title">Руна Феху</div><div class="gallery-item__cat">Символы</div></div></div>
+        <div class="gallery-item" data-cat="symbols"><div class="gallery-item__img">🔶</div><div class="gallery-item__info"><div class="gallery-item__title">Репейник Счастья</div><div class="gallery-item__cat">Символы</div></div></div>
+        <div class="gallery-item" data-cat="nature"><div class="gallery-item__img">🌳</div><div class="gallery-item__info"><div class="gallery-item__title">Дуб — Мировое Древо</div><div class="gallery-item__cat">Природа</div></div></div>
+        <div class="gallery-item" data-cat="nature"><div class="gallery-item__img">🌲</div><div class="gallery-item__info"><div class="gallery-item__title">Священная Роща</div><div class="gallery-item__cat">Природа</div></div></div>
+        <div class="gallery-item" data-cat="nature"><div class="gallery-item__img">🌊</div><div class="gallery-item__info"><div class="gallery-item__title">Река Смородина</div><div class="gallery-item__cat">Природа</div></div></div>
+        <div class="gallery-item" data-cat="rituals"><div class="gallery-item__img">🔥</div><div class="gallery-item__info"><div class="gallery-item__title">Купальский Костёр</div><div class="gallery-item__cat">Обряды</div></div></div>
+        <div class="gallery-item" data-cat="rituals"><div class="gallery-item__img">🌿</div><div class="gallery-item__info"><div class="gallery-item__title">Окуривание Полынью</div><div class="gallery-item__cat">Обряды</div></div></div>
+        <div class="gallery-item" data-cat="rituals"><div class="gallery-item__img">💍</div><div class="gallery-item__info"><div class="gallery-item__title">Свадебный Обряд</div><div class="gallery-item__cat">Обряды</div></div></div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (function(){
+      var btns=document.querySelectorAll('.gallery-filter__btn');
+      var items=document.querySelectorAll('.gallery-item');
+      btns.forEach(function(btn){
+        btn.addEventListener('click',function(){
+          btns.forEach(function(b){b.classList.remove('active')});
+          btn.classList.add('active');
+          var cat=btn.getAttribute('data-cat');
+          items.forEach(function(item){
+            item.style.display=(cat==='all'||item.getAttribute('data-cat')===cat)?'':'none';
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

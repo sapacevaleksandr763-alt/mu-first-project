@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Квиз «Подбери Оберег» — ответь на 7 вопросов и узнай, какой славянский оберег подходит именно тебе." />
+  <title>Подбери Оберег — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .quiz{max-width:640px;margin:0 auto;padding:48px 0}
+    .quiz__progress{
+      display:flex;gap:6px;margin-bottom:32px;
+    }
+    .quiz__bar{
+      flex:1;height:4px;border-radius:2px;
+      background:var(--border);transition:background var(--transition);
+    }
+    .quiz__bar.done{background:var(--gold)}
+    .quiz__step{display:none}
+    .quiz__step.active{display:block}
+    .quiz__num{
+      font-family:var(--font-head);font-size:0.75rem;
+      color:var(--text-muted);letter-spacing:0.1em;
+      margin-bottom:12px;
+    }
+    .quiz__question{
+      font-family:var(--font-head);font-size:1.3rem;
+      color:var(--text);margin-bottom:24px;line-height:1.4;
+    }
+    .quiz__options{display:flex;flex-direction:column;gap:12px}
+    .quiz__opt{
+      padding:16px 20px;background:var(--bg-2);
+      border:1px solid var(--border);border-radius:var(--radius);
+      color:var(--text-muted);font-size:0.92rem;
+      cursor:pointer;transition:all var(--transition);
+      text-align:left;line-height:1.5;
+    }
+    .quiz__opt:hover{border-color:var(--gold);color:var(--gold)}
+    .result{display:none;text-align:center;max-width:600px;margin:0 auto;padding:48px 0}
+    .result.active{display:block}
+    .result__icon{font-size:4rem;margin-bottom:16px}
+    .result__name{
+      font-family:var(--font-head);font-size:1.8rem;
+      color:var(--gold);margin-bottom:8px;
+    }
+    .result__subtitle{
+      font-size:0.85rem;color:var(--text-muted);
+      letter-spacing:0.1em;text-transform:uppercase;
+      margin-bottom:24px;
+    }
+    .result__desc{
+      font-size:0.95rem;color:var(--text-muted);
+      line-height:1.85;margin-bottom:24px;text-align:left;
+    }
+    .result__props{
+      display:flex;flex-wrap:wrap;gap:8px;
+      justify-content:center;margin-bottom:32px;
+    }
+    .result__prop{
+      background:rgba(201,168,76,0.08);
+      border:1px solid rgba(201,168,76,0.2);
+      border-radius:4px;padding:4px 14px;
+      font-size:0.78rem;color:var(--gold);
+    }
+    .result__god{
+      font-size:0.88rem;color:var(--text-muted);margin-bottom:32px;
+    }
+    .result__god strong{color:var(--gold)}
+    .result__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="oberegi-catalog.html" class="nav__link">Обереги</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">🛡</span>
+      <h1 class="page-hero__title">Подбери<br /><em>Оберег</em></h1>
+      <p class="page-hero__sub">7 вопросов — и ты узнаешь, какой славянский оберег защитит именно тебя</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="quiz" id="quiz">
+        <div class="quiz__progress" id="progress"></div>
+        <div id="steps"></div>
+      </div>
+      <div class="result" id="result">
+        <div class="result__icon" id="resIcon"></div>
+        <h2 class="result__name" id="resName"></h2>
+        <div class="result__subtitle">Твой оберег</div>
+        <p class="result__desc" id="resDesc"></p>
+        <div class="result__props" id="resProps"></div>
+        <p class="result__god" id="resGod"></p>
+        <div class="result__btns">
+          <button class="btn btn--primary" onclick="resetQuiz()">Пройти снова</button>
+          <a href="oberegi-catalog.html" class="btn btn--ghost">Все обереги</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var questions=[
+    {q:'Что тебе сейчас нужнее всего?',opts:[
+      {t:'Защита от негатива и сглаза',o:'molvinec'},
+      {t:'Сила и уверенность в себе',o:'gromovnik'},
+      {t:'Удача и процветание',o:'kolovrat'},
+      {t:'Гармония и любовь',o:'ladinec'}
+    ]},
+    {q:'Какая стихия тебе ближе?',opts:[
+      {t:'Огонь — энергия, действие',o:'gromovnik'},
+      {t:'Вода — интуиция, глубина',o:'ladinec'},
+      {t:'Земля — стабильность, корни',o:'alatyr'},
+      {t:'Воздух — свобода, перемены',o:'stribog'}
+    ]},
+    {q:'Что для тебя важнее в жизни?',opts:[
+      {t:'Семья и близкие',o:'svarog'},
+      {t:'Карьера и достижения',o:'kolovrat'},
+      {t:'Духовный рост',o:'alatyr'},
+      {t:'Творчество и самовыражение',o:'makosh'}
+    ]},
+    {q:'Как ты справляешься с трудностями?',opts:[
+      {t:'Иду напролом',o:'gromovnik'},
+      {t:'Жду подходящий момент',o:'makosh'},
+      {t:'Прошу помощи у близких',o:'svarog'},
+      {t:'Нахожу обходной путь',o:'stribog'}
+    ]},
+    {q:'Какое время суток тебе ближе?',opts:[
+      {t:'Рассвет — начало нового',o:'kolovrat'},
+      {t:'Полдень — пик силы',o:'gromovnik'},
+      {t:'Закат — покой и красота',o:'ladinec'},
+      {t:'Ночь — тайна и глубина',o:'makosh'}
+    ]},
+    {q:'Что тебя больше всего тревожит?',opts:[
+      {t:'Злые слова и зависть людей',o:'molvinec'},
+      {t:'Неуверенность в будущем',o:'alatyr'},
+      {t:'Конфликты и ссоры',o:'svarog'},
+      {t:'Потеря себя и своего пути',o:'stribog'}
+    ]},
+    {q:'Какое качество ты хочешь усилить?',opts:[
+      {t:'Храбрость и решительность',o:'gromovnik'},
+      {t:'Мудрость и интуицию',o:'makosh'},
+      {t:'Удачу и притяжение благ',o:'kolovrat'},
+      {t:'Спокойствие и защищённость',o:'molvinec'}
+    ]}
+  ];
+
+  var oberegi={
+    gromovnik:{icon:'⚡',name:'Громовик',desc:'Шестилучевой знак Перуна — мощнейший воинский оберег. Даёт несгибаемую волю, решительность и смелость идти вперёд. Громовик ставит щит от тёмных сил и наполняет внутренним огнём. Его носили воины и те, кто защищает справедливость. Твоя натура — действовать, вести за собой, не отступать.',props:['Защита','Сила','Воля','Решительность'],god:'Перун'},
+    kolovrat:{icon:'☀️',name:'Коловрат',desc:'Главный солярный символ — вращающееся солнце, вечное движение жизни. Коловрат притягивает удачу, процветание и жизненную энергию. Восемь лучей — восемь точек годового круга, символ гармонии мироздания. Это оберег для тех, кто стремится к успеху и изобилию. Носи его — и свет будет вести тебя.',props:['Удача','Жизненная сила','Процветание','Победа света'],god:'Сварог / Даждьбог'},
+    ladinec:{icon:'🌺',name:'Ладинец',desc:'Крест богини Лады — оберег гармонии, красоты и любви. Лучи завёрнуты противосолонь, создавая вихрь женской (созидательной) энергии. Ладинец защищает от порчи, дарит обаяние и внутренний покой. Подходит как женщинам, так и мужчинам, которым нужна гармония в отношениях и мир в душе.',props:['Любовь','Гармония','Красота','Покой'],god:'Лада'},
+    makosh:{icon:'🕸',name:'Макошь',desc:'Знак Богини Судьбы — Макошь прядёт нити судеб всех живущих. Её оберег усиливает интуицию, раскрывает творческие способности, помогает влиять на свою судьбу. Для тех, кто доверяет внутреннему голосу и идёт своим уникальным путём. Макошь покровительствует рукодельницам, целителям и всем, кто творит.',props:['Интуиция','Судьба','Творчество','Магия'],god:'Макошь'},
+    molvinec:{icon:'🌛',name:'Молвинец',desc:'Оберег-щит от злых слов, сплетен, наговоров и проклятий. Молвинец отражает дурное слово обратно к говорящему. Особенно силён для тех, кто чувствителен к чужой энергетике и словам. Носи его — и никакая молва не навредит тебе. Мощнейшая защита от информационного негатива.',props:['Защита от слов','Отражение негатива','Щит от сплетен'],god:'Род'},
+    svarog:{icon:'🔥',name:'Молот Сварога',desc:'Инструмент Бога-Кузнеца, сковавшего мир. Молот Сварога даёт созидательную силу, мастерство в любом деле, крепость семейных уз. Для тех, кто строит — дом, семью, дело, свою жизнь. Оберег мастеров, строителей и хранителей семейного очага. С ним ты сможешь выковать свою судьбу.',props:['Созидание','Мастерство','Семья','Труд'],god:'Сварог'},
+    alatyr:{icon:'🔥',name:'Алатырь',desc:'Восьмилучевая звезда — камень, лежащий в основе мироздания. На Алатырь-камне Боги сотворили мир. Символ начала начал, центра Вселенной, точки равновесия. Оберег для тех, кто ищет свой путь, кто в поиске ответов и духовного роста. Алатырь — твой якорь в хаосе.',props:['Начало','Путь','Равновесие','Духовный рост'],god:'Сварог'},
+    stribog:{icon:'🏹',name:'Стрибожич',desc:'Знак Стрибога — повелителя ветров. Даёт попутный ветер в делах, помогает обходить преграды и находить нестандартные решения. Для путешественников, предпринимателей и всех, кто в постоянном движении. Стрибожич — свобода, скорость, перемены. С ним ни один ветер не будет встречным.',props:['Свобода','Перемены','Удача в пути','Движение'],god:'Стрибог'}
+  };
+
+  var scores={};var step=0;
+  var stepsEl=document.getElementById('steps');
+  var progEl=document.getElementById('progress');
+
+  function init(){
+    scores={};step=0;
+    Object.keys(oberegi).forEach(function(k){scores[k]=0});
+    stepsEl.innerHTML='';progEl.innerHTML='';
+    document.getElementById('result').classList.remove('active');
+    document.getElementById('quiz').style.display='';
+    for(var i=0;i<questions.length;i++){
+      progEl.innerHTML+='<div class="quiz__bar" id="bar'+i+'"></div>';
+      var s=document.createElement('div');
+      s.className='quiz__step'+(i===0?' active':'');
+      s.id='step'+i;
+      var html='<div class="quiz__num">Вопрос '+(i+1)+' из '+questions.length+'</div>';
+      html+='<h2 class="quiz__question">'+questions[i].q+'</h2><div class="quiz__options">';
+      questions[i].opts.forEach(function(o,j){
+        html+='<button class="quiz__opt" onclick="answer('+i+',\''+o.o+'\')">'+o.t+'</button>';
+      });
+      html+='</div>';
+      s.innerHTML=html;
+      stepsEl.appendChild(s);
+    }
+  }
+
+  function answer(idx,key){
+    scores[key]=(scores[key]||0)+1;
+    document.getElementById('bar'+idx).classList.add('done');
+    document.getElementById('step'+idx).classList.remove('active');
+    step=idx+1;
+    if(step<questions.length){
+      document.getElementById('step'+step).classList.add('active');
+    }else{showResult()}
+  }
+
+  function showResult(){
+    document.getElementById('quiz').style.display='none';
+    var best='';var max=0;
+    Object.keys(scores).forEach(function(k){if(scores[k]>max){max=scores[k];best=k}});
+    var o=oberegi[best];
+    document.getElementById('resIcon').textContent=o.icon;
+    document.getElementById('resName').textContent=o.name;
+    document.getElementById('resDesc').textContent=o.desc;
+    document.getElementById('resGod').innerHTML='<strong>Бог-покровитель:</strong> '+o.god;
+    var propsHtml='';o.props.forEach(function(p){propsHtml+='<span class="result__prop">'+p+'</span>'});
+    document.getElementById('resProps').innerHTML=propsHtml;
+    document.getElementById('result').classList.add('active');
+  }
+
+  function resetQuiz(){init()}
+  init();
+  </script>
+</body>
+</html>
