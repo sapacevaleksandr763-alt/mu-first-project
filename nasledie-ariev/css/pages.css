@@ -1,0 +1,57 @@
+/* ═══ PAGE HERO (used on all subpages) ═══ */
+.page-hero{
+  min-height:50vh;
+  display:flex;
+  align-items:flex-end;
+  position:relative;
+  overflow:hidden;
+}
+.page-hero__bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(0.25) saturate(0.5);
+}
+.page-hero__overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(13,8,4,0.3) 0%,rgba(13,8,4,0.95) 100%);
+}
+.page-hero__content{
+  position:relative;
+  z-index:2;
+  padding:120px 0 56px;
+  max-width:640px;
+}
+.page-hero__rune{
+  font-size:2.5rem;
+  color:var(--gold);
+  opacity:0.35;
+  display:block;
+  margin-bottom:12px;
+}
+.page-hero__title{
+  font-family:var(--font-head);
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:900;
+  line-height:1.15;
+  color:var(--text);
+  margin-bottom:16px;
+}
+.page-hero__title em{
+  font-style:normal;
+  color:var(--gold);
+  display:block;
+}
+.page-hero__sub{
+  font-size:1rem;
+  color:var(--text-muted);
+  line-height:1.7;
+  max-width:520px;
+}
+
+/* ═══ PAGE MAIN ═══ */
+.page-main{
+  padding:64px 0;
+}

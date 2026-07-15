@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Путь Предков — славянская культура, боги, руны, обряды, обереги. Интерактивные квизы, славянский календарь и база знаний." />
+  <title>Путь Предков — Наследие Ариев</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ═══ HERO ═══ */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero__bg{
+      position:absolute;inset:0;
+      background:url('images/hero-volkhv.png') center/cover no-repeat;
+      filter:brightness(0.2) saturate(0.5);
+    }
+    .hero__overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to bottom,rgba(13,8,4,0.3) 0%,rgba(13,8,4,0) 30%,rgba(13,8,4,0.95) 100%);
+    }
+    .hero__content{
+      position:relative;z-index:2;
+      padding:140px 0 80px;
+      max-width:680px;
+    }
+    .hero__badge{
+      display:inline-block;
+      background:rgba(201,168,76,0.12);
+      border:1px solid rgba(201,168,76,0.25);
+      border-radius:20px;
+      padding:6px 16px;
+      font-size:0.72rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:20px;
+    }
+    .hero__title{
+      font-family:var(--font-head);
+      font-size:clamp(2.2rem,5.5vw,3.6rem);
+      font-weight:900;
+      line-height:1.1;
+      color:var(--text);
+      margin-bottom:20px;
+    }
+    .hero__title em{font-style:normal;color:var(--gold)}
+    .hero__sub{
+      font-size:1.05rem;
+      color:var(--text-muted);
+      line-height:1.75;
+      margin-bottom:36px;
+      max-width:540px;
+    }
+    .hero__btns{display:flex;gap:14px;flex-wrap:wrap}
+
+    /* ═══ SECTIONS ═══ */
+    .section{padding:80px 0}
+    .section--alt{background:var(--bg-2)}
+
+    /* ═══ EXPLORE GRID ═══ */
+    .explore-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:48px;
+    }
+    .explore-card{
+      background:var(--bg-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:28px 20px;
+      text-align:center;
+      transition:all var(--transition);
+      text-decoration:none;
+      display:block;
+    }
+    .explore-card:hover{
+      border-color:rgba(201,168,76,0.5);
+      transform:translateY(-4px);
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    }
+    .explore-card__icon{font-size:2rem;margin-bottom:12px;display:block}
+    .explore-card__title{
+      font-family:var(--font-head);
+      font-size:0.85rem;
+      color:var(--gold);
+      margin-bottom:6px;
+    }
+    .explore-card__desc{
+      font-size:0.78rem;
+      color:var(--text-muted);
+      line-height:1.5;
+    }
+
+    /* ═══ INTERACTIVE CARDS ═══ */
+    .interactive-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:48px;
+    }
+    .interactive-card{
+      background:var(--bg-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:32px 24px;
+      text-align:center;
+      transition:all var(--transition);
+      text-decoration:none;
+      display:block;
+      position:relative;
+      overflow:hidden;
+    }
+    .interactive-card::before{
+      content:'';
+      position:absolute;top:0;left:0;right:0;
+      height:3px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      opacity:0;
+      transition:opacity var(--transition);
+    }
+    .interactive-card:hover{
+      border-color:rgba(201,168,76,0.5);
+      transform:translateY(-4px);
+      box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 20px rgba(201,168,76,0.08);
+    }
+    .interactive-card:hover::before{opacity:1}
+    .interactive-card__icon{font-size:2.4rem;margin-bottom:14px;display:block}
+    .interactive-card__title{
+      font-family:var(--font-head);
+      font-size:0.92rem;
+      color:var(--gold);
+      margin-bottom:8px;
+    }
+    .interactive-card__desc{
+      font-size:0.8rem;
+      color:var(--text-muted);
+      line-height:1.55;
+    }
+
+    /* ═══ ABOUT SECTION ═══ */
+    .about-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:48px;
+      align-items:center;
+      margin-top:48px;
+    }
+    .about-text p{
+      font-size:0.95rem;
+      color:var(--text-muted);
+      line-height:1.85;
+      margin-bottom:16px;
+    }
+    .about-text p strong{color:var(--gold)}
+    .about-stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+    .stat-card{
+      background:var(--bg-3);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px 20px;
+      text-align:center;
+    }
+    .stat-card__num{
+      font-family:var(--font-head);
+      font-size:2rem;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .stat-card__label{
+      font-size:0.75rem;
+      color:var(--text-muted);
+      letter-spacing:0.08em;
+      margin-top:4px;
+    }
+
+    /* ═══ CTA SECTION ═══ */
+    .cta-section{
+      text-align:center;
+      padding:80px 0;
+    }
+    .cta-section h2{
+      font-family:var(--font-head);
+      font-size:clamp(1.4rem,3vw,2rem);
+      color:var(--text);
+      margin-bottom:16px;
+    }
+    .cta-section p{
+      color:var(--text-muted);
+      margin-bottom:32px;
+      max-width:500px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media(max-width:768px){
+      .explore-grid{grid-template-columns:repeat(2,1fr)}
+      .interactive-grid{grid-template-columns:1fr}
+      .about-content{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .explore-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#about" class="nav__link">О культуре</a>
+        <a href="pages/history.html" class="nav__link">История</a>
+        <a href="pages/gods.html" class="nav__link">Боги</a>
+        <a href="pages/traditions.html" class="nav__link">Традиции</a>
+        <a href="pages/runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <div class="hero__badge">Славянская культура · База знаний</div>
+      <h1 class="hero__title">Путь<br /><em>Предков</em></h1>
+      <p class="hero__sub">Боги, руны, обряды, обереги — живое наследие славянской цивилизации. Интерактивные квизы, славянский календарь и энциклопедия древних знаний.</p>
+      <div class="hero__btns">
+        <a href="pages/quiz-chertog.html" class="btn btn--primary">Узнай свой Чертог</a>
+        <a href="#explore" class="btn btn--ghost">Исследовать</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ РАЗДЕЛЫ ═══ -->
+  <section class="section" id="explore">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">База Знаний</h2>
+        <div class="section__line"></div>
+        <p class="section__subtitle">Структурированная энциклопедия славянской культуры — от пантеона богов до буквицы</p>
+      </div>
+      <div class="explore-grid">
+        <a href="pages/gods.html" class="explore-card">
+          <span class="explore-card__icon">⚡</span>
+          <div class="explore-card__title">Боги</div>
+          <p class="explore-card__desc">38 богов и духов славянского пантеона</p>
+        </a>
+        <a href="pages/history.html" class="explore-card">
+          <span class="explore-card__icon">📜</span>
+          <div class="explore-card__title">История</div>
+          <p class="explore-card__desc">От древних времён до наших дней</p>
+        </a>
+        <a href="pages/traditions.html" class="explore-card">
+          <span class="explore-card__icon">🌾</span>
+          <div class="explore-card__title">Традиции</div>
+          <p class="explore-card__desc">Обычаи 4 сезонов годового круга</p>
+        </a>
+        <a href="pages/runes.html" class="explore-card">
+          <span class="explore-card__icon">ᚱ</span>
+          <div class="explore-card__title">Руны</div>
+          <p class="explore-card__desc">Справочник рунических символов</p>
+        </a>
+        <a href="pages/vedas.html" class="explore-card">
+          <span class="explore-card__icon">📖</span>
+          <div class="explore-card__title">Веды</div>
+          <p class="explore-card__desc">Священные тексты предков</p>
+        </a>
+        <a href="pages/bukvica.html" class="explore-card">
+          <span class="explore-card__icon">🔤</span>
+          <div class="explore-card__title">Буквица</div>
+          <p class="explore-card__desc">49 образов + дешифратор слов</p>
+        </a>
+        <a href="pages/obryady.html" class="explore-card">
+          <span class="explore-card__icon">🔥</span>
+          <div class="explore-card__title">Обряды</div>
+          <p class="explore-card__desc">16 обрядов в 4 категориях</p>
+        </a>
+        <a href="pages/oberegi-catalog.html" class="explore-card">
+          <span class="explore-card__icon">🛡</span>
+          <div class="explore-card__title">Обереги</div>
+          <p class="explore-card__desc">30 символов защиты с описаниями</p>
+        </a>
+        <a href="pages/creatures.html" class="explore-card">
+          <span class="explore-card__icon">🌲</span>
+          <div class="explore-card__title">Существа</div>
+          <p class="explore-card__desc">14 существ трёх миров</p>
+        </a>
+        <a href="pages/prazdniki.html" class="explore-card">
+          <span class="explore-card__icon">☀️</span>
+          <div class="explore-card__title">Праздники</div>
+          <p class="explore-card__desc">31 праздник по 12 месяцам</p>
+        </a>
+        <a href="pages/gallery.html" class="explore-card">
+          <span class="explore-card__icon">🖼</span>
+          <div class="explore-card__title">Галерея</div>
+          <p class="explore-card__desc">Образы славянской культуры</p>
+        </a>
+        <a href="pages/blog.html" class="explore-card">
+          <span class="explore-card__icon">✍️</span>
+          <div class="explore-card__title">Блог</div>
+          <p class="explore-card__desc">Статьи о практиках предков</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ИНТЕРАКТИВЫ ═══ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Интерактивы</h2>
+        <div class="section__line"></div>
+        <p class="section__subtitle">Узнай о себе через мудрость предков — квизы, тесты, гадания и славянский календарь</p>
+      </div>
+      <div class="interactive-grid">
+        <a href="pages/quiz-chertog.html" class="interactive-card">
+          <span class="interactive-card__icon">🌀</span>
+          <div class="interactive-card__title">Определи свой Чертог</div>
+          <p class="interactive-card__desc">16 чертогов Сварожьего Круга — узнай свой по дате рождения</p>
+        </a>
+        <a href="pages/god-patron.html" class="interactive-card">
+          <span class="interactive-card__icon">⚡</span>
+          <div class="interactive-card__title">Бог-Покровитель</div>
+          <p class="interactive-card__desc">8 вопросов → узнай, какой бог тебя ведёт по жизни</p>
+        </a>
+        <a href="pages/obereg.html" class="interactive-card">
+          <span class="interactive-card__icon">🛡</span>
+          <div class="interactive-card__title">Подбери Оберег</div>
+          <p class="interactive-card__desc">7 вопросов → персональный оберег для тебя</p>
+        </a>
+        <a href="pages/rune-reading.html" class="interactive-card">
+          <span class="interactive-card__icon">ᚱ</span>
+          <div class="interactive-card__title">Гадание на Рунах</div>
+          <p class="interactive-card__desc">Расклад «Три Норны» — прошлое, настоящее, будущее</p>
+        </a>
+        <a href="pages/calendar.html" class="interactive-card">
+          <span class="interactive-card__icon">📅</span>
+          <div class="interactive-card__title">Славянский Календарь</div>
+          <p class="interactive-card__desc">Коляды Даръ — конвертер дат, тотемные животные</p>
+        </a>
+        <a href="pages/goroskop.html" class="interactive-card">
+          <span class="interactive-card__icon">☀️</span>
+          <div class="interactive-card__title">Славянский Гороскоп</div>
+          <p class="interactive-card__desc">4 покровителя сезонов + прогноз на 7534 лето</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ О ПРОЕКТЕ ═══ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">О Проекте</h2>
+        <div class="section__line"></div>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p><strong>«Наследие Ариев»</strong> — это не академический портал и не эзотерический клуб. Это практический ресурс для тех, кто хочет понять культуру предков и применить её мудрость в современной жизни.</p>
+          <p>Здесь ты найдёшь структурированную базу знаний о славянских богах, рунах, обрядах и оберегах. А интерактивные инструменты — квизы, тесты, гадания — помогут узнать о себе через призму древней традиции.</p>
+          <p>Автор проекта — <strong>Александр Сапачёв</strong>, дизайнер и исследователь славянской культуры. <a href="pages/about.html" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.3)">Подробнее →</a></p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-card__num">38</div>
+            <div class="stat-card__label">Богов в базе</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__num">30</div>
+            <div class="stat-card__label">Оберегов</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__num">7</div>
+            <div class="stat-card__label">Интерактивов</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__num">49</div>
+            <div class="stat-card__label">Буквиц</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section section--alt cta-section">
+    <div class="container">
+      <h2>Присоединяйся к каналу</h2>
+      <p>В Telegram-канале «Наследие Ариев» — статьи, разборы, обряды и ответы на вопросы. Подпишись, чтобы не пропустить.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary">Подписаться на Telegram</a>
+        <a href="pages/lead-magnet.html" class="btn btn--ghost">Скачать PDF бесплатно</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__brand">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="pages/history.html">История</a>
+        <a href="pages/gods.html">Боги</a>
+        <a href="pages/traditions.html">Традиции</a>
+        <a href="pages/runes.html">Руны</a>
+        <a href="pages/vedas.html">Веды</a>
+        <a href="pages/blog.html">Блог</a>
+        <a href="pages/about.html">Об авторе</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
