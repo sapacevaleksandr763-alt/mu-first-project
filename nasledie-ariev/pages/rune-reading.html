@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Расклад «Три Норны» — вытяни 3 руны Старшего Футарка на Прошлое, Настоящее и Будущее. С анимацией переворота и перевёрнутыми значениями." />
+  <title>Расклад Рун — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .spread-intro{text-align:center;max-width:600px;margin:0 auto 48px}
+    .spread-intro__text{font-size:0.92rem;color:var(--text-muted);line-height:1.8}
+    .spread{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+    .rune-slot{
+      width:180px;perspective:600px;
+    }
+    .rune-slot__label{
+      font-family:var(--font-head);font-size:0.75rem;color:var(--text-muted);
+      text-align:center;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;
+    }
+    .rune-flip{
+      position:relative;width:180px;height:260px;
+      transition:transform 0.8s;transform-style:preserve-3d;cursor:pointer;
+    }
+    .rune-flip.flipped{transform:rotateY(180deg);cursor:default}
+    .rune-face{
+      position:absolute;inset:0;backface-visibility:hidden;
+      border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+      flex-direction:column;
+    }
+    .rune-back{
+      background:linear-gradient(135deg,var(--bg-2),var(--bg-3));
+      border:2px solid var(--border);
+    }
+    .rune-back__symbol{font-family:var(--font-head);font-size:2.4rem;color:var(--gold);opacity:0.3}
+    .rune-back__hint{font-size:0.72rem;color:var(--text-muted);margin-top:8px}
+    .rune-front{
+      background:var(--bg-2);border:2px solid var(--gold);
+      transform:rotateY(180deg);padding:20px;text-align:center;
+    }
+    .rune-front__glyph{font-size:3.5rem;margin-bottom:8px;line-height:1}
+    .rune-front__glyph.reversed{transform:rotate(180deg)}
+    .rune-front__name{font-family:var(--font-head);font-size:0.92rem;color:var(--gold);margin-bottom:4px}
+    .rune-front__tag{font-size:0.68rem;color:var(--text-muted);margin-bottom:10px}
+    .rune-front__meaning{font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+    .rune-detail{display:none;margin-top:32px}
+    .rune-detail.active{display:block}
+    .rd-card{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:24px;margin-bottom:16px;
+    }
+    .rd-card__pos{font-family:var(--font-head);font-size:0.72rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+    .rd-card__name{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);margin-bottom:4px}
+    .rd-card__rev{font-size:0.78rem;color:rgba(201,168,76,0.6);margin-bottom:10px}
+    .rd-card__text{font-size:0.88rem;color:var(--text-muted);line-height:1.8}
+    .spread-btns{text-align:center;margin-top:32px}
+    @media(max-width:600px){
+      .rune-slot{width:140px}
+      .rune-flip{width:140px;height:210px}
+      .rune-front__glyph{font-size:2.6rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="runes.html" class="nav__link nav__link--active">Руны</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᚱ</span>
+      <h1 class="page-hero__title">Расклад<br /><em>Три Норны</em></h1>
+      <p class="page-hero__sub">Прошлое · Настоящее · Будущее — нажми на руну, чтобы открыть</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="spread-intro">
+        <p class="spread-intro__text">Расклад «Три Норны» — один из древнейших способов рунического гадания. Три руны олицетворяют трёх сестёр-Норн: Урд (Прошлое), Верданди (Настоящее) и Скульд (Будущее). Сосредоточься на вопросе и нажми на каждую руну, чтобы открыть её.</p>
+      </div>
+
+      <div class="spread" id="spread"></div>
+
+      <div class="rune-detail" id="runeDetail"></div>
+
+      <div class="spread-btns">
+        <button class="btn btn--primary" onclick="newSpread()">Новый расклад</button>
+        <a href="runes.html" class="btn btn--ghost" style="margin-left:14px">Все руны</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var runes=[
+    {g:'ᚠ',name:'Феху',up:'Богатство, успех, изобилие. Материальные блага приходят к тебе. Время пожинать плоды труда.',dn:'Потери, жадность, застой. Пересмотри отношение к деньгам и ценностям. Не цепляйся за материальное.'},
+    {g:'ᚢ',name:'Уруз',up:'Сила, здоровье, жизненная энергия. Время действовать решительно и смело. Физическая мощь на твоей стороне.',dn:'Слабость, упущенные возможности. Сила используется не по назначению. Восстанови баланс.'},
+    {g:'ᚦ',name:'Турисаз',up:'Защита, ворота, прорыв. Мощная сила ждёт момента действия. Подготовься и нанеси точный удар.',dn:'Беззащитность, опасность. Не действуй вслепую. Торопливость сейчас — враг.'},
+    {g:'ᚨ',name:'Ансуз',up:'Мудрость, знание, вдохновение. Божественное послание. Прислушайся к знакам — ответ уже рядом.',dn:'Непонимание, обман, лживый совет. Не доверяй словам — проверяй делами.'},
+    {g:'ᚱ',name:'Райдо',up:'Путешествие, движение, правильный путь. Дорога открыта. Время сдвинуться с места.',dn:'Задержка, неверный путь. Остановись и проверь направление, прежде чем продолжать.'},
+    {g:'ᚲ',name:'Кеназ',up:'Свет, ясность, творческий огонь. Понимание приходит. Время творить и учиться.',dn:'Тьма, заблуждение, угасание. То, что казалось ясным, скрывает обман. Присмотрись.'},
+    {g:'ᚷ',name:'Гебо',up:'Дар, партнёрство, союз. Щедрость и взаимность. Равный обмен — ключ к успеху. Руна не имеет перевёрнутого значения.',dn:'Дар, партнёрство, союз. Руна Гебо одинакова в любом положении — дар всегда остаётся даром.'},
+    {g:'ᚹ',name:'Вуньо',up:'Радость, гармония, исполнение желаний. Счастье рядом. Наслаждайся моментом.',dn:'Печаль, разочарование. Радость ускользает. Ищи причину — она внутри.'},
+    {g:'ᚺ',name:'Хагалаз',up:'Разрушение, стихия, неизбежные перемены. Старое должно пасть, чтобы расчистить путь новому. Не сопротивляйся.',dn:'Разрушение, которое ведёт к очищению. Хагалаз не имеет мягкой стороны — прими перемену.'},
+    {g:'ᚾ',name:'Наутиз',up:'Нужда, испытание, терпение. Ограничения учат главному. Через трудности — к росту.',dn:'Бездействие из страха, подавленность. Ты сам себя загнал в тупик. Сделай первый шаг.'},
+    {g:'ᛁ',name:'Иса',up:'Лёд, пауза, замораживание. Время остановиться и подождать. Действие сейчас бессмысленно. Иса одинакова в любом положении.',dn:'Лёд, неподвижность, ожидание. Руна Иса не меняется — терпение остаётся ключом.'},
+    {g:'ᛃ',name:'Йера',up:'Урожай, цикл, справедливое воздаяние. Что посеял — то пожнёшь. Результаты приходят в своё время. Руна не имеет перевёрнутого значения.',dn:'Урожай и справедливость. Руна Йера одинакова — цикл завершается наградой.'},
+    {g:'ᛇ',name:'Эйваз',up:'Выносливость, защита, связь миров. Древо Мира — Иггдрасиль. Ты выдержишь. Сила в корнях. Руна одинакова в обоих положениях.',dn:'Стойкость и связь с предками. Эйваз одинакова — защита работает всегда.'},
+    {g:'ᛈ',name:'Перт',up:'Тайна, судьба, скрытое знание. Что-то раскрывается. Доверься процессу — ответ придёт сам.',dn:'Разочарование, нераскрытый секрет. То, что ты искал, оказалось не тем. Ищи глубже.'},
+    {g:'ᛉ',name:'Альгиз',up:'Защита, связь с высшим, духовная сила. Щит богов над тобой. Ты под защитой.',dn:'Уязвимость, потеря защиты. Не игнорируй предупреждения — поставь границы.'},
+    {g:'ᛊ',name:'Соулу',up:'Солнце, победа, жизненная сила. Полный успех. Свет рассеивает тьму. Руна Соулу одинакова в любом положении.',dn:'Свет и победа. Руна Соулу не меняется — солнце светит всем.'},
+    {g:'ᛏ',name:'Тейваз',up:'Воин, честь, победа через жертву. Справедливая битва. Стой за правду — победа будет.',dn:'Поражение, трусость, потеря чести. Ты отступил от своих принципов. Вернись к ним.'},
+    {g:'ᛒ',name:'Беркана',up:'Рождение, рост, материнство. Новое начало. Забота и нежность приносят плоды.',dn:'Застой в развитии, проблемы в семье. Что-то мешает росту — найди и устрани.'},
+    {g:'ᛖ',name:'Эваз',up:'Партнёрство, движение, доверие. Путь вдвоём легче. Верный соратник рядом.',dn:'Предательство, застой. Партнёрство под угрозой. Проверь, кому доверяешь.'},
+    {g:'ᛗ',name:'Манназ',up:'Человек, самопознание, разум. Познай себя. Ответ — внутри тебя, не снаружи.',dn:'Самообман, одиночество. Ты не видишь себя настоящего. Будь честен с собой.'},
+    {g:'ᛚ',name:'Лагуз',up:'Вода, интуиция, поток. Доверься течению. Интуиция сейчас сильнее логики.',dn:'Страх, потеря интуиции. Ты сопротивляешься потоку жизни. Отпусти контроль.'},
+    {g:'ᛜ',name:'Ингуз',up:'Плодородие, завершение, внутренний рост. Цикл завершается. Зерно прорастает. Руна одинакова в обоих положениях.',dn:'Плодородие и завершение. Ингуз одинакова — зерно прорастёт в своё время.'},
+    {g:'ᛞ',name:'Отала',up:'Род, наследие, дом. Связь с предками сильна. Корни дают опору. Защити своё.',dn:'Потеря корней, бездомность. Ты оторван от своих истоков. Вернись к началу.'},
+    {g:'ᛟ',name:'Дагаз',up:'Рассвет, прорыв, трансформация. Тьма позади — впереди свет. Коренная перемена к лучшему. Руна одинакова в обоих положениях.',dn:'Рассвет и обновление. Дагаз одинакова — свет приходит к каждому.'}
+  ];
+
+  var positions=['Прошлое (Урд)','Настоящее (Верданди)','Будущее (Скульд)'];
+  var drawn=[];var flipped=0;
+
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+
+  function newSpread(){
+    var pool=shuffle(runes.slice());
+    drawn=[];flipped=0;
+    for(var i=0;i<3;i++){
+      var rev=Math.random()<0.35;
+      drawn.push({rune:pool[i],reversed:rev});
+    }
+    render();
+  }
+
+  function render(){
+    var sp=document.getElementById('spread');sp.innerHTML='';
+    document.getElementById('runeDetail').innerHTML='';
+    document.getElementById('runeDetail').classList.remove('active');
+    for(var i=0;i<3;i++){
+      var slot=document.createElement('div');slot.className='rune-slot';
+      slot.innerHTML='<div class="rune-slot__label">'+positions[i]+'</div><div class="rune-flip" id="rf'+i+'" onclick="flipRune('+i+')"><div class="rune-face rune-back"><div class="rune-back__symbol">ᚱ</div><div class="rune-back__hint">Нажми</div></div><div class="rune-face rune-front"><div class="rune-front__glyph'+(drawn[i].reversed?' reversed':'')+'">'+drawn[i].rune.g+'</div><div class="rune-front__name">'+drawn[i].rune.name+'</div><div class="rune-front__tag">'+(drawn[i].reversed?'Перевёрнутая':'Прямая')+'</div><div class="rune-front__meaning">'+(drawn[i].reversed?drawn[i].rune.dn:drawn[i].rune.up).split('.')[0]+'.</div></div></div>';
+      sp.appendChild(slot);
+    }
+  }
+
+  function flipRune(idx){
+    var el=document.getElementById('rf'+idx);
+    if(el.classList.contains('flipped')) return;
+    el.classList.add('flipped');
+    flipped++;
+    if(flipped===3) showDetail();
+  }
+
+  function showDetail(){
+    var det=document.getElementById('runeDetail');
+    var h='';
+    for(var i=0;i<3;i++){
+      var r=drawn[i];
+      h+='<div class="rd-card"><div class="rd-card__pos">'+positions[i]+'</div><div class="rd-card__name">'+r.rune.g+' '+r.rune.name+'</div><div class="rd-card__rev">'+(r.reversed?'Перевёрнутая руна':'Прямое положение')+'</div><div class="rd-card__text">'+(r.reversed?r.rune.dn:r.rune.up)+'</div></div>';
+    }
+    det.innerHTML=h;
+    det.classList.add('active');
+    setTimeout(function(){det.scrollIntoView({behavior:'smooth',block:'start'})},400);
+  }
+
+  newSpread();
+  </script>
+</body>
+</html>
