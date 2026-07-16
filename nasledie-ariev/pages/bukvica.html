@@ -3,54 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="49 буквиц древнеславянской Буквицы — значение каждой буквы, числовые образы, инструмент расшифровки слов по буквицам." />
-  <title>Буквица — Путь Предков</title>
+  <meta name="description" content="49 буквиц древнеславянской Буквицы — изображения, значения, числовые образы. Расшифровка имён и слов через образы и корни." />
+  <title>Славянская Азбука (Буквица) — Путь Предков</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages.css" />
   <style>
-    .buk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin:48px 0}
-    .buk-cell{
+    .buk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin:48px 0}
+    .buk-card{
       background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
-      padding:12px 6px;text-align:center;cursor:pointer;transition:all var(--transition);
+      padding:8px;text-align:center;cursor:pointer;transition:all 0.3s;overflow:hidden;
     }
-    .buk-cell:hover,.buk-cell.active{border-color:var(--gold);background:rgba(201,168,76,0.06)}
-    .buk-cell__char{font-family:var(--font-head);font-size:1.4rem;color:var(--gold);line-height:1}
-    .buk-cell__name{font-size:0.58rem;color:var(--text-muted);margin-top:4px;line-height:1.2}
+    .buk-card:hover,.buk-card.active{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+    .buk-card__img{width:100%;aspect-ratio:300/212;object-fit:cover;border-radius:4px;margin-bottom:6px}
+    .buk-card__char{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);line-height:1}
+    .buk-card__name{font-size:0.55rem;color:var(--text-muted);margin-top:2px;line-height:1.2}
+
     .buk-detail{
-      display:none;background:var(--bg-2);border:1px solid var(--gold);border-radius:var(--radius);
+      display:none;background:var(--bg-2);border:1px solid var(--gold);border-radius:12px;
       padding:32px;margin-bottom:48px;
     }
-    .buk-detail.active{display:block}
-    .buk-detail__char{font-family:var(--font-head);font-size:3rem;color:var(--gold);text-align:center;margin-bottom:8px}
-    .buk-detail__name{font-family:var(--font-head);font-size:1.3rem;color:var(--gold);text-align:center;margin-bottom:4px}
-    .buk-detail__num{font-size:0.78rem;color:var(--text-muted);text-align:center;margin-bottom:16px}
-    .buk-detail__meaning{font-size:0.9rem;color:var(--text-muted);line-height:1.8;text-align:center}
-    .decipher{
-      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
-      padding:32px;margin:48px 0;
+    .buk-detail.active{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:start}
+    .buk-detail__img{width:100%;border-radius:var(--radius)}
+    .buk-detail__char{font-family:var(--font-head);font-size:2.4rem;color:var(--gold);margin-bottom:4px}
+    .buk-detail__name{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);margin-bottom:4px}
+    .buk-detail__num{font-size:0.78rem;color:var(--text-muted);margin-bottom:12px}
+    .buk-detail__meaning{font-size:0.92rem;color:var(--text-muted);line-height:1.8}
+
+    .tool-section{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:12px;
+      padding:36px;margin:56px 0;
     }
-    .decipher__title{font-family:var(--font-head);font-size:1.1rem;color:var(--gold);margin-bottom:16px;text-align:center}
-    .decipher__input{
-      width:100%;padding:14px 18px;background:var(--bg);border:1px solid var(--border);
-      border-radius:var(--radius);color:var(--text);font-size:1rem;font-family:var(--font-body);
-      text-align:center;outline:none;
+    .tool-section__title{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);margin-bottom:6px;text-align:center}
+    .tool-section__sub{font-size:0.82rem;color:var(--text-muted);text-align:center;margin-bottom:20px}
+    .tool-input{
+      width:100%;max-width:400px;margin:0 auto;display:block;
+      padding:14px 20px;background:var(--bg);border:1px solid var(--border);
+      border-radius:var(--radius);color:var(--text);font-size:1.1rem;
+      font-family:var(--font-body);text-align:center;outline:none;
     }
-    .decipher__input:focus{border-color:var(--gold)}
-    .decipher__input::placeholder{color:var(--text-muted);opacity:0.5}
-    .decipher__result{margin-top:24px}
-    .decipher__letter{
-      display:inline-flex;flex-direction:column;align-items:center;
-      margin:6px 8px;
+    .tool-input:focus{border-color:var(--gold)}
+    .tool-input::placeholder{color:var(--text-muted);opacity:0.4}
+
+    .dec-result{margin-top:28px}
+    .dec-letters{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:20px}
+    .dec-letter{
+      display:flex;flex-direction:column;align-items:center;
+      background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius);
+      padding:10px 8px;min-width:60px;
     }
-    .decipher__letter-char{font-family:var(--font-head);font-size:1.4rem;color:var(--gold)}
-    .decipher__letter-name{font-size:0.62rem;color:var(--text-muted);max-width:60px;text-align:center;line-height:1.2}
-    .decipher__summary{
-      margin-top:20px;font-size:0.88rem;color:var(--text-muted);line-height:1.8;
+    .dec-letter__char{font-family:var(--font-head);font-size:1.3rem;color:var(--gold)}
+    .dec-letter__name{font-size:0.58rem;color:var(--text-muted);margin-top:2px}
+    .dec-letter__short{font-size:0.6rem;color:var(--text-muted);opacity:0.7;margin-top:1px}
+    .dec-breakdown{
       border-top:1px solid var(--border);padding-top:16px;
+      font-size:0.88rem;color:var(--text-muted);line-height:1.9;
     }
-    @media(max-width:768px){.buk-grid{grid-template-columns:repeat(5,1fr)}}
+    .dec-breakdown strong{color:var(--gold)}
+    .dec-full{
+      margin-top:16px;padding:18px;
+      background:rgba(184,148,46,0.06);border:1px solid rgba(184,148,46,0.15);
+      border-radius:var(--radius);text-align:center;
+    }
+    .dec-full__label{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px}
+    .dec-full__text{font-family:var(--font-head);font-size:1.05rem;color:var(--gold);line-height:1.6}
+
+    .examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+    .example-card{
+      background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius);
+      padding:18px;cursor:pointer;transition:all 0.3s;
+    }
+    .example-card:hover{border-color:var(--gold)}
+    .example-card__word{font-family:var(--font-head);font-size:0.95rem;color:var(--gold);margin-bottom:4px}
+    .example-card__roots{font-size:0.72rem;color:var(--text-muted);margin-bottom:4px}
+    .example-card__meaning{font-size:0.78rem;color:var(--text-muted);line-height:1.5}
+
+    @media(max-width:768px){
+      .buk-grid{grid-template-columns:repeat(5,1fr)}
+      .buk-detail.active{grid-template-columns:1fr}
+      .examples-grid{grid-template-columns:1fr}
+    }
     @media(max-width:480px){.buk-grid{grid-template-columns:repeat(4,1fr)}}
   </style>
 </head>
@@ -60,11 +93,11 @@
     <div class="container header__inner">
       <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
       <nav class="nav" id="nav">
-        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="../index.html" class="nav__link">Главная</a>
         <a href="gods.html" class="nav__link">Боги</a>
-        <a href="traditions.html" class="nav__link">Традиции</a>
         <a href="runes.html" class="nav__link">Руны</a>
-        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Telegram</a>
       </nav>
       <button class="burger" id="burger"><span></span><span></span><span></span></button>
     </div>
@@ -75,30 +108,40 @@
     <div class="page-hero__overlay"></div>
     <div class="container page-hero__content">
       <span class="page-hero__rune">Ⰰ</span>
-      <h1 class="page-hero__title">Древнеславянская<br /><em>Буквица</em></h1>
-      <p class="page-hero__sub">49 буквиц — каждая буква несёт глубинный образ</p>
+      <h1 class="page-hero__title">Славянская<br /><em>Азбука</em></h1>
+      <p class="page-hero__sub">49 буквиц — каждая буква несёт глубинный образ мироздания</p>
     </div>
   </section>
 
   <main class="page-main">
     <div class="container">
 
-      <div class="content-block__intro" style="text-align:center;margin-bottom:16px">
-        <p>Нажми на буквицу — узнай её глубинный образ. Или введи слово в расшифровщик ниже.</p>
-      </div>
+      <p class="page-intro">Древнеславянская Буквица — это не алфавит в привычном смысле. Каждая из 49 буквиц несёт глубинный образ. Читая слово по буквицам и корням, ты раскрываешь его истинный смысл, заложенный предками. Нажми на буквицу — узнай её образ.</p>
 
       <div class="buk-grid" id="bukGrid"></div>
       <div class="buk-detail" id="bukDetail">
-        <div class="buk-detail__char" id="bdChar"></div>
-        <div class="buk-detail__name" id="bdName"></div>
-        <div class="buk-detail__num" id="bdNum"></div>
-        <div class="buk-detail__meaning" id="bdMeaning"></div>
+        <img src="" alt="" class="buk-detail__img" id="bdImg" />
+        <div>
+          <div class="buk-detail__char" id="bdChar"></div>
+          <div class="buk-detail__name" id="bdName"></div>
+          <div class="buk-detail__num" id="bdNum"></div>
+          <div class="buk-detail__meaning" id="bdMeaning"></div>
+        </div>
       </div>
 
-      <div class="decipher">
-        <div class="decipher__title">Расшифруй слово по Буквице</div>
-        <input type="text" class="decipher__input" id="decInput" placeholder="Введи слово..." maxlength="30" autocomplete="off" />
-        <div class="decipher__result" id="decResult"></div>
+      <!-- ДЕШИФРАТОР СЛОВ И ИМЁН -->
+      <div class="tool-section">
+        <div class="tool-section__title">Расшифруй слово или имя</div>
+        <div class="tool-section__sub">Побуквенный образ + образное значение через корни и слоги</div>
+        <input type="text" class="tool-input" id="decInput" placeholder="Введи слово или имя..." maxlength="30" autocomplete="off" />
+        <div class="dec-result" id="decResult"></div>
+      </div>
+
+      <!-- ПРИМЕРЫ РАСШИФРОВОК -->
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">📖</span> Примеры расшифровок</h2>
+        <p class="content-block__intro">Нажми на слово — оно появится в дешифраторе выше</p>
+        <div class="examples-grid" id="examplesGrid"></div>
       </div>
 
       <div class="content-block" style="text-align:center;padding:48px 0">
@@ -124,64 +167,57 @@
   <script src="../js/main.js"></script>
   <script>
   var bukv=[
-    {c:'А',n:'Азъ',num:'1',m:'Я, человек, начало. Осознание себя как божественного существа.'},
-    {c:'Б',n:'Боги',num:'—',m:'Множество богов, высшие силы. Божественная природа мироздания.'},
-    {c:'В',n:'Вѣди',num:'2',m:'Мудрость, знание. Ведать — знать глубинно, сердцем и разумом.'},
-    {c:'Г',n:'Глаголи',num:'3',m:'Передача мудрости, слово, речь. Глаголить — нести истину.'},
-    {c:'Д',n:'Добро',num:'4',m:'Добро, достаток, приобретение. Созданное трудом и делом.'},
-    {c:'Є',n:'Есть',num:'5',m:'Бытие, существование, жизнь. Это есть, это существует.'},
-    {c:'Ж',n:'Животъ',num:'—',m:'Жизнь, живот — живое начало. Жизненная сила.'},
-    {c:'Ѕ',n:'Ѕело',num:'6',m:'Весьма, очень, сверх. Усиление, превышение меры.'},
-    {c:'З',n:'Земля',num:'7',m:'Земля, почва, основа. Мир Яви, физическая реальность.'},
-    {c:'И',n:'Иже',num:'8',m:'Союз, единство, равновесие. То, что соединяет.'},
-    {c:'І',n:'Іжеи',num:'10',m:'Вселенная, мироздание. Вселенский поток, истина.'},
-    {c:'Ї',n:'Їнить',num:'—',m:'Община, единство общности. Связь людей в целое.'},
-    {c:'К',n:'Како',num:'20',m:'Объём, система, охват. Как — каким образом.'},
-    {c:'Л',n:'Людіє',num:'30',m:'Люди, общество, человечество. Мир людской.'},
-    {c:'М',n:'Мыслѣтѣ',num:'40',m:'Мысль, мышление, думание. Процесс познания.'},
-    {c:'Н',n:'Нашъ',num:'50',m:'Наше, родное, своё. Принадлежность роду.'},
-    {c:'О',n:'Онъ',num:'70',m:'Он, определённость, нечто. Указание на конкретное.'},
-    {c:'П',n:'Покои',num:'80',m:'Покой, гармония, равновесие. Состояние мира.'},
-    {c:'Р',n:'Рѣци',num:'100',m:'Речь, изречение, разделение. Говорить с силой.'},
-    {c:'С',n:'Слово',num:'200',m:'Слово, мысль произнесённая. Созидательная сила речи.'},
-    {c:'Т',n:'Твердо',num:'300',m:'Твёрдость, утверждённость, опора. Незыблемость.'},
-    {c:'У',n:'Укъ',num:'400',m:'Зов, призыв, приближение. Нечто, приближающееся к тебе.'},
-    {c:'Ф',n:'Фертъ',num:'500',m:'Гордость, благородство, осанка. Достоинство.'},
-    {c:'Х',n:'Хѣръ',num:'600',m:'Божественный, прекрасный. Гармония, мировое равновесие.'},
-    {c:'Ѡ',n:'Отъ',num:'800',m:'От, отделение, исток. Начало движения.'},
-    {c:'Ц',n:'Цѣ',num:'900',m:'Цель, целеустремлённость. Движение к намеченному.'},
-    {c:'Ч',n:'Червль',num:'90',m:'Красный, красота, черта. Граница, рубеж.'},
-    {c:'Ш',n:'Ша',num:'—',m:'Тишина, покой, пространство. Выход за пределы.'},
-    {c:'Щ',n:'Шта',num:'—',m:'Щит, защита, плотность. Защитная сила.'},
-    {c:'Ъ',n:'Еръ',num:'—',m:'Созидание, процесс творения. Твёрдость действия.'},
-    {c:'Ы',n:'Еры',num:'—',m:'Единство, множественность. Совместное действие.'},
-    {c:'Ь',n:'Ерь',num:'—',m:'Сотворённое, существующее. Жизнь, данная свыше.'},
-    {c:'Ѣ',n:'Ять',num:'—',m:'Божественная связь. Связь земного с небесным.'},
-    {c:'Ю',n:'Юнь',num:'—',m:'Выход за пределы, движение наружу. Вращение.'},
-    {c:'Ꙗ',n:'Арь',num:'—',m:'Образ, лик, один. Единый образ бытия.'},
-    {c:'Ѥ',n:'Ѥдо',num:'—',m:'Прикосновение к целому. Ведание через опыт.'},
-    {c:'Ѧ',n:'Ѧсъ',num:'—',m:'Ясность, свет понимания. Чистое восприятие.'},
-    {c:'Ѫ',n:'Юсъ',num:'—',m:'Корень, основа. Нечто, имеющее корень и связь.'},
-    {c:'Ѩ',n:'Ёта',num:'—',m:'Познание, утверждённое знание. Единство знания и бытия.'},
-    {c:'Ѭ',n:'Ота',num:'—',m:'Неприятие, отречение. Отказ от ненужного.'},
-    {c:'Ѯ',n:'Кси',num:'60',m:'Дух, духовность. Энергия, пронизывающая всё.'},
-    {c:'Ѱ',n:'Пси',num:'700',m:'Душа, психея. Внутренний мир, подсознание.'},
-    {c:'Ѳ',n:'Фита',num:'9',m:'Единство Духа. Слияние духовного и природного.'},
-    {c:'Ѵ',n:'Ижица',num:'—',m:'Истина, доброта. Благость, исходящая от мироздания.'},
-    {c:'Ӕ',n:'Ижа',num:'—',m:'Мера времени, движение времени. Поток перемен.'},
-    {c:'Ꙩ',n:'Ом',num:'—',m:'Сияние, просветление. Озарение от созерцания.'},
-    {c:'Ꙫ',n:'Ень',num:'—',m:'Он, образ. Нечто, обретающее форму.'},
-    {c:'Ꙭ',n:'Одь',num:'—',m:'Божественное присутствие. Нечто, превосходящее земное.'},
-    {c:'ꙮ',n:'Ёта',num:'—',m:'Множественность, полнота мироздания. Все миры в одном.'}
+    {c:'А',n:'Азъ',num:'1',m:'Я, человек, начало. Осознание себя как божественного существа.',img:'az-starec-300x212.jpg'},
+    {c:'Б',n:'Боги',num:'—',m:'Множество богов, высшие силы. Божественная природа мироздания.',img:'bogi-starec-300x212.jpg'},
+    {c:'В',n:'Вѣди',num:'2',m:'Мудрость, знание. Ведать — знать глубинно, сердцем и разумом.',img:'vedi-starec-300x212.jpg'},
+    {c:'Г',n:'Глаголи',num:'3',m:'Передача мудрости, слово, речь. Глаголить — нести истину.',img:'glagoli-starec-300x212.jpg'},
+    {c:'Д',n:'Добро',num:'4',m:'Добро, достаток, приобретение. Созданное трудом и делом.',img:'dobro-starec-300x212.jpg'},
+    {c:'Є',n:'Есть',num:'5',m:'Бытие, существование, жизнь. Это есть, это существует.',img:'esti-starec-300x212.jpg'},
+    {c:'Ж',n:'Животъ',num:'—',m:'Жизнь, живот — живое начало. Жизненная сила.',img:'givoti-starec-300x212.jpg'},
+    {c:'Ѕ',n:'Ѕело',num:'6',m:'Весьма, очень, сверх. Усиление, превышение меры.',img:'selo-starec-300x212.jpg'},
+    {c:'З',n:'Земля',num:'7',m:'Земля, почва, основа. Мир Яви, физическая реальность.',img:'zemly-starec-300x212.jpg'},
+    {c:'И',n:'Иже',num:'8',m:'Союз, единство, равновесие. То, что соединяет.',img:'ige-starec-300x212.jpg'},
+    {c:'І',n:'Іжеи',num:'10',m:'Вселенная, мироздание. Вселенский поток, истина.',img:'igei-starec1-300x212.jpg'},
+    {c:'Ї',n:'Їнить',num:'—',m:'Община, единство общности. Связь людей в целое.',img:'init-starec-300x212.jpg'},
+    {c:'К',n:'Како',num:'20',m:'Объём, система, охват. Как — каким образом.',img:'kako-starec-300x212.jpg'},
+    {c:'Л',n:'Людіє',num:'30',m:'Люди, общество, человечество. Мир людской.',img:'ludie-starec-300x212.jpg'},
+    {c:'М',n:'Мыслѣтѣ',num:'40',m:'Мысль, мышление, думание. Процесс познания.',img:'misli-starec-300x212.jpg'},
+    {c:'Н',n:'Нашъ',num:'50',m:'Наше, родное, своё. Принадлежность роду.',img:'nash-starec-300x212.jpg'},
+    {c:'О',n:'Онъ',num:'70',m:'Он, определённость, нечто. Указание на конкретное.',img:'ony-starec-300x212.jpg'},
+    {c:'П',n:'Покои',num:'80',m:'Покой, гармония, равновесие. Состояние мира.',img:'pokoj-starec-300x212.jpg'},
+    {c:'Р',n:'Рѣци',num:'100',m:'Речь, изречение, разделение. Говорить с силой.',img:'reci-starec-300x212.jpg'},
+    {c:'С',n:'Слово',num:'200',m:'Слово, мысль произнесённая. Созидательная сила речи.',img:'slovo-starec-300x212.jpg'},
+    {c:'Т',n:'Твердо',num:'300',m:'Твёрдость, утверждённость, опора. Незыблемость.',img:'tverdo-starec-300x212.jpg'},
+    {c:'У',n:'Укъ',num:'400',m:'Зов, призыв, приближение. Нечто, приближающееся к тебе.',img:'uk-starec-300x212.jpg'},
+    {c:'Ф',n:'Фертъ',num:'500',m:'Гордость, благородство, осанка. Достоинство.',img:'fert-starec-300x212.jpg'},
+    {c:'Х',n:'Хѣръ',num:'600',m:'Божественный, прекрасный. Гармония, мировое равновесие.',img:'her-starec-300x212.jpg'},
+    {c:'Ѡ',n:'Отъ',num:'800',m:'От, отделение, исток. Начало движения.',img:'ot-starec-300x212.jpg'},
+    {c:'Ц',n:'Цѣ',num:'900',m:'Цель, целеустремлённость. Движение к намеченному.',img:'ci-starec-300x212.jpg'},
+    {c:'Ч',n:'Червль',num:'90',m:'Красный, красота, черта. Граница, рубеж.',img:'chervl-starec-300x212.jpg'},
+    {c:'Ш',n:'Ша',num:'—',m:'Тишина, покой, пространство. Выход за пределы.',img:'sha-starec-300x212.jpg'},
+    {c:'Щ',n:'Шта',num:'—',m:'Щит, защита, плотность. Защитная сила.',img:'shta-starec-300x212.jpg'},
+    {c:'Ъ',n:'Еръ',num:'—',m:'Созидание, процесс творения. Твёрдость действия.',img:'ier-starec-300x212.jpg'},
+    {c:'Ы',n:'Еры',num:'—',m:'Единство, множественность. Совместное действие.',img:'ieri-starec-300x212.jpg'},
+    {c:'Ь',n:'Ерь',num:'—',m:'Сотворённое, существующее. Жизнь, данная свыше.',img:'ierii-starec-300x212.jpg'},
+    {c:'Ѣ',n:'Ять',num:'—',m:'Божественная связь. Связь земного с небесным.',img:'yat-starec-1-300x212.jpg'},
+    {c:'Ю',n:'Юнь',num:'—',m:'Выход за пределы, движение наружу. Вращение.',img:'yni-starec-300x212.jpg'},
+    {c:'Ꙗ',n:'Арь',num:'—',m:'Образ, лик, один. Единый образ бытия.',img:'ari-starec-300x212.jpg'},
+    {c:'Ѥ',n:'Ѥдо',num:'—',m:'Прикосновение к целому. Ведание через опыт.',img:'edo-starec-300x212.jpg'},
+    {c:'Ѧ',n:'Ѧсъ',num:'—',m:'Ясность, свет понимания. Чистое восприятие.',img:'ecmi-starec-300x212.jpg'},
+    {c:'Ѫ',n:'Юсъ',num:'—',m:'Корень, основа. Нечто, имеющее корень и связь.',img:'ouk-starec-300x212.jpg'},
+    {c:'Ѩ',n:'Ёта',num:'—',m:'Познание, утверждённое знание. Единство знания и бытия.',img:'eta-starec-300x212.jpg'},
+    {c:'Ѭ',n:'Ота',num:'—',m:'Неприятие, отречение. Отказ от ненужного.',img:'ota-starec-300x212.jpg'},
+    {c:'Ѯ',n:'Кси',num:'60',m:'Дух, духовность. Энергия, пронизывающая всё.',img:'ksi-starec-300x212.jpg'},
+    {c:'Ѱ',n:'Пси',num:'700',m:'Душа, психея. Внутренний мир, подсознание.',img:'psi-starec-300x212.jpg'},
+    {c:'Ѳ',n:'Фита',num:'9',m:'Единство Духа. Слияние духовного и природного.',img:'fita-starec-300x212.jpg'},
+    {c:'Ѵ',n:'Ижица',num:'—',m:'Истина, доброта. Благость, исходящая от мироздания.',img:'igica-starec-300x212.jpg'},
+    {c:'Ӕ',n:'Ижа',num:'—',m:'Мера времени, движение времени. Поток перемен.',img:'izha-starec-300x212.jpg'},
+    {c:'Ꙩ',n:'Ом',num:'—',m:'Сияние, просветление. Озарение от созерцания.',img:'omi-starec-300x212.jpg'},
+    {c:'Ꙫ',n:'Ень',num:'—',m:'Он, образ. Нечто, обретающее форму.',img:'eni-starec-300x212.jpg'},
+    {c:'Ꙭ',n:'Одь',num:'—',m:'Божественное присутствие. Нечто, превосходящее земное.',img:'odi-starec-300x212.jpg'},
+    {c:'ꙮ',n:'Ёта',num:'—',m:'Множественность, полнота мироздания. Все миры в одном.',img:'gervi-starec-300x212.jpg'}
   ];
 
-  var lookup={};
-  var modern='абвгдежзиклмнопрстуфхцчшщъыьэюя';
-  var bukMap={};
-  bukv.forEach(function(b){
-    var low=b.c.toLowerCase();
-    bukMap[low]=b;
-  });
   var charMap={
     'а':0,'б':1,'в':2,'г':3,'д':4,'е':5,'ж':6,'з':8,'и':9,
     'й':9,'к':12,'л':13,'м':14,'н':15,'о':16,'п':17,'р':18,
@@ -189,19 +225,93 @@
     'ш':27,'щ':28,'ъ':29,'ы':30,'ь':31,'э':5,'ю':33,'я':34
   };
 
+  // === Корни и слоги — образная этимология ===
+  var roots=[
+    {s:'ра',m:'свет, солнце, сияние'},{s:'га',m:'путь, движение, дорога'},{s:'го',m:'путь, восхождение'},
+    {s:'ар',m:'земля, пахарь'},{s:'ор',m:'сила, мощь'},{s:'ер',m:'созидание, творение'},
+    {s:'вед',m:'знание, мудрость, ведание'},{s:'жи',m:'жизнь, живое'},{s:'ма',m:'мать, материнское начало'},
+    {s:'да',m:'дающий, дар'},{s:'бо',m:'бог, божественное'},{s:'яр',m:'ярый, энергия, солнце'},
+    {s:'кол',m:'круг, вращение, солнцеворот'},{s:'лад',m:'гармония, любовь, лад'},
+    {s:'мир',m:'мир, вселенная, община'},{s:'влад',m:'владение, власть, управление'},
+    {s:'свет',m:'свет, святость, чистота'},{s:'слав',m:'слава, прославление'},
+    {s:'люд',m:'люди, народ'},{s:'мил',m:'милый, добрый, любимый'},
+    {s:'род',m:'род, рождение, начало'},{s:'лег',m:'светлая сущность, небесный посланник'},
+    {s:'прав',m:'правь, правда, истина'},{s:'бог',m:'бог, высшая сила'},
+    {s:'тырь',m:'несущий, держащий'},{s:'добр',m:'добро, достаток'},
+    {s:'дуг',m:'дуга, изгиб'},{s:'вол',m:'воля, волхв, сила'},
+    {s:'свят',m:'святой, светлый, чистый'},{s:'стан',m:'стояние, место, становление'},
+    {s:'кра',m:'красота, сияние (к-РА-сота)'},{s:'вер',m:'вера, верность, истина'},
+    {s:'рус',m:'русый, светлый, русло'},{s:'бел',m:'белый, чистый, светлый'},
+    {s:'чер',m:'черта, рубеж, граница'},{s:'дар',m:'дар, подарок, дарение'},
+    {s:'пра',m:'предки, изначальное'},{s:'нав',m:'навь, потусторонний мир'},
+    {s:'яв',m:'явь, явный мир, реальность'},{s:'сва',m:'небеса, сварга, небесное'},
+    {s:'зем',m:'земля, земное'},{s:'нар',m:'народ, племя'},{s:'вор',m:'ворота, вращение'},
+    {s:'бер',m:'защита, оберег (береза, берег)'},{s:'леп',m:'красота, лепота'},
+    {s:'куп',m:'купание, соединение, совокупность'},{s:'суд',m:'судьба, суд'},
+    {s:'лес',m:'лес, природная сила'},{s:'вод',m:'вода, ведение'},
+    {s:'ог',m:'огонь, свет'},{s:'ол',m:'подобный, внук'},
+    {s:'сан',m:'сан, достоинство, почёт'},{s:'др',m:'древо, друид, мудрец леса'}
+  ];
+
+  // === Полные расшифровки слов и имён ===
+  var knownWords={
+    'гора':{parts:'ГО (путь) + РА (свет)',full:'Путь к свету. Гора — место, где земное восходит к небесному.'},
+    'радуга':{parts:'РА (свет) + ДУГА (изгиб)',full:'Дуга света. Небесный мост между мирами Яви и Прави.'},
+    'правда':{parts:'ПРА (предки) + В (ведание) + ДА (дар)',full:'Дар ведания предков. Истина, переданная от пращуров.'},
+    'медведь':{parts:'МЕД (мёд) + ВЕДЬ (ведающий)',full:'Ведающий мёд. Хозяин леса, знающий, где искать сладость жизни.'},
+    'богатырь':{parts:'БОГ (бог) + А (начало) + ТЫРЬ (несущий)',full:'Несущий бога в себе. Воин, в котором живёт божественная сила.'},
+    'красота':{parts:'К + РА (свет) + СО (совместно) + ТА (то)',full:'То, что совместно со светом. Красота — проявление божественного света.'},
+    'радость':{parts:'РА (свет) + ДОСТЬ (достаток)',full:'Достаток света. Состояние, когда душа наполнена светом.'},
+    'рассвет':{parts:'РА (свет) + С (слово) + СВЕТ (свет)',full:'Свет света. Момент, когда РА возвращается к людям.'},
+    'здравствуйте':{parts:'С + ДРАВЪ (древо/здоровье) + СТВУЙ + ТЕ',full:'С древом (здоровьем) будьте! Пожелание крепости, как у древа жизни.'},
+    'культура':{parts:'КУЛЬТ (почитание) + У + РА (свет)',full:'Почитание света. Культура — это следование пути света.'},
+    'природа':{parts:'ПРИ (при) + РОД (род) + А',full:'То, что при Роде. Природа — творение верховного бога Рода.'},
+    'народ':{parts:'НА + РОД (род)',full:'На Роде стоящий. Люди, объединённые общим родовым началом.'},
+    'россия':{parts:'РА (свет) + С (слово) + СИ (сила) + Я',full:'Сила света. Страна, несущая свет Ра.'},
+    'берег':{parts:'БЕР (защита) + ЕГ (оберегание)',full:'Место защиты. Там, где вода останавливается и оберегает землю.'},
+    'дорога':{parts:'ДО + РО (рождение) + ГА (путь)',full:'Путь до рождения (нового). Дорога ведёт к перерождению.'},
+    'совесть':{parts:'СО (совместно) + ВЕСТЬ (весть, знание)',full:'Совместное знание. Голос рода внутри человека.'},
+    'образ':{parts:'О (он) + Б (боги) + РАЗ (раз, единожды)',full:'Единое божественное подобие. Образ — отражение божественного.'},
+    'семья':{parts:'СЕМЬ (семь) + Я (я)',full:'Семь Я. Семь поколений рода, живущих в одном.'},
+    'вера':{parts:'ВЕ (ведание) + РА (свет)',full:'Ведание света. Вера — знание божественного света, а не слепое поклонение.'},
+    'коловрат':{parts:'КОЛО (круг, солнце) + ВРАТ (вращение)',full:'Вращение солнца. Символ вечного движения жизни.'},
+    'сварог':{parts:'СВА (небеса) + РО (рождение) + Г (глаголение)',full:'Рождённый небесами, несущий слово. Небесный кузнец.'},
+    'перун':{parts:'ПЕР (первый, перо) + УН (он)',full:'Первый, разящий. Бог грома, стоящий первым в защите.'},
+    'велес':{parts:'ВЕЛ (великий) + ЕС (есть)',full:'Великий, который есть. Бог мудрости, присутствующий везде.'},
+    'макошь':{parts:'МА (мать) + КОШЬ (жребий, доля)',full:'Мать жребия. Богиня, прядущая нити судеб.'},
+    'лада':{parts:'ЛАД (лад, гармония) + А (начало)',full:'Начало гармонии. Богиня любви и семейного лада.'},
+    'александр':{parts:'О (подобный) + ЛЕГ (светлая сущность) + С (сын) + АНДР (друид)',full:'Подобный небесному посланнику, сын мудреца. Греч. форма; слав. — Олегсандр.'},
+    'владимир':{parts:'ВЛАД (владеющий) + И (союз) + МИР (мир)',full:'Владеющий миром. Имя великих князей, несущих порядок в мир.'},
+    'святослав':{parts:'СВЯТО (святой, светлый) + СЛАВ (слава)',full:'Светлая слава. Имя, данное тем, кто прославляет свет.'},
+    'ярослав':{parts:'ЯР (ярое солнце) + О + СЛАВ (слава)',full:'Слава ярого солнца. Имя несущего солнечную энергию.'},
+    'людмила':{parts:'ЛЮД (люди) + МИЛА (милая)',full:'Милая людям. Имя, дарующее любовь народа.'},
+    'ольга':{parts:'ОЛ (подобная) + Г (глаголение) + А',full:'Несущая слово. От сканд. Хельга (святая); слав. образ — светлая, вещая.'},
+    'светлана':{parts:'СВЕТ (свет) + ЛАНА (поляна, земля)',full:'Свет земли. Женщина, освещающая всё вокруг себя.'},
+    'мирослав':{parts:'МИРО (мир) + СЛАВ (слава)',full:'Слава мира. Тот, кто прославляет мирное начало.'},
+    'богдан':{parts:'БОГ (бог) + ДАН (данный)',full:'Богом данный. Дитя, посланное как дар от высших сил.'},
+    'ярина':{parts:'ЯР (ярая) + ИНА (иная, особая)',full:'Ярая, особенная. Женщина солнечной энергии.'},
+    'родослав':{parts:'РОД (род) + О + СЛАВ (слава)',full:'Слава рода. Тот, кто прославляет свой род деяниями.'},
+    'станислав':{parts:'СТАН (стояние) + И + СЛАВ (слава)',full:'Ставший славным. Тот, кто утвердился в славе.'},
+    'вера':{parts:'ВЕ (ведание) + РА (свет)',full:'Ведание света. Знание божественного, идущее от сердца.'},
+    'надежда':{parts:'НА + ДЕЖ (держание) + ДА (дар)',full:'Дар держания. То, что держит нас на пути — опора духа.'},
+    'любовь':{parts:'ЛЮ (люди) + БО (бога) + ВЬ (ведают)',full:'Люди бога ведают. Любовь — это познание божественного через другого.'}
+  };
+
+  // === Рендер сетки буквиц ===
   var grid=document.getElementById('bukGrid');
   bukv.forEach(function(b,i){
-    var cell=document.createElement('div');
-    cell.className='buk-cell';cell.id='bc'+i;
-    cell.innerHTML='<div class="buk-cell__char">'+b.c+'</div><div class="buk-cell__name">'+b.n+'</div>';
-    cell.onclick=function(){showBuk(i)};
-    grid.appendChild(cell);
+    var card=document.createElement('div');
+    card.className='buk-card';card.id='bc'+i;
+    card.innerHTML='<img src="../images/bukvica/'+b.img+'" alt="'+b.n+'" class="buk-card__img" loading="lazy" /><div class="buk-card__char">'+b.c+'</div><div class="buk-card__name">'+b.n+'</div>';
+    card.onclick=function(){showBuk(i)};
+    grid.appendChild(card);
   });
 
   function showBuk(idx){
-    document.querySelectorAll('.buk-cell').forEach(function(c){c.classList.remove('active')});
+    document.querySelectorAll('.buk-card').forEach(function(c){c.classList.remove('active')});
     document.getElementById('bc'+idx).classList.add('active');
     var b=bukv[idx];
+    document.getElementById('bdImg').src='../images/bukvica/'+b.img;
     document.getElementById('bdChar').textContent=b.c;
     document.getElementById('bdName').textContent=b.n;
     document.getElementById('bdNum').textContent=b.num!=='—'?'Числовой образ: '+b.num:'Числового образа нет';
@@ -211,26 +321,65 @@
     det.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
 
+  // === Дешифратор ===
   var input=document.getElementById('decInput');
   var result=document.getElementById('decResult');
+
   input.addEventListener('input',function(){
-    var val=this.value.toLowerCase().replace(/[^а-яёъыь]/g,'');
+    var raw=this.value.trim();
+    var val=raw.toLowerCase().replace(/ё/g,'е');
     if(!val){result.innerHTML='';return}
-    var letters='';var meanings=[];
+
+    // 1. Побуквенная расшифровка
+    var letters='<div class="dec-letters">';
+    var breakdown=[];
     for(var i=0;i<val.length;i++){
       var ch=val[i];
+      if(ch===' '||!/[а-яё]/.test(ch)) continue;
       var idx=charMap[ch];
       if(idx!==undefined){
         var b=bukv[idx];
-        letters+='<span class="decipher__letter"><span class="decipher__letter-char">'+b.c+'</span><span class="decipher__letter-name">'+b.n+'</span></span>';
-        meanings.push('<strong>'+b.c+' ('+b.n+')</strong> — '+b.m);
+        letters+='<div class="dec-letter"><span class="dec-letter__char">'+b.c+'</span><span class="dec-letter__name">'+b.n+'</span></div>';
+        breakdown.push('<strong>'+b.c+' ('+b.n+')</strong> — '+b.m);
       }
     }
-    var html=letters;
-    if(meanings.length){
-      html+='<div class="decipher__summary">'+meanings.join('<br>')+'</div>';
+    letters+='</div>';
+
+    // 2. Корневая расшифровка
+    var foundRoots=[];
+    var valClean=val.replace(/[^а-яё]/g,'');
+    roots.forEach(function(r){
+      if(valClean.indexOf(r.s)!==-1){
+        foundRoots.push('<strong>'+r.s.toUpperCase()+'</strong> — '+r.m);
+      }
+    });
+
+    // 3. Полная расшифровка (если есть)
+    var known=knownWords[valClean];
+    var fullHtml='';
+    if(known){
+      fullHtml='<div class="dec-full"><div class="dec-full__label">Образное значение</div><div class="dec-full__text">'+known.parts+'<br><br>'+known.full+'</div></div>';
+    } else if(foundRoots.length>0){
+      fullHtml='<div class="dec-full"><div class="dec-full__label">Найденные корни</div><div class="dec-full__text" style="font-family:var(--font-body);font-size:0.88rem">'+foundRoots.join('<br>')+'</div></div>';
     }
-    result.innerHTML=html;
+
+    result.innerHTML=letters+'<div class="dec-breakdown">'+breakdown.join('<br>')+'</div>'+fullHtml;
+  });
+
+  // === Примеры ===
+  var exampleList=['гора','радуга','медведь','правда','красота','коловрат','здравствуйте','богатырь','семья','природа','совесть','вера','александр','владимир','святослав','ярослав','людмила','светлана','богдан','ольга','любовь'];
+  var exGrid=document.getElementById('examplesGrid');
+  exampleList.forEach(function(w){
+    var kw=knownWords[w];if(!kw) return;
+    var card=document.createElement('div');
+    card.className='example-card';
+    card.innerHTML='<div class="example-card__word">'+w.charAt(0).toUpperCase()+w.slice(1)+'</div><div class="example-card__roots">'+kw.parts+'</div><div class="example-card__meaning">'+kw.full+'</div>';
+    card.onclick=function(){
+      document.getElementById('decInput').value=w;
+      document.getElementById('decInput').dispatchEvent(new Event('input'));
+      document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'});
+    };
+    exGrid.appendChild(card);
   });
   </script>
 </body>
