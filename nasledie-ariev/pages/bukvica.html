@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="49 буквиц древнеславянской Буквицы — значение каждой буквы, числовые образы, инструмент расшифровки слов по буквицам." />
+  <title>Буквица — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .buk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin:48px 0}
+    .buk-cell{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:12px 6px;text-align:center;cursor:pointer;transition:all var(--transition);
+    }
+    .buk-cell:hover,.buk-cell.active{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+    .buk-cell__char{font-family:var(--font-head);font-size:1.4rem;color:var(--gold);line-height:1}
+    .buk-cell__name{font-size:0.58rem;color:var(--text-muted);margin-top:4px;line-height:1.2}
+    .buk-detail{
+      display:none;background:var(--bg-2);border:1px solid var(--gold);border-radius:var(--radius);
+      padding:32px;margin-bottom:48px;
+    }
+    .buk-detail.active{display:block}
+    .buk-detail__char{font-family:var(--font-head);font-size:3rem;color:var(--gold);text-align:center;margin-bottom:8px}
+    .buk-detail__name{font-family:var(--font-head);font-size:1.3rem;color:var(--gold);text-align:center;margin-bottom:4px}
+    .buk-detail__num{font-size:0.78rem;color:var(--text-muted);text-align:center;margin-bottom:16px}
+    .buk-detail__meaning{font-size:0.9rem;color:var(--text-muted);line-height:1.8;text-align:center}
+    .decipher{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:32px;margin:48px 0;
+    }
+    .decipher__title{font-family:var(--font-head);font-size:1.1rem;color:var(--gold);margin-bottom:16px;text-align:center}
+    .decipher__input{
+      width:100%;padding:14px 18px;background:var(--bg);border:1px solid var(--border);
+      border-radius:var(--radius);color:var(--text);font-size:1rem;font-family:var(--font-body);
+      text-align:center;outline:none;
+    }
+    .decipher__input:focus{border-color:var(--gold)}
+    .decipher__input::placeholder{color:var(--text-muted);opacity:0.5}
+    .decipher__result{margin-top:24px}
+    .decipher__letter{
+      display:inline-flex;flex-direction:column;align-items:center;
+      margin:6px 8px;
+    }
+    .decipher__letter-char{font-family:var(--font-head);font-size:1.4rem;color:var(--gold)}
+    .decipher__letter-name{font-size:0.62rem;color:var(--text-muted);max-width:60px;text-align:center;line-height:1.2}
+    .decipher__summary{
+      margin-top:20px;font-size:0.88rem;color:var(--text-muted);line-height:1.8;
+      border-top:1px solid var(--border);padding-top:16px;
+    }
+    @media(max-width:768px){.buk-grid{grid-template-columns:repeat(5,1fr)}}
+    @media(max-width:480px){.buk-grid{grid-template-columns:repeat(4,1fr)}}
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">Ⰰ</span>
+      <h1 class="page-hero__title">Древнеславянская<br /><em>Буквица</em></h1>
+      <p class="page-hero__sub">49 буквиц — каждая буква несёт глубинный образ</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="content-block__intro" style="text-align:center;margin-bottom:16px">
+        <p>Нажми на буквицу — узнай её глубинный образ. Или введи слово в расшифровщик ниже.</p>
+      </div>
+
+      <div class="buk-grid" id="bukGrid"></div>
+      <div class="buk-detail" id="bukDetail">
+        <div class="buk-detail__char" id="bdChar"></div>
+        <div class="buk-detail__name" id="bdName"></div>
+        <div class="buk-detail__num" id="bdNum"></div>
+        <div class="buk-detail__meaning" id="bdMeaning"></div>
+      </div>
+
+      <div class="decipher">
+        <div class="decipher__title">Расшифруй слово по Буквице</div>
+        <input type="text" class="decipher__input" id="decInput" placeholder="Введи слово..." maxlength="30" autocomplete="off" />
+        <div class="decipher__result" id="decResult"></div>
+      </div>
+
+      <div class="content-block" style="text-align:center;padding:48px 0">
+        <a href="runes.html" class="btn btn--primary">Руны</a>
+        <a href="vedas.html" class="btn btn--ghost" style="margin-left:14px">Веды</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var bukv=[
+    {c:'А',n:'Азъ',num:'1',m:'Я, человек, начало. Осознание себя как божественного существа.'},
+    {c:'Б',n:'Боги',num:'—',m:'Множество богов, высшие силы. Божественная природа мироздания.'},
+    {c:'В',n:'Вѣди',num:'2',m:'Мудрость, знание. Ведать — знать глубинно, сердцем и разумом.'},
+    {c:'Г',n:'Глаголи',num:'3',m:'Передача мудрости, слово, речь. Глаголить — нести истину.'},
+    {c:'Д',n:'Добро',num:'4',m:'Добро, достаток, приобретение. Созданное трудом и делом.'},
+    {c:'Є',n:'Есть',num:'5',m:'Бытие, существование, жизнь. Это есть, это существует.'},
+    {c:'Ж',n:'Животъ',num:'—',m:'Жизнь, живот — живое начало. Жизненная сила.'},
+    {c:'Ѕ',n:'Ѕело',num:'6',m:'Весьма, очень, сверх. Усиление, превышение меры.'},
+    {c:'З',n:'Земля',num:'7',m:'Земля, почва, основа. Мир Яви, физическая реальность.'},
+    {c:'И',n:'Иже',num:'8',m:'Союз, единство, равновесие. То, что соединяет.'},
+    {c:'І',n:'Іжеи',num:'10',m:'Вселенная, мироздание. Вселенский поток, истина.'},
+    {c:'Ї',n:'Їнить',num:'—',m:'Община, единство общности. Связь людей в целое.'},
+    {c:'К',n:'Како',num:'20',m:'Объём, система, охват. Как — каким образом.'},
+    {c:'Л',n:'Людіє',num:'30',m:'Люди, общество, человечество. Мир людской.'},
+    {c:'М',n:'Мыслѣтѣ',num:'40',m:'Мысль, мышление, думание. Процесс познания.'},
+    {c:'Н',n:'Нашъ',num:'50',m:'Наше, родное, своё. Принадлежность роду.'},
+    {c:'О',n:'Онъ',num:'70',m:'Он, определённость, нечто. Указание на конкретное.'},
+    {c:'П',n:'Покои',num:'80',m:'Покой, гармония, равновесие. Состояние мира.'},
+    {c:'Р',n:'Рѣци',num:'100',m:'Речь, изречение, разделение. Говорить с силой.'},
+    {c:'С',n:'Слово',num:'200',m:'Слово, мысль произнесённая. Созидательная сила речи.'},
+    {c:'Т',n:'Твердо',num:'300',m:'Твёрдость, утверждённость, опора. Незыблемость.'},
+    {c:'У',n:'Укъ',num:'400',m:'Зов, призыв, приближение. Нечто, приближающееся к тебе.'},
+    {c:'Ф',n:'Фертъ',num:'500',m:'Гордость, благородство, осанка. Достоинство.'},
+    {c:'Х',n:'Хѣръ',num:'600',m:'Божественный, прекрасный. Гармония, мировое равновесие.'},
+    {c:'Ѡ',n:'Отъ',num:'800',m:'От, отделение, исток. Начало движения.'},
+    {c:'Ц',n:'Цѣ',num:'900',m:'Цель, целеустремлённость. Движение к намеченному.'},
+    {c:'Ч',n:'Червль',num:'90',m:'Красный, красота, черта. Граница, рубеж.'},
+    {c:'Ш',n:'Ша',num:'—',m:'Тишина, покой, пространство. Выход за пределы.'},
+    {c:'Щ',n:'Шта',num:'—',m:'Щит, защита, плотность. Защитная сила.'},
+    {c:'Ъ',n:'Еръ',num:'—',m:'Созидание, процесс творения. Твёрдость действия.'},
+    {c:'Ы',n:'Еры',num:'—',m:'Единство, множественность. Совместное действие.'},
+    {c:'Ь',n:'Ерь',num:'—',m:'Сотворённое, существующее. Жизнь, данная свыше.'},
+    {c:'Ѣ',n:'Ять',num:'—',m:'Божественная связь. Связь земного с небесным.'},
+    {c:'Ю',n:'Юнь',num:'—',m:'Выход за пределы, движение наружу. Вращение.'},
+    {c:'Ꙗ',n:'Арь',num:'—',m:'Образ, лик, один. Единый образ бытия.'},
+    {c:'Ѥ',n:'Ѥдо',num:'—',m:'Прикосновение к целому. Ведание через опыт.'},
+    {c:'Ѧ',n:'Ѧсъ',num:'—',m:'Ясность, свет понимания. Чистое восприятие.'},
+    {c:'Ѫ',n:'Юсъ',num:'—',m:'Корень, основа. Нечто, имеющее корень и связь.'},
+    {c:'Ѩ',n:'Ёта',num:'—',m:'Познание, утверждённое знание. Единство знания и бытия.'},
+    {c:'Ѭ',n:'Ота',num:'—',m:'Неприятие, отречение. Отказ от ненужного.'},
+    {c:'Ѯ',n:'Кси',num:'60',m:'Дух, духовность. Энергия, пронизывающая всё.'},
+    {c:'Ѱ',n:'Пси',num:'700',m:'Душа, психея. Внутренний мир, подсознание.'},
+    {c:'Ѳ',n:'Фита',num:'9',m:'Единство Духа. Слияние духовного и природного.'},
+    {c:'Ѵ',n:'Ижица',num:'—',m:'Истина, доброта. Благость, исходящая от мироздания.'},
+    {c:'Ӕ',n:'Ижа',num:'—',m:'Мера времени, движение времени. Поток перемен.'},
+    {c:'Ꙩ',n:'Ом',num:'—',m:'Сияние, просветление. Озарение от созерцания.'},
+    {c:'Ꙫ',n:'Ень',num:'—',m:'Он, образ. Нечто, обретающее форму.'},
+    {c:'Ꙭ',n:'Одь',num:'—',m:'Божественное присутствие. Нечто, превосходящее земное.'},
+    {c:'ꙮ',n:'Ёта',num:'—',m:'Множественность, полнота мироздания. Все миры в одном.'}
+  ];
+
+  var lookup={};
+  var modern='абвгдежзиклмнопрстуфхцчшщъыьэюя';
+  var bukMap={};
+  bukv.forEach(function(b){
+    var low=b.c.toLowerCase();
+    bukMap[low]=b;
+  });
+  var charMap={
+    'а':0,'б':1,'в':2,'г':3,'д':4,'е':5,'ж':6,'з':8,'и':9,
+    'й':9,'к':12,'л':13,'м':14,'н':15,'о':16,'п':17,'р':18,
+    'с':19,'т':20,'у':21,'ф':22,'х':23,'ц':25,'ч':26,
+    'ш':27,'щ':28,'ъ':29,'ы':30,'ь':31,'э':5,'ю':33,'я':34
+  };
+
+  var grid=document.getElementById('bukGrid');
+  bukv.forEach(function(b,i){
+    var cell=document.createElement('div');
+    cell.className='buk-cell';cell.id='bc'+i;
+    cell.innerHTML='<div class="buk-cell__char">'+b.c+'</div><div class="buk-cell__name">'+b.n+'</div>';
+    cell.onclick=function(){showBuk(i)};
+    grid.appendChild(cell);
+  });
+
+  function showBuk(idx){
+    document.querySelectorAll('.buk-cell').forEach(function(c){c.classList.remove('active')});
+    document.getElementById('bc'+idx).classList.add('active');
+    var b=bukv[idx];
+    document.getElementById('bdChar').textContent=b.c;
+    document.getElementById('bdName').textContent=b.n;
+    document.getElementById('bdNum').textContent=b.num!=='—'?'Числовой образ: '+b.num:'Числового образа нет';
+    document.getElementById('bdMeaning').textContent=b.m;
+    var det=document.getElementById('bukDetail');
+    det.classList.add('active');
+    det.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  var input=document.getElementById('decInput');
+  var result=document.getElementById('decResult');
+  input.addEventListener('input',function(){
+    var val=this.value.toLowerCase().replace(/[^а-яёъыь]/g,'');
+    if(!val){result.innerHTML='';return}
+    var letters='';var meanings=[];
+    for(var i=0;i<val.length;i++){
+      var ch=val[i];
+      var idx=charMap[ch];
+      if(idx!==undefined){
+        var b=bukv[idx];
+        letters+='<span class="decipher__letter"><span class="decipher__letter-char">'+b.c+'</span><span class="decipher__letter-name">'+b.n+'</span></span>';
+        meanings.push('<strong>'+b.c+' ('+b.n+')</strong> — '+b.m);
+      }
+    }
+    var html=letters;
+    if(meanings.length){
+      html+='<div class="decipher__summary">'+meanings.join('<br>')+'</div>';
+    }
+    result.innerHTML=html;
+  });
+  </script>
+</body>
+</html>
