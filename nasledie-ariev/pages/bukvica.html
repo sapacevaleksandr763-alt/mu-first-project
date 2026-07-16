@@ -79,12 +79,97 @@
     .example-card__roots{font-size:0.72rem;color:var(--text-muted);margin-bottom:4px}
     .example-card__meaning{font-size:0.78rem;color:var(--text-muted);line-height:1.5}
 
+    /* ═══ МАТРИЦА БУКВИЦЫ ═══ */
+    .matrix-section{margin:72px 0}
+    .matrix-section__title{
+      font-family:var(--font-head);font-size:1.6rem;color:var(--text);
+      text-align:center;margin-bottom:8px;
+    }
+    .matrix-section__sub{
+      text-align:center;font-size:0.92rem;color:var(--text-muted);
+      max-width:620px;margin:0 auto 32px;line-height:1.7;
+    }
+
+    .matrix-controls{
+      display:flex;justify-content:center;gap:8px;margin-bottom:24px;flex-wrap:wrap;
+    }
+    .matrix-btn{
+      padding:8px 18px;font-family:var(--font-head);font-size:0.72rem;
+      letter-spacing:0.06em;border-radius:20px;cursor:pointer;
+      background:var(--bg-2);border:1px solid var(--border);color:var(--text-muted);
+      transition:all 0.3s;
+    }
+    .matrix-btn:hover,.matrix-btn.active{
+      background:var(--gold);color:var(--bg);border-color:var(--gold);
+    }
+
+    .matrix-wrap{
+      display:grid;grid-template-columns:repeat(7,1fr);gap:4px;
+      max-width:640px;margin:0 auto 28px;
+    }
+    .matrix-cell{
+      aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:var(--bg-2);border:1px solid var(--border);border-radius:6px;
+      cursor:pointer;transition:all 0.4s;position:relative;
+    }
+    .matrix-cell__char{font-family:var(--font-head);font-size:clamp(0.9rem,2.5vw,1.4rem);color:var(--gold);line-height:1}
+    .matrix-cell__name{font-size:clamp(0.38rem,1vw,0.52rem);color:var(--text-muted);margin-top:2px;line-height:1}
+    .matrix-cell.hl{
+      background:rgba(184,148,46,0.12);border-color:var(--gold);
+      box-shadow:0 0 12px rgba(184,148,46,0.2);transform:scale(1.06);z-index:2;
+    }
+    .matrix-cell.hl-strong{
+      background:rgba(184,148,46,0.22);border-color:var(--gold-light);
+      box-shadow:0 0 18px rgba(184,148,46,0.35);transform:scale(1.1);z-index:3;
+    }
+
+    .matrix-msg{
+      max-width:720px;margin:0 auto;
+      background:var(--bg-2);border:1px solid var(--gold);border-radius:12px;
+      padding:28px 32px;text-align:center;
+      min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .matrix-msg__label{
+      font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;
+      letter-spacing:0.14em;margin-bottom:8px;
+    }
+    .matrix-msg__letters{
+      font-family:var(--font-head);font-size:1.1rem;color:var(--gold);
+      margin-bottom:8px;letter-spacing:0.15em;
+    }
+    .matrix-msg__text{
+      font-size:0.92rem;color:var(--text-muted);line-height:1.7;max-width:560px;
+    }
+    .matrix-msg__hint{font-size:0.78rem;color:var(--text-muted);opacity:0.5}
+
+    .msg-list{max-width:720px;margin:24px auto 0}
+    .msg-list__title{
+      font-family:var(--font-head);font-size:0.88rem;color:var(--gold);
+      margin:24px 0 10px;cursor:pointer;
+    }
+    .msg-list__title::before{content:'▸ ';font-size:0.7em}
+    .msg-list__title.open::before{content:'▾ '}
+    .msg-list__body{display:none;padding-left:16px}
+    .msg-list__title.open + .msg-list__body{display:block}
+    .msg-item{
+      padding:10px 0;border-bottom:1px solid var(--border);
+      font-size:0.84rem;color:var(--text-muted);line-height:1.7;cursor:pointer;
+      transition:color 0.2s;
+    }
+    .msg-item:hover{color:var(--gold)}
+    .msg-item strong{color:var(--gold);font-family:var(--font-head);letter-spacing:0.08em}
+
     @media(max-width:768px){
       .buk-grid{grid-template-columns:repeat(5,1fr)}
       .buk-detail.active{grid-template-columns:1fr}
       .examples-grid{grid-template-columns:1fr}
+      .matrix-wrap{gap:3px}
+      .matrix-msg{padding:20px 18px}
     }
-    @media(max-width:480px){.buk-grid{grid-template-columns:repeat(4,1fr)}}
+    @media(max-width:480px){
+      .buk-grid{grid-template-columns:repeat(4,1fr)}
+      .matrix-cell__name{display:none}
+    }
   </style>
 </head>
 <body>
@@ -127,6 +212,25 @@
           <div class="buk-detail__num" id="bdNum"></div>
           <div class="buk-detail__meaning" id="bdMeaning"></div>
         </div>
+      </div>
+
+      <!-- ═══ КОД БУКВИЦЫ — ПОСЛАНИЕ БОГОВ ═══ -->
+      <div class="matrix-section" id="matrixSection">
+        <h2 class="matrix-section__title"><span class="rune-accent">᛭</span> Код Буквицы — Послание Богов</h2>
+        <p class="matrix-section__sub">49 буквиц расположены в матрице 7×7 не случайно. Каждая строка, столбец и диагональ несут скрытое послание — код, переданный предками потомкам.</p>
+
+        <div class="matrix-controls">
+          <button class="matrix-btn active" data-mode="row">Строки →</button>
+          <button class="matrix-btn" data-mode="col">Столбцы ↓</button>
+          <button class="matrix-btn" data-mode="diag">Диагонали ↘↙</button>
+        </div>
+
+        <div class="matrix-wrap" id="matrixGrid"></div>
+        <div class="matrix-msg" id="matrixMsg">
+          <div class="matrix-msg__hint">Нажми на строку, столбец или диагональ — узнай послание</div>
+        </div>
+
+        <div class="msg-list" id="msgList"></div>
       </div>
 
       <!-- ДЕШИФРАТОР СЛОВ И ИМЁН -->
@@ -365,6 +469,207 @@
 
     result.innerHTML=letters+'<div class="dec-breakdown">'+breakdown.join('<br>')+'</div>'+fullHtml;
   });
+
+  // ═══ МАТРИЦА 7×7 — КОД БУКВИЦЫ ═══
+  var M=[
+    {c:'А',n:'Азъ',s:'Я'},
+    {c:'Б',n:'Боги',s:'Боги'},
+    {c:'В',n:'Вѣди',s:'Ведаю'},
+    {c:'Г',n:'Глаголи',s:'Говорю'},
+    {c:'Д',n:'Добро',s:'Добро'},
+    {c:'Є',n:'Есть',s:'Есть'},
+    {c:'Ж',n:'Животъ',s:'Жизнь'},
+
+    {c:'Ѕ',n:'Ѕело',s:'Весьма'},
+    {c:'З',n:'Земля',s:'Земля'},
+    {c:'И',n:'Иже',s:'И'},
+    {c:'І',n:'Іжеи',s:'Вселенная'},
+    {c:'Ї',n:'Їнить',s:'Община'},
+    {c:'К',n:'Како',s:'Как'},
+    {c:'Л',n:'Людіє',s:'Люди'},
+
+    {c:'М',n:'Мыслѣтѣ',s:'Мыслите'},
+    {c:'Н',n:'Нашъ',s:'Наше'},
+    {c:'О',n:'Онъ',s:'Оно'},
+    {c:'П',n:'Покои',s:'Покой'},
+    {c:'Р',n:'Рѣци',s:'Речь'},
+    {c:'С',n:'Слово',s:'Слово'},
+    {c:'Т',n:'Твердо',s:'Твёрдо'},
+
+    {c:'У',n:'Укъ',s:'Зов'},
+    {c:'Ф',n:'Фертъ',s:'Достоинство'},
+    {c:'Х',n:'Хѣръ',s:'Божественное'},
+    {c:'Ѡ',n:'Отъ',s:'Исток'},
+    {c:'Ц',n:'Цѣ',s:'Цель'},
+    {c:'Ч',n:'Червль',s:'Рубеж'},
+    {c:'Ш',n:'Ша',s:'Тишина'},
+
+    {c:'Щ',n:'Шта',s:'Защита'},
+    {c:'Ъ',n:'Еръ',s:'Творение'},
+    {c:'Ы',n:'Еры',s:'Единство'},
+    {c:'Ь',n:'Ерь',s:'Жизнь'},
+    {c:'Ѣ',n:'Ять',s:'Связь'},
+    {c:'Ю',n:'Юнь',s:'Движение'},
+    {c:'Ꙗ',n:'Арь',s:'Образ'},
+
+    {c:'Ѥ',n:'Ѥдо',s:'Ведание'},
+    {c:'Ѧ',n:'Ѧсъ',s:'Ясность'},
+    {c:'Ѫ',n:'Юсъ',s:'Корень'},
+    {c:'Ѩ',n:'Ёта',s:'Познание'},
+    {c:'Ѭ',n:'Ота',s:'Отречение'},
+    {c:'Ѯ',n:'Кси',s:'Дух'},
+    {c:'Ѱ',n:'Пси',s:'Душа'},
+
+    {c:'Ѳ',n:'Фита',s:'Единство Духа'},
+    {c:'Ѵ',n:'Ижица',s:'Истина'},
+    {c:'Ӕ',n:'Ижа',s:'Время'},
+    {c:'Ꙩ',n:'Ом',s:'Сияние'},
+    {c:'Ꙭ',n:'Одь',s:'Божественное'},
+    {c:'ꙮ',n:'Ёта',s:'Полнота'},
+    {c:'ꙮ',n:'Ёта',s:'Всё'}
+  ];
+
+  var rowMsg=[
+    {lett:'А Б В Г Д Є Ж',text:'Я, Бога ведая, говорю: добро есть жизнь. Первая строка — осознание себя как божественного существа. Человек (Азъ), познавший Богов через ведание, несёт миру через речь (глаголь) истину: добро и есть смысл жизни.'},
+    {lett:'Ѕ З И І Ї К Л',text:'Весьма (усердно) землю и вселенную общинно как люди (познавайте). Вторая строка — призыв к познанию мира. Постигайте землю и вселенную сообща, объединяясь в общину, ибо в единстве — сила людская.'},
+    {lett:'М Н О П Р С Т',text:'Мыслите: наше оно (бытие) — покой речённого слова твёрдо. Третья строка — сила мысли. Осознайте: наше существование утверждается через покой, обретённый когда слово становится твердью — сказанное должно быть крепким.'},
+    {lett:'У Ф Х Ѡ Ц Ч Ш',text:'Зов достоинства — к божественному истоку целеустремлённо, через рубежи к тишине. Четвёртая строка — путь к Богу. Внутренний зов ведёт человека через достоинство к божественному началу. Путь идёт через рубежи к высшему покою.'},
+    {lett:'Щ Ъ Ы Ь Ѣ Ю Ꙗ',text:'Защита и творение в единстве жизни — связь, движение, образ. Пятая строка — созидание. Защищая и творя в единении, живое обретает связь с высшим, движется и обретает свой истинный образ.'},
+    {lett:'Ѥ Ѧ Ѫ Ѩ Ѭ Ѯ Ѱ',text:'Ведание ясное — корень познания; отрекись от ложного — обрети дух и душу. Шестая строка — очищение духа. Ясное знание есть корень всякого познания. Отрекись от лишнего и ложного — и обретёшь единство духа и души.'},
+    {lett:'Ѳ Ѵ Ӕ Ꙩ Ꙭ ꙮ ꙮ',text:'Единство духа и истины во времени — сияние божественной полноты во всём. Седьмая строка — итог. Дух, слитый с истиной, через время приходит к сиянию. Божественная полнота пронизывает всё мироздание — это и есть конечная цель пути.'}
+  ];
+
+  var colMsg=[
+    {lett:'А Ѕ М У Щ Ѥ Ѳ',text:'Я весьма мыслю, призываю защиту, ведаю единство Духа. Первый столбец — путь человека от осознания себя (Азъ) через усердное мышление и призыв к защите — к веданию и обретению единства духовного.'},
+    {lett:'Б З Н Ф Ъ Ѧ Ѵ',text:'Боги земли нашей — достоинство творения в ясности истины. Второй столбец — божественное основание. Боги заложили в землю нашу достоинство, творческое начало, ясность и истину.'},
+    {lett:'В И О Х Ы Ѫ Ӕ',text:'Ведаю союз бытия и божественного — единство, корень, время. Третий столбец — познание. Через ведание и единение с сущим, через прикосновение к божественному — постигаешь единство, корень всего и поток времени.'},
+    {lett:'Г І П Ѡ Ь Ѩ Ꙩ',text:'Глаголь вселенную — покой от истока, жизнь в познании, сияние. Четвёртый столбец (центральный) — ось мироздания. Провозглашай вселенную! От покоя и истока — через познание жизни — к сиянию и просветлению.'},
+    {lett:'Д Ї Р Ц Ѣ Ѭ Ꙭ',text:'Добро общины — речь целеустремлённая, связь через отречение от лишнего — божественное. Пятый столбец — путь общины. Добро создаётся общиной через целенаправленную речь, связь с высшим и отречение от суетного.'},
+    {lett:'Є К С Ч Ю Ѯ ꙮ',text:'Есть система слова на рубеже движения — дух полноты. Шестой столбец — структура речи. Существует устройство слова, стоящего на рубеже движения, — в нём пребывает полнота духа.'},
+    {lett:'Ж Л Т Ш Ꙗ Ѱ ꙮ',text:'Жизнь людей твёрдо (утверждена) в тишине — образ души во всём. Седьмой столбец — смысл бытия. Жизнь людская утверждена в тишине (покое), и образ души пронизывает собой всё мироздание.'}
+  ];
+
+  var diagMsg=[
+    {lett:'А З О Ѡ Ѣ Ѯ ꙮ',dir:'↘',text:'Я (Азъ) через землю и бытие — от истока через связь и дух — ко всему. Главная диагональ (↘) — путь Души. От осознания себя (Азъ) человек проходит через земной опыт и бытие, от истоков через обретение связи с духом — к полноте мироздания. Это путь эволюции Души.'},
+    {lett:'Ж К О У Ы Ѧ Ѳ',dir:'↙',text:'Жизнь как бытие — зов единства в ясности единого Духа. Обратная диагональ (↙) — единение. Жизнь, понятая как бытие, зовёт к единству. Через ясность восприятия — к единому Духу, объединяющему всё.'}
+  ];
+
+  var mGrid=document.getElementById('matrixGrid');
+  var mMsg=document.getElementById('matrixMsg');
+  var mList=document.getElementById('msgList');
+  var mMode='row';
+
+  M.forEach(function(b,i){
+    var cell=document.createElement('div');
+    cell.className='matrix-cell';cell.id='mc'+i;
+    cell.innerHTML='<span class="matrix-cell__char">'+b.c+'</span><span class="matrix-cell__name">'+b.n+'</span>';
+    cell.addEventListener('click',function(){highlightFromCell(i)});
+    mGrid.appendChild(cell);
+  });
+
+  document.querySelectorAll('.matrix-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.matrix-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      mMode=btn.dataset.mode;
+      clearHL();
+      mMsg.innerHTML='<div class="matrix-msg__hint">Нажми на ячейку матрицы — узнай послание</div>';
+    });
+  });
+
+  function clearHL(){
+    document.querySelectorAll('.matrix-cell').forEach(function(c){c.classList.remove('hl','hl-strong')});
+  }
+
+  function highlightFromCell(idx){
+    clearHL();
+    var row=Math.floor(idx/7),col=idx%7;
+    var cells=[],msgData;
+
+    if(mMode==='row'){
+      for(var c=0;c<7;c++) cells.push(row*7+c);
+      msgData=rowMsg[row];
+      showMsg('Строка '+(row+1),msgData);
+    } else if(mMode==='col'){
+      for(var r=0;r<7;r++) cells.push(r*7+col);
+      msgData=colMsg[col];
+      showMsg('Столбец '+(col+1),msgData);
+    } else {
+      var onMain=(row===col), onAnti=(row+col===6);
+      if(onMain){
+        for(var d=0;d<7;d++) cells.push(d*7+d);
+        msgData=diagMsg[0];
+        showMsg('Диагональ ↘',msgData);
+      } else if(onAnti){
+        for(var d=0;d<7;d++) cells.push(d*7+(6-d));
+        msgData=diagMsg[1];
+        showMsg('Диагональ ↙',msgData);
+      } else {
+        for(var d=0;d<7;d++) cells.push(d*7+d);
+        msgData=diagMsg[0];
+        showMsg('Диагональ ↘ (ближайшая)',msgData);
+      }
+    }
+
+    cells.forEach(function(ci){
+      var el=document.getElementById('mc'+ci);
+      if(el) el.classList.add(ci===idx?'hl-strong':'hl');
+    });
+  }
+
+  function showMsg(label,data){
+    mMsg.innerHTML='<div class="matrix-msg__label">'+label+'</div>'
+      +'<div class="matrix-msg__letters">'+data.lett+'</div>'
+      +'<div class="matrix-msg__text">'+data.text+'</div>';
+  }
+
+  // Список всех посланий
+  function renderMsgList(){
+    var html='';
+    html+='<div class="msg-list__title" onclick="toggleList(this)">7 строк — горизонтальные послания</div><div class="msg-list__body">';
+    rowMsg.forEach(function(m,i){
+      html+='<div class="msg-item" onclick="hlLine(\'row\','+i+')"><strong>'+m.lett+'</strong><br>'+m.text.split('.')[0]+'.</div>';
+    });
+    html+='</div>';
+
+    html+='<div class="msg-list__title" onclick="toggleList(this)">7 столбцов — вертикальные послания</div><div class="msg-list__body">';
+    colMsg.forEach(function(m,i){
+      html+='<div class="msg-item" onclick="hlLine(\'col\','+i+')"><strong>'+m.lett+'</strong><br>'+m.text.split('.')[0]+'.</div>';
+    });
+    html+='</div>';
+
+    html+='<div class="msg-list__title" onclick="toggleList(this)">2 диагонали — путь Души</div><div class="msg-list__body">';
+    diagMsg.forEach(function(m,i){
+      html+='<div class="msg-item" onclick="hlLine(\'diag\','+i+')"><strong>'+m.dir+' '+m.lett+'</strong><br>'+m.text.split('.')[0]+'.</div>';
+    });
+    html+='</div>';
+    mList.innerHTML=html;
+  }
+
+  function toggleList(el){el.classList.toggle('open')}
+
+  function hlLine(mode,idx){
+    document.querySelectorAll('.matrix-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.mode===mode);
+    });
+    mMode=mode;
+    clearHL();
+    var cells=[],msgData;
+    if(mode==='row'){
+      for(var c=0;c<7;c++) cells.push(idx*7+c);
+      msgData=rowMsg[idx];showMsg('Строка '+(idx+1),msgData);
+    } else if(mode==='col'){
+      for(var r=0;r<7;r++) cells.push(r*7+idx);
+      msgData=colMsg[idx];showMsg('Столбец '+(idx+1),msgData);
+    } else {
+      if(idx===0){for(var d=0;d<7;d++) cells.push(d*7+d);msgData=diagMsg[0];showMsg('Диагональ ↘',msgData)}
+      else{for(var d=0;d<7;d++) cells.push(d*7+(6-d));msgData=diagMsg[1];showMsg('Диагональ ↙',msgData)}
+    }
+    cells.forEach(function(ci){document.getElementById('mc'+ci).classList.add('hl')});
+    document.getElementById('matrixSection').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  renderMsgList();
 
   // === Примеры ===
   var exampleList=['гора','радуга','медведь','правда','красота','коловрат','здравствуйте','богатырь','семья','природа','совесть','вера','александр','владимир','святослав','ярослав','людмила','светлана','богдан','ольга','любовь'];
