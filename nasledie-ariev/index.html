@@ -19,8 +19,8 @@
     }
     .hero__bg{
       position:absolute;inset:0;
-      background:url('images/hero-volkhv.png') center/cover no-repeat;
-      filter:brightness(0.2) saturate(0.5);
+      background:url('images/hero-volkhv-phoenix.png') center/cover no-repeat;
+      filter:brightness(0.35) saturate(0.7);
     }
     .hero__overlay{
       position:absolute;inset:0;
@@ -60,6 +60,20 @@
       max-width:540px;
     }
     .hero__btns{display:flex;gap:14px;flex-wrap:wrap}
+    .hero__zvezda{
+      position:absolute;right:8%;bottom:15%;z-index:2;
+      width:220px;height:220px;opacity:0.12;
+      pointer-events:none;
+      animation:rotateZvezda 60s linear infinite;
+    }
+    @keyframes rotateZvezda{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    /* ═══ ABOUT ZVEZDA ═══ */
+    .about-zvezda{
+      width:180px;height:180px;opacity:0.08;
+      margin:24px auto 0;
+      animation:rotateZvezda 90s linear infinite;
+    }
 
     /* ═══ SECTIONS ═══ */
     .section{padding:80px 0}
@@ -210,6 +224,7 @@
       .explore-grid{grid-template-columns:repeat(2,1fr)}
       .interactive-grid{grid-template-columns:1fr}
       .about-content{grid-template-columns:1fr}
+      .hero__zvezda{width:120px;height:120px;right:5%;bottom:10%}
     }
     @media(max-width:480px){
       .explore-grid{grid-template-columns:1fr}
@@ -248,6 +263,7 @@
         <a href="pages/quiz-chertog.html" class="btn btn--primary">Узнай свой Чертог</a>
         <a href="#explore" class="btn btn--ghost">Исследовать</a>
       </div>
+      <img src="images/zvezda-rusi.png" alt="" class="hero__zvezda" />
     </div>
   </section>
 
@@ -399,6 +415,7 @@
           </div>
         </div>
       </div>
+      <img src="images/zvezda-rusi.png" alt="Звезда Руси" class="about-zvezda" />
     </div>
   </section>
 
