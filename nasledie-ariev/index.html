@@ -318,22 +318,49 @@
       margin:0;
     }
 
-    /* ═══ AZBUKA SECTION ═══ */
-    .azbuka-showcase{display:flex;gap:32px;align-items:center;margin-top:48px}
-    .azbuka-preview{
-      flex:1;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;
+    /* ═══ AZBUKA MATRIX SECTION ═══ */
+    .azbuka-matrix{margin-top:48px}
+    .azbuka-matrix__controls{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+    .az-btn{
+      padding:8px 18px;font-family:var(--font-head);font-size:0.72rem;
+      letter-spacing:0.06em;border-radius:20px;cursor:pointer;
+      background:var(--bg);border:1px solid var(--border);color:var(--text-muted);transition:all 0.3s;
     }
-    .azbuka-cell{
-      background:var(--bg-2);border:1px solid var(--border);border-radius:6px;
-      padding:10px 4px;text-align:center;transition:all 0.3s;
+    .az-btn:hover,.az-btn--active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+    .azbuka-matrix__grid{
+      display:grid;grid-template-columns:repeat(7,1fr);gap:5px;
+      max-width:560px;margin:0 auto 24px;
     }
-    .azbuka-cell:hover{border-color:var(--gold);transform:scale(1.08)}
-    .azbuka-cell__char{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);line-height:1}
-    .azbuka-cell__name{font-size:0.5rem;color:var(--text-muted);margin-top:2px;line-height:1.1}
-    .azbuka-info{flex:0 0 340px}
-    .azbuka-info h3{font-family:var(--font-head);font-size:1.4rem;color:var(--text);margin-bottom:16px}
-    .azbuka-info p{font-size:0.92rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
-    .azbuka-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .az-cell{
+      aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:var(--bg);border:1px solid var(--border);border-radius:6px;
+      cursor:pointer;transition:all 0.4s;
+    }
+    .az-cell__c{font-family:var(--font-head);font-size:clamp(0.85rem,2.2vw,1.3rem);color:var(--gold);line-height:1}
+    .az-cell__n{font-size:clamp(0.35rem,0.9vw,0.48rem);color:var(--text-muted);margin-top:2px;line-height:1}
+    .az-cell.az-hl{
+      background:rgba(184,148,46,0.12);border-color:var(--gold);
+      box-shadow:0 0 12px rgba(184,148,46,0.18);transform:scale(1.06);z-index:2;
+    }
+    .az-cell.az-hl-s{
+      background:rgba(184,148,46,0.22);border-color:var(--gold-light);
+      box-shadow:0 0 18px rgba(184,148,46,0.3);transform:scale(1.1);z-index:3;
+    }
+    .azbuka-matrix__msg{
+      max-width:620px;margin:0 auto;
+      background:var(--bg);border:1px solid var(--gold);border-radius:12px;
+      padding:24px 28px;text-align:center;min-height:80px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .azbuka-matrix__hint{font-size:0.78rem;color:var(--text-muted);opacity:0.5}
+    .az-msg-label{font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:6px}
+    .az-msg-lett{font-family:var(--font-head);font-size:1rem;color:var(--gold);margin-bottom:6px;letter-spacing:0.12em}
+    .az-msg-text{font-size:0.85rem;color:var(--text-muted);line-height:1.7;max-width:520px}
+
+    .azbuka-bottom{margin-top:48px;text-align:center}
+    .azbuka-bottom h3{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:14px}
+    .azbuka-bottom p{font-size:0.92rem;color:var(--text-muted);line-height:1.8;margin-bottom:18px;max-width:600px;margin-left:auto;margin-right:auto}
+    .azbuka-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;justify-content:center}
     .azbuka-feat{
       background:rgba(184,148,46,0.08);border:1px solid rgba(184,148,46,0.2);
       border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--gold);
@@ -391,15 +418,14 @@
       .hero__zvezda{width:100px;height:100px;right:4%;bottom:12%}
       .tg-cta{padding:32px 20px}
       .floating-tg{width:48px;height:48px;bottom:20px;right:20px}
-      .azbuka-showcase{flex-direction:column}
-      .azbuka-info{flex:none;width:100%}
-      .azbuka-preview{grid-template-columns:repeat(7,1fr)}
+      .azbuka-matrix__grid{gap:3px}
+      .azbuka-matrix__msg{padding:18px 16px}
       .lessons-grid{grid-template-columns:1fr}
     }
     @media(max-width:480px){
       .explore-grid{grid-template-columns:1fr}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
-      .azbuka-preview{grid-template-columns:repeat(5,1fr)}
+      .az-cell__n{display:none}
     }
   </style>
 </head>
@@ -652,7 +678,7 @@
         <div class="about-text reveal">
           <p><strong>«Наследие Ариев»</strong> — это не академический портал и не эзотерический клуб. Это практический ресурс для тех, кто хочет понять культуру предков и применить её мудрость в современной жизни.</p>
           <p>Здесь ты найдёшь структурированную базу знаний о славянских богах, рунах, обрядах и оберегах. А интерактивные инструменты — квизы, тесты, гадания — помогут узнать о себе через призму древней традиции.</p>
-          <p>Автор проекта — <strong>Александр Сапачёв</strong>, исследователь славянской культуры. <a href="pages/about.html" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.3)">Подробнее об авторе →</a></p>
+          <p>Автор проекта — <strong>Александр Сапачёв</strong>: юрист, психолог, гипнолог, специалист по вайбкодингу и нейросетям. Прошёл обучение у староверов-инглингов. <a href="pages/about.html" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.3)">Подробнее об авторе →</a></p>
         </div>
         <div class="about-stats reveal reveal-delay-1">
           <div class="stat-card">
@@ -678,48 +704,37 @@
 
   <div class="divider"></div>
 
-  <!-- ═══ 04. СЛАВЯНСКАЯ АЗБУКА ═══ -->
+  <!-- ═══ 04. СЛАВЯНСКАЯ АЗБУКА — МАТРИЦА 7×7 ═══ -->
   <section class="section section--alt" id="azbuka">
     <div class="container">
       <div class="section__header reveal">
-        <div class="section__num">04 · Письменность</div>
-        <h2 class="section__title">Славянская Азбука</h2>
+        <div class="section__num">04 · Послание Богов</div>
+        <h2 class="section__title">Код Буквицы</h2>
         <div class="section__line"></div>
-        <p class="section__subtitle">Каждая буква — не просто звук, а глубинный образ мироздания</p>
+        <p class="section__subtitle">49 буквиц расположены в матрице 7×7 не случайно. Строки, столбцы и диагонали несут скрытый код — послание предков потомкам</p>
       </div>
-      <div class="azbuka-showcase">
-        <div class="azbuka-preview reveal">
-          <div class="azbuka-cell"><div class="azbuka-cell__char">А</div><div class="azbuka-cell__name">Азъ</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Б</div><div class="azbuka-cell__name">Боги</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">В</div><div class="azbuka-cell__name">Вѣди</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Г</div><div class="azbuka-cell__name">Глаголи</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Д</div><div class="azbuka-cell__name">Добро</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Є</div><div class="azbuka-cell__name">Есть</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Ж</div><div class="azbuka-cell__name">Животъ</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Ѕ</div><div class="azbuka-cell__name">Ѕело</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">З</div><div class="azbuka-cell__name">Земля</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">И</div><div class="azbuka-cell__name">Иже</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">І</div><div class="azbuka-cell__name">Іжеи</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">К</div><div class="azbuka-cell__name">Како</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Л</div><div class="azbuka-cell__name">Людіє</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">М</div><div class="azbuka-cell__name">Мыслѣтѣ</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Н</div><div class="azbuka-cell__name">Нашъ</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">О</div><div class="azbuka-cell__name">Онъ</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">П</div><div class="azbuka-cell__name">Покои</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Р</div><div class="azbuka-cell__name">Рѣци</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">С</div><div class="azbuka-cell__name">Слово</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">Т</div><div class="azbuka-cell__name">Твердо</div></div>
-          <div class="azbuka-cell"><div class="azbuka-cell__char">У</div><div class="azbuka-cell__name">Укъ</div></div>
+
+      <div class="azbuka-matrix reveal">
+        <div class="azbuka-matrix__controls">
+          <button class="az-btn az-btn--active" data-az="row">Строки →</button>
+          <button class="az-btn" data-az="col">Столбцы ↓</button>
+          <button class="az-btn" data-az="diag">Диагонали ↘↙</button>
         </div>
-        <div class="azbuka-info reveal reveal-delay-1">
-          <h3>49 Образов Буквицы</h3>
-          <p>Древнеславянская Буквица — это не алфавит в привычном смысле. Каждая из 49 буквиц несёт глубинный образ: <strong>Азъ</strong> — это «я, человек», <strong>Боги</strong> — «высшие силы», <strong>Вѣди</strong> — «знание сердцем».</p>
-          <p>Читая слово по буквицам, ты раскрываешь его истинный смысл, заложенный предками.</p>
+        <div class="azbuka-matrix__grid" id="azGrid"></div>
+        <div class="azbuka-matrix__msg" id="azMsg">
+          <span class="azbuka-matrix__hint">Нажми на ячейку — узнай послание</span>
+        </div>
+      </div>
+
+      <div class="azbuka-bottom reveal">
+        <div class="azbuka-bottom__text">
+          <h3>49 Образов · Дешифратор слов · Матрица посланий</h3>
+          <p>Каждая буквица — не просто звук, а глубинный образ. Расшифруй своё имя, узнай скрытый смысл слов через корни и образы предков.</p>
           <div class="azbuka-features">
-            <span class="azbuka-feat">49 буквиц</span>
-            <span class="azbuka-feat">Числовые образы</span>
-            <span class="azbuka-feat">Дешифратор слов</span>
-            <span class="azbuka-feat">Интерактив</span>
+            <span class="azbuka-feat">49 буквиц с картинками</span>
+            <span class="azbuka-feat">Дешифратор имён</span>
+            <span class="azbuka-feat">Корни и слоги</span>
+            <span class="azbuka-feat">7 строк · 7 столбцов · 2 диагонали</span>
           </div>
           <a href="pages/bukvica.html" class="btn btn--primary">Открыть Буквицу →</a>
         </div>
@@ -933,6 +948,67 @@
     })
   },{threshold:0.5});
   counters.forEach(function(c){counterObs.observe(c)});
+
+  /* ═══ AZBUKA MATRIX 7×7 ═══ */
+  var AZ=[
+    {c:'А',n:'Азъ'},{c:'Б',n:'Боги'},{c:'В',n:'Вѣди'},{c:'Г',n:'Глаголи'},{c:'Д',n:'Добро'},{c:'Є',n:'Есть'},{c:'Ж',n:'Животъ'},
+    {c:'Ѕ',n:'Ѕело'},{c:'З',n:'Земля'},{c:'И',n:'Иже'},{c:'І',n:'Іжеи'},{c:'Ї',n:'Їнить'},{c:'К',n:'Како'},{c:'Л',n:'Людіє'},
+    {c:'М',n:'Мыслѣтѣ'},{c:'Н',n:'Нашъ'},{c:'О',n:'Онъ'},{c:'П',n:'Покои'},{c:'Р',n:'Рѣци'},{c:'С',n:'Слово'},{c:'Т',n:'Твердо'},
+    {c:'У',n:'Укъ'},{c:'Ф',n:'Фертъ'},{c:'Х',n:'Хѣръ'},{c:'Ѡ',n:'Отъ'},{c:'Ц',n:'Цѣ'},{c:'Ч',n:'Червль'},{c:'Ш',n:'Ша'},
+    {c:'Щ',n:'Шта'},{c:'Ъ',n:'Еръ'},{c:'Ы',n:'Еры'},{c:'Ь',n:'Ерь'},{c:'Ѣ',n:'Ять'},{c:'Ю',n:'Юнь'},{c:'Ꙗ',n:'Арь'},
+    {c:'Ѥ',n:'Ѥдо'},{c:'Ѧ',n:'Ѧсъ'},{c:'Ѫ',n:'Юсъ'},{c:'Ѩ',n:'Ёта'},{c:'Ѭ',n:'Ота'},{c:'Ѯ',n:'Кси'},{c:'Ѱ',n:'Пси'},
+    {c:'Ѳ',n:'Фита'},{c:'Ѵ',n:'Ижица'},{c:'Ӕ',n:'Ижа'},{c:'Ꙩ',n:'Ом'},{c:'Ꙭ',n:'Одь'},{c:'ꙮ',n:'Ёта'},{c:'ꙮ',n:'Ёта'}
+  ];
+  var azRows=[
+    {l:'А Б В Г Д Є Ж',t:'Я, Бога ведая, говорю: добро есть жизнь.'},
+    {l:'Ѕ З И І Ї К Л',t:'Весьма землю и вселенную общинно как люди познавайте.'},
+    {l:'М Н О П Р С Т',t:'Мыслите: наше бытие — покой речённого слова твёрдо.'},
+    {l:'У Ф Х Ѡ Ц Ч Ш',t:'Зов достоинства к божественному истоку, через рубежи к тишине.'},
+    {l:'Щ Ъ Ы Ь Ѣ Ю Ꙗ',t:'Защита и творение в единстве — связь, движение, образ.'},
+    {l:'Ѥ Ѧ Ѫ Ѩ Ѭ Ѯ Ѱ',t:'Ведание ясное — корень познания; отрекись от ложного — обрети дух и душу.'},
+    {l:'Ѳ Ѵ Ӕ Ꙩ Ꙭ ꙮ ꙮ',t:'Единство духа и истины во времени — сияние божественной полноты.'}
+  ];
+  var azCols=[
+    {l:'А Ѕ М У Щ Ѥ Ѳ',t:'Я весьма мыслю, призываю защиту, ведаю единство Духа.'},
+    {l:'Б З Н Ф Ъ Ѧ Ѵ',t:'Боги земли нашей — достоинство творения в ясности истины.'},
+    {l:'В И О Х Ы Ѫ Ӕ',t:'Ведаю союз бытия и божественного — единство, корень, время.'},
+    {l:'Г І П Ѡ Ь Ѩ Ꙩ',t:'Глаголь вселенную — покой от истока, жизнь в познании, сияние.'},
+    {l:'Д Ї Р Ц Ѣ Ѭ Ꙭ',t:'Добро общины — речь целеустремлённая, связь с божественным.'},
+    {l:'Є К С Ч Ю Ѯ ꙮ',t:'Есть система слова на рубеже движения — дух полноты.'},
+    {l:'Ж Л Т Ш Ꙗ Ѱ ꙮ',t:'Жизнь людей утверждена в тишине — образ души во всём.'}
+  ];
+  var azDiag=[
+    {l:'А З О Ѡ Ѣ Ѯ ꙮ',t:'Я через землю и бытие — от истока через связь и дух — ко всему. Путь Души.'},
+    {l:'Ж К О У Ы Ѧ Ѳ',t:'Жизнь как бытие — зов единства в ясности единого Духа.'}
+  ];
+  var azG=document.getElementById('azGrid'),azM=document.getElementById('azMsg'),azMode='row';
+  AZ.forEach(function(b,i){
+    var c=document.createElement('div');c.className='az-cell';c.id='az'+i;
+    c.innerHTML='<span class="az-cell__c">'+b.c+'</span><span class="az-cell__n">'+b.n+'</span>';
+    c.onclick=function(){azClick(i)};azG.appendChild(c);
+  });
+  document.querySelectorAll('.az-btn').forEach(function(b){
+    b.onclick=function(){
+      document.querySelectorAll('.az-btn').forEach(function(x){x.classList.remove('az-btn--active')});
+      b.classList.add('az-btn--active');azMode=b.dataset.az;azClear();
+      azM.innerHTML='<span class="azbuka-matrix__hint">Нажми на ячейку — узнай послание</span>';
+    };
+  });
+  function azClear(){document.querySelectorAll('.az-cell').forEach(function(c){c.classList.remove('az-hl','az-hl-s')})}
+  function azClick(i){
+    azClear();var r=Math.floor(i/7),col=i%7,cells=[],d;
+    if(azMode==='row'){for(var c=0;c<7;c++) cells.push(r*7+c);d=azRows[r];azShow('Строка '+(r+1),d)}
+    else if(azMode==='col'){for(var x=0;x<7;x++) cells.push(x*7+col);d=azCols[col];azShow('Столбец '+(col+1),d)}
+    else{
+      if(r===col){for(var x=0;x<7;x++) cells.push(x*7+x);d=azDiag[0];azShow('Диагональ ↘',d)}
+      else if(r+col===6){for(var x=0;x<7;x++) cells.push(x*7+(6-x));d=azDiag[1];azShow('Диагональ ↙',d)}
+      else{for(var x=0;x<7;x++) cells.push(x*7+x);d=azDiag[0];azShow('Диагональ ↘',d)}
+    }
+    cells.forEach(function(ci){var e=document.getElementById('az'+ci);if(e)e.classList.add(ci===i?'az-hl-s':'az-hl')});
+  }
+  function azShow(label,d){
+    azM.innerHTML='<div class="az-msg-label">'+label+'</div><div class="az-msg-lett">'+d.l+'</div><div class="az-msg-text">'+d.t+'</div>';
+  }
 
   /* ═══ PARTICLES ═══ */
   var pc=document.getElementById('particles');

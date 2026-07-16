@@ -338,7 +338,7 @@ ul,ol{list-style:none}
   .nav{
     position:fixed;
     top:0;left:0;right:0;bottom:0;
-    background:rgba(13,8,4,0.98);
+    background:rgba(245,240,232,0.98);
     flex-direction:column;
     justify-content:center;
     gap:24px;
