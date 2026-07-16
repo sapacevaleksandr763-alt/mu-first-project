@@ -22,8 +22,8 @@
     }
     @keyframes float-up{
       0%{opacity:0;transform:translateY(100vh) scale(0)}
-      10%{opacity:0.6}
-      90%{opacity:0.3}
+      10%{opacity:0.25}
+      90%{opacity:0.12}
       100%{opacity:0;transform:translateY(-10vh) scale(1.5)}
     }
 
@@ -35,18 +35,18 @@
     .hero__bg{
       position:absolute;inset:0;
       background:url('images/hero-volkhv-phoenix.png') center/cover no-repeat;
-      filter:brightness(0.3) saturate(0.6);
+      filter:brightness(0.45) saturate(0.7);
       transform:scale(1.05);
       animation:heroZoom 20s ease-in-out infinite alternate;
     }
     @keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1.15)}}
     .hero__overlay{
       position:absolute;inset:0;
-      background:linear-gradient(to bottom,rgba(13,8,4,0.4) 0%,rgba(13,8,4,0) 30%,rgba(13,8,4,0.97) 100%);
+      background:linear-gradient(to bottom,rgba(30,20,10,0.3) 0%,rgba(30,20,10,0) 30%,rgba(245,240,232,1) 100%);
     }
     .hero__vignette{
       position:absolute;inset:0;
-      background:radial-gradient(ellipse at center,transparent 40%,rgba(13,8,4,0.7) 100%);
+      background:radial-gradient(ellipse at center,transparent 40%,rgba(30,20,10,0.5) 100%);
     }
     .hero__content{
       position:relative;z-index:2;
@@ -54,8 +54,8 @@
     }
     .hero__badge{
       display:inline-flex;align-items:center;gap:8px;
-      background:rgba(201,168,76,0.1);
-      border:1px solid rgba(201,168,76,0.25);
+      background:rgba(0,0,0,0.35);
+      border:1px solid rgba(201,168,76,0.4);
       border-radius:24px;padding:8px 20px;
       font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
       color:var(--gold);margin-bottom:24px;
@@ -70,7 +70,8 @@
       font-family:var(--font-head);
       font-size:clamp(2.6rem,6vw,4.2rem);
       font-weight:900;line-height:1.08;
-      color:var(--text);margin-bottom:24px;
+      color:#f5f0e8;margin-bottom:24px;
+      text-shadow:0 2px 20px rgba(0,0,0,0.5);
       animation:fadeInUp 1s ease 0.4s both;
     }
     .hero__title em{font-style:normal;color:var(--gold);position:relative}
@@ -79,8 +80,9 @@
       height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;
     }
     .hero__sub{
-      font-size:1.1rem;color:var(--text-muted);line-height:1.8;
+      font-size:1.1rem;color:#d4c9b0;line-height:1.8;
       margin-bottom:40px;max-width:560px;
+      text-shadow:0 1px 10px rgba(0,0,0,0.4);
       animation:fadeInUp 1s ease 0.6s both;
     }
     .hero__btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeInUp 1s ease 0.8s both}
@@ -159,7 +161,7 @@
     }
     .explore-card:hover{
       border-color:rgba(201,168,76,0.5);transform:translateY(-6px);
-      box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 30px rgba(201,168,76,0.06);
+      box-shadow:0 12px 40px rgba(0,0,0,0.08),0 0 30px rgba(201,168,76,0.08);
     }
     .explore-card:hover::before{opacity:1}
     .explore-card__num{
@@ -202,7 +204,7 @@
     }
     .interactive-card:hover{
       border-color:rgba(201,168,76,0.5);transform:translateY(-6px);
-      box-shadow:0 16px 48px rgba(0,0,0,0.5),0 0 40px rgba(201,168,76,0.08);
+      box-shadow:0 16px 48px rgba(0,0,0,0.08),0 0 40px rgba(201,168,76,0.1);
     }
     .interactive-card:hover::before,.interactive-card:hover::after{opacity:1}
     .interactive-card__icon{font-size:2.6rem;margin-bottom:16px;display:block;position:relative;z-index:1}
@@ -316,6 +318,70 @@
       margin:0;
     }
 
+    /* ═══ AZBUKA SECTION ═══ */
+    .azbuka-showcase{display:flex;gap:32px;align-items:center;margin-top:48px}
+    .azbuka-preview{
+      flex:1;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;
+    }
+    .azbuka-cell{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:6px;
+      padding:10px 4px;text-align:center;transition:all 0.3s;
+    }
+    .azbuka-cell:hover{border-color:var(--gold);transform:scale(1.08)}
+    .azbuka-cell__char{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);line-height:1}
+    .azbuka-cell__name{font-size:0.5rem;color:var(--text-muted);margin-top:2px;line-height:1.1}
+    .azbuka-info{flex:0 0 340px}
+    .azbuka-info h3{font-family:var(--font-head);font-size:1.4rem;color:var(--text);margin-bottom:16px}
+    .azbuka-info p{font-size:0.92rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+    .azbuka-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .azbuka-feat{
+      background:rgba(184,148,46,0.08);border:1px solid rgba(184,148,46,0.2);
+      border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--gold);
+    }
+
+    /* ═══ LESSONS SECTION ═══ */
+    .lessons-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+    .lesson-card{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:12px;
+      padding:32px 28px;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+      text-decoration:none;display:block;position:relative;overflow:hidden;
+    }
+    .lesson-card::before{
+      content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+      background:linear-gradient(180deg,var(--gold),var(--gold-dark));
+      border-radius:2px;opacity:0.4;transition:opacity 0.3s;
+    }
+    .lesson-card:hover{
+      border-color:rgba(184,148,46,0.5);transform:translateY(-4px);
+      box-shadow:0 12px 36px rgba(0,0,0,0.08);
+    }
+    .lesson-card:hover::before{opacity:1}
+    .lesson-card__head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+    .lesson-card__num{
+      width:40px;height:40px;border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-head);font-size:0.85rem;color:#fff;font-weight:900;
+      flex-shrink:0;
+    }
+    .lesson-card__title{font-family:var(--font-head);font-size:1rem;color:var(--text)}
+    .lesson-card__desc{font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px}
+    .lesson-card__topics{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+    .lesson-topic{
+      background:rgba(184,148,46,0.06);border:1px solid rgba(184,148,46,0.15);
+      border-radius:4px;padding:3px 10px;font-size:0.68rem;color:var(--text-muted);
+    }
+    .lesson-card__btn{
+      display:inline-flex;align-items:center;gap:6px;
+      font-family:var(--font-head);font-size:0.78rem;color:var(--gold);
+      transition:all 0.3s;
+    }
+    .lesson-card:hover .lesson-card__btn{transform:translateX(4px)}
+    .lesson-card__lock{
+      position:absolute;top:16px;right:16px;font-size:0.7rem;
+      color:var(--text-muted);opacity:0.5;
+    }
+
     /* ═══ RESPONSIVE ═══ */
     @media(max-width:768px){
       .explore-grid{grid-template-columns:repeat(2,1fr)}
@@ -325,10 +391,15 @@
       .hero__zvezda{width:100px;height:100px;right:4%;bottom:12%}
       .tg-cta{padding:32px 20px}
       .floating-tg{width:48px;height:48px;bottom:20px;right:20px}
+      .azbuka-showcase{flex-direction:column}
+      .azbuka-info{flex:none;width:100%}
+      .azbuka-preview{grid-template-columns:repeat(7,1fr)}
+      .lessons-grid{grid-template-columns:1fr}
     }
     @media(max-width:480px){
       .explore-grid{grid-template-columns:1fr}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .azbuka-preview{grid-template-columns:repeat(5,1fr)}
     }
   </style>
 </head>
@@ -346,8 +417,8 @@
       <nav class="nav" id="nav">
         <a href="#explore" class="nav__link">База Знаний</a>
         <a href="#interactive" class="nav__link">Интерактивы</a>
-        <a href="#about" class="nav__link">О проекте</a>
-        <a href="pages/blog.html" class="nav__link">Блог</a>
+        <a href="#azbuka" class="nav__link">Азбука</a>
+        <a href="#lessons" class="nav__link">Уроки</a>
         <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Telegram ↗</a>
       </nav>
       <button class="burger" id="burger"><span></span><span></span><span></span></button>
@@ -604,6 +675,196 @@
       </div>
     </div>
   </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 04. СЛАВЯНСКАЯ АЗБУКА ═══ -->
+  <section class="section section--alt" id="azbuka">
+    <div class="container">
+      <div class="section__header reveal">
+        <div class="section__num">04 · Письменность</div>
+        <h2 class="section__title">Славянская Азбука</h2>
+        <div class="section__line"></div>
+        <p class="section__subtitle">Каждая буква — не просто звук, а глубинный образ мироздания</p>
+      </div>
+      <div class="azbuka-showcase">
+        <div class="azbuka-preview reveal">
+          <div class="azbuka-cell"><div class="azbuka-cell__char">А</div><div class="azbuka-cell__name">Азъ</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Б</div><div class="azbuka-cell__name">Боги</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">В</div><div class="azbuka-cell__name">Вѣди</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Г</div><div class="azbuka-cell__name">Глаголи</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Д</div><div class="azbuka-cell__name">Добро</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Є</div><div class="azbuka-cell__name">Есть</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Ж</div><div class="azbuka-cell__name">Животъ</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Ѕ</div><div class="azbuka-cell__name">Ѕело</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">З</div><div class="azbuka-cell__name">Земля</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">И</div><div class="azbuka-cell__name">Иже</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">І</div><div class="azbuka-cell__name">Іжеи</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">К</div><div class="azbuka-cell__name">Како</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Л</div><div class="azbuka-cell__name">Людіє</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">М</div><div class="azbuka-cell__name">Мыслѣтѣ</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Н</div><div class="azbuka-cell__name">Нашъ</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">О</div><div class="azbuka-cell__name">Онъ</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">П</div><div class="azbuka-cell__name">Покои</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Р</div><div class="azbuka-cell__name">Рѣци</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">С</div><div class="azbuka-cell__name">Слово</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">Т</div><div class="azbuka-cell__name">Твердо</div></div>
+          <div class="azbuka-cell"><div class="azbuka-cell__char">У</div><div class="azbuka-cell__name">Укъ</div></div>
+        </div>
+        <div class="azbuka-info reveal reveal-delay-1">
+          <h3>49 Образов Буквицы</h3>
+          <p>Древнеславянская Буквица — это не алфавит в привычном смысле. Каждая из 49 буквиц несёт глубинный образ: <strong>Азъ</strong> — это «я, человек», <strong>Боги</strong> — «высшие силы», <strong>Вѣди</strong> — «знание сердцем».</p>
+          <p>Читая слово по буквицам, ты раскрываешь его истинный смысл, заложенный предками.</p>
+          <div class="azbuka-features">
+            <span class="azbuka-feat">49 буквиц</span>
+            <span class="azbuka-feat">Числовые образы</span>
+            <span class="azbuka-feat">Дешифратор слов</span>
+            <span class="azbuka-feat">Интерактив</span>
+          </div>
+          <a href="pages/bukvica.html" class="btn btn--primary">Открыть Буквицу →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 05. УРОКИ И ПРАКТИКА ═══ -->
+  <section class="section" id="lessons">
+    <div class="container">
+      <div class="section__header reveal">
+        <div class="section__num">05 · Обучение</div>
+        <h2 class="section__title">Уроки и Практика</h2>
+        <div class="section__line"></div>
+        <p class="section__subtitle">Пошаговое изучение славянской культуры — от основ к глубинному пониманию</p>
+      </div>
+      <div class="lessons-grid">
+
+        <a href="pages/history.html" class="lesson-card reveal">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">1</div>
+            <div class="lesson-card__title">Кто такие славяне?</div>
+          </div>
+          <p class="lesson-card__desc">История славянской цивилизации от древнейших времён. Откуда пришли, как жили, во что верили.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Происхождение</span>
+            <span class="lesson-topic">Расселение</span>
+            <span class="lesson-topic">Мироустройство</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/gods.html" class="lesson-card reveal reveal-delay-1">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">2</div>
+            <div class="lesson-card__title">Пантеон Богов</div>
+          </div>
+          <p class="lesson-card__desc">38 богов и духов: кто за что отвечает, как к ним обращаться, связь между пантеоном и природой.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Старшие боги</span>
+            <span class="lesson-topic">Младшие боги</span>
+            <span class="lesson-topic">Духи</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/runes.html" class="lesson-card reveal">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">3</div>
+            <div class="lesson-card__title">Руны и их значения</div>
+          </div>
+          <p class="lesson-card__desc">24 руны Старшего Футарка: прямые и перевёрнутые значения, три этта, применение в практике.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Этт Фрейи</span>
+            <span class="lesson-topic">Этт Хеймдалля</span>
+            <span class="lesson-topic">Этт Тюра</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/bukvica.html" class="lesson-card reveal reveal-delay-1">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">4</div>
+            <div class="lesson-card__title">Буквица: язык образов</div>
+          </div>
+          <p class="lesson-card__desc">49 буквиц — каждая несёт образ. Учимся читать слова по-старославянски и раскрывать скрытые смыслы.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">49 образов</span>
+            <span class="lesson-topic">Числовые значения</span>
+            <span class="lesson-topic">Дешифровка</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/oberegi-catalog.html" class="lesson-card reveal">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">5</div>
+            <div class="lesson-card__title">Обереги и символы</div>
+          </div>
+          <p class="lesson-card__desc">30 оберегов: мужские, женские, универсальные. Какой подходит тебе и как правильно носить.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Коловрат</span>
+            <span class="lesson-topic">Алатырь</span>
+            <span class="lesson-topic">Ладинец</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/obryady.html" class="lesson-card reveal reveal-delay-1">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">6</div>
+            <div class="lesson-card__title">Обряды и ритуалы</div>
+          </div>
+          <p class="lesson-card__desc">16 обрядов: очищение, защита, призвание, жизненный путь. Пошаговые инструкции для практики.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Очищение</span>
+            <span class="lesson-topic">Защита</span>
+            <span class="lesson-topic">Призвание</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/traditions.html" class="lesson-card reveal">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">7</div>
+            <div class="lesson-card__title">Традиции 4 сезонов</div>
+          </div>
+          <p class="lesson-card__desc">Коло Года: весенние, летние, осенние, зимние традиции. Как жить в ладу с природными циклами.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Весна</span>
+            <span class="lesson-topic">Лето</span>
+            <span class="lesson-topic">Осень</span>
+            <span class="lesson-topic">Зима</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+        <a href="pages/vedas.html" class="lesson-card reveal reveal-delay-1">
+          <div class="lesson-card__head">
+            <div class="lesson-card__num">8</div>
+            <div class="lesson-card__title">Священные тексты</div>
+          </div>
+          <p class="lesson-card__desc">Велесова Книга, Песни Птицы Гамаюн, Книга Коляды — изучаем первоисточники мудрости.</p>
+          <div class="lesson-card__topics">
+            <span class="lesson-topic">Велесова Книга</span>
+            <span class="lesson-topic">Голубиная Книга</span>
+            <span class="lesson-topic">Русские Веды</span>
+          </div>
+          <span class="lesson-card__btn">Начать урок →</span>
+        </a>
+
+      </div>
+
+      <div class="tg-cta reveal" style="margin-top:48px">
+        <div class="tg-cta__icon">📚</div>
+        <div class="tg-cta__title">Новые уроки каждую неделю</div>
+        <p class="tg-cta__text">Подпишись на Telegram — анонсы уроков, дополнительные материалы, разборы практик и ответы на вопросы.</p>
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary tg-cta__btn">Подписаться →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
 
   <!-- ═══ FINAL CTA ═══ -->
   <section class="section section--alt final-cta">
