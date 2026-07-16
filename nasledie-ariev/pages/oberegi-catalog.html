@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Каталог славянских оберегов — 30 символов с подробным описанием. Мужские, женские и универсальные обереги с значением и свойствами." />
+  <title>Каталог Оберегов — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+    .obereg-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .obereg-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(201,168,76,0.08);
+    }
+    .obereg-card[data-hidden="true"] { display: none; }
+    .obereg-card__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(201,168,76,0.03);
+    }
+    .obereg-card__symbol {
+      font-size: 2.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .obereg-card__name {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+    .obereg-card__type {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .obereg-card__type--male { color: #6a9fd8; }
+    .obereg-card__type--female { color: #d88a9f; }
+    .obereg-card__type--universal { color: var(--gold); }
+    .obereg-card__body { padding: 20px 24px; }
+    .obereg-card__desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .obereg-card__props {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .prop-tag {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      color: var(--gold);
+    }
+    .obereg-card__god {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .obereg-card__god strong { color: var(--gold); opacity: 0.8; }
+    .oberegi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 768px) {
+      .oberegi-grid { grid-template-columns: 1fr; }
+    }
+    .counter { color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 24px; }
+    .counter span { color: var(--gold); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="oberegi-catalog.html" class="nav__link nav__link--active">Обереги</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image: url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᛉ</span>
+      <h1 class="page-hero__title">Каталог<br /><em>Оберегов</em></h1>
+      <p class="page-hero__sub">30 славянских символов защиты — мужские, женские и универсальные. Значение, свойства, бог-покровитель.</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="page-intro">
+        <p>Оберег — не украшение, а щит. Каждый символ несёт в себе силу определённого Бога и работает на конкретную задачу: защита, здоровье, удача, мудрость, любовь. Выбирай оберег по своей потребности — и он будет работать.</p>
+      </div>
+
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">Все обереги</button>
+        <button class="filter-btn" data-filter="male">Мужские</button>
+        <button class="filter-btn" data-filter="female">Женские</button>
+        <button class="filter-btn" data-filter="universal">Универсальные</button>
+      </div>
+
+      <div class="counter" id="counter">Показано: <span id="countNum">30</span> из 30</div>
+
+      <div class="oberegi-grid" id="oberegiGrid">
+
+        <!-- ═══ МУЖСКИЕ ОБЕРЕГИ ═══ -->
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">⚡</div>
+            <div>
+              <div class="obereg-card__name">Громовик</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Шестилучевой знак Перуна. Защищает воина в бою, даёт силу духа и несгибаемую волю. Наносили на оружие, щиты, двери дружинных домов. Громовик отгоняет нечисть и тёмные силы.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Защита</span>
+              <span class="prop-tag">Сила</span>
+              <span class="prop-tag">Воля</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Перун</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">☀️</div>
+            <div>
+              <div class="obereg-card__name">Колядник</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Символ бога Коляды — вечного обновления мира. Даёт мужчине силу для перемен, мудрость для верных решений, энергию для новых начинаний. Носили мужчины, стремящиеся к знаниям.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Обновление</span>
+              <span class="prop-tag">Мудрость</span>
+              <span class="prop-tag">Перемены</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Коляда</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🔱</div>
+            <div>
+              <div class="obereg-card__name">Секира Перуна</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Оружие громовержца. Даёт решительность, отвагу, способность рубить проблемы с плеча. Защищает в конфликтах и спорах. Подходит тем, кто борется за справедливость.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Отвага</span>
+              <span class="prop-tag">Решительность</span>
+              <span class="prop-tag">Справедливость</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Перун</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🐻</div>
+            <div>
+              <div class="obereg-card__name">Печать Велеса (Медвежья лапа)</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Знак Велеса в образе медведя. Даёт силу зверя, связь с природой, торговую удачу. Велес — бог мудрости, скота и богатства. Оберег для тех, кто ведёт дела и ищет процветания.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Богатство</span>
+              <span class="prop-tag">Сила</span>
+              <span class="prop-tag">Мудрость</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Велес</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🔥</div>
+            <div>
+              <div class="obereg-card__name">Ратиборец</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Воинский знак, ослепляющий врагов. Изображали на доспехах и знамёнах. Даёт храбрость, вселяет страх в противника. Современное значение — преодоление страхов и победа над внутренними врагами.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Храбрость</span>
+              <span class="prop-tag">Победа</span>
+              <span class="prop-tag">Бесстрашие</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Перун</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">⚒</div>
+            <div>
+              <div class="obereg-card__name">Молот Сварога</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Инструмент Бога-Кузнеца, сковавшего мир. Даёт созидательную силу, мастерство в ремесле, крепость семейных уз. Для мужчин, которые строят — дом, дело, семью.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Созидание</span>
+              <span class="prop-tag">Мастерство</span>
+              <span class="prop-tag">Семья</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌀</div>
+            <div>
+              <div class="obereg-card__name">Грозовик</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Защита от стихий и природных бедствий. Вырезали на крышах домов, ставнях, воротах. Отводит молнии, бури, наводнения. В современном мире — защита от непредвиденных обстоятельств.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Защита от стихий</span>
+              <span class="prop-tag">Стабильность</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Перун / Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🏹</div>
+            <div>
+              <div class="obereg-card__name">Стрибожич</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Знак Стрибога — повелителя ветров. Защищает путников и моряков. Даёт попутный ветер в делах, помогает обходить преграды. Для тех, кто в постоянном движении и путешествиях.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Путешествия</span>
+              <span class="prop-tag">Удача в пути</span>
+              <span class="prop-tag">Свобода</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Стрибог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌿</div>
+            <div>
+              <div class="obereg-card__name">Всеславец</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Огненный оберег, гасящий ссоры между родичами. Защищает семью от раздоров, гасит конфликты на корню. Помогает мужчине быть миротворцем и хранителем семейного лада.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Мир в семье</span>
+              <span class="prop-tag">Примирение</span>
+              <span class="prop-tag">Лад</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="male">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🐺</div>
+            <div>
+              <div class="obereg-card__name">Волчий Крюк</div>
+              <div class="obereg-card__type obereg-card__type--male">Мужской оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Знак воина-одиночки, идущего своим путём. Волк — священное животное Велеса. Оберег для тех, кто выбрал независимый путь, кто ведёт, а не следует. Даёт интуицию охотника и выносливость хищника.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Независимость</span>
+              <span class="prop-tag">Интуиция</span>
+              <span class="prop-tag">Выносливость</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Велес</div>
+          </div>
+        </div>
+
+        <!-- ═══ ЖЕНСКИЕ ОБЕРЕГИ ═══ -->
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌙</div>
+            <div>
+              <div class="obereg-card__name">Лунница</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Полумесяц рожками вниз — древнейший женский символ. Связан с лунными циклами, женским здоровьем, плодородием. Защищает от сглаза, помогает в зачатии и вынашивании. Носили все женщины от девочек до старух.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Здоровье</span>
+              <span class="prop-tag">Плодородие</span>
+              <span class="prop-tag">Защита от сглаза</span>
+            </div>
+            <div class="obereg-card__god"><strong>Богиня:</strong> Макошь / Лада</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌺</div>
+            <div>
+              <div class="obereg-card__name">Ладинец</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Крест Лады — богини любви и красоты. Лучи завёрнуты противосолонь, создавая вихрь женской энергии. Защищает от порчи, дарит красоту и обаяние. Девочкам дарили с 3 лет для формирования женской сути.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Красота</span>
+              <span class="prop-tag">Любовь</span>
+              <span class="prop-tag">Женственность</span>
+            </div>
+            <div class="obereg-card__god"><strong>Богиня:</strong> Лада</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🕸</div>
+            <div>
+              <div class="obereg-card__name">Макошь</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Знак Богини Судьбы и Магии. Макошь прядёт нити судеб — её оберег помогает женщине влиять на свою судьбу, привлекать удачу, развивать интуицию. Покровительствует рукодельницам и целительницам.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Судьба</span>
+              <span class="prop-tag">Интуиция</span>
+              <span class="prop-tag">Магия</span>
+            </div>
+            <div class="obereg-card__god"><strong>Богиня:</strong> Макошь</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌸</div>
+            <div>
+              <div class="obereg-card__name">Звезда Лады</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Восьмилучевая звезда — символ гармонии мироздания через женское начало. Хранительница домашнего очага. Дарит спокойствие, мудрость, умение создавать лад в семье. Для замужних женщин и матерей.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Домашний лад</span>
+              <span class="prop-tag">Гармония</span>
+              <span class="prop-tag">Мудрость</span>
+            </div>
+            <div class="obereg-card__god"><strong>Богиня:</strong> Лада</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌊</div>
+            <div>
+              <div class="obereg-card__name">Рожаница</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Оберег материнства. Рожаницы — богини, присутствующие при рождении каждого ребёнка. Символ помогает при зачатии, облегчает роды, защищает мать и дитя. Вышивали на подоле рубахи и полотенцах.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Материнство</span>
+              <span class="prop-tag">Роды</span>
+              <span class="prop-tag">Защита детей</span>
+            </div>
+            <div class="obereg-card__god"><strong>Богини:</strong> Рожаницы / Макошь</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🦢</div>
+            <div>
+              <div class="obereg-card__name">Лельник</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Оберег юных девушек. Леля — богиня весны, молодости и первой любви. Защищает незамужних от дурного глаза, помогает встретить суженого, сохраняет чистоту и невинность. Носили с подросткового возраста до свадьбы.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Молодость</span>
+              <span class="prop-tag">Первая любовь</span>
+              <span class="prop-tag">Чистота</span>
+            </div>
+            <div class="obereg-card__god"><strong>Богиня:</strong> Леля</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌹</div>
+            <div>
+              <div class="obereg-card__name">Огневица</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Огненный оберег для замужних женщин. Защищает от болезней и порчи силой Небесного Огня. Усиливает внутреннюю энергию, помогает справляться с нагрузками быта и материнства. Вышивали на одежде красными нитями.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Здоровье</span>
+              <span class="prop-tag">Энергия</span>
+              <span class="prop-tag">Защита от болезней</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог (Небесный Огонь)</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌿</div>
+            <div>
+              <div class="obereg-card__name">Одолень-трава</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Двойной знак огня — солнечный крест с загнутыми лучами. Одолевает любую хворь и порчу. Один из сильнейших целительных символов. Помогает при хронических болезнях и в восстановлении после тяжёлых периодов.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Исцеление</span>
+              <span class="prop-tag">Очищение</span>
+              <span class="prop-tag">Восстановление</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Даждьбог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🦋</div>
+            <div>
+              <div class="obereg-card__name">Свитовит</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Соединение Небесных и Земных вод. Защищает беременных и их будущих детей. Считалось, что Свитовит помогает душе ребёнка правильно войти в Явь. Вышивали на одежде будущей матери.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Беременность</span>
+              <span class="prop-tag">Защита плода</span>
+              <span class="prop-tag">Благополучные роды</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Род / Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="female">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌛</div>
+            <div>
+              <div class="obereg-card__name">Молвинец</div>
+              <div class="obereg-card__type obereg-card__type--female">Женский оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Защита от злого слова, сплетен, наговоров и проклятий. «Молва» — речь; Молвинец отражает дурное слово обратно к говорящему. Особенно важен для женщин, чувствительных к чужой энергетике.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Защита от слов</span>
+              <span class="prop-tag">Отражение негатива</span>
+              <span class="prop-tag">Щит от сплетен</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Род</div>
+          </div>
+        </div>
+
+        <!-- ═══ УНИВЕРСАЛЬНЫЕ ОБЕРЕГИ ═══ -->
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">☀️</div>
+            <div>
+              <div class="obereg-card__name">Коловрат</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Главный солярный символ — вращающееся солнце. Восемь лучей — восемь точек годового круга. Символ вечного движения, победы света над тьмой, жизни над смертью. Самый узнаваемый и мощный славянский оберег.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Солнце</span>
+              <span class="prop-tag">Жизненная сила</span>
+              <span class="prop-tag">Победа света</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог / Даждьбог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">✡</div>
+            <div>
+              <div class="obereg-card__name">Звезда Руси (Квадрат Сварога)</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Переплетение трёх миров — Прави, Яви и Нави. Квадрат (Земля) переплетён с двумя эллипсами (Небо и Подземье). Символ единства мироздания, связи всего сущего. Один из сложнейших и глубочайших символов.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Единство миров</span>
+              <span class="prop-tag">Гармония</span>
+              <span class="prop-tag">Родовая память</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌀</div>
+            <div>
+              <div class="obereg-card__name">Символ Рода</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Четырёхлучевая свастика, похожая на Галактику. Символ Бога-Творца Рода, создавшего всё сущее. Несёт силу всех предков рода, связывает с корнями. Универсальная защита и благословение для всей семьи.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Связь с предками</span>
+              <span class="prop-tag">Родовая сила</span>
+              <span class="prop-tag">Творение</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Род</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🔥</div>
+            <div>
+              <div class="obereg-card__name">Алатырь</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Восьмилучевая звезда — камень, лежащий в основе мироздания. На Алатырь-камне Боги сотворили мир. Символ начала начал, центра Вселенной. Оберег для путешественников и тех, кто ищет свой путь.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Начало</span>
+              <span class="prop-tag">Путь</span>
+              <span class="prop-tag">Центр мира</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌳</div>
+            <div>
+              <div class="obereg-card__name">Древо Жизни (Мировое Древо)</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Ось мироздания, соединяющая три мира. Корни в Нави (мир предков), ствол в Яви (мир живых), крона в Прави (мир Богов). Оберег гармонии, связи с предками и божественным. Вышивали на полотенцах и рубахах.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Связь миров</span>
+              <span class="prop-tag">Гармония</span>
+              <span class="prop-tag">Рост</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Род</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">♾</div>
+            <div>
+              <div class="obereg-card__name">Свадебник</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Переплетение двух начал — мужского (красный) и женского (синий). Символ слияния двух родов в один. Дарили молодожёнам на свадьбу. Укрепляет союз, помогает преодолевать кризисы в паре.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Брак</span>
+              <span class="prop-tag">Единение</span>
+              <span class="prop-tag">Верность</span>
+            </div>
+            <div class="obereg-card__god"><strong>Боги:</strong> Лада и Сварог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌅</div>
+            <div>
+              <div class="obereg-card__name">Яровик</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Солнечный знак Ярилы — бога весеннего солнца, страсти и плодородия. Пробуждает жизненную силу, помогает начинать новые дела, приносит процветание. Крепили на дверях хлевов для защиты скота.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Плодородие</span>
+              <span class="prop-tag">Процветание</span>
+              <span class="prop-tag">Новые начинания</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Ярило</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">⚕</div>
+            <div>
+              <div class="obereg-card__name">Цветок Папоротника (Перунов Цвет)</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Легендарный цветок, расцветающий раз в году на Купалу. Кто нашёл — обретает все клады и видит скрытое. Оберег исполнения желаний и раскрытия скрытых способностей. Один из самых желанных символов.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Исполнение желаний</span>
+              <span class="prop-tag">Скрытые таланты</span>
+              <span class="prop-tag">Удача</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Перун</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🔶</div>
+            <div>
+              <div class="obereg-card__name">Репейник Счастья</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Как репейник цепляется к одежде — так этот оберег «цепляет» удачу и счастье к человеку. Простой, но мощный символ привлечения благ. Вышивали на одежде, особенно на детской — чтобы счастье прицепилось с малых лет.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Удача</span>
+              <span class="prop-tag">Счастье</span>
+              <span class="prop-tag">Привлечение благ</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Даждьбог</div>
+          </div>
+        </div>
+
+        <div class="obereg-card" data-type="universal">
+          <div class="obereg-card__header">
+            <div class="obereg-card__symbol">🌞</div>
+            <div>
+              <div class="obereg-card__name">Светоч</div>
+              <div class="obereg-card__type obereg-card__type--universal">Универсальный оберег</div>
+            </div>
+          </div>
+          <div class="obereg-card__body">
+            <p class="obereg-card__desc">Соединение Колядника и Ладинца — мужского и женского начал. Символ просветления, озарения, выхода из тьмы невежества. Помогает найти истинный путь тем, кто запутался в жизни. Для всех, кто ищет ответы.</p>
+            <div class="obereg-card__props">
+              <span class="prop-tag">Просветление</span>
+              <span class="prop-tag">Озарение</span>
+              <span class="prop-tag">Истинный путь</span>
+            </div>
+            <div class="obereg-card__god"><strong>Бог:</strong> Сварог / Род</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ═══ CTA ═══ -->
+      <div class="content-block" style="text-align: center; padding: 48px 0;">
+        <p style="color: var(--text-muted); margin-bottom: 16px;">Не знаете, какой оберег вам подходит?</p>
+        <a href="obereg.html" class="btn btn--primary">Пройти квиз «Подбери Оберег»</a>
+        <div style="margin-top: 16px;">
+          <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--ghost">Спросить в Telegram</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (function() {
+      var filterBar = document.getElementById('filterBar');
+      var grid = document.getElementById('oberegiGrid');
+      var countNum = document.getElementById('countNum');
+      var cards = grid.querySelectorAll('.obereg-card');
+      var total = cards.length;
+
+      filterBar.addEventListener('click', function(e) {
+        var btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        var filter = btn.getAttribute('data-filter');
+
+        filterBar.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var shown = 0;
+        cards.forEach(function(card) {
+          if (filter === 'all' || card.getAttribute('data-type') === filter) {
+            card.setAttribute('data-hidden', 'false');
+            card.style.display = '';
+            shown++;
+          } else {
+            card.setAttribute('data-hidden', 'true');
+            card.style.display = 'none';
+          }
+        });
+        countNum.textContent = shown;
+      });
+    })();
+  </script>
+</body>
+</html>

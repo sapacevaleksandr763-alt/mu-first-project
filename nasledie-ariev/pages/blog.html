@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Блог о славянской культуре — статьи о богах, обрядах, рунах, оберегах. Практики предков для современной жизни." />
+  <title>Блог — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .blog-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .blog-card--featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .blog-card__img {
+      height: 200px;
+      background: var(--bg-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-card--featured .blog-card__img {
+      height: 100%;
+      min-height: 280px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+    }
+    .blog-card__body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .blog-card--featured .blog-card__body {
+      justify-content: center;
+    }
+    .blog-card__cat {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .blog-card__title {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .blog-card--featured .blog-card__title {
+      font-size: 1.4rem;
+    }
+    .blog-card__excerpt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+    .blog-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .blog-card__date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+    .blog-card__read {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      transition: opacity var(--transition);
+    }
+    .blog-card__read:hover { opacity: 0.7; }
+    .blog-card__tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.68rem;
+      color: var(--gold);
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .blog-card__tags { margin-bottom: 12px; }
+    .category-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .category-btn {
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .category-btn:hover,
+    .category-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+    .subscribe-block {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .subscribe-block h3 {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .subscribe-block p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-card--featured { grid-template-columns: 1fr; }
+      .blog-card--featured .blog-card__img {
+        min-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .subscribe-block { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="blog.html" class="nav__link nav__link--active">Блог</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image: url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᚱ</span>
+      <h1 class="page-hero__title">Блог<br /><em>Наследие Ариев</em></h1>
+      <p class="page-hero__sub">Статьи о славянской культуре, практиках предков и их применении в современной жизни</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="category-bar">
+        <button class="category-btn active">Все</button>
+        <button class="category-btn">Боги</button>
+        <button class="category-btn">Обряды</button>
+        <button class="category-btn">Обереги</button>
+        <button class="category-btn">Руны</button>
+        <button class="category-btn">Календарь</button>
+        <button class="category-btn">Практики</button>
+      </div>
+
+      <div class="blog-grid">
+
+        <!-- Featured -->
+        <div class="blog-card blog-card--featured">
+          <div class="blog-card__img">🔥</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Практики</div>
+            <h3 class="blog-card__title">7 славянских практик на каждый день — от рассвета до заката</h3>
+            <div class="blog-card__tags">
+              <span class="blog-card__tag">Утренние ритуалы</span>
+              <span class="blog-card__tag">Очищение</span>
+              <span class="blog-card__tag">Для начинающих</span>
+            </div>
+            <p class="blog-card__excerpt">Как встроить мудрость предков в повседневную жизнь? Утреннее славление, заговор на воду, вечернее благодарение — семь простых действий, которые меняют качество жизни. Проверено на себе.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">12 июля 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Статьи -->
+        <div class="blog-card">
+          <div class="blog-card__img">⚡</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Боги</div>
+            <h3 class="blog-card__title">Перун vs Тор: что общего у славянского и скандинавского громовержцев</h3>
+            <p class="blog-card__excerpt">Оба бьют молниями, оба защищают людей от хаоса. Но между Перуном и Тором — пропасть в философии. Разбираем параллели и различия двух традиций.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">10 июля 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">🛡</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Обереги</div>
+            <h3 class="blog-card__title">Как выбрать свой первый оберег — и не ошибиться</h3>
+            <p class="blog-card__excerpt">Коловрат, Валькирия, Молвинец — от количества символов глаза разбегаются. Простой алгоритм: определи свою потребность, найди бога-покровителя, выбери его знак.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">8 июля 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">ᚱ</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Руны</div>
+            <h3 class="blog-card__title">Руны для начинающих: первые 3 руны, которые стоит изучить</h3>
+            <p class="blog-card__excerpt">Феху, Ансуз, Райдо — три руны, которые дают фундамент. Их значения, медитации с ними и как использовать в повседневной жизни без «магического» пафоса.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">5 июля 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">☀️</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Календарь</div>
+            <h3 class="blog-card__title">Славянский календарь vs григорианский: почему наши предки считали время иначе</h3>
+            <p class="blog-card__excerpt">9 месяцев вместо 12, 9-дневная неделя, 16-часовой день. Как устроен Коляды Даръ и почему он точнее современного календаря.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">3 июля 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">🌿</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Обряды</div>
+            <h3 class="blog-card__title">Очищение дома: пошаговый обряд, который работает</h3>
+            <p class="blog-card__excerpt">Полынь, можжевельник, Четверговая соль — три инструмента для энергетической чистки пространства. Подробная инструкция с объяснением каждого шага.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">1 июля 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">🌊</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Боги</div>
+            <h3 class="blog-card__title">Велес — бог, которого боялись даже другие боги</h3>
+            <p class="blog-card__excerpt">Хозяин Нави, покровитель скота, бог мудрости и торговли. Почему Велес — самый сложный и многогранный персонаж славянского пантеона.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">28 июня 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">💍</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Обряды</div>
+            <h3 class="blog-card__title">Славянская свадьба: что стоит за каждым ритуалом</h3>
+            <p class="blog-card__excerpt">Рушник, каравай, обход вокруг дуба, прыжок через огонь — не народные приметы, а чёткая система слияния двух родов. Расшифровываем символику.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">25 июня 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card__img">🧿</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Практики</div>
+            <h3 class="blog-card__title">Наузы: узелковая магия предков, которую можно практиковать сегодня</h3>
+            <p class="blog-card__excerpt">Красная нить на запястье — это не каббала, а древнеславянская практика. Как правильно вязать наузы, какие цвета для чего, и почему это работает.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__date">22 июня 2026</span>
+              <span class="blog-card__read">Читать →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Subscribe block -->
+      <div class="subscribe-block">
+        <h3>Новые статьи — в Telegram</h3>
+        <p>Подписывайся на канал «Наследие Ариев» — там статьи выходят первыми, плюс разборы, которых нет на сайте.</p>
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary">Подписаться на канал</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

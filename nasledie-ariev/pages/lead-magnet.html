@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Бесплатный PDF — 7 славянских практик на каждый день. Скачай и начни применять мудрость предков уже сегодня." />
+  <title>7 Славянских Практик — Бесплатный PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .lead-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lead-hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../images/volkhv.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.2) saturate(0.5);
+    }
+    .lead-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13,8,4,0.3) 0%, rgba(13,8,4,0.0) 30%, rgba(13,8,4,0.95) 100%);
+    }
+    .lead-hero__content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 120px 0 80px;
+    }
+    .lead-hero__text {
+      max-width: 520px;
+    }
+    .lead-hero__badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .lead-hero__title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .lead-hero__title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .lead-hero__sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .lead-form {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      max-width: 420px;
+    }
+    .lead-form__title {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .lead-form__sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .lead-form__group {
+      margin-bottom: 14px;
+    }
+    .lead-form__input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      transition: border-color var(--transition);
+    }
+    .lead-form__input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .lead-form__input::placeholder { color: var(--text-muted); opacity: 0.5; }
+    .lead-form__btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border: none;
+      border-radius: 6px;
+      color: var(--bg);
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 4px;
+    }
+    .lead-form__btn:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(201,168,76,0.3);
+    }
+    .lead-form__note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+      margin-top: 12px;
+      text-align: center;
+    }
+    .lead-form__or {
+      text-align: center;
+      margin: 14px 0;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .lead-form__tg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--gold);
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .lead-form__tg:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* What's inside */
+    .inside {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+    .inside__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .inside-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all var(--transition);
+    }
+    .inside-card:hover {
+      border-color: rgba(201,168,76,0.35);
+      transform: translateY(-3px);
+    }
+    .inside-card__num {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: var(--gold);
+      opacity: 0.3;
+      margin-bottom: 8px;
+    }
+    .inside-card__title {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .inside-card__desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Social proof */
+    .proof {
+      padding: 60px 0;
+      background: var(--bg-2);
+      text-align: center;
+    }
+    .proof__stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .proof__stat-num {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      color: var(--gold);
+      font-weight: 900;
+    }
+    .proof__stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .lead-hero__content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 100px 0 60px;
+      }
+      .lead-form { max-width: 100%; }
+      .proof__stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="blog.html" class="nav__link">Блог</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="lead-hero">
+    <div class="lead-hero__bg"></div>
+    <div class="lead-hero__overlay"></div>
+    <div class="container lead-hero__content">
+      <div class="lead-hero__text">
+        <div class="lead-hero__badge">Бесплатный PDF-гид</div>
+        <h1 class="lead-hero__title">7 Славянских<br /><em>Практик</em><br />на каждый день</h1>
+        <p class="lead-hero__sub">Утреннее славление, заговор на воду, вечернее благодарение — семь простых действий, которые предки выполняли ежедневно. Теперь они доступны тебе в формате пошагового PDF-гида.</p>
+      </div>
+      <div class="lead-form">
+        <h3 class="lead-form__title">Скачай бесплатно</h3>
+        <p class="lead-form__sub">PDF придёт на почту в течение 2 минут</p>
+        <div class="lead-form__group">
+          <input type="text" class="lead-form__input" placeholder="Твоё имя" />
+        </div>
+        <div class="lead-form__group">
+          <input type="email" class="lead-form__input" placeholder="Email" />
+        </div>
+        <button class="lead-form__btn">Получить PDF бесплатно</button>
+        <div class="lead-form__or">или</div>
+        <a href="https://t.me/nasledieariev" target="_blank" class="lead-form__tg">
+          Получить в Telegram →
+        </a>
+        <p class="lead-form__note">Без спама. Только полезный контент о культуре предков.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="inside">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Что внутри</h2>
+        <div class="section__line"></div>
+        <p class="section__subtitle">7 практик — от рассвета до заката. Каждая с пошаговой инструкцией.</p>
+      </div>
+      <div class="inside__grid">
+        <div class="inside-card">
+          <div class="inside-card__num">01</div>
+          <h3 class="inside-card__title">Славление на рассвете</h3>
+          <p class="inside-card__desc">Как встречать солнце по-славянски. 3 минуты — и день начинается с силой Даждьбога.</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-card__num">02</div>
+          <h3 class="inside-card__title">Заговор на воду</h3>
+          <p class="inside-card__desc">Структурирование воды словом. Простой ритуал, который предки делали каждое утро.</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-card__num">03</div>
+          <h3 class="inside-card__title">Обережное дыхание</h3>
+          <p class="inside-card__desc">Техника «9 вдохов Сварога» — очищение и наполнение энергией через осознанное дыхание.</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-card__num">04</div>
+          <h3 class="inside-card__title">Связь с Родом</h3>
+          <p class="inside-card__desc">5-минутная практика благодарности предкам. Укрепляет родовой канал.</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-card__num">05</div>
+          <h3 class="inside-card__title">Полуденная сила</h3>
+          <p class="inside-card__desc">Обращение к Яриле в зените. Перезарядка в середине дня — когда энергия падает.</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-card__num">06</div>
+          <h3 class="inside-card__title">Очищение пространства</h3>
+          <p class="inside-card__desc">Быстрое окуривание дома — 10 минут вечером для чистоты энергии.</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-card__num">07</div>
+          <h3 class="inside-card__title">Вечернее благодарение</h3>
+          <p class="inside-card__desc">Как завершить день по-славянски. Благодарность Богам за прожитый день и подготовка ко сну.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="container">
+      <h2 class="section__title">Присоединяйся</h2>
+      <div class="section__line"></div>
+      <div class="proof__stats">
+        <div>
+          <div class="proof__stat-num">500+</div>
+          <div class="proof__stat-label">Скачали PDF</div>
+        </div>
+        <div>
+          <div class="proof__stat-num">38</div>
+          <div class="proof__stat-label">Богов в базе</div>
+        </div>
+        <div>
+          <div class="proof__stat-num">7</div>
+          <div class="proof__stat-label">Интерактивов</div>
+        </div>
+        <div>
+          <div class="proof__stat-num">9</div>
+          <div class="proof__stat-label">Видео</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

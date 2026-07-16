@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Руны Старшего Футарка — древняя письменность и система гадания. 24 руны с значениями, описаниями и связями с богами." />
+  <title>Руны — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .runes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (max-width: 900px) {
+      .runes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .runes-grid { grid-template-columns: 1fr; }
+    }
+    .rune-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all var(--transition);
+      text-align: center;
+    }
+    .rune-card:hover {
+      border-color: rgba(201,168,76,0.45);
+      box-shadow: 0 6px 32px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .rune-card__symbol {
+      font-size: 3.6rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 14px;
+      display: block;
+      text-shadow: 0 0 20px rgba(201,168,76,0.25);
+    }
+    .rune-card__name {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .rune-card__translit {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .rune-card__meaning {
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .rune-card__desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+    .rune-card__assoc {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.74rem;
+    }
+    .rune-card__assoc-label {
+      color: var(--gold);
+      opacity: 0.7;
+    }
+    .rune-card__assoc-val {
+      color: var(--text-muted);
+    }
+    .aett-section {
+      margin-bottom: 56px;
+    }
+    .aett-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .aett-label__icon {
+      font-size: 1.6rem;
+      color: var(--gold);
+    }
+    .aett-label__text {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+    .aett-label__tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link nav__link--active">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image: url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᚱ</span>
+      <h1 class="page-hero__title">Руны<br/><em>Футарка</em></h1>
+      <p class="page-hero__sub">Древняя письменность и система гадания. 24 символа, хранящие мудрость предков — от рождения до перерождения.</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="page-intro">
+        <p>Руны — не просто буквы. Это священные знаки, каждый из которых несёт в себе силу и смысл. Старший Футарк — древнейший рунический алфавит, состоящий из 24 рун, разделённых на три атта (группы по восемь). Предки использовали руны для письма, магии, гадания и обращения к богам. Каждая руна — это ключ к пониманию одного из законов мироздания.</p>
+      </div>
+
+      <!-- ═══ ПЕРВЫЙ АТТ — Атт Фрейи ═══ -->
+      <div class="aett-section">
+        <div class="aett-label">
+          <span class="aett-label__icon">ᚠ</span>
+          <span class="aett-label__text">Первый Атт — Атт Фрейи</span>
+          <span class="aett-label__tag">Руны 1–8</span>
+        </div>
+
+        <div class="runes-grid">
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚠ</span>
+            <div class="rune-card__name">Феху (Fehu)</div>
+            <div class="rune-card__translit">Феу / Скот</div>
+            <div class="rune-card__meaning">Богатство, изобилие, достаток</div>
+            <p class="rune-card__desc">Руна материального благополучия и жизненной энергии. Символизирует не только имущество, но и способность его приумножать. Учит, что истинное богатство — в умении делиться и пускать ресурсы в оборот.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Фрейя, стихия Огня</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚢ</span>
+            <div class="rune-card__name">Уруз (Uruz)</div>
+            <div class="rune-card__translit">Ур / Тур (дикий бык)</div>
+            <div class="rune-card__meaning">Сила, здоровье, мощь</div>
+            <p class="rune-card__desc">Руна первобытной силы и неукротимой энергии. Символизирует дикого тура — мощь природы, которую невозможно приручить. Указывает на внутренние резервы и способность к исцелению.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Тор, стихия Земли</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚦ</span>
+            <div class="rune-card__name">Турисаз (Thurisaz)</div>
+            <div class="rune-card__translit">Турисаз / Шип</div>
+            <div class="rune-card__meaning">Защита, врата, сила хаоса</div>
+            <p class="rune-card__desc">Руна Тора и его молота Мьёльнира. Обоюдоострая сила — защищает своих и разрушает врагов. Молот бьёт по границе между порядком и хаосом. Призывает к осторожности перед действием.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Тор, стихия Огня</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚨ</span>
+            <div class="rune-card__name">Ансуз (Ansuz)</div>
+            <div class="rune-card__translit">Ансуз / Бог (Один)</div>
+            <div class="rune-card__meaning">Мудрость, слово, знание</div>
+            <p class="rune-card__desc">Руна Одина — бога мудрости, поэзии и рун. Символизирует божественное вдохновение, дар речи и передачу знаний. Указывает на наставника, послание или откровение, которое изменит путь.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Один, стихия Воздуха</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚱ</span>
+            <div class="rune-card__name">Райдо (Raidho)</div>
+            <div class="rune-card__translit">Райдо / Путь</div>
+            <div class="rune-card__meaning">Путешествие, движение, порядок</div>
+            <p class="rune-card__desc">Руна пути — как физического, так и духовного. Символизирует колесо судьбы и ритм жизни. Учит, что важен не только пункт назначения, но и сам путь. Указывает на правильное направление.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Форсети, стихия Воздуха</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚲ</span>
+            <div class="rune-card__name">Кеназ (Kenaz)</div>
+            <div class="rune-card__translit">Кеназ / Факел</div>
+            <div class="rune-card__meaning">Огонь, творчество, озарение</div>
+            <p class="rune-card__desc">Руна контролируемого огня — факела, освещающего тьму. Символизирует ремесло, творческую энергию и ясность видения. Огонь кузнеца, преображающий сырой металл в оружие и украшение.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Сварог, стихия Огня</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚷ</span>
+            <div class="rune-card__name">Гебо (Gebo)</div>
+            <div class="rune-card__translit">Гебо / Дар</div>
+            <div class="rune-card__meaning">Дар, партнёрство, обмен</div>
+            <p class="rune-card__desc">Руна равноценного обмена и священного дара. Форма руны (X) — перекрёсток, где встречаются два пути. Каждый дар требует ответного дара — закон взаимности, на котором строятся отношения между людьми и богами.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Фрейя, стихия Воздуха</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚹ</span>
+            <div class="rune-card__name">Вуньо (Wunjo)</div>
+            <div class="rune-card__translit">Вуньо / Радость</div>
+            <div class="rune-card__meaning">Радость, гармония, совершенство</div>
+            <p class="rune-card__desc">Руна радости и исполнения желаний. Завершает первый атт — цикл от богатства к счастью. Символизирует состояние, когда все элементы жизни находятся в равновесии. Флаг клана, под которым все едины.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Один, стихия Земли</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══ ВТОРОЙ АТТ — Атт Хеймдалля ═══ -->
+      <div class="aett-section">
+        <div class="aett-label">
+          <span class="aett-label__icon">ᚺ</span>
+          <span class="aett-label__text">Второй Атт — Атт Хеймдалля</span>
+          <span class="aett-label__tag">Руны 9–16</span>
+        </div>
+
+        <div class="runes-grid">
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚺ</span>
+            <div class="rune-card__name">Хагалаз (Hagalaz)</div>
+            <div class="rune-card__translit">Хагалаз / Град</div>
+            <div class="rune-card__meaning">Разрушение, стихия, трансформация</div>
+            <p class="rune-card__desc">Руна града и неконтролируемых стихийных сил. Разрушает старое, чтобы освободить место для нового. Болезненная, но необходимая перемена. После града поле удобряется — и даёт лучший урожай.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Хель, стихия Воды</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᚾ</span>
+            <div class="rune-card__name">Наутиз (Nauthiz)</div>
+            <div class="rune-card__translit">Наутиз / Нужда</div>
+            <div class="rune-card__meaning">Нужда, ограничение, терпение</div>
+            <p class="rune-card__desc">Руна необходимости и стеснённых обстоятельств. Огонь, добытый трением — из нужды рождается изобретательность. Учит находить силу в ограничениях и видеть уроки в трудностях.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Норны (Судьба), стихия Огня</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛁ</span>
+            <div class="rune-card__name">Иса (Isa)</div>
+            <div class="rune-card__translit">Иса / Лёд</div>
+            <div class="rune-card__meaning">Лёд, застой, концентрация</div>
+            <p class="rune-card__desc">Руна льда и неподвижности. Время остановки, когда нужно замереть и собрать силы. Лёд сковывает, но и сохраняет. Период для самоанализа, медитации и внутренней работы перед новым рывком.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Верданди (Настоящее), стихия Воды</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛃ</span>
+            <div class="rune-card__name">Йера (Jera)</div>
+            <div class="rune-card__translit">Йера / Год (урожай)</div>
+            <div class="rune-card__meaning">Урожай, цикл, награда за труд</div>
+            <p class="rune-card__desc">Руна годового цикла и заслуженного урожая. Что посеешь — то пожнёшь, но не сразу. Терпеливый труд приносит плоды в своё время. Руна справедливого воздаяния и природного ритма.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Фрейр, стихия Земли</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛇ</span>
+            <div class="rune-card__name">Эйваз (Eihwaz)</div>
+            <div class="rune-card__translit">Эйваз / Тис</div>
+            <div class="rune-card__meaning">Мировое Древо, стойкость, связь миров</div>
+            <p class="rune-card__desc">Руна тисового дерева — Мирового Древа Иггдрасиль. Тис одновременно ядовит и вечнозелён — символ жизни в смерти. Связывает все три мира. Даёт силу противостоять любым испытаниям.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Один (Иггдрасиль), все стихии</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛈ</span>
+            <div class="rune-card__name">Перт (Perthro)</div>
+            <div class="rune-card__translit">Перт / Кубок жребия</div>
+            <div class="rune-card__meaning">Тайна, судьба, скрытое знание</div>
+            <p class="rune-card__desc">Самая загадочная руна Футарка. Символизирует сосуд, из которого бросают жребий — судьбу, которую нельзя полностью контролировать. Руна тайных знаний, интуиции и того, что скрыто от глаз.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Норны, стихия Воды</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛉ</span>
+            <div class="rune-card__name">Альгиз (Algiz)</div>
+            <div class="rune-card__translit">Альгиз / Защита</div>
+            <div class="rune-card__meaning">Защита, оберег, связь с высшим</div>
+            <p class="rune-card__desc">Могущественнейшая защитная руна. Форма напоминает человека с поднятыми руками — жест обращения к богам. Или рога лося, готового к обороне. Создаёт щит между носителем и враждебными силами.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Хеймдалль, стихия Воздуха</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛊ</span>
+            <div class="rune-card__name">Совило (Sowilo)</div>
+            <div class="rune-card__translit">Совило / Солнце</div>
+            <div class="rune-card__meaning">Солнце, победа, целостность</div>
+            <p class="rune-card__desc">Руна солнца — высшей победы света над тьмой. Молния, рассекающая тучи. Даёт ясность, энергию и силу воли. Завершает второй атт торжеством — после разрушений и испытаний приходит свет.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Бальдр (Даждьбог), стихия Огня</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══ ТРЕТИЙ АТТ — Атт Тюра ═══ -->
+      <div class="aett-section">
+        <div class="aett-label">
+          <span class="aett-label__icon">ᛏ</span>
+          <span class="aett-label__text">Третий Атт — Атт Тюра</span>
+          <span class="aett-label__tag">Руны 17–24</span>
+        </div>
+
+        <div class="runes-grid">
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛏ</span>
+            <div class="rune-card__name">Тейваз (Tiwaz)</div>
+            <div class="rune-card__translit">Тейваз / Тюр</div>
+            <div class="rune-card__meaning">Воин, справедливость, жертва</div>
+            <p class="rune-card__desc">Руна бога Тюра — воина, пожертвовавшего рукой ради общего блага. Символ стрелы, направленной вверх. Учит, что за победу нужно платить, а справедливость требует мужества и самоотречения.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Тюр (Перун), стихия Воздуха</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛒ</span>
+            <div class="rune-card__name">Беркана (Berkano)</div>
+            <div class="rune-card__translit">Беркана / Берёза</div>
+            <div class="rune-card__meaning">Рождение, рост, женское начало</div>
+            <p class="rune-card__desc">Руна берёзы — священного дерева обновления. Символизирует материнство, плодородие и новые начинания. Берёза первой заселяет пустоши — руна говорит о способности расти даже на пустом месте.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Фригг (Макошь), стихия Земли</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛖ</span>
+            <div class="rune-card__name">Эваз (Ehwaz)</div>
+            <div class="rune-card__translit">Эваз / Конь</div>
+            <div class="rune-card__meaning">Движение, доверие, партнёрство</div>
+            <p class="rune-card__desc">Руна коня — верного спутника воина и шамана. Конь Одина Слейпнир переносил между мирами. Символизирует гармоничное движение, доверие между всадником и конём, прогресс через сотрудничество.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Фрейр, стихия Земли</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛗ</span>
+            <div class="rune-card__name">Манназ (Mannaz)</div>
+            <div class="rune-card__translit">Манназ / Человек</div>
+            <div class="rune-card__meaning">Человек, разум, самопознание</div>
+            <p class="rune-card__desc">Руна человека и человечества. Символизирует разум, самосознание и связь с родом. Два зеркальных элемента — внутренний и внешний мир, мужское и женское. Учит познавать себя через взаимодействие с другими.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Хеймдалль, стихия Воздуха</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛚ</span>
+            <div class="rune-card__name">Лагуз (Laguz)</div>
+            <div class="rune-card__translit">Лагуз / Вода</div>
+            <div class="rune-card__meaning">Вода, интуиция, поток</div>
+            <p class="rune-card__desc">Руна воды — стихии, которая всегда находит путь. Символизирует интуицию, подсознание и женскую мудрость. Вода очищает, исцеляет и несёт тайные знания. Учит доверять течению жизни.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Ньёрд, стихия Воды</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛜ</span>
+            <div class="rune-card__name">Ингуз (Ingwaz)</div>
+            <div class="rune-card__translit">Ингуз / Инг (бог)</div>
+            <div class="rune-card__meaning">Плодородие, потенциал, завершение</div>
+            <p class="rune-card__desc">Руна бога Инга (Фрейра) — бога плодородия и мира. Символизирует семя, в котором заключена вся сила будущего дерева. Период накопления и созревания. Когда Ингуз завершается — начинается взрывной рост.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Фрейр (Ярило), стихия Земли</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛞ</span>
+            <div class="rune-card__name">Дагаз (Dagaz)</div>
+            <div class="rune-card__translit">Дагаз / День</div>
+            <div class="rune-card__meaning">Рассвет, прорыв, пробуждение</div>
+            <p class="rune-card__desc">Руна нового дня и великого прорыва. Форма — бабочка или песочные часы, точка перехода между ночью и днём. Символизирует момент просветления, когда тьма мгновенно сменяется светом. Необратимая трансформация.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Хеймдалль, стихия Огня</span>
+            </div>
+          </div>
+
+          <div class="rune-card">
+            <span class="rune-card__symbol">ᛟ</span>
+            <div class="rune-card__name">Отала (Othala)</div>
+            <div class="rune-card__translit">Отала / Наследие</div>
+            <div class="rune-card__meaning">Род, наследие, родовая земля</div>
+            <p class="rune-card__desc">Последняя руна Футарка — руна рода и наследия предков. Символизирует родовую землю, семейные традиции и духовное наследство. Замыкает круг: от богатства (Феху) к корням (Отала). Всё, что мы имеем, — дар предков.</p>
+            <div class="rune-card__assoc">
+              <span class="rune-card__assoc-label">Связь:</span>
+              <span class="rune-card__assoc-val">Один (Род), стихия Земли</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══ CTA ═══ -->
+      <div class="content-block" style="text-align: center; padding: 48px 0;">
+        <p style="color: var(--text-muted); margin-bottom: 16px;">Хочешь узнать, что руны говорят тебе?</p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="rune-reading.html" class="btn btn--primary">Гадание на Рунах</a>
+          <a href="god-patron.html" class="btn btn--ghost">Найти Бога-Покровителя</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">&copy; 2026 Александр Сапачёв &middot; Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

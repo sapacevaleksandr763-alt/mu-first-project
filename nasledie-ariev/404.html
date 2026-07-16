@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Страница не найдена — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-page__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(100,60,10,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .error-page__content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 24px;
+    }
+    .error-page__rune {
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.3;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .error-page__code {
+      font-family: var(--font-head);
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 900;
+      color: var(--gold);
+      opacity: 0.15;
+      line-height: 1;
+      margin-bottom: -20px;
+    }
+    .error-page__title {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .error-page__desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .error-page__links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .error-page__explore {
+      margin-top: 20px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .error-page__explore-title {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .error-page__explore-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .error-page__explore-link {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .error-page__explore-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Главная</a>
+        <a href="pages/gods.html" class="nav__link">Боги</a>
+        <a href="pages/traditions.html" class="nav__link">Традиции</a>
+        <a href="pages/runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="error-page">
+    <div class="error-page__bg"></div>
+    <div class="error-page__content">
+      <span class="error-page__rune">ᚦ</span>
+      <div class="error-page__code">404</div>
+      <h1 class="error-page__title">Леший увёл тебя не туда</h1>
+      <p class="error-page__desc">Эта тропа ведёт в никуда. Видимо, леший запутал дорогу. Вернись на главную или выбери раздел ниже — мы выведем тебя из чащи.</p>
+      <div class="error-page__links">
+        <a href="index.html" class="btn btn--primary">На главную</a>
+        <a href="pages/quiz-chertog.html" class="btn btn--ghost">Узнать свой Чертог</a>
+      </div>
+      <div class="error-page__explore">
+        <div class="error-page__explore-title">Или загляни сюда</div>
+        <div class="error-page__explore-links">
+          <a href="pages/gods.html" class="error-page__explore-link">Боги</a>
+          <a href="pages/creatures.html" class="error-page__explore-link">Существа</a>
+          <a href="pages/runes.html" class="error-page__explore-link">Руны</a>
+          <a href="pages/obryady.html" class="error-page__explore-link">Обряды</a>
+          <a href="pages/oberegi-catalog.html" class="error-page__explore-link">Обереги</a>
+          <a href="pages/bukvica.html" class="error-page__explore-link">Буквица</a>
+          <a href="pages/calendar.html" class="error-page__explore-link">Календарь</a>
+          <a href="pages/blog.html" class="error-page__explore-link">Блог</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

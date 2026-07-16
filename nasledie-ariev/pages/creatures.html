@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Славянские мифологические существа — духи, берегини, навьи создания. Домовой, леший, водяной, русалка и другие обитатели трёх миров." />
+  <title>Существа и Духи — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .creature-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+      margin-bottom: 20px;
+    }
+    .creature-card:hover {
+      border-color: rgba(201,168,76,0.35);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.35);
+    }
+    .creature-card__header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(201,168,76,0.04);
+    }
+    .creature-card__symbol {
+      font-size: 2.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .creature-card__name {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+    .creature-card__realm {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .realm--yav { color: #8ab86a; }
+    .realm--nav { color: #8a6ab8; }
+    .realm--prav { color: var(--gold); }
+    .realm--between { color: #6aa8b8; }
+    .creature-card__body {
+      padding: 22px 26px;
+    }
+    .creature-card__desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .creature-card__traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .trait {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      display: flex;
+      gap: 6px;
+    }
+    .trait__label { color: var(--gold); opacity: 0.7; }
+    .trait__val { color: var(--text-muted); }
+    .creature-card__lore {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: rgba(201,168,76,0.05);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .creature-card__lore strong { color: var(--gold); font-style: normal; }
+    .world-section {
+      margin-bottom: 56px;
+    }
+    .world-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .world-label__icon { font-size: 1.6rem; }
+    .world-label__text {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+    .world-label__tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .world-label__tag--yav { background: rgba(138,184,106,0.15); color: #8ab86a; }
+    .world-label__tag--nav { background: rgba(138,106,184,0.15); color: #8a6ab8; }
+    .world-label__tag--between { background: rgba(106,168,184,0.15); color: #6aa8b8; }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="creatures.html" class="nav__link nav__link--active">Существа</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image: url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᚦ</span>
+      <h1 class="page-hero__title">Существа<br /><em>и Духи</em></h1>
+      <p class="page-hero__sub">Обитатели трёх миров — от домового за печкой до навьих тварей в чёрном лесу. Кого звать в помощь, кого обходить стороной.</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="page-intro">
+        <p>Мир предков был населён. Не только людьми и зверями — но и существами, которые стояли между мирами. Одни помогали — хранили дом, вели через лес, оберегали скот. Другие губили — заманивали в топь, путали дороги, крали детей. Знать их — значит уметь жить в мире, где всё живое.</p>
+      </div>
+
+      <!-- ═══ ДУХИ ЯВИ (домашние и природные защитники) ═══ -->
+      <div class="world-section">
+        <div class="world-label">
+          <span class="world-label__icon">🏠</span>
+          <span class="world-label__text">Духи Яви</span>
+          <span class="world-label__tag world-label__tag--yav">Мир живых</span>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🧔</div>
+            <div>
+              <div class="creature-card__name">Домовой</div>
+              <div class="creature-card__realm realm--yav">Дух дома · Явь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Хранитель дома и семьи. Живёт за печкой или в подполе. Если семья живёт в ладу — домовой помогает: бережёт скотину, отгоняет воров, предупреждает о беде (шумит, стучит). Если хозяева ссорятся или не уважают дом — начинает шалить: прячет вещи, пугает по ночам, душит спящих.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Маленький старик с бородой, иногда — кот или мохнатый зверёк</span></div>
+              <div class="trait"><span class="trait__label">Характер:</span><span class="trait__val">Добрый, но обидчивый</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Как задобрить:</strong> Оставьте на ночь блюдце с молоком и кусочек хлеба у печки (или на кухне). При переезде позовите: «Домовой-батюшка, пойдём со мной на новое место, там тебе будет хорошо». Без приглашения не последует.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🐴</div>
+            <div>
+              <div class="creature-card__name">Дворовой</div>
+              <div class="creature-card__realm realm--yav">Дух двора · Явь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Хозяин двора и хлева. Присматривает за скотиной — расчёсывает гривы лошадям, кормит кур. Но имеет предпочтения: одних животных любит, других — нет. Нелюбимых может замучить до смерти. Поэтому крестьяне выбирали масть скотины «под дворового».</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Мохнатый человечек, похож на домового, но грубее</span></div>
+              <div class="trait"><span class="trait__label">Любимцы:</span><span class="trait__val">Лошади, собаки, козы</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Правило:</strong> Заводя новое животное, представьте его дворовому: «Дворовой-батюшка, прими нашу скотинку, люби и жалуй». Если скотина хиреет без причины — дворовой её «не принял».</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🛁</div>
+            <div>
+              <div class="creature-card__name">Банник</div>
+              <div class="creature-card__realm realm--yav">Дух бани · Явь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Хозяин бани — места между мирами. Баня у славян — не просто помывка, а пространство перехода: здесь рожали, гадали, проводили обряды. Банник может обварить кипятком, задушить паром или содрать кожу — если нарушить правила. Но послушным помогает в гаданиях.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Голый старик с длинной бородой, покрытый листьями от веника</span></div>
+              <div class="trait"><span class="trait__label">Опасен:</span><span class="trait__val">В «четвёртый пар» — третий заход в баню считался его</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Правила:</strong> Не ходите в баню после полуночи. Не парьтесь в четвёртый заход — он для банника. Уходя, оставьте кусок мыла и веник: «Тебе, банник, мыло да веник, а мне — здоровье».</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🌾</div>
+            <div>
+              <div class="creature-card__name">Полевик</div>
+              <div class="creature-card__realm realm--yav">Дух поля · Явь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Хозяин полей и нив. Следит за урожаем, может помочь с жатвой — а может наслать засуху или градобитие. Полевик любит, когда к нему обращаются с почтением. При первом посеве и последней жатве ему делали требу — оставляли сноп и кувшин с пивом.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Меняется с полем: весной — юноша, к осени — старик цвета зерна</span></div>
+              <div class="trait"><span class="trait__label">Время:</span><span class="trait__val">Полуденная жара — его час</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Примета:</strong> Если в поле вдруг закружил «пыльный столб» (вихрь) — это полевик бежит. Нельзя бросать в вихрь нож — можно поранить духа и навлечь гнев.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🌿</div>
+            <div>
+              <div class="creature-card__name">Берегиня</div>
+              <div class="creature-card__realm realm--yav">Дух-хранительница · Явь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Женский дух-защитница — оберегает людей, скот, посевы. Берегини живут у воды и на берегах (отсюда название). Считалось, что это души добрых женщин, ушедших в мир иной. Они продолжают защищать живых — особенно детей и путников.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Светлая женщина в белой одежде, часто с цветами</span></div>
+              <div class="trait"><span class="trait__label">Символ:</span><span class="trait__val">Берёза — дерево берегинь</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Оберег:</strong> Вышивка с берегинями на полотенцах и рубахах — один из древнейших славянских мотивов. Женская фигура с поднятыми руками — это берегиня, благословляющая и защищающая.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ДУХИ МЕЖДУ МИРАМИ ═══ -->
+      <div class="world-section">
+        <div class="world-label">
+          <span class="world-label__icon">🌲</span>
+          <span class="world-label__text">Духи Между Мирами</span>
+          <span class="world-label__tag world-label__tag--between">Явь / Навь</span>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🌲</div>
+            <div>
+              <div class="creature-card__name">Леший</div>
+              <div class="creature-card__realm realm--between">Хозяин леса · Между мирами</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Полновластный хозяин леса. Командует зверями, птицами, деревьями. Может быть ростом с дерево или маленький как гриб — меняет размер по желанию. Водит путников кругами, если те не попросили разрешения войти в лес. Но пастухам и охотникам, заключившим с ним договор, помогает.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Старик с зелёной бородой, в одежде наизнанку, без тени</span></div>
+              <div class="trait"><span class="trait__label">Признак:</span><span class="trait__val">Правый лапоть на левой ноге</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Как уберечься:</strong> Входя в лес, скажите: «Леший-батюшка, пусти в лес, дай пройти и вернуться». Если заблудились — выверните одежду наизнанку и переобуйте обувь (левый на правый). Леший решит, что вы «свой», и отпустит.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🌊</div>
+            <div>
+              <div class="creature-card__name">Водяной</div>
+              <div class="creature-card__realm realm--between">Хозяин вод · Между мирами</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Хозяин рек, озёр и болот. Живёт в омутах, под мельничными колёсами. Водяной — не злой, но своевольный. Может утопить купальщика, если тот не поздоровался. А может наполнить сети рыбой за хорошую требу. Мельники — его главные союзники среди людей.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Старик с рыбьим хвостом, борода из водорослей, зелёная кожа</span></div>
+              <div class="trait"><span class="trait__label">Время:</span><span class="trait__val">Ночь — особенно опасен; лунные ночи — наиболее активен</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Правила:</strong> Не купайтесь в незнакомых водоёмах после заката. Рыбаки бросали первую рыбу обратно: «Тебе, водяной, а мне — полный улов». Никогда не хвалитесь уловом у воды — водяной заберёт удачу.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">💀</div>
+            <div>
+              <div class="creature-card__name">Кикимора</div>
+              <div class="creature-card__realm realm--between">Дух дома / болота · Между мирами</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Два вида: домашняя и болотная. Домашняя кикимора — жена домового (если он есть) или злой дух, подселённый ведьмой. Путает пряжу, бьёт посуду, пугает детей. Болотная кикимора — подруга лешего, заманивает в трясину стонами и плачем.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Маленькая сгорбленная старуха, тощая, с длинным носом</span></div>
+              <div class="trait"><span class="trait__label">Признак:</span><span class="trait__val">В доме — ночные шорохи, спутанные нитки, следы мокрых ног</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Как избавиться:</strong> Вымести дом полынным веником от порога к печке. Положить кусочек можжевельника в каждый угол. Сказать: «Кикимора-кикимора, уходи из моего дома, тебе здесь не место». Если не помогает — звали знахаря.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🧜‍♀️</div>
+            <div>
+              <div class="creature-card__name">Русалка</div>
+              <div class="creature-card__realm realm--between">Дух воды · Между мирами</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Не морская дева с хвостом — а дух утонувшей девушки. Русалки выходят из воды на Русальную неделю (после Троицы), качаются на ветвях, водят хороводы в полях. Могут защекотать до смерти одинокого путника. Но там, где русалки прошли — трава гуще и урожай богаче.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Бледная девушка с длинными распущенными волосами, в белой рубахе</span></div>
+              <div class="trait"><span class="trait__label">Опасна:</span><span class="trait__val">Русальная неделя — выходят на берег</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Защита:</strong> Носите с собой полынь — русалки её боятся. Не ходите к воде в одиночку на Русальную неделю. Если русалка позвала по имени — не откликайтесь и не оборачивайтесь.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🐦</div>
+            <div>
+              <div class="creature-card__name">Жар-Птица</div>
+              <div class="creature-card__realm realm--between">Огненная птица · Между мирами</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Птица из Ирия (славянского рая). Перья горят золотым огнём, освещая всё вокруг. Одно перо Жар-Птицы может осветить целую комнату. Поймать её — получить исполнение желания, но удержать невозможно. Символ высшего стремления и недостижимой мечты.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Огненная птица с золотыми перьями, размером с павлина</span></div>
+              <div class="trait"><span class="trait__label">Мир:</span><span class="trait__val">Прилетает из Ирия (Прави) в Явь</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>В сказках:</strong> Жар-Птица ворует золотые яблоки из царского сада — символ солнца, которое «крадёт» плоды земли, превращая их в свет. Погоня за Жар-Птицей — путь героя к просветлению.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ НАВЬИ СУЩЕСТВА ═══ -->
+      <div class="world-section">
+        <div class="world-label">
+          <span class="world-label__icon">🌑</span>
+          <span class="world-label__text">Навьи Существа</span>
+          <span class="world-label__tag world-label__tag--nav">Мир мёртвых</span>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🦴</div>
+            <div>
+              <div class="creature-card__name">Навьи (Навки)</div>
+              <div class="creature-card__realm realm--nav">Духи мёртвых · Навь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Души умерших, не нашедших покоя. Те, кого похоронили без обряда, убитые, самоубийцы, дети, умершие некрещёнными (в дохристианском варианте — без имянаречения). Навки приходят к живым в виде птиц или бледных теней, несут холод и болезни.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Бледные тени, холодные птицы, туман</span></div>
+              <div class="trait"><span class="trait__label">Время:</span><span class="trait__val">Велесова неделя, ночи перед праздниками</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Защита:</strong> Поминайте предков — кормите их в поминальные дни (Деды, Навий день). Оставляйте еду на окне в ночь перед поминками. Кто чтит предков — того навки не тронут.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🧙‍♀️</div>
+            <div>
+              <div class="creature-card__name">Баба-Яга</div>
+              <div class="creature-card__realm realm--nav">Хранительница границы · Навь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Не злая ведьма из сказок, а хранительница границы между мирами. Избушка на курьих ножках — погребальный домик (домовина) на столбах, повёрнутый входом к лесу мёртвых. Баба-Яга — проводница в Навь. Она испытывает героя и, если он достоин, помогает пройти через смерть и возродиться.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Старуха с костяной ногой, летает в ступе с помелом</span></div>
+              <div class="trait"><span class="trait__label">Суть:</span><span class="trait__val">Инициатор — проводит через «смерть» к новому рождению</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Истоки:</strong> «Яга» от «Йога» (связь) или «Ягиня» (жрица). Баба-Яга кормит, поит и укладывает героя в печь — символ перерождения. Печь = материнское лоно, из которого герой выходит обновлённым.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🐍</div>
+            <div>
+              <div class="creature-card__name">Змей Горыныч</div>
+              <div class="creature-card__realm realm--nav">Страж Калинова моста · Навь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Трёхголовый змей, стерегущий Калинов мост через реку Смородину — границу между Явью и Навью. Три головы — три мира, которые он контролирует. Победить Змея Горыныча — значит преодолеть страх смерти и обрести доступ в мир предков.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Трёхголовый огнедышащий змей с крыльями</span></div>
+              <div class="trait"><span class="trait__label">Место:</span><span class="trait__val">Калинов мост через реку Смородину</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Символизм:</strong> «Горыныч» — от «гора» (мир верхний) или «гореть» (огонь). Река Смородина — от «смород» (зловоние) — река смерти. Калинов мост — раскалённый мост, по которому душа переходит в иной мир.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🌑</div>
+            <div>
+              <div class="creature-card__name">Вий</div>
+              <div class="creature-card__realm realm--nav">Царь подземного мира · Навь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Существо с тяжёлыми веками, закрывающими взгляд смерти. Когда Вию поднимают веки — всё живое, на что он посмотрит, умирает. Владыка подземных сил, страж глубочайших слоёв Нави. Один из самых грозных персонажей славянской мифологии.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Приземистый старик, веки до земли, глаза — бездна</span></div>
+              <div class="trait"><span class="trait__label">Сила:</span><span class="trait__val">Взгляд убивает всё живое</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>В традиции:</strong> Вий — воплощение неизбежности смерти. Его невозможно победить силой — только верой и чистотой духа. Обережный круг, начертанный с верой, — единственная защита от его взгляда.</div>
+          </div>
+        </div>
+
+        <div class="creature-card">
+          <div class="creature-card__header">
+            <div class="creature-card__symbol">🔥</div>
+            <div>
+              <div class="creature-card__name">Огненный Змей</div>
+              <div class="creature-card__realm realm--nav">Змей-искуситель · Навь</div>
+            </div>
+          </div>
+          <div class="creature-card__body">
+            <p class="creature-card__desc">Огненный змей прилетает ночью к вдовам и одиноким женщинам, принимая облик их умершего мужа. Входит через трубу огненным столбом. Женщина, принявшая его, чахнет и умирает. Символ опасной привязанности к прошлому и мёртвым.</p>
+            <div class="creature-card__traits">
+              <div class="trait"><span class="trait__label">Облик:</span><span class="trait__val">Огненный столб → облик умершего человека</span></div>
+              <div class="trait"><span class="trait__label">Признак:</span><span class="trait__val">Женщина быстро худеет, не ест, не спит, разговаривает «с кем-то»</span></div>
+            </div>
+            <div class="creature-card__lore"><strong>Защита:</strong> Чертополох и крапива у входа. Печную заслонку не открывать на ночь. Если прилетает — сыпать маковое зерно по порогу: огненный змей будет считать зёрна до рассвета и не войдёт.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CTA ═══ -->
+      <div class="content-block" style="text-align: center; padding: 48px 0;">
+        <p style="color: var(--text-muted); margin-bottom: 16px;">Хочешь узнать больше о мире предков?</p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="gods.html" class="btn btn--primary">Славянские Боги</a>
+          <a href="obryady.html" class="btn btn--ghost">Обряды и Ритуалы</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand">
+        <span class="logo__symbol">᛭</span>
+        <span class="logo__text">Путь Предков</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
