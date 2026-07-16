@@ -78,12 +78,30 @@
       letter-spacing: 0.1em;
       color: var(--gold);
       margin-bottom: 16px;
+      text-shadow: 0 1px 6px rgba(245,240,232,0.6);
     }
     .about-hero__desc {
       font-size: 1rem;
-      color: var(--text-muted);
+      color: var(--text);
       line-height: 1.8;
       max-width: 560px;
+      text-shadow: 0 1px 4px rgba(245,240,232,0.5);
+    }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .about-tag {
+      background: rgba(184,148,46,0.12);
+      border: 1px solid rgba(184,148,46,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
     }
 
     .about-section { padding: 72px 0; }
@@ -221,6 +239,13 @@
         <h1>Александр Сапачёв</h1>
         <div class="about-hero__role">Юрист · Психолог · Гипнолог · Специалист по вайбкодингу и нейросетям · Исследователь славянской культуры</div>
         <p class="about-hero__desc">Я верю, что мудрость предков — не музейный экспонат, а живой инструмент для современной жизни. Мой проект «Наследие Ариев» — это мост между тысячелетней традицией и сегодняшним днём.</p>
+        <div class="about-tags">
+          <span class="about-tag">Юрист</span>
+          <span class="about-tag">Психолог</span>
+          <span class="about-tag">Гипнолог</span>
+          <span class="about-tag">Вайбкодинг и нейросети</span>
+          <span class="about-tag">Ученик Староверов-Инглингов</span>
+        </div>
       </div>
     </div>
   </section>
