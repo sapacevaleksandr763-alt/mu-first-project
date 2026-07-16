@@ -4,219 +4,316 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Путь Предков — славянская культура, боги, руны, обряды, обереги. Интерактивные квизы, славянский календарь и база знаний." />
+  <meta property="og:title" content="Путь Предков — Наследие Ариев" />
+  <meta property="og:description" content="Живое наследие славянской цивилизации. Боги, руны, обряды, обереги — интерактивная энциклопедия." />
+  <meta property="og:image" content="images/hero-volkhv-phoenix.png" />
+  <meta property="og:type" content="website" />
   <title>Путь Предков — Наследие Ариев</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    /* ═══ PARTICLES BG ═══ */
+    .particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+    .particle{
+      position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;
+      opacity:0;animation:float-up linear infinite;
+    }
+    @keyframes float-up{
+      0%{opacity:0;transform:translateY(100vh) scale(0)}
+      10%{opacity:0.6}
+      90%{opacity:0.3}
+      100%{opacity:0;transform:translateY(-10vh) scale(1.5)}
+    }
+
     /* ═══ HERO ═══ */
     .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      position:relative;
-      overflow:hidden;
+      min-height:100vh;display:flex;align-items:center;
+      position:relative;overflow:hidden;
     }
     .hero__bg{
       position:absolute;inset:0;
       background:url('images/hero-volkhv-phoenix.png') center/cover no-repeat;
-      filter:brightness(0.35) saturate(0.7);
+      filter:brightness(0.3) saturate(0.6);
+      transform:scale(1.05);
+      animation:heroZoom 20s ease-in-out infinite alternate;
     }
+    @keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1.15)}}
     .hero__overlay{
       position:absolute;inset:0;
-      background:linear-gradient(to bottom,rgba(13,8,4,0.3) 0%,rgba(13,8,4,0) 30%,rgba(13,8,4,0.95) 100%);
+      background:linear-gradient(to bottom,rgba(13,8,4,0.4) 0%,rgba(13,8,4,0) 30%,rgba(13,8,4,0.97) 100%);
+    }
+    .hero__vignette{
+      position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,transparent 40%,rgba(13,8,4,0.7) 100%);
     }
     .hero__content{
       position:relative;z-index:2;
-      padding:140px 0 80px;
-      max-width:680px;
+      padding:160px 0 100px;max-width:720px;
     }
     .hero__badge{
-      display:inline-block;
-      background:rgba(201,168,76,0.12);
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(201,168,76,0.1);
       border:1px solid rgba(201,168,76,0.25);
-      border-radius:20px;
-      padding:6px 16px;
-      font-size:0.72rem;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:20px;
+      border-radius:24px;padding:8px 20px;
+      font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:24px;
+      animation:fadeInUp 1s ease 0.2s both;
     }
+    .hero__badge::before{
+      content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;
+      animation:pulse 2s ease infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
     .hero__title{
       font-family:var(--font-head);
-      font-size:clamp(2.2rem,5.5vw,3.6rem);
-      font-weight:900;
-      line-height:1.1;
-      color:var(--text);
-      margin-bottom:20px;
+      font-size:clamp(2.6rem,6vw,4.2rem);
+      font-weight:900;line-height:1.08;
+      color:var(--text);margin-bottom:24px;
+      animation:fadeInUp 1s ease 0.4s both;
     }
-    .hero__title em{font-style:normal;color:var(--gold)}
+    .hero__title em{font-style:normal;color:var(--gold);position:relative}
+    .hero__title em::after{
+      content:'';position:absolute;bottom:-4px;left:0;right:0;
+      height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;
+    }
     .hero__sub{
-      font-size:1.05rem;
-      color:var(--text-muted);
-      line-height:1.75;
-      margin-bottom:36px;
-      max-width:540px;
+      font-size:1.1rem;color:var(--text-muted);line-height:1.8;
+      margin-bottom:40px;max-width:560px;
+      animation:fadeInUp 1s ease 0.6s both;
     }
-    .hero__btns{display:flex;gap:14px;flex-wrap:wrap}
+    .hero__btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeInUp 1s ease 0.8s both}
+    .hero__scroll{
+      position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+      z-index:2;text-align:center;
+      animation:fadeInUp 1s ease 1.2s both;
+    }
+    .hero__scroll-text{font-size:0.65rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px}
+    .hero__scroll-arrow{
+      width:20px;height:32px;border:2px solid rgba(201,168,76,0.3);border-radius:10px;
+      margin:0 auto;position:relative;
+    }
+    .hero__scroll-arrow::after{
+      content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);
+      width:3px;height:8px;background:var(--gold);border-radius:2px;
+      animation:scrollBounce 2s ease infinite;
+    }
+    @keyframes scrollBounce{0%,100%{top:6px;opacity:1}50%{top:16px;opacity:0.3}}
     .hero__zvezda{
-      position:absolute;right:8%;bottom:15%;z-index:2;
-      width:220px;height:220px;opacity:0.12;
-      pointer-events:none;
-      animation:rotateZvezda 60s linear infinite;
+      position:absolute;right:6%;bottom:18%;z-index:2;
+      width:200px;height:200px;opacity:0.1;pointer-events:none;
+      animation:rotateZvezda 80s linear infinite;
     }
     @keyframes rotateZvezda{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-    /* ═══ ABOUT ZVEZDA ═══ */
-    .about-zvezda{
-      width:180px;height:180px;opacity:0.08;
-      margin:24px auto 0;
-      animation:rotateZvezda 90s linear infinite;
-    }
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:0.1s}
+    .reveal-delay-2{transition-delay:0.2s}
+    .reveal-delay-3{transition-delay:0.3s}
 
     /* ═══ SECTIONS ═══ */
-    .section{padding:80px 0}
+    .section{padding:100px 0;position:relative;z-index:1}
     .section--alt{background:var(--bg-2)}
+    .section__num{
+      font-family:var(--font-head);font-size:0.72rem;
+      color:rgba(201,168,76,0.3);letter-spacing:0.2em;
+      text-transform:uppercase;margin-bottom:8px;
+    }
+
+    /* ═══ STATS BAR ═══ */
+    .stats-bar{
+      position:relative;z-index:1;
+      background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(201,168,76,0.02));
+      border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+      padding:48px 0;
+    }
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+    .stat{padding:12px}
+    .stat__num{
+      font-family:var(--font-head);font-size:clamp(2rem,4vw,2.8rem);
+      font-weight:900;color:var(--gold);line-height:1;
+      background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .stat__label{font-size:0.78rem;color:var(--text-muted);margin-top:8px;letter-spacing:0.05em}
 
     /* ═══ EXPLORE GRID ═══ */
     .explore-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-      margin-top:48px;
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:16px;margin-top:48px;
     }
     .explore-card{
-      background:var(--bg-2);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:28px 20px;
-      text-align:center;
-      transition:all var(--transition);
-      text-decoration:none;
-      display:block;
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:28px 20px;text-align:center;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+      text-decoration:none;display:block;position:relative;overflow:hidden;
+    }
+    .explore-card::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(circle at 50% 0%,rgba(201,168,76,0.08),transparent 70%);
+      opacity:0;transition:opacity 0.4s;
     }
     .explore-card:hover{
-      border-color:rgba(201,168,76,0.5);
-      transform:translateY(-4px);
-      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+      border-color:rgba(201,168,76,0.5);transform:translateY(-6px);
+      box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 30px rgba(201,168,76,0.06);
     }
-    .explore-card__icon{font-size:2rem;margin-bottom:12px;display:block}
+    .explore-card:hover::before{opacity:1}
+    .explore-card__num{
+      position:absolute;top:10px;left:14px;
+      font-family:var(--font-head);font-size:0.6rem;color:rgba(201,168,76,0.2);
+      letter-spacing:0.1em;
+    }
+    .explore-card__icon{font-size:2.2rem;margin-bottom:14px;display:block}
     .explore-card__title{
-      font-family:var(--font-head);
-      font-size:0.85rem;
-      color:var(--gold);
-      margin-bottom:6px;
+      font-family:var(--font-head);font-size:0.85rem;
+      color:var(--gold);margin-bottom:6px;
     }
-    .explore-card__desc{
-      font-size:0.78rem;
-      color:var(--text-muted);
-      line-height:1.5;
+    .explore-card__desc{font-size:0.76rem;color:var(--text-muted);line-height:1.55}
+    .explore-card__arrow{
+      display:inline-block;margin-top:12px;font-size:0.75rem;color:rgba(201,168,76,0.4);
+      transition:all 0.3s;
     }
+    .explore-card:hover .explore-card__arrow{color:var(--gold);transform:translateX(4px)}
 
     /* ═══ INTERACTIVE CARDS ═══ */
     .interactive-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:48px;
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:20px;margin-top:48px;
     }
     .interactive-card{
-      background:var(--bg-2);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:32px 24px;
-      text-align:center;
-      transition:all var(--transition);
-      text-decoration:none;
-      display:block;
-      position:relative;
-      overflow:hidden;
+      background:var(--bg-2);border:1px solid var(--border);border-radius:12px;
+      padding:36px 24px;text-align:center;
+      transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+      text-decoration:none;display:block;position:relative;overflow:hidden;
     }
     .interactive-card::before{
-      content:'';
-      position:absolute;top:0;left:0;right:0;
-      height:3px;
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
       background:linear-gradient(90deg,transparent,var(--gold),transparent);
-      opacity:0;
-      transition:opacity var(--transition);
+      opacity:0;transition:opacity 0.4s;
+    }
+    .interactive-card::after{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(circle at 50% 100%,rgba(201,168,76,0.05),transparent 60%);
+      opacity:0;transition:opacity 0.4s;
     }
     .interactive-card:hover{
-      border-color:rgba(201,168,76,0.5);
-      transform:translateY(-4px);
-      box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 20px rgba(201,168,76,0.08);
+      border-color:rgba(201,168,76,0.5);transform:translateY(-6px);
+      box-shadow:0 16px 48px rgba(0,0,0,0.5),0 0 40px rgba(201,168,76,0.08);
     }
-    .interactive-card:hover::before{opacity:1}
-    .interactive-card__icon{font-size:2.4rem;margin-bottom:14px;display:block}
+    .interactive-card:hover::before,.interactive-card:hover::after{opacity:1}
+    .interactive-card__icon{font-size:2.6rem;margin-bottom:16px;display:block;position:relative;z-index:1}
     .interactive-card__title{
-      font-family:var(--font-head);
-      font-size:0.92rem;
-      color:var(--gold);
-      margin-bottom:8px;
+      font-family:var(--font-head);font-size:0.95rem;
+      color:var(--gold);margin-bottom:10px;position:relative;z-index:1;
     }
     .interactive-card__desc{
-      font-size:0.8rem;
-      color:var(--text-muted);
-      line-height:1.55;
+      font-size:0.82rem;color:var(--text-muted);line-height:1.6;position:relative;z-index:1;
+    }
+    .interactive-card__tag{
+      display:inline-block;margin-top:14px;
+      background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);
+      border-radius:20px;padding:4px 14px;
+      font-size:0.68rem;color:var(--gold);letter-spacing:0.08em;
+      position:relative;z-index:1;
     }
 
     /* ═══ ABOUT SECTION ═══ */
     .about-content{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:48px;
-      align-items:center;
-      margin-top:48px;
+      display:grid;grid-template-columns:1fr 1fr;gap:56px;
+      align-items:center;margin-top:48px;
     }
-    .about-text p{
-      font-size:0.95rem;
-      color:var(--text-muted);
-      line-height:1.85;
-      margin-bottom:16px;
-    }
+    .about-text p{font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:18px}
     .about-text p strong{color:var(--gold)}
-    .about-stats{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:16px;
-    }
+    .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
     .stat-card{
-      background:var(--bg-3);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:24px 20px;
-      text-align:center;
+      background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius);
+      padding:28px 20px;text-align:center;transition:all 0.3s;
     }
+    .stat-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-2px)}
     .stat-card__num{
-      font-family:var(--font-head);
-      font-size:2rem;
-      color:var(--gold);
-      font-weight:900;
+      font-family:var(--font-head);font-size:2.2rem;font-weight:900;
+      background:linear-gradient(135deg,var(--gold-light),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
     }
-    .stat-card__label{
-      font-size:0.75rem;
-      color:var(--text-muted);
-      letter-spacing:0.08em;
-      margin-top:4px;
+    .stat-card__label{font-size:0.75rem;color:var(--text-muted);letter-spacing:0.08em;margin-top:6px}
+
+    /* ═══ TELEGRAM CTA ═══ */
+    .tg-cta{
+      background:linear-gradient(135deg,rgba(201,168,76,0.08) 0%,rgba(201,168,76,0.02) 100%);
+      border:1px solid var(--border);border-radius:16px;
+      padding:48px;text-align:center;margin-top:64px;
+      position:relative;overflow:hidden;
+    }
+    .tg-cta::before{
+      content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:radial-gradient(circle,rgba(201,168,76,0.04),transparent 50%);
+      animation:rotateZvezda 30s linear infinite;
+    }
+    .tg-cta__icon{font-size:2.4rem;margin-bottom:12px;position:relative}
+    .tg-cta__title{
+      font-family:var(--font-head);font-size:1.4rem;color:var(--text);
+      margin-bottom:12px;position:relative;
+    }
+    .tg-cta__text{font-size:0.92rem;color:var(--text-muted);margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto;position:relative;line-height:1.7}
+    .tg-cta__btn{position:relative}
+
+    /* ═══ MID CTA (between sections) ═══ */
+    .mid-cta{
+      text-align:center;padding:40px 0;position:relative;z-index:1;
+    }
+    .mid-cta__text{
+      font-family:var(--font-head);font-size:0.82rem;color:var(--text-muted);
+      margin-bottom:16px;letter-spacing:0.05em;
     }
 
-    /* ═══ CTA SECTION ═══ */
-    .cta-section{
-      text-align:center;
-      padding:80px 0;
+    /* ═══ FINAL CTA ═══ */
+    .final-cta{
+      text-align:center;padding:100px 0;position:relative;z-index:1;
+      overflow:hidden;
     }
-    .cta-section h2{
-      font-family:var(--font-head);
-      font-size:clamp(1.4rem,3vw,2rem);
-      color:var(--text);
-      margin-bottom:16px;
+    .final-cta__bg{
+      position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(201,168,76,0.06),transparent 70%);
     }
-    .cta-section p{
-      color:var(--text-muted);
-      margin-bottom:32px;
-      max-width:500px;
-      margin-left:auto;
-      margin-right:auto;
+    .final-cta h2{
+      font-family:var(--font-head);font-size:clamp(1.6rem,3.5vw,2.4rem);
+      color:var(--text);margin-bottom:16px;position:relative;
+    }
+    .final-cta h2 em{font-style:normal;color:var(--gold)}
+    .final-cta p{
+      color:var(--text-muted);margin-bottom:36px;max-width:520px;
+      margin-left:auto;margin-right:auto;position:relative;line-height:1.7;font-size:0.95rem;
+    }
+    .final-cta__btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
+
+    /* ═══ FLOATING TG BUTTON ═══ */
+    .floating-tg{
+      position:fixed;bottom:28px;right:28px;z-index:99;
+      width:56px;height:56px;border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 20px rgba(201,168,76,0.4);
+      transition:all 0.3s;text-decoration:none;
+      animation:fadeInUp 1s ease 2s both;
+    }
+    .floating-tg:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,0.5)}
+    .floating-tg__icon{font-size:1.5rem;filter:brightness(0)}
+    .floating-tg__pulse{
+      position:absolute;inset:-4px;border-radius:50%;
+      border:2px solid var(--gold);opacity:0;
+      animation:tgPulse 3s ease infinite;
+    }
+    @keyframes tgPulse{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.5);opacity:0}}
+
+    /* ═══ DIVIDER ═══ */
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--border),transparent);
+      margin:0;
     }
 
     /* ═══ RESPONSIVE ═══ */
@@ -224,14 +321,21 @@
       .explore-grid{grid-template-columns:repeat(2,1fr)}
       .interactive-grid{grid-template-columns:1fr}
       .about-content{grid-template-columns:1fr}
-      .hero__zvezda{width:120px;height:120px;right:5%;bottom:10%}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .hero__zvezda{width:100px;height:100px;right:4%;bottom:12%}
+      .tg-cta{padding:32px 20px}
+      .floating-tg{width:48px;height:48px;bottom:20px;right:20px}
     }
     @media(max-width:480px){
       .explore-grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
     }
   </style>
 </head>
 <body>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
 
   <header class="header" id="header">
     <div class="container header__inner">
@@ -240,12 +344,11 @@
         <span class="logo__text">Путь Предков</span>
       </a>
       <nav class="nav" id="nav">
-        <a href="#about" class="nav__link">О культуре</a>
-        <a href="pages/history.html" class="nav__link">История</a>
-        <a href="pages/gods.html" class="nav__link">Боги</a>
-        <a href="pages/traditions.html" class="nav__link">Традиции</a>
-        <a href="pages/runes.html" class="nav__link">Руны</a>
-        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+        <a href="#explore" class="nav__link">База Знаний</a>
+        <a href="#interactive" class="nav__link">Интерактивы</a>
+        <a href="#about" class="nav__link">О проекте</a>
+        <a href="pages/blog.html" class="nav__link">Блог</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Telegram ↗</a>
       </nav>
       <button class="burger" id="burger"><span></span><span></span><span></span></button>
     </div>
@@ -255,148 +358,232 @@
   <section class="hero">
     <div class="hero__bg"></div>
     <div class="hero__overlay"></div>
+    <div class="hero__vignette"></div>
     <div class="container hero__content">
-      <div class="hero__badge">Славянская культура · База знаний</div>
-      <h1 class="hero__title">Путь<br /><em>Предков</em></h1>
-      <p class="hero__sub">Боги, руны, обряды, обереги — живое наследие славянской цивилизации. Интерактивные квизы, славянский календарь и энциклопедия древних знаний.</p>
+      <div class="hero__badge">
+        Славянская культура · Живое наследие
+      </div>
+      <h1 class="hero__title">Наследие<br /><em>Ариев</em></h1>
+      <p class="hero__sub">Боги, руны, обряды, обереги — живая мудрость предков. Интерактивные квизы, гадания, славянский календарь и энциклопедия древних знаний.</p>
       <div class="hero__btns">
-        <a href="pages/quiz-chertog.html" class="btn btn--primary">Узнай свой Чертог</a>
+        <a href="pages/quiz-chertog.html" class="btn btn--primary">Узнай свой Чертог →</a>
         <a href="#explore" class="btn btn--ghost">Исследовать</a>
       </div>
-      <img src="images/zvezda-rusi.png" alt="" class="hero__zvezda" />
+    </div>
+    <img src="images/zvezda-rusi.png" alt="" class="hero__zvezda" />
+    <div class="hero__scroll">
+      <div class="hero__scroll-text">Листай вниз</div>
+      <div class="hero__scroll-arrow"></div>
     </div>
   </section>
 
-  <!-- ═══ РАЗДЕЛЫ ═══ -->
+  <!-- ═══ STATS BAR ═══ -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <div class="stat__num" data-count="38">0</div>
+          <div class="stat__label">Богов в пантеоне</div>
+        </div>
+        <div class="stat reveal reveal-delay-1">
+          <div class="stat__num" data-count="30">0</div>
+          <div class="stat__label">Оберегов</div>
+        </div>
+        <div class="stat reveal reveal-delay-2">
+          <div class="stat__num" data-count="7">0</div>
+          <div class="stat__label">Интерактивов</div>
+        </div>
+        <div class="stat reveal reveal-delay-3">
+          <div class="stat__num" data-count="24">0</div>
+          <div class="stat__label">Страниц знаний</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 01. БАЗА ЗНАНИЙ ═══ -->
   <section class="section" id="explore">
     <div class="container">
-      <div class="section__header">
+      <div class="section__header reveal">
+        <div class="section__num">01 · Энциклопедия</div>
         <h2 class="section__title">База Знаний</h2>
         <div class="section__line"></div>
         <p class="section__subtitle">Структурированная энциклопедия славянской культуры — от пантеона богов до буквицы</p>
       </div>
       <div class="explore-grid">
-        <a href="pages/gods.html" class="explore-card">
+        <a href="pages/gods.html" class="explore-card reveal">
+          <span class="explore-card__num">01</span>
           <span class="explore-card__icon">⚡</span>
           <div class="explore-card__title">Боги</div>
           <p class="explore-card__desc">38 богов и духов славянского пантеона</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/history.html" class="explore-card">
+        <a href="pages/history.html" class="explore-card reveal reveal-delay-1">
+          <span class="explore-card__num">02</span>
           <span class="explore-card__icon">📜</span>
           <div class="explore-card__title">История</div>
           <p class="explore-card__desc">От древних времён до наших дней</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/traditions.html" class="explore-card">
+        <a href="pages/traditions.html" class="explore-card reveal reveal-delay-2">
+          <span class="explore-card__num">03</span>
           <span class="explore-card__icon">🌾</span>
           <div class="explore-card__title">Традиции</div>
           <p class="explore-card__desc">Обычаи 4 сезонов годового круга</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/runes.html" class="explore-card">
+        <a href="pages/runes.html" class="explore-card reveal reveal-delay-3">
+          <span class="explore-card__num">04</span>
           <span class="explore-card__icon">ᚱ</span>
           <div class="explore-card__title">Руны</div>
-          <p class="explore-card__desc">Справочник рунических символов</p>
+          <p class="explore-card__desc">24 руны Старшего Футарка</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/vedas.html" class="explore-card">
+        <a href="pages/vedas.html" class="explore-card reveal">
+          <span class="explore-card__num">05</span>
           <span class="explore-card__icon">📖</span>
           <div class="explore-card__title">Веды</div>
           <p class="explore-card__desc">Священные тексты предков</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/bukvica.html" class="explore-card">
-          <span class="explore-card__icon">🔤</span>
+        <a href="pages/bukvica.html" class="explore-card reveal reveal-delay-1">
+          <span class="explore-card__num">06</span>
+          <span class="explore-card__icon">Ⰰ</span>
           <div class="explore-card__title">Буквица</div>
           <p class="explore-card__desc">49 образов + дешифратор слов</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/obryady.html" class="explore-card">
+        <a href="pages/obryady.html" class="explore-card reveal reveal-delay-2">
+          <span class="explore-card__num">07</span>
           <span class="explore-card__icon">🔥</span>
           <div class="explore-card__title">Обряды</div>
-          <p class="explore-card__desc">16 обрядов в 4 категориях</p>
+          <p class="explore-card__desc">16 ритуалов в 4 категориях</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/oberegi-catalog.html" class="explore-card">
+        <a href="pages/oberegi-catalog.html" class="explore-card reveal reveal-delay-3">
+          <span class="explore-card__num">08</span>
           <span class="explore-card__icon">🛡</span>
           <div class="explore-card__title">Обереги</div>
-          <p class="explore-card__desc">30 символов защиты с описаниями</p>
+          <p class="explore-card__desc">30 символов защиты и силы</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/creatures.html" class="explore-card">
-          <span class="explore-card__icon">🌲</span>
+        <a href="pages/creatures.html" class="explore-card reveal">
+          <span class="explore-card__num">09</span>
+          <span class="explore-card__icon">🐻</span>
           <div class="explore-card__title">Существа</div>
           <p class="explore-card__desc">14 существ трёх миров</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/prazdniki.html" class="explore-card">
+        <a href="pages/prazdniki.html" class="explore-card reveal reveal-delay-1">
+          <span class="explore-card__num">10</span>
           <span class="explore-card__icon">☀️</span>
           <div class="explore-card__title">Праздники</div>
-          <p class="explore-card__desc">31 праздник по 12 месяцам</p>
+          <p class="explore-card__desc">31 праздник Коло Года</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/gallery.html" class="explore-card">
+        <a href="pages/gallery.html" class="explore-card reveal reveal-delay-2">
+          <span class="explore-card__num">11</span>
           <span class="explore-card__icon">🖼</span>
           <div class="explore-card__title">Галерея</div>
           <p class="explore-card__desc">Образы славянской культуры</p>
+          <span class="explore-card__arrow">→</span>
         </a>
-        <a href="pages/blog.html" class="explore-card">
+        <a href="pages/blog.html" class="explore-card reveal reveal-delay-3">
+          <span class="explore-card__num">12</span>
           <span class="explore-card__icon">✍️</span>
           <div class="explore-card__title">Блог</div>
           <p class="explore-card__desc">Статьи о практиках предков</p>
+          <span class="explore-card__arrow">→</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ ИНТЕРАКТИВЫ ═══ -->
-  <section class="section section--alt">
+  <!-- ═══ MID CTA ═══ -->
+  <div class="mid-cta reveal">
     <div class="container">
-      <div class="section__header">
+      <div class="mid-cta__text">Хочешь узнать о себе через мудрость предков?</div>
+      <a href="#interactive" class="btn btn--ghost">Попробуй интерактивы ↓</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 02. ИНТЕРАКТИВЫ ═══ -->
+  <section class="section section--alt" id="interactive">
+    <div class="container">
+      <div class="section__header reveal">
+        <div class="section__num">02 · Практика</div>
         <h2 class="section__title">Интерактивы</h2>
         <div class="section__line"></div>
-        <p class="section__subtitle">Узнай о себе через мудрость предков — квизы, тесты, гадания и славянский календарь</p>
+        <p class="section__subtitle">Квизы, тесты, гадания — узнай о себе через древнюю мудрость</p>
       </div>
       <div class="interactive-grid">
-        <a href="pages/quiz-chertog.html" class="interactive-card">
+        <a href="pages/quiz-chertog.html" class="interactive-card reveal">
           <span class="interactive-card__icon">🌀</span>
           <div class="interactive-card__title">Определи свой Чертог</div>
           <p class="interactive-card__desc">16 чертогов Сварожьего Круга — узнай свой по дате рождения</p>
+          <span class="interactive-card__tag">Популярное</span>
         </a>
-        <a href="pages/god-patron.html" class="interactive-card">
+        <a href="pages/god-patron.html" class="interactive-card reveal reveal-delay-1">
           <span class="interactive-card__icon">⚡</span>
           <div class="interactive-card__title">Бог-Покровитель</div>
-          <p class="interactive-card__desc">8 вопросов → узнай, какой бог тебя ведёт по жизни</p>
+          <p class="interactive-card__desc">8 вопросов → узнай, какой бог тебя ведёт</p>
+          <span class="interactive-card__tag">8 вопросов</span>
         </a>
-        <a href="pages/obereg.html" class="interactive-card">
+        <a href="pages/obereg.html" class="interactive-card reveal reveal-delay-2">
           <span class="interactive-card__icon">🛡</span>
           <div class="interactive-card__title">Подбери Оберег</div>
           <p class="interactive-card__desc">7 вопросов → персональный оберег для тебя</p>
+          <span class="interactive-card__tag">7 вопросов</span>
         </a>
-        <a href="pages/rune-reading.html" class="interactive-card">
+        <a href="pages/rune-reading.html" class="interactive-card reveal">
           <span class="interactive-card__icon">ᚱ</span>
           <div class="interactive-card__title">Гадание на Рунах</div>
           <p class="interactive-card__desc">Расклад «Три Норны» — прошлое, настоящее, будущее</p>
+          <span class="interactive-card__tag">24 руны</span>
         </a>
-        <a href="pages/calendar.html" class="interactive-card">
+        <a href="pages/calendar.html" class="interactive-card reveal reveal-delay-1">
           <span class="interactive-card__icon">📅</span>
           <div class="interactive-card__title">Славянский Календарь</div>
-          <p class="interactive-card__desc">Коляды Даръ — конвертер дат, тотемные животные</p>
+          <p class="interactive-card__desc">Коляды Даръ — дата по-славянски, тотемные животные</p>
+          <span class="interactive-card__tag">Конвертер</span>
         </a>
-        <a href="pages/goroskop.html" class="interactive-card">
+        <a href="pages/goroskop.html" class="interactive-card reveal reveal-delay-2">
           <span class="interactive-card__icon">☀️</span>
           <div class="interactive-card__title">Славянский Гороскоп</div>
           <p class="interactive-card__desc">4 покровителя сезонов + прогноз на 7534 лето</p>
+          <span class="interactive-card__tag">Прогноз</span>
         </a>
+      </div>
+
+      <!-- Telegram CTA inside interactives -->
+      <div class="tg-cta reveal">
+        <div class="tg-cta__icon">📨</div>
+        <div class="tg-cta__title">Больше практик — в Telegram</div>
+        <p class="tg-cta__text">Ежедневные разборы, обряды по дням Коло Года, ответы на вопросы. Подпишись — знание должно быть живым.</p>
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary tg-cta__btn">Подписаться на канал →</a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ О ПРОЕКТЕ ═══ -->
+  <div class="divider"></div>
+
+  <!-- ═══ 03. О ПРОЕКТЕ ═══ -->
   <section class="section" id="about">
     <div class="container">
-      <div class="section__header">
+      <div class="section__header reveal">
+        <div class="section__num">03 · Миссия</div>
         <h2 class="section__title">О Проекте</h2>
         <div class="section__line"></div>
       </div>
       <div class="about-content">
-        <div class="about-text">
+        <div class="about-text reveal">
           <p><strong>«Наследие Ариев»</strong> — это не академический портал и не эзотерический клуб. Это практический ресурс для тех, кто хочет понять культуру предков и применить её мудрость в современной жизни.</p>
           <p>Здесь ты найдёшь структурированную базу знаний о славянских богах, рунах, обрядах и оберегах. А интерактивные инструменты — квизы, тесты, гадания — помогут узнать о себе через призму древней традиции.</p>
-          <p>Автор проекта — <strong>Александр Сапачёв</strong>, дизайнер и исследователь славянской культуры. <a href="pages/about.html" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.3)">Подробнее →</a></p>
+          <p>Автор проекта — <strong>Александр Сапачёв</strong>, исследователь славянской культуры. <a href="pages/about.html" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.3)">Подробнее об авторе →</a></p>
         </div>
-        <div class="about-stats">
+        <div class="about-stats reveal reveal-delay-1">
           <div class="stat-card">
             <div class="stat-card__num">38</div>
             <div class="stat-card__label">Богов в базе</div>
@@ -415,17 +602,17 @@
           </div>
         </div>
       </div>
-      <img src="images/zvezda-rusi.png" alt="Звезда Руси" class="about-zvezda" />
     </div>
   </section>
 
-  <!-- ═══ CTA ═══ -->
-  <section class="section section--alt cta-section">
-    <div class="container">
-      <h2>Присоединяйся к каналу</h2>
-      <p>В Telegram-канале «Наследие Ариев» — статьи, разборы, обряды и ответы на вопросы. Подпишись, чтобы не пропустить.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary">Подписаться на Telegram</a>
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="section section--alt final-cta">
+    <div class="final-cta__bg"></div>
+    <div class="container reveal">
+      <h2>Присоединяйся к <em>наследию</em></h2>
+      <p>В Telegram-канале — статьи, разборы, обряды и ответы на вопросы. Подпишись, чтобы знание жило.</p>
+      <div class="final-cta__btns">
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary">Подписаться на Telegram →</a>
         <a href="pages/lead-magnet.html" class="btn btn--ghost">Скачать PDF бесплатно</a>
       </div>
     </div>
@@ -451,6 +638,52 @@
     </div>
   </footer>
 
+  <!-- Floating Telegram Button -->
+  <a href="https://t.me/nasledieariev" target="_blank" class="floating-tg" title="Подписаться на Telegram">
+    <span class="floating-tg__icon">✈️</span>
+    <span class="floating-tg__pulse"></span>
+  </a>
+
   <script src="js/main.js"></script>
+  <script>
+  /* ═══ SCROLL REVEAL ═══ */
+  var revealEls=document.querySelectorAll('.reveal');
+  var revealObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})
+  },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(function(el){revealObs.observe(el)});
+
+  /* ═══ COUNTER ANIMATION ═══ */
+  var counters=document.querySelectorAll('[data-count]');
+  var counterObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target;var target=parseInt(el.dataset.count);
+      var duration=1500;var start=0;var startTime=null;
+      function step(ts){
+        if(!startTime) startTime=ts;
+        var progress=Math.min((ts-startTime)/duration,1);
+        var eased=1-Math.pow(1-progress,3);
+        el.textContent=Math.floor(eased*target)+'+';
+        if(progress<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      counterObs.unobserve(el);
+    })
+  },{threshold:0.5});
+  counters.forEach(function(c){counterObs.observe(c)});
+
+  /* ═══ PARTICLES ═══ */
+  var pc=document.getElementById('particles');
+  for(var i=0;i<30;i++){
+    var p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDuration=(8+Math.random()*12)+'s';
+    p.style.animationDelay=Math.random()*15+'s';
+    p.style.width=p.style.height=(1+Math.random()*2)+'px';
+    pc.appendChild(p);
+  }
+  </script>
 </body>
 </html>
