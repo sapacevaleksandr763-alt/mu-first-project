@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Х’Арийская Арифметика — 20 уроков. Древняя система счисления и математики. Пядевая система, образные числа, сакральная геометрия." />
+  <title>Х’Арийская Арифметика — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .course-info{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:36px;margin-bottom:48px}
+    .course-info__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.8}
+    .course-info__stats{text-align:center}
+    .course-info__count{font-family:var(--font-head);font-size:2.8rem;font-weight:900;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .course-info__label{font-size:0.78rem;color:var(--text-muted);margin-top:4px}
+    .lessons-list{margin-bottom:48px}
+    .lesson-item{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;cursor:pointer;transition:all 0.3s}
+    .lesson-item:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+    .lesson-item__num{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.85rem;color:#fff;font-weight:900}
+    .lesson-item__info{flex:1}
+    .lesson-item__title{font-family:var(--font-head);font-size:0.92rem;color:var(--text);margin-bottom:2px}
+    .lesson-item__status{font-size:0.72rem;color:var(--text-muted);opacity:0.6}
+    .lesson-item__arrow{font-size:0.85rem;color:var(--gold);opacity:0.4;transition:all 0.3s}
+    .lesson-item:hover .lesson-item__arrow{opacity:1;transform:translateX(4px)}
+    .lesson-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
+    .lesson-modal.active{display:flex}
+    .lesson-modal__box{background:var(--bg);border:1px solid var(--gold);border-radius:16px;padding:48px;max-width:520px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15);position:relative;animation:modalIn 0.3s ease}
+    @keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .lesson-modal__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--text-muted);cursor:pointer;background:none;border:none;font-family:inherit;transition:color 0.2s}
+    .lesson-modal__close:hover{color:var(--gold)}
+    .lesson-modal__icon{font-size:3rem;margin-bottom:16px}
+    .lesson-modal__num{font-family:var(--font-head);font-size:0.72rem;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+    .lesson-modal__title{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:16px}
+    .lesson-modal__text{font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:24px}
+    .lesson-modal__text strong{color:var(--gold)}
+    .lesson-modal__content{display:none;text-align:left;border-top:1px solid var(--border);padding-top:24px;margin-top:8px}
+    .lesson-modal__content.has-content{display:block}
+    .lesson-modal__content h3{font-family:var(--font-head);font-size:1rem;color:var(--gold);margin-bottom:12px}
+    .lesson-modal__content p{font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:12px}
+    .lesson-modal__content img{max-width:100%;border-radius:var(--radius);margin:12px 0}
+    .lesson-modal__content video{max-width:100%;border-radius:var(--radius);margin:12px 0}
+    .lesson-modal__content .pdf-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(184,148,46,0.08);border:1px solid rgba(184,148,46,0.2);border-radius:var(--radius);font-size:0.85rem;color:var(--gold);margin:8px 0;transition:all 0.3s}
+    .lesson-modal__content .pdf-link:hover{background:rgba(184,148,46,0.15)}
+    @media(max-width:768px){.course-info{grid-template-columns:1fr;text-align:center}.lesson-modal__box{padding:32px 24px}}
+  </style>
+</head>
+<body>
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html" class="nav__link">Главная</a>
+        <a href="../index.html#lessons" class="nav__link">Уроки</a>
+        <a href="bukvica.html" class="nav__link">Буквица</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Telegram</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">🔢</span>
+      <h1 class="page-hero__title">Х’Арийская Арифметика</h1>
+      <p class="page-hero__sub">Древняя система счисления и математики. Пядевая система, образные числа, сакральная геометрия.</p>
+    </div>
+  </section>
+  <main class="page-main">
+    <div class="container">
+      <div class="course-info">
+        <div class="course-info__desc">Древняя система счисления и математики. Пядевая система, образные числа, сакральная геометрия. Выбери урок из списка ниже. Дата проведения каждого урока анонсируется в Telegram-канале.</div>
+        <div class="course-info__stats">
+          <div class="course-info__count">20</div>
+          <div class="course-info__label">уроков</div>
+        </div>
+      </div>
+      <div class="lessons-list">
+        <div class="lesson-item" onclick="openLesson(1)">
+          <div class="lesson-item__num">1</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 1</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(2)">
+          <div class="lesson-item__num">2</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 2</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(3)">
+          <div class="lesson-item__num">3</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 3</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(4)">
+          <div class="lesson-item__num">4</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 4</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(5)">
+          <div class="lesson-item__num">5</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 5</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(6)">
+          <div class="lesson-item__num">6</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 6</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(7)">
+          <div class="lesson-item__num">7</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 7</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(8)">
+          <div class="lesson-item__num">8</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 8</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(9)">
+          <div class="lesson-item__num">9</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 9</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(10)">
+          <div class="lesson-item__num">10</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 10</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(11)">
+          <div class="lesson-item__num">11</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 11</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(12)">
+          <div class="lesson-item__num">12</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 12</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(13)">
+          <div class="lesson-item__num">13</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 13</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(14)">
+          <div class="lesson-item__num">14</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 14</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(15)">
+          <div class="lesson-item__num">15</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 15</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(16)">
+          <div class="lesson-item__num">16</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 16</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(17)">
+          <div class="lesson-item__num">17</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 17</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(18)">
+          <div class="lesson-item__num">18</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 18</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(19)">
+          <div class="lesson-item__num">19</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 19</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div>
+        <div class="lesson-item" onclick="openLesson(20)">
+          <div class="lesson-item__num">20</div>
+          <div class="lesson-item__info">
+            <div class="lesson-item__title">Урок 20</div>
+            <div class="lesson-item__status">Ожидает публикации</div>
+          </div>
+          <div class="lesson-item__arrow">→</div>
+        </div></div>
+      <div style="text-align:center;padding:24px 0">
+        <a href="../index.html#lessons" class="btn btn--ghost">← Все курсы</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary" style="margin-left:12px">Подписаться на Telegram →</a>
+      </div>
+    </div>
+  </main>
+  <div class="lesson-modal" id="lessonModal">
+    <div class="lesson-modal__box">
+      <button class="lesson-modal__close" onclick="closeLesson()">✕</button>
+      <div class="lesson-modal__icon">🔢</div>
+      <div class="lesson-modal__num" id="lmNum"></div>
+      <div class="lesson-modal__title" id="lmTitle"></div>
+      <div class="lesson-modal__text">
+        <strong>Дата проведения урока будет<br>в Telegram-канале.</strong><br><br>
+        Подпишись, чтобы не пропустить!
+      </div>
+      <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary">ПОДПИШИСЬ! →</a>
+      <div class="lesson-modal__content" id="lmContent"></div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <script>
+  var lessonData = {};
+  function openLesson(num) {
+    document.getElementById("lmNum").textContent = "Х’Арийская Арифметика · Урок " + num;
+    var data = lessonData[num];
+    var ce = document.getElementById("lmContent");
+    if (data) {
+      document.getElementById("lmTitle").textContent = data.title;
+      ce.innerHTML = data.html; ce.classList.add("has-content");
+    } else {
+      document.getElementById("lmTitle").textContent = "Урок " + num;
+      ce.innerHTML = ""; ce.classList.remove("has-content");
+    }
+    document.getElementById("lessonModal").classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLesson() {
+    document.getElementById("lessonModal").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("lessonModal").addEventListener("click", function(e) {
+    if (e.target === this) closeLesson();
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeLesson();
+  });
+  </script>
+</body>
+</html>
