@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Славянский календарь Коляды Даръ — конвертер дат, 9 месяцев, 9-дневная неделя, тотемные животные 16-летнего цикла." />
+  <title>Славянский Календарь — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .cal-now{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:36px;text-align:center;margin-bottom:48px;
+    }
+    .cal-now__label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+    .cal-now__date{font-family:var(--font-head);font-size:1.8rem;color:var(--gold);margin-bottom:4px}
+    .cal-now__year{font-family:var(--font-head);font-size:1rem;color:var(--text-muted)}
+    .cal-info{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:48px 0}
+    .cal-info-card{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+    .cal-info-card__num{font-family:var(--font-head);font-size:2rem;color:var(--gold);font-weight:900}
+    .cal-info-card__label{font-size:0.78rem;color:var(--text-muted);margin-top:4px}
+    .totem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+    .totem-card{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:18px 14px;text-align:center;transition:all var(--transition);
+    }
+    .totem-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-2px)}
+    .totem-card.current{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+    .totem-card__icon{font-size:1.6rem;margin-bottom:6px}
+    .totem-card__name{font-family:var(--font-head);font-size:0.78rem;color:var(--gold);margin-bottom:2px;line-height:1.3}
+    .totem-card__year{font-size:0.68rem;color:var(--text-muted)}
+    .months-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+    .month-card{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-align:center}
+    .month-card__name{font-family:var(--font-head);font-size:0.88rem;color:var(--gold);margin-bottom:4px}
+    .month-card__days{font-size:0.78rem;color:var(--text-muted)}
+    .week-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+    .week-day{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center}
+    .week-day__name{font-family:var(--font-head);font-size:0.85rem;color:var(--gold);margin-bottom:4px}
+    .week-day__desc{font-size:0.72rem;color:var(--text-muted)}
+    @media(max-width:768px){
+      .cal-info,.months-grid,.week-grid{grid-template-columns:1fr}
+      .totem-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᛊ</span>
+      <h1 class="page-hero__title">Славянский<br /><em>Календарь</em></h1>
+      <p class="page-hero__sub">Коляды Даръ — 9 месяцев, 9-дневная неделя, тотемные животные</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="cal-now" id="calNow">
+        <div class="cal-now__label">Сегодня по славянскому календарю</div>
+        <div class="cal-now__date" id="calDate"></div>
+        <div class="cal-now__year" id="calYear"></div>
+      </div>
+
+      <div class="cal-info">
+        <div class="cal-info-card"><div class="cal-info-card__num">9</div><div class="cal-info-card__label">Месяцев в году</div></div>
+        <div class="cal-info-card"><div class="cal-info-card__num">9</div><div class="cal-info-card__label">Дней в неделе</div></div>
+        <div class="cal-info-card"><div class="cal-info-card__num">16</div><div class="cal-info-card__label">Часов в сутках</div></div>
+      </div>
+
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">📅</span> 9 Месяцев</h2>
+        <p class="content-block__intro">Год начинается в день осеннего равноденствия (~22 сентября). 9 месяцев по 40–41 день. Итого 365 (366) дней.</p>
+        <div class="months-grid">
+          <div class="month-card"><div class="month-card__name">Рамхатъ</div><div class="month-card__days">41 день</div></div>
+          <div class="month-card"><div class="month-card__name">Айлетъ</div><div class="month-card__days">40 дней</div></div>
+          <div class="month-card"><div class="month-card__name">Бэйлетъ</div><div class="month-card__days">41 день</div></div>
+          <div class="month-card"><div class="month-card__name">Гэйлетъ</div><div class="month-card__days">40 дней</div></div>
+          <div class="month-card"><div class="month-card__name">Дайлетъ</div><div class="month-card__days">41 день</div></div>
+          <div class="month-card"><div class="month-card__name">Элетъ</div><div class="month-card__days">40 дней</div></div>
+          <div class="month-card"><div class="month-card__name">Вэйлетъ</div><div class="month-card__days">41 день</div></div>
+          <div class="month-card"><div class="month-card__name">Хэйлетъ</div><div class="month-card__days">40 дней</div></div>
+          <div class="month-card"><div class="month-card__name">Тайлетъ</div><div class="month-card__days">41 день</div></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">📆</span> 9-Дневная Неделя</h2>
+        <p class="content-block__intro">У предков неделя состояла из 9 дней. Каждый день имел своё значение и назначение.</p>
+        <div class="week-grid">
+          <div class="week-day"><div class="week-day__name">Понедельникъ</div><div class="week-day__desc">Начало, труд</div></div>
+          <div class="week-day"><div class="week-day__name">Вторникъ</div><div class="week-day__desc">Второй день труда</div></div>
+          <div class="week-day"><div class="week-day__name">Тритейникъ</div><div class="week-day__desc">Третий, отдых</div></div>
+          <div class="week-day"><div class="week-day__name">Четверикъ</div><div class="week-day__desc">Труд, середина</div></div>
+          <div class="week-day"><div class="week-day__name">Пятница</div><div class="week-day__desc">День Макоши</div></div>
+          <div class="week-day"><div class="week-day__name">Шестица</div><div class="week-day__desc">Отдых, торг</div></div>
+          <div class="week-day"><div class="week-day__name">Седмица</div><div class="week-day__desc">Труд, ремесло</div></div>
+          <div class="week-day"><div class="week-day__name">Осьмица</div><div class="week-day__desc">Предпраздничный</div></div>
+          <div class="week-day"><div class="week-day__name">Неделя</div><div class="week-day__desc">День покоя</div></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">🐻</span> Тотемные Животные</h2>
+        <p class="content-block__intro">16-летний цикл тотемных животных. Каждое лето проходит под покровительством своего зверя.</p>
+        <div class="totem-grid" id="totemGrid"></div>
+      </div>
+
+      <div class="content-block" style="text-align:center;padding:48px 0;">
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="quiz-chertog.html" class="btn btn--primary">Определить свой Чертог</a>
+          <a href="prazdniki.html" class="btn btn--ghost">Славянские Праздники</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var slavYear=new Date().getFullYear()+5508;
+  document.getElementById('calYear').textContent=slavYear+' лето от С.М.З.Х.';
+  var now=new Date();
+  var mn=['','Рамхатъ','Айлетъ','Бэйлетъ','Гэйлетъ','Дайлетъ','Элетъ','Вэйлетъ','Хэйлетъ','Тайлетъ'];
+  var eq=new Date(now.getFullYear(),8,22);
+  var dayOfYear=Math.floor((now-eq)/(1000*60*60*24));
+  if(dayOfYear<0) dayOfYear+=365;
+  var mLens=[41,40,41,40,41,40,41,40,41];
+  var sm=1,sd=dayOfYear+1;
+  for(var i=0;i<mLens.length;i++){if(sd<=mLens[i])break;sd-=mLens[i];sm++}
+  if(sm>9){sm=1;sd=1}
+  document.getElementById('calDate').textContent=sd+' '+mn[sm];
+
+  var totems=[
+    {icon:'🫎',name:'Тёмный Сохъ'},
+    {icon:'🐝',name:'Жалящий Шершень'},
+    {icon:'🐺',name:'Притаившийся Лютый Волк'},
+    {icon:'🐿',name:'Огненная Белка'},
+    {icon:'🐟',name:'Жемчужная Щука'},
+    {icon:'🐸',name:'Бородатая Жаба'},
+    {icon:'🐗',name:'Дикий Вепрь'},
+    {icon:'🦉',name:'Белый Филин'},
+    {icon:'🐍',name:'Шипящий Уж'},
+    {icon:'🦊',name:'Крадущийся Лис'},
+    {icon:'🦔',name:'Свернувшийся Ёж'},
+    {icon:'🦅',name:'Парящий Орёл'},
+    {icon:'🕷',name:'Прядущий Паук'},
+    {icon:'🐓',name:'Кричащий Петух'},
+    {icon:'🐂',name:'Златорогий Тур'},
+    {icon:'🐴',name:'Огнегривый Конь'}
+  ];
+  var curTotemIdx=(slavYear-1)%16;
+  var grid=document.getElementById('totemGrid');
+  totems.forEach(function(t,i){
+    var d=document.createElement('div');
+    d.className='totem-card'+(i===curTotemIdx?' current':'');
+    d.innerHTML='<div class="totem-card__icon">'+t.icon+'</div><div class="totem-card__name">'+t.name+'</div>'+(i===curTotemIdx?'<div class="totem-card__year" style="color:var(--gold);margin-top:4px">'+slavYear+' лето</div>':'');
+    grid.appendChild(d);
+  });
+  </script>
+</body>
+</html>
