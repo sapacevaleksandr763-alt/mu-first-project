@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Славянский гороскоп — 4 сезонных покровителя: Коляда, Ярило, Купало, Авсень. Прогноз на 7534 лето от СМЗХ." />
+  <title>Славянский Гороскоп — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .season-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:48px 0}
+    .season-card{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:32px 24px;text-align:center;cursor:pointer;transition:all var(--transition);
+    }
+    .season-card:hover,.season-card.active{border-color:var(--gold);background:rgba(201,168,76,0.04)}
+    .season-card__icon{font-size:2.4rem;margin-bottom:12px}
+    .season-card__name{font-family:var(--font-head);font-size:1.2rem;color:var(--gold);margin-bottom:4px}
+    .season-card__period{font-size:0.78rem;color:var(--text-muted);margin-bottom:8px}
+    .season-card__months{font-size:0.72rem;color:var(--text-muted);opacity:0.7}
+    .detail{display:none;margin-top:32px}
+    .detail.active{display:block}
+    .detail__header{text-align:center;margin-bottom:32px}
+    .detail__icon{font-size:3rem;margin-bottom:8px}
+    .detail__name{font-family:var(--font-head);font-size:1.8rem;color:var(--gold);margin-bottom:4px}
+    .detail__sub{font-size:0.85rem;color:var(--text-muted);margin-bottom:24px}
+    .detail__section{margin-bottom:24px}
+    .detail__stitle{font-family:var(--font-head);font-size:0.95rem;color:var(--gold);margin-bottom:10px}
+    .detail__text{font-size:0.9rem;color:var(--text-muted);line-height:1.8}
+    .traits{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .trait{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:4px 14px;font-size:0.78rem;color:var(--gold)}
+    .prognosis{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:28px;margin-top:24px;
+    }
+    .prognosis__year{font-family:var(--font-head);font-size:0.82rem;color:var(--gold);margin-bottom:8px}
+    .prognosis__text{font-size:0.88rem;color:var(--text-muted);line-height:1.8}
+    @media(max-width:600px){.season-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">☀️</span>
+      <h1 class="page-hero__title">Славянский<br /><em>Гороскоп</em></h1>
+      <p class="page-hero__sub">4 сезонных покровителя — выбери свой период рождения</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <p class="content-block__intro" style="text-align:center;margin-bottom:32px">Нажми на свой сезон рождения — узнай своего покровителя и прогноз на 7534 лето от С.М.З.Х.</p>
+
+      <div class="season-grid" id="seasonGrid"></div>
+      <div id="detailContainer"></div>
+
+      <div class="content-block" style="text-align:center;padding:48px 0">
+        <a href="quiz-chertog.html" class="btn btn--primary">Определить свой Чертог</a>
+        <a href="god-patron.html" class="btn btn--ghost" style="margin-left:14px">Бог-Покровитель</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var seasons=[
+    {
+      id:'kolyada',icon:'❄️',name:'Коляда',period:'22 декабря — 20 марта',
+      months:'Зима: Студень, Сечень, Лютень',
+      desc:'Ты рождён в самое тёмное время года — значит, в тебе живёт внутренний свет, способный озарять даже самый глубокий мрак. Коляда — молодое Солнце, заново рождённое в самую длинную ночь. Люди Коляды — обновители, те, кто несёт перемены и новое знание в мир.',
+      traits:['Внутренний свет','Мудрость','Стойкость','Обновление','Духовность'],
+      prognosis:'7534 лето несёт людям Коляды глубокую внутреннюю трансформацию. Зимой 7534 лета откроется новое знание, которое изменит твой взгляд на привычные вещи. Весной — время действовать: то, что ты откладывал, потребует решительности. Лето даст отдых и наполнение, а осень принесёт плоды терпеливого труда. Ключ года: не бойся быть первым.'
+    },
+    {
+      id:'yarilo',icon:'🌱',name:'Ярило',period:'21 марта — 20 июня',
+      months:'Весна: Березозол, Цветень, Травень',
+      desc:'Ты рождён, когда земля просыпается, и в тебе бурлит та же неудержимая сила жизни. Ярило — молодой бог ярого весеннего солнца, воин света. Люди Ярилы — деятели, энтузиасты, те, кто зажигает других и ведёт вперёд. В них много страсти и энергии.',
+      traits:['Энергия','Страсть','Плодородие','Сила','Обаяние'],
+      prognosis:'7534 лето для людей Ярилы — год действия и роста. В первую половину года энергия будет на пике — начинай проекты, укрепляй связи, сади семена будущего. Середина лета может принести испытание терпения — не торопись, дай время. Осень вознаградит: ты увидишь результаты. Ключ года: направляй энергию, а не разбрасывай.'
+    },
+    {
+      id:'kupalo',icon:'☀️',name:'Купало',period:'21 июня — 22 сентября',
+      months:'Лето: Кресень, Липень, Серпень',
+      desc:'Ты рождён в пору полного расцвета — в тебе сила зрелого Солнца на пике. Купало — бог летнего солнцестояния, хранитель огня и воды, союза противоположностей. Люди Купалы — гармонизаторы, способные соединять несоединимое, щедрые и тёплые.',
+      traits:['Гармония','Щедрость','Тепло','Зрелость','Творчество'],
+      prognosis:'7534 лето для людей Купалы — год гармонизации. Весна принесёт вызов: придётся выбирать между старым и новым. Выбирай новое — Купало благословляет смелых. Лето станет временем максимальной творческой реализации. Осенью — укрепление отношений и семейных уз. Зима подарит заслуженный покой. Ключ года: доверяй своей интуиции в моменты выбора.'
+    },
+    {
+      id:'avsen',icon:'🍂',name:'Авсень (Овсень)',period:'23 сентября — 21 декабря',
+      months:'Осень: Вересень, Листопад, Грудень',
+      desc:'Ты рождён во время сбора урожая и подведения итогов. В тебе мудрость того, кто знает цену труду. Авсень — бог осеннего солнца, мостов между мирами, хранитель перехода. Люди Авсеня — стратеги, мыслители, те, кто видит дальше других.',
+      traits:['Мудрость','Стратегия','Терпение','Видение','Глубина'],
+      prognosis:'7534 лето для людей Авсеня — год мудрых решений. Зима и весна потребуют пересмотра: что работает, а что пора отпустить. Лето станет временем тихого, но мощного роста — не сравнивай себя с другими. Осень 7534 — твоё время: именно тогда всё, над чем ты работал, обретёт законченную форму. Ключ года: терпение — твоя суперсила.'
+    }
+  ];
+
+  var grid=document.getElementById('seasonGrid');
+  var detailCont=document.getElementById('detailContainer');
+
+  seasons.forEach(function(s,i){
+    var card=document.createElement('div');
+    card.className='season-card';card.id='sc-'+s.id;
+    card.innerHTML='<div class="season-card__icon">'+s.icon+'</div><div class="season-card__name">'+s.name+'</div><div class="season-card__period">'+s.period+'</div><div class="season-card__months">'+s.months+'</div>';
+    card.onclick=function(){showSeason(s.id)};
+    grid.appendChild(card);
+
+    var det=document.createElement('div');
+    det.className='detail';det.id='det-'+s.id;
+    var h='<div class="detail__header"><div class="detail__icon">'+s.icon+'</div><h2 class="detail__name">'+s.name+'</h2><div class="detail__sub">'+s.period+'</div></div>';
+    h+='<div class="detail__section"><div class="detail__stitle">Характер</div><div class="detail__text">'+s.desc+'</div><div class="traits">';
+    s.traits.forEach(function(t){h+='<span class="trait">'+t+'</span>'});
+    h+='</div></div>';
+    h+='<div class="prognosis"><div class="prognosis__year">Прогноз на 7534 лето от С.М.З.Х.</div><div class="prognosis__text">'+s.prognosis+'</div></div>';
+    det.innerHTML=h;
+    detailCont.appendChild(det);
+  });
+
+  function showSeason(id){
+    document.querySelectorAll('.season-card').forEach(function(c){c.classList.remove('active')});
+    document.querySelectorAll('.detail').forEach(function(d){d.classList.remove('active')});
+    document.getElementById('sc-'+id).classList.add('active');
+    var det=document.getElementById('det-'+id);
+    det.classList.add('active');
+    det.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  var now=new Date();
+  var m=now.getMonth()+1,d=now.getDate();
+  var auto='kolyada';
+  if((m===3&&d>=21)||m===4||m===5||(m===6&&d<=20)) auto='yarilo';
+  else if((m===6&&d>=21)||m===7||m===8||(m===9&&d<=22)) auto='kupalo';
+  else if((m===9&&d>=23)||m===10||m===11||(m===12&&d<=21)) auto='avsen';
+  </script>
+</body>
+</html>
