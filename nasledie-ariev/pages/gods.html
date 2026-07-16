@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Славянские Боги — 38 богов и духов пантеона. Старшие боги, младшие боги, духи и сущности с описаниями." />
+  <title>Славянские Боги — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .elder-card{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:32px 28px;transition:all var(--transition);margin-bottom:20px;
+    }
+    .elder-card:hover{border-color:rgba(201,168,76,0.5);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+    .elder-card__top{display:flex;align-items:center;gap:18px;margin-bottom:16px}
+    .elder-card__icon{font-size:2.8rem;flex-shrink:0}
+    .elder-card__name{font-family:var(--font-head);font-size:1.4rem;color:var(--gold)}
+    .elder-card__domain{font-size:0.75rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+    .elder-card__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.85}
+    .elder-card__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+    .elder-card__tag{
+      background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);
+      border-radius:4px;padding:3px 10px;font-size:0.72rem;color:var(--gold);
+    }
+    .minor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+    .minor-card{
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:22px 18px;transition:all var(--transition);
+    }
+    .minor-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-3px)}
+    .minor-card__icon{font-size:1.6rem;margin-bottom:8px}
+    .minor-card__name{font-family:var(--font-head);font-size:0.92rem;color:var(--gold);margin-bottom:4px}
+    .minor-card__domain{font-size:0.7rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+    .minor-card__desc{font-size:0.82rem;color:var(--text-muted);line-height:1.6}
+    @media(max-width:768px){.minor-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="history.html" class="nav__link">История</a>
+        <a href="gods.html" class="nav__link nav__link--active">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᚦ</span>
+      <h1 class="page-hero__title">Славянские<br /><em>Боги</em></h1>
+      <p class="page-hero__sub">38 богов и духов пантеона — от Рода-Творца до навьих сущностей</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="page-intro">
+        <p>Славянский пантеон — не иерархия, а семья. Боги связаны родством, каждый отвечает за свою сферу мироздания. Старшие боги создали мир и установили законы. Младшие — управляют стихиями, временами года, человеческими делами. Духи и сущности населяют пространство между мирами.</p>
+      </div>
+
+      <!-- ═══ СТАРШИЕ БОГИ ═══ -->
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">⚡</span> Старшие Боги</h2>
+        <p class="content-block__intro">Пять верховных богов, создавших мир и определивших его законы. Каждый из них — столп мироздания.</p>
+
+        <div class="elder-card">
+          <div class="elder-card__top"><div class="elder-card__icon">🌀</div><div><div class="elder-card__name">Род</div><div class="elder-card__domain">Бог-Творец · Начало Начал</div></div></div>
+          <p class="elder-card__desc">Род — абсолютное начало. Он был до всего: до света и тьмы, до Прави и Нави, до богов и людей. Род создал Вселенную из себя — разделил свет и тьму, небо и землю, правду и кривду. Все боги — его потомки, все люди — его внуки. Род — это не личность, а сила, пронизывающая всё сущее.</p>
+          <div class="elder-card__tags"><span class="elder-card__tag">Творение</span><span class="elder-card__tag">Вселенная</span><span class="elder-card__tag">Первопричина</span></div>
+        </div>
+
+        <div class="elder-card">
+          <div class="elder-card__top"><div class="elder-card__icon">🔥</div><div><div class="elder-card__name">Сварог</div><div class="elder-card__domain">Бог-Кузнец · Отец Богов</div></div></div>
+          <p class="elder-card__desc">Сварог — сын Рода, небесный кузнец, сковавший небесный свод. Он создал Землю, выковал первый плуг и научил людей обрабатывать металл. Сварог установил закон Прави — правила, по которым живёт мир. Он отец Даждьбога, Перуна и Семаргла. Сварог — бог труда, созидания и семейного очага.</p>
+          <div class="elder-card__tags"><span class="elder-card__tag">Огонь</span><span class="elder-card__tag">Кузнечество</span><span class="elder-card__tag">Закон</span><span class="elder-card__tag">Небо</span></div>
+        </div>
+
+        <div class="elder-card">
+          <div class="elder-card__top"><div class="elder-card__icon">⚡</div><div><div class="elder-card__name">Перун</div><div class="elder-card__domain">Громовержец · Бог Воинов</div></div></div>
+          <p class="elder-card__desc">Перун — сын Сварога, повелитель грома и молнии. Главный защитник Яви от сил Нави. Перун сражается с Велесом за мировой порядок — вечная битва закона и хаоса, дня и ночи. Покровитель воинов, князей и всех, кто стоит за справедливость. Его дерево — дуб, его день — четверг, его оружие — секира и молния.</p>
+          <div class="elder-card__tags"><span class="elder-card__tag">Гром</span><span class="elder-card__tag">Война</span><span class="elder-card__tag">Справедливость</span><span class="elder-card__tag">Защита</span></div>
+        </div>
+
+        <div class="elder-card">
+          <div class="elder-card__top"><div class="elder-card__icon">🐻</div><div><div class="elder-card__name">Велес</div><div class="elder-card__domain">Хозяин Нави · Бог Мудрости</div></div></div>
+          <p class="elder-card__desc">Велес — самый сложный и многогранный бог пантеона. Он одновременно хозяин Нави (мира мёртвых), бог скота и богатства, покровитель торговцев, магов и музыкантов. Велес хранит мудрость предков и ведёт души умерших по Калинову мосту. Его священные животные — медведь и змей. Он противник Перуна, но не враг — это две стороны одного мира.</p>
+          <div class="elder-card__tags"><span class="elder-card__tag">Мудрость</span><span class="elder-card__tag">Магия</span><span class="elder-card__tag">Богатство</span><span class="elder-card__tag">Навь</span></div>
+        </div>
+
+        <div class="elder-card">
+          <div class="elder-card__top"><div class="elder-card__icon">🕸</div><div><div class="elder-card__name">Макошь</div><div class="elder-card__domain">Богиня Судьбы · Великая Мать</div></div></div>
+          <p class="elder-card__desc">Макошь — единственная богиня в пантеоне князя Владимира. Она прядёт нити судеб всех живущих вместе с помощницами Долей и Недолей. Макошь — Мать Сыра Земля, покровительница женщин, рукодельниц и целительниц. Её день — пятница (в этот день нельзя прясть). Макошь знает прошлое, настоящее и будущее каждого человека.</p>
+          <div class="elder-card__tags"><span class="elder-card__tag">Судьба</span><span class="elder-card__tag">Земля</span><span class="elder-card__tag">Магия</span><span class="elder-card__tag">Рукоделие</span></div>
+        </div>
+      </div>
+
+      <!-- ═══ МЛАДШИЕ БОГИ ═══ -->
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">☀️</span> Младшие Боги</h2>
+        <p class="content-block__intro">Боги стихий, сезонов, ремёсел и человеческих дел. Каждый управляет своей сферой мироздания.</p>
+
+        <div class="minor-grid">
+          <div class="minor-card"><div class="minor-card__icon">☀️</div><div class="minor-card__name">Даждьбог</div><div class="minor-card__domain">Бог Солнца</div><p class="minor-card__desc">Сын Сварога, податель жизни и света. Русичи называли себя «Даждьбожьи внуки». Даёт тепло, урожай, изобилие.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌬</div><div class="minor-card__name">Стрибог</div><div class="minor-card__domain">Бог Ветров</div><p class="minor-card__desc">Повелитель всех ветров — от лёгкого бриза до бури. Его внуки — ветры четырёх сторон. Покровитель моряков и путников.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌅</div><div class="minor-card__name">Хорс</div><div class="minor-card__domain">Бог Солнечного Диска</div><p class="minor-card__desc">Если Даждьбог — свет и тепло, то Хорс — само солнце как небесное тело. Он ведёт солнечную колесницу по небу каждый день.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🔥</div><div class="minor-card__name">Семаргл</div><div class="minor-card__domain">Огненный Страж</div><p class="minor-card__desc">Крылатый пёс, страж мирового огня. Охраняет посевы и семена жизни. Связан с огнём, который не сжигает, а согревает.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌸</div><div class="minor-card__name">Лада</div><div class="minor-card__domain">Богиня Любви</div><p class="minor-card__desc">Мать богов, богиня весны, любви и красоты. Покровительница брака и семейного лада. Её призывали на свадьбах.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🦢</div><div class="minor-card__name">Леля</div><div class="minor-card__domain">Богиня Весны</div><p class="minor-card__desc">Дочь Лады, олицетворение юной весны и первой любви. Покровительница девушек и незамужних. Символ — лебедь.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌿</div><div class="minor-card__name">Жива</div><div class="minor-card__domain">Богиня Жизни</div><p class="minor-card__desc">Олицетворение жизненной силы, весеннего пробуждения. Жива вдыхает жизнь во всё, что растёт и дышит.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">❄️</div><div class="minor-card__name">Марена</div><div class="minor-card__domain">Богиня Зимы и Смерти</div><p class="minor-card__desc">Богиня зимы, холода и перерождения. Не злая — она хранит покой мёртвых. На Масленицу сжигают её чучело, провожая зиму.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌱</div><div class="minor-card__name">Ярило</div><div class="minor-card__domain">Бог Весеннего Солнца</div><p class="minor-card__desc">Молодой, яростный бог плодородия и страсти. Ярило пробуждает землю весной. Его сила — в юности и неукротимой энергии.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌊</div><div class="minor-card__name">Купало</div><div class="minor-card__domain">Бог Летнего Солнцестояния</div><p class="minor-card__desc">Бог пика лета, союза огня и воды. Купальская ночь — самая волшебная в году. Прыжки через костёр, купание, поиск папоротника.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🍂</div><div class="minor-card__name">Авсень</div><div class="minor-card__domain">Бог Осени</div><p class="minor-card__desc">Бог осеннего солнца и урожая. Авсень мостит дорогу для Коляды, готовит мир к зиме. Покровитель мудрых решений.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">❄️</div><div class="minor-card__name">Коляда</div><div class="minor-card__domain">Бог Молодого Солнца</div><p class="minor-card__desc">Рождается в самую длинную ночь. Коляда — победа света над тьмой, символ вечного обновления. Колядки — песни в его честь.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">⏳</div><div class="minor-card__name">Числобог</div><div class="minor-card__domain">Бог Времени</div><p class="minor-card__desc">Хранитель хода времени, повелитель чисел и ритмов. Следит за сменой дня и ночи, сезонов и эпох.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">✨</div><div class="minor-card__name">Доля</div><div class="minor-card__domain">Богиня Удачи</div><p class="minor-card__desc">Помощница Макоши, прядёт нити счастливой судьбы. Кому Доля улыбнётся — тому удача во всём.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌑</div><div class="minor-card__name">Недоля</div><div class="minor-card__domain">Богиня Несчастья</div><p class="minor-card__desc">Вторая помощница Макоши, прядёт нити бед. Не злая — она часть равновесия. Без Недоли не было бы цены у удачи.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">😢</div><div class="minor-card__name">Желя</div><div class="minor-card__domain">Богиня Скорби</div><p class="minor-card__desc">Сестра Карны. Желя — плач по умершим, горе, которое очищает душу. Её присутствие на похоронах помогает отпустить.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🕯</div><div class="minor-card__name">Карна</div><div class="minor-card__domain">Богиня Перерождения</div><p class="minor-card__desc">Богиня кармы и перерождения. Карна определяет, кем душа родится в следующей жизни. Плачет над телами павших воинов.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🏹</div><div class="minor-card__name">Девана</div><div class="minor-card__domain">Богиня Охоты</div><p class="minor-card__desc">Дочь Перуна, богиня лесов и охоты. Аналог Артемиды. Независимая, дикая, свободная. Покровительница охотников.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌊</div><div class="minor-card__name">Переплут</div><div class="minor-card__domain">Бог Морей</div><p class="minor-card__desc">Бог морских путешествий и подводного мира. Ему молились перед морским походом, бросали монеты в волны.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🛤</div><div class="minor-card__name">Троян</div><div class="minor-card__domain">Бог Трёх Миров</div><p class="minor-card__desc">Объединяет три мира — Правь, Явь, Навь. Тройственная природа мироздания. Покровитель тех, кто ищет целостность.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🔥</div><div class="minor-card__name">Радогост</div><div class="minor-card__domain">Бог Гостеприимства</div><p class="minor-card__desc">Бог гостеприимства, пиров и священного огня. Его храм стоял в Ретре — главном городе лютичей. Радогост принимает каждого.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🍯</div><div class="minor-card__name">Квасура</div><div class="minor-card__domain">Бог Хмеля</div><p class="minor-card__desc">Бог медоварения и священного напитка сурьи. Научил людей готовить медовуху. Покровитель праздников и веселья.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">💃</div><div class="minor-card__name">Таня</div><div class="minor-card__domain">Богиня Танца</div><p class="minor-card__desc">Богиня танца, музыки и вдохновения. Покровительница скоморохов и музыкантов. Через танец соединяет людей с богами.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌍</div><div class="minor-card__name">Озем</div><div class="minor-card__domain">Бог Подземного Мира</div><p class="minor-card__desc">Вместе с Сумерлой правит подземным миром. Хранит клады и корни Мирового Древа. Ему оставляли подношения у корней деревьев.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">☀️</div><div class="minor-card__name">Полудница</div><div class="minor-card__domain">Дух Полудня</div><p class="minor-card__desc">Является в полдень на полях. Задаёт загадки жнецам — кто не ответит, того закружит до безумия. Полуденный зной — её дыхание.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🥶</div><div class="minor-card__name">Зюзя</div><div class="minor-card__domain">Бог Мороза</div><p class="minor-card__desc">Белорусский бог зимнего холода. Ходит босой по снегу, стучит посохом — от стука трескается лёд. Прообраз Деда Мороза.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌟</div><div class="minor-card__name">Крышень</div><div class="minor-card__domain">Бог Мудрости</div><p class="minor-card__desc">Принёс людям огонь и священные знания. Научил готовить сурью (священный напиток). Покровитель мудрецов и учителей.</p></div>
+        </div>
+      </div>
+
+      <!-- ═══ ДУХИ И СУЩНОСТИ ═══ -->
+      <div class="content-block">
+        <h2 class="content-block__title"><span class="rune-accent">🐦</span> Духи и Сущности</h2>
+        <p class="content-block__intro">Существа, населяющие пространство между мирами — вещие птицы, духи-хранители, посланники богов.</p>
+
+        <div class="minor-grid">
+          <div class="minor-card"><div class="minor-card__icon">🧔</div><div class="minor-card__name">Чур</div><div class="minor-card__domain">Дух-Хранитель Рода</div><p class="minor-card__desc">Дух предка, охраняющий границы и собственность рода. «Чур меня!» — призвание его защиты. Деревянные столбы-чуры ставили у границ.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🌿</div><div class="minor-card__name">Берегиня</div><div class="minor-card__domain">Дух-Хранительница</div><p class="minor-card__desc">Женский дух-защитница, оберегающая людей, скот и посевы. Живёт у воды. Души добрых женщин, продолжающих защищать живых.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🐦</div><div class="minor-card__name">Жар-Птица</div><div class="minor-card__domain">Огненная Птица из Ирия</div><p class="minor-card__desc">Птица из славянского рая. Одно перо освещает комнату. Поймать — получить исполнение желания. Символ высшего стремления.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🦅</div><div class="minor-card__name">Симург</div><div class="minor-card__domain">Вещая Птица</div><p class="minor-card__desc">Гигантская птица, несущая мудрость из Ирия. Сидит на вершине Мирового Древа и видит всё, что происходит в трёх мирах.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🕊</div><div class="minor-card__name">Алконост</div><div class="minor-card__domain">Птица Радости</div><p class="minor-card__desc">Райская птица с женским лицом. Её песня приносит забвение и блаженство. Кто услышит — забывает все печали. Живёт в Ирии.</p></div>
+          <div class="minor-card"><div class="minor-card__icon">🦜</div><div class="minor-card__name">Гамаюн</div><div class="minor-card__domain">Птица Пророчеств</div><p class="minor-card__desc">Вещая птица, знающая всё о прошлом, настоящем и будущем. Песни Гамаюн — основа славянской космогонии. Посланница богов.</p></div>
+        </div>
+      </div>
+
+      <div class="content-block" style="text-align:center;padding:48px 0;">
+        <p style="color:var(--text-muted);margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto;">Хочешь узнать, какой бог покровительствует тебе?</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="god-patron.html" class="btn btn--primary">Пройти тест «Бог-покровитель»</a>
+          <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--ghost">Telegram-канал</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a>
+        <a href="gods.html">Боги</a>
+        <a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a>
+        <a href="vedas.html">Веды</a>
+        <a href="../videos.html">Видео</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

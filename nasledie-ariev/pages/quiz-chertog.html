@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Определи свой Чертог в Сварожьем Круге по дате рождения. 16 чертогов — узнай своего бога-покровителя и священное дерево." />
+  <title>Определи свой Чертог — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .chertog-form{max-width:480px;margin:0 auto;text-align:center;padding:32px 0}
+    .chertog-form__row{display:flex;gap:12px;margin-bottom:20px;justify-content:center}
+    .chertog-select{
+      padding:12px 16px;background:var(--bg-2);border:1px solid var(--border);
+      border-radius:6px;color:var(--text);font-family:var(--font-body);font-size:0.9rem;
+      appearance:none;cursor:pointer;min-width:100px;
+    }
+    .chertog-select:focus{outline:none;border-color:var(--gold)}
+    .chertog-btn{
+      padding:14px 36px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      border:none;border-radius:6px;color:var(--bg);font-family:var(--font-head);
+      font-size:0.9rem;font-weight:600;letter-spacing:0.08em;cursor:pointer;
+      transition:all var(--transition);
+    }
+    .chertog-btn:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold));transform:translateY(-2px)}
+    .chertog-result{display:none;max-width:600px;margin:0 auto;text-align:center;padding:32px 0}
+    .chertog-result.active{display:block}
+    .cr__animal{font-size:4rem;margin-bottom:12px}
+    .cr__name{font-family:var(--font-head);font-size:2rem;color:var(--gold);margin-bottom:8px}
+    .cr__dates{font-size:0.82rem;color:var(--text-muted);letter-spacing:0.08em;margin-bottom:24px}
+    .cr__info{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;text-align:left}
+    .cr__info-item{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+    .cr__info-label{font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}
+    .cr__info-value{font-family:var(--font-head);font-size:0.95rem;color:var(--gold)}
+    .cr__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.85;text-align:left;margin-bottom:32px}
+    .cr__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    @media(max-width:480px){.cr__info{grid-template-columns:1fr}.chertog-form__row{flex-direction:column;align-items:center}}
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">ᛟ</span>
+      <h1 class="page-hero__title">Определи<br /><em>свой Чертог</em></h1>
+      <p class="page-hero__sub">16 Чертогов Сварожьего Круга — введи дату рождения и узнай свой</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-intro">
+        <p>Сварожий Круг — славянский зодиак из 16 чертогов. Каждый чертог связан с богом-покровителем, священным деревом и определёнными качествами характера. Введи свою дату рождения — и узнай, в каком чертоге ты родился.</p>
+      </div>
+
+      <div class="chertog-form" id="formBlock">
+        <div class="chertog-form__row">
+          <select class="chertog-select" id="selDay"></select>
+          <select class="chertog-select" id="selMonth">
+            <option value="1">Января</option><option value="2">Февраля</option>
+            <option value="3">Марта</option><option value="4">Апреля</option>
+            <option value="5">Мая</option><option value="6">Июня</option>
+            <option value="7">Июля</option><option value="8">Августа</option>
+            <option value="9">Сентября</option><option value="10">Октября</option>
+            <option value="11">Ноября</option><option value="12">Декабря</option>
+          </select>
+        </div>
+        <button class="chertog-btn" onclick="calcChertog()">Узнать свой Чертог</button>
+      </div>
+
+      <div class="chertog-result" id="resultBlock">
+        <div class="cr__animal" id="rAnimal"></div>
+        <h2 class="cr__name" id="rName"></h2>
+        <div class="cr__dates" id="rDates"></div>
+        <div class="cr__info">
+          <div class="cr__info-item"><div class="cr__info-label">Бог-покровитель</div><div class="cr__info-value" id="rGod"></div></div>
+          <div class="cr__info-item"><div class="cr__info-label">Священное дерево</div><div class="cr__info-value" id="rTree"></div></div>
+        </div>
+        <p class="cr__desc" id="rDesc"></p>
+        <div class="cr__btns">
+          <button class="btn btn--primary" onclick="resetForm()">Проверить другую дату</button>
+          <a href="god-patron.html" class="btn btn--ghost">Тест «Бог-покровитель»</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var sel=document.getElementById('selDay');
+  for(var i=1;i<=31;i++){var o=document.createElement('option');o.value=i;o.textContent=i;sel.appendChild(o)}
+
+  var chertogi=[
+    {name:'Чертог Девы',animal:'♍',god:'Жива',tree:'Яблоня',m1:8,d1:28,m2:9,d2:20,
+     desc:'Люди Чертога Девы — независимы, целеустремлённы, стремятся к совершенству. Обладают сильной волей и не терпят лжи. Стремятся всё контролировать и часто берут на себя слишком много. Их сила — в способности начинать новое, их слабость — нетерпимость к чужим слабостям. Покровительница Жива дарит им жизненную энергию и способность вдохновлять других.'},
+    {name:'Чертог Вепря',animal:'🐗',god:'Рамхат',tree:'Груша',m1:9,d1:20,m2:10,d2:12,
+     desc:'Рождённые в Чертоге Вепря — прирождённые лидеры с обострённым чувством справедливости. Упрямы, но честны. Не любят подчиняться и всегда отстаивают свою точку зрения. Их сила — в несгибаемости характера, слабость — в неумении идти на компромисс. Рамхат даёт им чувство космического порядка.'},
+    {name:'Чертог Щуки',animal:'🐟',god:'Рожана',tree:'Слива',m1:10,d1:12,m2:11,d2:3,
+     desc:'Люди Чертога Щуки — адаптивны и гибки, умеют находить выход из любой ситуации. Легко вписываются в любой коллектив. Их сила — в дипломатичности и умении договариваться. Слабость — в нерешительности и привычке «плыть по течению». Рожана дарит им материнскую интуицию и заботливость.'},
+    {name:'Чертог Лебедя',animal:'🦢',god:'Макошь',tree:'Сосна',m1:11,d1:3,m2:11,d2:24,
+     desc:'Рождённые в Чертоге Лебедя — утончённые, чувствительные, с развитой интуицией. Стремятся к красоте и гармонии во всём. Часто обладают творческими талантами. Их сила — в эмпатии и способности чувствовать людей. Слабость — в излишней эмоциональности. Макошь плетёт для них особенную судьбу.'},
+    {name:'Чертог Змея',animal:'🐍',god:'Семаргл',tree:'Липа',m1:11,d1:24,m2:12,d2:17,
+     desc:'Люди Чертога Змея — активны, энергичны, не выносят одиночества. Эгоцентричны, но харизматичны. Обладают мощной сексуальной энергией и магнетизмом. Их сила — в способности очаровывать, слабость — в непостоянстве. Семаргл наделяет их огненной энергией и защитой от тёмных сил.'},
+    {name:'Чертог Ворона',animal:'🐦‍⬛',god:'Коляда',tree:'Лиственница',m1:12,d1:17,m2:1,d2:8,
+     desc:'Рождённые в Чертоге Ворона — мудры, любознательны, вечно ищут знания. Обладают философским складом ума. Прекрасные учителя и наставники. Их сила — в глубине мышления, слабость — в идеализме. Коляда дарит им способность видеть свет во тьме и нести мудрость людям.'},
+    {name:'Чертог Медведя',animal:'🐻',god:'Сварог',tree:'Бук',m1:1,d1:8,m2:2,d2:1,
+     desc:'Люди Чертога Медведя — добродушны, сильны, справедливы. Прирождённые хозяева и защитники семьи. Медлительны в решениях, но если решили — не остановить. Их сила — в стойкости и верности, слабость — в лени и нежелании меняться. Сварог даёт им созидательную мощь и трудолюбие.'},
+    {name:'Чертог Аиста',animal:'🦩',god:'Род',tree:'Ива',m1:2,d1:1,m2:2,d2:20,
+     desc:'Рождённые в Чертоге Аиста (Буслая) — семейные, заботливые, ценят традиции рода. Стремятся создать крепкую семью и оставить наследие. Их сила — в верности и способности объединять людей. Слабость — в консерватизме. Род наделяет их связью со всеми поколениями предков.'},
+    {name:'Чертог Волка',animal:'🐺',god:'Велес',tree:'Тополь',m1:2,d1:20,m2:3,d2:22,
+     desc:'Люди Чертога Волка — одиночки с сильным внутренним стержнем. Осторожны, подозрительны, но преданны тем, кого впустили в свой круг. Обладают острым умом и интуицией охотника. Их сила — в независимости и проницательности, слабость — в замкнутости. Велес даёт им мудрость и связь с потусторонним.'},
+    {name:'Чертог Лисы',animal:'🦊',god:'Марена',tree:'Граб',m1:3,d1:22,m2:4,d2:15,
+     desc:'Рождённые в Чертоге Лисы — хитры, обаятельны, умеют добиваться своего. Прирождённые дипломаты и переговорщики. Их сила — в гибкости ума и обаянии, слабость — в склонности к лукавству. Марена учит их не бояться перемен и смерти старого ради рождения нового.'},
+    {name:'Чертог Тура',animal:'🐂',god:'Крышень',tree:'Осина',m1:4,d1:15,m2:5,d2:7,
+     desc:'Люди Чертога Тура — трудолюбивы, упорны, надёжны. Настоящие «рабочие лошадки», на которых держится мир. Их сила — в выносливости и ответственности, слабость — в упрямстве и неумении просить о помощи. Крышень дарит им священные знания и способность нести свет.'},
+    {name:'Чертог Лося',animal:'🫎',god:'Лада',tree:'Берёза',m1:5,d1:7,m2:6,d2:1,
+     desc:'Рождённые в Чертоге Лося — открытые, общительные, жизнерадостные. Легко заводят друзей и создают вокруг себя атмосферу тепла. Их сила — в оптимизме и умении радоваться жизни, слабость — в доверчивости. Лада наделяет их даром любви и способностью создавать гармонию.'},
+    {name:'Чертог Финиста',animal:'🦅',god:'Вышень',tree:'Вишня',m1:6,d1:1,m2:6,d2:23,
+     desc:'Люди Чертога Финиста — идеалисты, мечтатели, стремятся к высшему. Способны на невероятные подвиги ради идеи. Их сила — в вере и целеустремлённости, слабость — в отрыве от реальности. Вышень поднимает их дух над обыденностью и открывает видение будущего.'},
+    {name:'Чертог Коня',animal:'🐴',god:'Купало',tree:'Вяз',m1:6,d1:23,m2:7,d2:16,
+     desc:'Рождённые в Чертоге Коня — энергичны, нетерпеливы, всегда в движении. Не могут сидеть на месте, жаждут новых впечатлений. Их сила — в скорости и страсти, слабость — в непостоянстве. Купало наполняет их огнём жизни и радостью бытия.'},
+    {name:'Чертог Орла',animal:'🦅',god:'Перун',tree:'Дуб',m1:7,d1:16,m2:8,d2:7,
+     desc:'Люди Чертога Орла — прирождённые лидеры с широким взглядом. Видят картину целиком, стратеги и командиры. Их сила — в масштабе мышления и смелости, слабость — в высокомерии. Перун даёт им силу грома и непоколебимую волю к победе.'},
+    {name:'Чертог Раса',animal:'🐆',god:'Даждьбог (Тарх)',tree:'Ясень',m1:8,d1:7,m2:8,d2:28,
+     desc:'Рождённые в Чертоге Раса — спокойны, рассудительны, мудры не по годам. Предпочитают действовать обдуманно. Их сила — в терпении и глубине анализа, слабость — в излишней осторожности. Даждьбог-Тарх дарит им солнечный свет знаний и щедрость души.'}
+  ];
+
+  function calcChertog(){
+    var d=parseInt(document.getElementById('selDay').value);
+    var m=parseInt(document.getElementById('selMonth').value);
+    var ch=null;
+    for(var i=0;i<chertogi.length;i++){
+      var c=chertogi[i];
+      if(c.m1===c.m2){if(m===c.m1&&d>=c.d1&&d<=c.d2){ch=c;break}}
+      else if(c.m1<c.m2){if((m===c.m1&&d>=c.d1)||(m===c.m2&&d<=c.d2)||(m>c.m1&&m<c.m2)){ch=c;break}}
+      else{if((m===c.m1&&d>=c.d1)||(m===c.m2&&d<=c.d2)||m>c.m1||m<c.m2){ch=c;break}}
+    }
+    if(!ch)ch=chertogi[0];
+    document.getElementById('rAnimal').textContent=ch.animal;
+    document.getElementById('rName').textContent=ch.name;
+    var mn=['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    document.getElementById('rDates').textContent=ch.d1+' '+mn[ch.m1]+' — '+ch.d2+' '+mn[ch.m2];
+    document.getElementById('rGod').textContent=ch.god;
+    document.getElementById('rTree').textContent=ch.tree;
+    document.getElementById('rDesc').textContent=ch.desc;
+    document.getElementById('formBlock').style.display='none';
+    document.getElementById('resultBlock').classList.add('active');
+  }
+
+  function resetForm(){
+    document.getElementById('formBlock').style.display='';
+    document.getElementById('resultBlock').classList.remove('active');
+  }
+  </script>
+</body>
+</html>

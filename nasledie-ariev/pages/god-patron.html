@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Тест «Бог-Покровитель» — ответь на 8 вопросов и узнай, какой славянский бог ведёт тебя по жизни." />
+  <title>Твой Бог-Покровитель — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .gp-quiz{max-width:640px;margin:0 auto;padding:48px 0}
+    .gp-progress{display:flex;gap:6px;margin-bottom:32px}
+    .gp-bar{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background var(--transition)}
+    .gp-bar.done{background:var(--gold)}
+    .gp-step{display:none}.gp-step.active{display:block}
+    .gp-num{font-family:var(--font-head);font-size:0.75rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:12px}
+    .gp-question{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:24px;line-height:1.4}
+    .gp-opts{display:flex;flex-direction:column;gap:12px}
+    .gp-opt{
+      padding:16px 20px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      color:var(--text-muted);font-size:0.92rem;cursor:pointer;transition:all var(--transition);text-align:left;line-height:1.5;
+    }
+    .gp-opt:hover{border-color:var(--gold);color:var(--gold)}
+    .gp-result{display:none;text-align:center;max-width:600px;margin:0 auto;padding:48px 0}
+    .gp-result.active{display:block}
+    .gp-r__icon{font-size:4rem;margin-bottom:12px}
+    .gp-r__name{font-family:var(--font-head);font-size:2rem;color:var(--gold);margin-bottom:6px}
+    .gp-r__subtitle{font-size:0.82rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px}
+    .gp-r__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.85;text-align:left;margin-bottom:24px}
+    .gp-r__domains{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px}
+    .gp-r__domain{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:4px 14px;font-size:0.78rem;color:var(--gold)}
+    .gp-r__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">⚡</span>
+      <h1 class="page-hero__title">Твой Бог-<br /><em>Покровитель</em></h1>
+      <p class="page-hero__sub">8 вопросов — и ты узнаешь, какой бог ведёт тебя по жизни</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="gp-quiz" id="quizBlock">
+        <div class="gp-progress" id="gpProgress"></div>
+        <div id="gpSteps"></div>
+      </div>
+      <div class="gp-result" id="gpResult">
+        <div class="gp-r__icon" id="grIcon"></div>
+        <h2 class="gp-r__name" id="grName"></h2>
+        <div class="gp-r__subtitle">Твой бог-покровитель</div>
+        <p class="gp-r__desc" id="grDesc"></p>
+        <div class="gp-r__domains" id="grDomains"></div>
+        <div class="gp-r__btns">
+          <button class="btn btn--primary" onclick="gpReset()">Пройти снова</button>
+          <a href="quiz-chertog.html" class="btn btn--ghost">Определить свой Чертог</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var qs=[
+    {q:'Что для тебя важнее всего?',o:[{t:'Справедливость и порядок',g:'perun'},{t:'Знания и мудрость',g:'veles'},{t:'Семья и близкие',g:'lada'},{t:'Свобода и перемены',g:'marena'}]},
+    {q:'Как ты решаешь проблемы?',o:[{t:'Решительным действием',g:'perun'},{t:'Хитростью и обходным путём',g:'veles'},{t:'Упорным трудом',g:'svarog'},{t:'Доверяю интуиции',g:'makosh'}]},
+    {q:'Какая стихия тебе ближе?',o:[{t:'Огонь — энергия, преображение',g:'svarog'},{t:'Вода — глубина, мудрость',g:'veles'},{t:'Земля — стабильность, плодородие',g:'makosh'},{t:'Воздух — свет, свобода',g:'dazhdbog'}]},
+    {q:'Твоя главная сильная сторона?',o:[{t:'Смелость и решительность',g:'perun'},{t:'Глубокий ум и мудрость',g:'veles'},{t:'Терпение и забота',g:'lada'},{t:'Творческая сила',g:'svarog'}]},
+    {q:'Какое время суток тебе ближе?',o:[{t:'Рассвет — новое начало',g:'dazhdbog'},{t:'Полдень — пик силы',g:'perun'},{t:'Закат — покой и красота',g:'marena'},{t:'Ночь — тайна и глубина',g:'veles'}]},
+    {q:'Как ты относишься к переменам?',o:[{t:'Приветствую, перемены — это жизнь',g:'marena'},{t:'Осторожно, всё должно быть обдумано',g:'makosh'},{t:'Строю новое своими руками',g:'svarog'},{t:'Принимаю как часть большого замысла',g:'rod'}]},
+    {q:'Что тебя вдохновляет?',o:[{t:'Дикая природа и тайны мира',g:'veles'},{t:'Любовь и гармония людей',g:'lada'},{t:'Вызов и возможность победить',g:'perun'},{t:'Тишина и созерцание',g:'rod'}]},
+    {q:'Твоя главная цель в жизни?',o:[{t:'Защитить тех, кого люблю',g:'perun'},{t:'Познать мир и обрести мудрость',g:'veles'},{t:'Создать что-то великое',g:'svarog'},{t:'Найти внутреннюю гармонию',g:'rod'}]}
+  ];
+
+  var gods={
+    perun:{icon:'⚡',name:'Перун',desc:'Твой покровитель — Перун, бог грома, молнии и справедливости. Ты прирождённый лидер и защитник. В тебе горит огонь воина — не разрушителя, а того, кто стоит за правду. Перун даёт тебе несгибаемую волю, смелость идти против течения и силу защищать тех, кто слабее. Твой путь — путь чести, действия и справедливости.',domains:['Гром','Справедливость','Защита','Война','Честь']},
+    veles:{icon:'🐻',name:'Велес',desc:'Твой покровитель — Велес, бог мудрости, магии и тайных знаний. Ты мыслитель и искатель, тебя тянет к глубинам — к знаниям, которые скрыты от большинства. Велес дарит тебе проницательный ум, связь с потусторонним и талант к торговле, искусству или магии. Ты видишь то, что другие не замечают. Твой путь — путь знания и мудрости.',domains:['Мудрость','Магия','Богатство','Музыка','Навь']},
+    svarog:{icon:'🔥',name:'Сварог',desc:'Твой покровитель — Сварог, небесный кузнец и отец богов. Ты созидатель: тебе важно не просто мечтать, а строить, создавать, делать руками. Сварог даёт тебе мастерство, трудолюбие и способность превращать хаос в порядок. Ты тот, на ком держится мир — надёжный, сильный, основательный. Твой путь — путь труда и творения.',domains:['Огонь','Кузнечество','Труд','Созидание','Закон']},
+    lada:{icon:'🌸',name:'Лада',desc:'Твой покровитель — Лада, богиня любви, красоты и семейного лада. Ты несёшь гармонию туда, где появляешься. Лада дарит тебе дар любви — не слепой страсти, а глубокого принятия и заботы. Ты умеешь объединять людей, сглаживать конфликты, создавать тепло. Твоя сила — в мягкости, которая сильнее грубой силы. Твой путь — путь любви и гармонии.',domains:['Любовь','Красота','Семья','Гармония','Весна']},
+    makosh:{icon:'🕸',name:'Макошь',desc:'Твой покровитель — Макошь, богиня судьбы и великая пряха. Ты обладаешь сильной интуицией — чувствуешь людей, ситуации, потоки событий. Макошь дарит тебе способность влиять на свою судьбу через намерение и осознанность. Ты творческий человек, рукодельник или целитель по духу. Твой путь — путь судьбы и магии.',domains:['Судьба','Интуиция','Магия','Рукоделие','Земля']},
+    dazhdbog:{icon:'☀️',name:'Даждьбог',desc:'Твой покровитель — Даждьбог, бог солнца и подателя благ. Ты щедрый, открытый, излучающий свет. Даждьбог даёт тебе способность вдохновлять других своим примером и делиться тем, что имеешь. Ты не копишь — ты даёшь, и чем больше даёшь, тем больше получаешь. Твой путь — путь света и щедрости.',domains:['Солнце','Щедрость','Свет','Тепло','Изобилие']},
+    marena:{icon:'❄️',name:'Марена',desc:'Твой покровитель — Марена, богиня зимы, перерождения и трансформации. Ты не боишься перемен и умеешь отпускать старое. Марена дарит тебе силу обновления — способность проходить через «смерть» привычного и рождаться заново. Ты трансформатор: меняешь себя и мир вокруг. Твой путь — путь перемен и перерождения.',domains:['Зима','Перерождение','Трансформация','Отпускание','Обновление']},
+    rod:{icon:'🌀',name:'Род',desc:'Твой покровитель — Род, верховный бог-творец всего сущего. Это редкий и особый результат. Ты ищешь не частное, а целое — смысл бытия, связь всего со всем. Род даёт тебе широту видения и духовную зрелость. Ты чувствуешь связь с предками и потомками, с землёй и небом. Твой путь — путь духа и единства.',domains:['Творение','Единство','Дух','Связь поколений','Вселенная']}
+  };
+
+  var sc={};var st=0;
+  function gpInit(){
+    sc={};st=0;Object.keys(gods).forEach(function(k){sc[k]=0});
+    var stepsEl=document.getElementById('gpSteps');
+    var progEl=document.getElementById('gpProgress');
+    stepsEl.innerHTML='';progEl.innerHTML='';
+    document.getElementById('gpResult').classList.remove('active');
+    document.getElementById('quizBlock').style.display='';
+    for(var i=0;i<qs.length;i++){
+      progEl.innerHTML+='<div class="gp-bar" id="gpb'+i+'"></div>';
+      var s=document.createElement('div');
+      s.className='gp-step'+(i===0?' active':'');s.id='gps'+i;
+      var h='<div class="gp-num">Вопрос '+(i+1)+' из '+qs.length+'</div>';
+      h+='<h2 class="gp-question">'+qs[i].q+'</h2><div class="gp-opts">';
+      qs[i].o.forEach(function(o){h+='<button class="gp-opt" onclick="gpAns('+i+',\''+o.g+'\')">'+o.t+'</button>'});
+      h+='</div>';s.innerHTML=h;stepsEl.appendChild(s);
+    }
+  }
+  function gpAns(idx,g){
+    sc[g]=(sc[g]||0)+1;
+    document.getElementById('gpb'+idx).classList.add('done');
+    document.getElementById('gps'+idx).classList.remove('active');
+    st=idx+1;
+    if(st<qs.length){document.getElementById('gps'+st).classList.add('active')}
+    else{gpShow()}
+  }
+  function gpShow(){
+    document.getElementById('quizBlock').style.display='none';
+    var best='';var mx=0;
+    Object.keys(sc).forEach(function(k){if(sc[k]>mx){mx=sc[k];best=k}});
+    var g=gods[best];
+    document.getElementById('grIcon').textContent=g.icon;
+    document.getElementById('grName').textContent=g.name;
+    document.getElementById('grDesc').textContent=g.desc;
+    var dh='';g.domains.forEach(function(d){dh+='<span class="gp-r__domain">'+d+'</span>'});
+    document.getElementById('grDomains').innerHTML=dh;
+    document.getElementById('gpResult').classList.add('active');
+  }
+  function gpReset(){gpInit()}
+  gpInit();
+  </script>
+</body>
+</html>
