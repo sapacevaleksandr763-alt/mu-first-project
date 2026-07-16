@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="31 славянский праздник по месяцам — Масленица, Купала, Коляда, Перунов день и другие. Калькулятор ближайшего праздника." />
+  <title>Славянские Праздники — Путь Предков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .next-fest{
+      background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.02));
+      border:1px solid var(--gold);border-radius:var(--radius);padding:32px;
+      text-align:center;margin-bottom:48px;
+    }
+    .next-fest__label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+    .next-fest__name{font-family:var(--font-head);font-size:1.6rem;color:var(--gold);margin-bottom:4px}
+    .next-fest__date{font-size:0.9rem;color:var(--text-muted);margin-bottom:4px}
+    .next-fest__days{font-family:var(--font-head);font-size:1.1rem;color:var(--gold-light)}
+    .month-section{margin-bottom:48px}
+    .month-section__title{
+      font-family:var(--font-head);font-size:1.3rem;color:var(--gold);
+      border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:20px;
+    }
+    .fest-list{display:flex;flex-direction:column;gap:14px}
+    .fest-card{
+      display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;
+      background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+      padding:20px;transition:border-color var(--transition);
+    }
+    .fest-card:hover{border-color:rgba(201,168,76,0.4)}
+    .fest-card__date{
+      font-family:var(--font-head);font-size:0.82rem;color:var(--gold);
+      text-align:center;line-height:1.4;
+    }
+    .fest-card__name{font-family:var(--font-head);font-size:1rem;color:var(--text);margin-bottom:6px}
+    .fest-card__desc{font-size:0.85rem;color:var(--text-muted);line-height:1.7}
+    @media(max-width:600px){
+      .fest-card{grid-template-columns:1fr;gap:8px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="nav" id="nav">
+        <a href="../index.html#about" class="nav__link">О культуре</a>
+        <a href="gods.html" class="nav__link">Боги</a>
+        <a href="traditions.html" class="nav__link">Традиции</a>
+        <a href="runes.html" class="nav__link">Руны</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Канал</a>
+      </nav>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/volkhv.jpg')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">🔥</span>
+      <h1 class="page-hero__title">Славянские<br /><em>Праздники</em></h1>
+      <p class="page-hero__sub">31 праздник Коло Года — от Коляды до Овсеня</p>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="next-fest" id="nextFest">
+        <div class="next-fest__label">Ближайший праздник</div>
+        <div class="next-fest__name" id="nfName"></div>
+        <div class="next-fest__date" id="nfDate"></div>
+        <div class="next-fest__days" id="nfDays"></div>
+      </div>
+
+      <div id="monthsContainer"></div>
+
+      <div class="content-block" style="text-align:center;padding:48px 0">
+        <a href="calendar.html" class="btn btn--primary">Славянский Календарь</a>
+        <a href="traditions.html" class="btn btn--ghost" style="margin-left:14px">Традиции</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
+      <nav class="footer__nav">
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
+        <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
+      </nav>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  var fests=[
+    {m:1,d:1,name:'Велесовы Святки',desc:'Начало святочной недели. Время гаданий, ряженых, обрядовых песен. Велес открывает врата Нави, и души предков приходят в Явь.'},
+    {m:1,d:6,name:'Турицы (Водосвет)',desc:'День Тура — быка Велеса. Освящение воды, омовение в проруби. Вода обретает целебную силу на весь год.'},
+    {m:1,d:21,name:'Просинец',desc:'День торжества Солнца. Просияние — первое заметное прибавление света после Коляды. Восславление Хорса — бога зимнего солнца.'},
+    {m:2,d:2,name:'Громница',desc:'День Додолы/Перуницы. Первая гроза, первые молнии. Зажигали «громничную свечу» — оберег от пожара и удара молнии на весь год.'},
+    {m:2,d:15,name:'Сретенье',desc:'Встреча Зимы и Весны. Морена уступает Живе. Первая капель, приметы на урожай. Начало подготовки к весенним полевым работам.'},
+    {m:2,d:24,name:'Велесов день',desc:'Главный праздник Велеса. Скотий бог, хранитель мудрости и богатства. Кормление домового, обряды на достаток и покровительство стад.'},
+    {m:3,d:1,name:'День Марены',desc:'Проводы Зимы. Чучело Марены сжигают на костре — символ ухода холода, болезней и смерти. Освобождение для новой жизни.'},
+    {m:3,d:14,name:'Овсень малый (Новолетие)',desc:'Старославянский Новый год по солнечному циклу. День весеннего перелома — солнце набирает силу.'},
+    {m:3,d:20,name:'Масленица / Комоедица',desc:'Неделя проводов Зимы, встреча Весны. Блины — символ Солнца. Сжигание чучела, кулачные бои, хороводы, катание с гор. Равноденствие.'},
+    {m:3,d:22,name:'Жаворонки (Сороки)',desc:'День прилёта птиц. Пекли «жаворонков» из теста, дети поднимали их к небу, зазывая весну. Обряды Лели.'},
+    {m:4,d:7,name:'День Карны',desc:'Поминовение предков. Карна (Кручина) — богиня плача и скорби. Посещали курганы, оставляли подношения: кутью, мёд, блины.'},
+    {m:4,d:14,name:'День Семаргла',desc:'Почитание огненного стража — Семаргла, крылатого пса, хранителя посевов. Обряды на защиту всходов от заморозков.'},
+    {m:4,d:22,name:'Лельник',desc:'Девичий праздник. Леля — юная богиня весны и первой любви. Девушки водили хороводы, плели венки, гадали на суженого.'},
+    {m:4,d:30,name:'Родоница',desc:'Главный день поминовения. Ходили на курганы к предкам, просили благословения рода. «Кто предков не чтит, тот сам себя не помнит».'},
+    {m:5,d:1,name:'Живин день',desc:'Праздник богини Живы — воплощения жизненной силы. Встреча настоящей тёплой весны. Очищение дома, прыганье через костёр.'},
+    {m:5,d:6,name:'День Даждьбога',desc:'Вешний Даждьбог. Солнце в полной силе. Первый выгон скота на пастбище. Обряды плодородия и благодарности солнечному богу.'},
+    {m:5,d:22,name:'Ярилин день',desc:'Ярило — молодое ярое солнце. Завершение весеннего цикла. Хороводы, игрища, «похороны Ярилы» — символ перехода весны в лето.'},
+    {m:6,d:19,name:'Русальная неделя',desc:'Начало русалий. Русалки выходят из воды, опасно купаться. Защитные обряды: полынь на дверях, обереги от водяных духов.'},
+    {m:6,d:21,name:'Купала',desc:'Главный летний праздник. Солнцестояние. Купальский костёр, прыжки через огонь, пускание венков по воде. Поиск цветка папоротника. Ночь чудес.'},
+    {m:7,d:12,name:'День Снопа-Велеса',desc:'Начало сенокоса и жатвы. Велес-покровитель урожая. Первый сноп ставили в красный угол — благодарность земле.'},
+    {m:7,d:20,name:'Перунов день',desc:'Главный праздник Перуна — бога грома и воинской чести. День мужской силы. Освящение оружия, воинские состязания, клятвы верности.'},
+    {m:8,d:2,name:'День Даждьбога (летний)',desc:'Почитание щедрости солнечного бога в разгар урожая. Первые плоды нового урожая подносили богам.'},
+    {m:8,d:7,name:'Спожинки',desc:'Окончание жатвы. Благодарственные обряды за урожай. Последний сноп — «именинник» — несли в дом с песнями.'},
+    {m:8,d:21,name:'День Стрибога',desc:'Почитание бога ветров. Обряды для мореплавателей и путешественников. Призыв попутного ветра в делах.'},
+    {m:9,d:8,name:'Род и Рожаницы',desc:'Праздник Рода — верховного творца — и Рожаниц — богинь судьбы. Благодарение за продолжение жизни, обряды для защиты детей.'},
+    {m:9,d:14,name:'День Сварога',desc:'Огненный бог-кузнец запирает землю на зиму, «отдаёт молот Перуну». Кузнецы в этот день не работали — чтили покровителя.'},
+    {m:9,d:22,name:'Овсень (Таусень)',desc:'Осеннее равноденствие. Начало нового года по Коляды Даръ. Проводы Солнца в зиму, благодарность за урожай. Встреча тёмной половины года.'},
+    {m:10,d:14,name:'Покров',desc:'Макошь «покрывает землю снегом». Начало свадебного сезона. Девушки молились Макоши о женихе. Утепление дома на зиму.'},
+    {m:10,d:28,name:'День Макоши',desc:'Главный праздник Макоши — пряхи судеб. Женщины не пряли и не ткали — день отдыха и почитания. Гадания на судьбу.'},
+    {m:11,d:25,name:'Марин день',desc:'Морена вступает в полную силу. Самый короткий день приближается. Обряды защиты от морозов и болезней.'},
+    {m:12,d:21,name:'Коляда',desc:'Зимнее солнцестояние — рождение нового Солнца. Самая длинная ночь. Колядки, ряженые, славление. «Солнце на лето — зима на мороз». Начало Святок.'}
+  ];
+
+  var mNames=['','Январь (Сечень)','Февраль (Лютень)','Март (Березозол)','Апрель (Цветень)','Май (Травень)','Июнь (Кресень)','Июль (Липень)','Август (Серпень)','Сентябрь (Вересень)','Октябрь (Листопад)','Ноябрь (Грудень)','Декабрь (Студень)'];
+
+  var cont=document.getElementById('monthsContainer');
+  for(var mi=1;mi<=12;mi++){
+    var mf=fests.filter(function(f){return f.m===mi});
+    if(!mf.length) continue;
+    var sec=document.createElement('div');sec.className='month-section';
+    var h='<h3 class="month-section__title">'+mNames[mi]+'</h3><div class="fest-list">';
+    mf.forEach(function(f){
+      h+='<div class="fest-card"><div class="fest-card__date">'+f.d+'.'+(f.m<10?'0':'')+f.m+'</div><div><div class="fest-card__name">'+f.name+'</div><div class="fest-card__desc">'+f.desc+'</div></div></div>';
+    });
+    h+='</div>';sec.innerHTML=h;cont.appendChild(sec);
+  }
+
+  var now=new Date();
+  var year=now.getFullYear();
+  var closest=null;var minDiff=Infinity;
+  fests.forEach(function(f){
+    var fd=new Date(year,f.m-1,f.d);
+    var diff=fd-now;
+    if(diff<0){fd=new Date(year+1,f.m-1,f.d);diff=fd-now}
+    if(diff<minDiff){minDiff=diff;closest=f}
+  });
+  if(closest){
+    document.getElementById('nfName').textContent=closest.name;
+    document.getElementById('nfDate').textContent=closest.d+'.'+(closest.m<10?'0':'')+closest.m;
+    var daysLeft=Math.ceil(minDiff/(1000*60*60*24));
+    document.getElementById('nfDays').textContent=daysLeft===0?'Сегодня!':'через '+daysLeft+' '+(daysLeft===1?'день':daysLeft<5?'дня':'дней');
+  }
+  </script>
+</body>
+</html>
