@@ -11,12 +11,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold:      #c9a84c;
-      --gold-glow: rgba(201, 168, 76, 0.25);
-      --bg:        #0d0804;
-      --bg-2:      #130c05;
-      --text:      #ede0c8;
-      --muted:     #7a6a50;
+      --gold:      #b8942e;
+      --gold-light:#d4af37;
+      --gold-glow: rgba(184, 148, 46, 0.15);
+      --bg:        #f5f0e8;
+      --bg-2:      #ece5d8;
+      --text:      #2c1e0f;
+      --muted:     #6b5a45;
       --radius:    12px;
     }
 
@@ -57,10 +58,10 @@
       inset: 0;
       background:
         linear-gradient(to bottom,
-          rgba(13,8,4,0.15) 0%,
-          rgba(13,8,4,0.0) 40%,
-          rgba(13,8,4,0.7) 80%,
-          rgba(13,8,4,1.0) 100%);
+          rgba(30,20,10,0.1) 0%,
+          rgba(30,20,10,0.0) 40%,
+          rgba(30,20,10,0.6) 80%,
+          rgba(245,240,232,1.0) 100%);
       pointer-events: none;
     }
 
@@ -68,7 +69,7 @@
     .hero-video__tint {
       position: absolute;
       inset: 0;
-      background: rgba(60, 30, 5, 0.15);
+      background: rgba(245, 240, 232, 0.15);
       pointer-events: none;
     }
 
@@ -99,7 +100,8 @@
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 8px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.6);
     }
 
     .hero-video__title em {
@@ -109,8 +111,9 @@
 
     .hero-video__sub {
       font-size: 0.9rem;
-      color: rgba(237,224,200,0.75);
+      color: rgba(255,255,255,0.8);
       margin-bottom: 28px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
 
     .hero-video__actions {
@@ -130,7 +133,7 @@
       height: 44px;
       border-radius: 50%;
       border: 1px solid rgba(201,168,76,0.4);
-      background: rgba(13,8,4,0.55);
+      background: rgba(255,255,255,0.7);
       backdrop-filter: blur(8px);
       color: var(--gold);
       cursor: pointer;
@@ -142,7 +145,7 @@
 
     .sound-btn:hover {
       border-color: var(--gold);
-      background: rgba(13,8,4,0.8);
+      background: rgba(255,255,255,0.9);
     }
 
     /* стрелка вниз */
@@ -190,7 +193,7 @@
       background-image: url('images/volkhv.jpg');
       background-size: cover;
       background-position: center top;
-      filter: brightness(0.22) saturate(0.6);
+      filter: brightness(0.5) saturate(0.7);
       pointer-events: none;
       z-index: 0;
     }
@@ -198,7 +201,7 @@
     .card-section__overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(13,8,4,0.4) 0%, rgba(13,8,4,0.85) 100%);
+      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(245,240,232,0.3) 0%, rgba(245,240,232,0.85) 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -222,7 +225,7 @@
     .card {
       position: relative;
       z-index: 2;
-      background: rgba(19, 12, 5, 0.88);
+      background: rgba(245, 240, 232, 0.92);
       border: 1px solid rgba(201, 168, 76, 0.2);
       border-radius: 20px;
       padding: 52px 48px;
@@ -230,7 +233,7 @@
       width: 100%;
       text-align: center;
       backdrop-filter: blur(24px);
-      box-shadow: 0 0 80px rgba(0,0,0,0.6), 0 0 40px var(--gold-glow) inset;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.08), 0 0 40px var(--gold-glow) inset;
       animation: appear 0.7s ease both;
     }
 
@@ -334,7 +337,7 @@
     .lead-magnet:hover {
       border-color: rgba(201,168,76,0.5);
       transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.12);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 0 20px rgba(201,168,76,0.12);
     }
 
     .lead-magnet__img { width: 100%; display: block; }
@@ -459,9 +462,9 @@
     }
 
     .btn-hero--ghost {
-      background: rgba(13,8,4,0.5);
-      color: var(--text);
-      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
       backdrop-filter: blur(8px);
     }
 
@@ -484,7 +487,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(100,60,10,0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(184,148,46,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -561,7 +564,7 @@
     }
 
     .topic-card {
-      background: rgba(13,8,4,0.6);
+      background: rgba(236,229,216,0.8);
       border: 1px solid rgba(201,168,76,0.15);
       border-radius: var(--radius);
       padding: 20px 18px;
@@ -597,7 +600,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(80,40,5,0.2) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,148,46,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -621,7 +624,7 @@
     .review-card:hover {
       border-color: rgba(201,168,76,0.35);
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
 
     .review-card__quote-mark {
@@ -698,7 +701,7 @@
       background-image: url('images/nasledie.jpg');
       background-size: cover;
       background-position: center 20%;
-      filter: brightness(0.25) saturate(0.6);
+      filter: brightness(0.45) saturate(0.7);
     }
 
     .final-cta__overlay {
@@ -706,9 +709,9 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(13,8,4,0.85) 0%,
-        rgba(60,30,5,0.6) 50%,
-        rgba(13,8,4,0.85) 100%
+        rgba(30,20,10,0.45) 0%,
+        rgba(60,30,5,0.25) 50%,
+        rgba(30,20,10,0.45) 100%
       );
     }
 
@@ -736,7 +739,8 @@
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 16px;
-      color: var(--text);
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
     }
 
     .final-cta__title em {
@@ -747,9 +751,10 @@
 
     .final-cta__sub {
       font-size: 1.05rem;
-      color: rgba(237,224,200,0.7);
+      color: rgba(255,255,255,0.8);
       margin-bottom: 12px;
       line-height: 1.8;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.3);
     }
 
     .final-cta__promise {
