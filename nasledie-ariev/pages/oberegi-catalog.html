@@ -111,6 +111,14 @@
     }
     .counter { color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 24px; }
     .counter span { color: var(--gold); font-weight: 600; }
+    .solar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+    .solar-card{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition)}
+    .solar-card:hover{border-color:rgba(201,168,76,0.5);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+    .solar-card__img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;padding:12px}
+    .solar-card__body{padding:16px 18px}
+    .solar-card__name{font-family:var(--font-head);font-size:0.92rem;color:var(--gold);margin-bottom:6px}
+    .solar-card__desc{font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+    @media(max-width:768px){.solar-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -734,6 +742,118 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- ═══ СОЛЯРНЫЕ СИМВОЛЫ ═══ -->
+      <div class="content-block" style="margin-top:64px;">
+        <h2 class="content-block__title"><span class="rune-accent">☀️</span> Солярные символы Богослужебного назначения</h2>
+        <p class="content-block__intro">77 Свастичных символов использовались не только в культурно-бытовом обиходе, но и в Культово-Богослужебной, Обрядовой и Ритуальной деятельности у Православных Староверов-Инглингов.</p>
+
+        <div class="solar-grid">
+          <div class="solar-card">
+            <img src="../images/oberegi/kolovrat.jpg" alt="Коловрат и другие солярные символы" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Коловрат</h3>
+              <p class="solar-card__desc">Символ восходящего Ярилы-Солнца; символ вечной победы Света над тьмой и Вечной Жизни над смертью. Огненный цвет символизирует Возрождение, Небесный — обновление, чёрный — изменение.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/fash.jpg" alt="Фаш и солярные символы" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Фаш (Пламень)</h3>
+              <p class="solar-card__desc">Символ Защитного Обережного Духовного Огня. Духовный Огонь очищает Дух человеческий от эгоизма и низменных помыслов. Символ мощи и Единства Воинского Духа.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/duniya.jpg" alt="Дуния" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Дуния</h3>
+              <p class="solar-card__desc">Символ соединения Земного и Небесного Живого Огня. Его предназначение — сохранять Пути Постоянного Единства Рода. Изображается на Огненных Жертвенниках.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/ognevik.jpg" alt="Огневик" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Огневик</h3>
+              <p class="solar-card__desc">Огненный Символ Бога Рода. Изображение встречается на Куммире Рода, на наличниках и «полотенцах» по скатам крыш на домах и на ставнях оконцев.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/dushevnaya-svastika.jpg" alt="Душевная Свастика" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Душевная Свастика</h3>
+              <p class="solar-card__desc">Использовалась для концентрации Высших Сил Исцеления. Имели право включать в орнамент одежды только Жрецы, поднявшиеся на высокий уровень Духовно-Нравственного совершенства.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/solnechnyy-krest.jpg" alt="Солнечный Крест" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Солнечный Крест</h3>
+              <p class="solar-card__desc">Символ Духовной Силы Ярилы-Солнца и процветания Рода. Наибольшей силой наделял Жрецов Леса, Гридней и Кметей, защищавших родную землю.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/svarozhich.jpg" alt="Сварожич" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Сварожич</h3>
+              <p class="solar-card__desc">Символ Небесной Силы Бога Сварога, сохраняющий в первозданном виде всё многообразие форм Жизни во Вселенной. Оберегает от Душевной и Духовной деградации.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/bogodar.jpg" alt="Богодар" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Богодар</h3>
+              <p class="solar-card__desc">Символизирует постоянное покровительство Небесных Богов, которые даруют людям Древнюю Истинную Мудрость и Справедливость. Почитаем у Жрецов-Хранителей.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/istok.jpg" alt="Исток" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Исток</h3>
+              <p class="solar-card__desc">Символизирует Изначальную Прародину Души человеческой — Небесные Чертоги Богини Дживы, где появляются на Божий Свет невоплощённые человеческие Души.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/ryzhik.jpg" alt="Рыжик" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Рыжик</h3>
+              <p class="solar-card__desc">Небесный символ чистого Света, исходящего от Ярилы-Солнца. Символ Земного плодородия и обильного урожая. Наносили на весь сельскохозяйственный инструмент.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/ognevitsa.jpg" alt="Огневица" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Огневица</h3>
+              <p class="solar-card__desc">Огненный обережный символ, дарующий со стороны Небесных Богородиц всяческую помощь и действенную защиту замужним женщинам от тёмных сил.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/altarnik.jpg" alt="Алтарник" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Алтарник</h3>
+              <p class="solar-card__desc">Небесный Все-Родовой символ Великого Единства Светлых Родов, населяющих Сваргу Пречистую. Изображается на Алтарном камне возле Жертвенника.</p>
+            </div>
+          </div>
+
+          <div class="solar-card">
+            <img src="../images/oberegi/dhata.jpg" alt="Дхата" class="solar-card__img" />
+            <div class="solar-card__body">
+              <h3 class="solar-card__name">Дхата</h3>
+              <p class="solar-card__desc">Божественный Огненный знак, символизирующий внутреннюю и внешнюю структуру человека. Обозначает четыре основных элемента, дарованных Богами-Созидателями.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- ═══ CTA ═══ -->
