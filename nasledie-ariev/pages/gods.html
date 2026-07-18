@@ -13,10 +13,14 @@
     .elder-card{
       background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
       padding:32px 28px;transition:all var(--transition);margin-bottom:20px;
+      display:flex;gap:24px;align-items:flex-start;
     }
     .elder-card:hover{border-color:rgba(201,168,76,0.5);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+    .elder-card__img{width:160px;min-width:160px;border-radius:var(--radius);object-fit:cover;aspect-ratio:3/4;border:2px solid rgba(184,148,46,0.2)}
+    .elder-card__body{flex:1;min-width:0}
     .elder-card__top{display:flex;align-items:center;gap:18px;margin-bottom:16px}
     .elder-card__icon{font-size:2.8rem;flex-shrink:0}
+    @media(max-width:768px){.elder-card{flex-direction:column}.elder-card__img{width:100%;max-width:200px;margin:0 auto}}
     .elder-card__name{font-family:var(--font-head);font-size:1.4rem;color:var(--gold)}
     .elder-card__domain{font-size:0.75rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
     .elder-card__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.85}
@@ -121,49 +125,70 @@
         <p class="content-block__intro">Верховные боги, создавшие мир и определившие его законы. Каждый из них — столп мироздания.</p>
 
         <div class="elder-card">
+          <img src="../images/gods/god-015.jpg" alt="Бог Род" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">🌀</div><div><div class="elder-card__name">Бог Род</div><div class="elder-card__domain">Един и Множествен · Все Боги и Предки</div></div></div>
           <p class="elder-card__desc">Вышний Бог Род — Един и Множествен одновременно. Когда мы говорим о всех Древних Богах и Великих Предках наших — мы говорим о Боге Роде. Бог-Покровитель Чертога Бусла (Аиста) во Сварожьем Круге. При рождении человека его будущая судьба записывается в Книгу Рода.</p>
           <div class="elder-card__hymn"><strong>Гимн:</strong> «Великий Бог Род, Ты наш Покровитель! Славен и Триславен буди! Тебя извечно величаем, во всех наших Родах прославляем!»</div>
           <div class="elder-card__tags"><span class="elder-card__tag">Творение</span><span class="elder-card__tag">Вселенная</span><span class="elder-card__tag">Чертог Бусла</span><span class="elder-card__tag">Книга Рода</span></div>
+          </div>
         </div>
 
         <div class="elder-card">
+          <img src="../images/gods/god-012.jpg" alt="Бог Сварог" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">🔥</div><div><div class="elder-card__name">Бог Сварог</div><div class="elder-card__domain">Верховный Небесный Бог · Отец Богов</div></div></div>
           <p class="elder-card__desc">Сварог — Верховный Небесный Бог, управляющий течением Жизни и всем Мироустройством Вселенной в Явном Мире. Великий Отец множества Светлых Богов и Богинь — Сварожичей. Хранитель и Покровитель Небесного Вырия, посаженного вокруг Небесного Асгарда. Постоянный Хранитель Небесного Чертога Медведя во Сварожьем Круге.</p>
           <div class="elder-card__hymn"><strong>Гимн:</strong> «Сварог-Прародитель, всей Сварги Пречистой Хранитель! Славен и Триславен Буди! Тебя все-Родно прославляем, к себе Твой Образ призываем!»</div>
           <div class="elder-card__tags"><span class="elder-card__tag">Огонь</span><span class="elder-card__tag">Кузнечество</span><span class="elder-card__tag">Чертог Медведя</span><span class="elder-card__tag">Небо</span></div>
+          </div>
         </div>
 
         <div class="elder-card">
+          <img src="../images/gods/god-069.jpg" alt="Бог Перун" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">⚡</div><div><div class="elder-card__name">Бог Перун</div><div class="elder-card__domain">Громовержец · Защитник Яви</div></div></div>
           <p class="elder-card__desc">Бог-Покровитель всех воинов и многих Родов из Расы Великой. Перун уже трижды прибывал на Мидгард-Землю, чтобы защитить её от тёмных сил Пекельного Мира. Во время Третьего посещения, около 40 000 лет назад, Перун поведал Священную Мудрость о грядущем, записанную х'Арийскими Рунами — Саньтии Веды Перуна.</p>
           <div class="elder-card__hymn"><strong>Гимн:</strong> «Перуне! Внемли призывающим Тя! Славен и Триславен буди! Благости Светлаго Мира, всей Свята Расе дажьди! Лик свой прекрасный потомкам яви!»</div>
           <div class="elder-card__tags"><span class="elder-card__tag">Гром</span><span class="elder-card__tag">Саньтии</span><span class="elder-card__tag">Справедливость</span><span class="elder-card__tag">Защита</span></div>
+          </div>
         </div>
 
         <div class="elder-card">
+          <img src="../images/gods/god-016.jpg" alt="Велес" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">🐻</div><div><div class="elder-card__name">Велес</div><div class="elder-card__domain">Хозяин Нави · Бог Мудрости</div></div></div>
           <p class="elder-card__desc">Велес — самый сложный и многогранный бог пантеона. Он одновременно хозяин Нави (мира мёртвых), бог скота и богатства, покровитель торговцев, магов и музыкантов. Велес хранит мудрость предков и ведёт души умерших по Калинову мосту. Его священные животные — медведь и змей. Он противник Перуна, но не враг — это две стороны одного мира.</p>
           <div class="elder-card__tags"><span class="elder-card__tag">Мудрость</span><span class="elder-card__tag">Магия</span><span class="elder-card__tag">Богатство</span><span class="elder-card__tag">Навь</span></div>
+          </div>
         </div>
 
         <div class="elder-card">
+          <img src="../images/gods/god-031.jpg" alt="Макошь" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">🕸</div><div><div class="elder-card__name">Макошь</div><div class="elder-card__domain">Богиня Судьбы · Великая Мать</div></div></div>
           <p class="elder-card__desc">Макошь — единственная богиня в пантеоне князя Владимира. Она прядёт нити судеб всех живущих вместе с помощницами Долей и Недолей. Макошь — Мать Сыра Земля, покровительница женщин, рукодельниц и целительниц. Её день — пятница (в этот день нельзя прясть). Макошь знает прошлое, настоящее и будущее каждого человека.</p>
           <div class="elder-card__tags"><span class="elder-card__tag">Судьба</span><span class="elder-card__tag">Земля</span><span class="elder-card__tag">Магия</span><span class="elder-card__tag">Рукоделие</span></div>
+          </div>
         </div>
 
         <div class="elder-card">
+          <img src="../images/gods/god-005.jpg" alt="Лада-Матушка" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">💖</div><div><div class="elder-card__name">Лада-Матушка</div><div class="elder-card__domain">Великая Небесная Мать · Богородица</div></div></div>
           <p class="elder-card__desc">Лада-Матушка (Матерь Сва) — Великая Небесная Мать, Богородица. Любящая и нежная Мать большинства Светлых Богов Расы Великой, Богородица-Покровительница всех Народов Великой Рассении. Богиня Красоты и Любви, оберегающая Семейные Союзы Родов. Дарует молодым супругам домашний уют, дружелюбие, взаимопонимание и многодетство.</p>
           <div class="elder-card__hymn"><strong>Гимн:</strong> «Ой, Ты, Лада-Матушка! Матерь Сва Пречистая! Не остави нас без любви и счастья! Благодать свою ниспошли на нас!»</div>
           <div class="elder-card__tags"><span class="elder-card__tag">Любовь</span><span class="elder-card__tag">Семья</span><span class="elder-card__tag">Красота</span><span class="elder-card__tag">Богородица</span></div>
+          </div>
         </div>
 
         <div class="elder-card">
+          <img src="../images/gods/god-045.jpg" alt="Богиня Тара" class="elder-card__img">
+          <div class="elder-card__body">
           <div class="elder-card__top"><div class="elder-card__icon">🌊</div><div><div class="elder-card__name">Богиня Тара</div><div class="elder-card__domain">Хранительница Священных Рощ</div></div></div>
           <p class="elder-card__desc">Богиня Тара (Тарина, Тая, Табити) — младшая сестра Бога Тарха-Даждьбога, дочь Небесного Бога Перуна. Вечнопрекрасная Богиня Тара является Небесной Хранительницей Священных Рощ, Лесов, Дубрав и Священных Деревьев Великой Расы — Дуба, Кедра, Вяза, Берёзы и Ясеня. Всегда искрится добротой, любовью и нежностью.</p>
           <div class="elder-card__tags"><span class="elder-card__tag">Природа</span><span class="elder-card__tag">Священные Рощи</span><span class="elder-card__tag">Дочь Перуна</span></div>
+          </div>
         </div>
       </div>
 
@@ -173,7 +198,7 @@
         <p class="content-block__intro">Боги стихий, сезонов, ремёсел и человеческих дел. Каждый управляет своей сферой мироздания.</p>
 
         <div class="minor-grid">
-          <div class="minor-card"><div class="minor-card__icon">☀️</div><div class="minor-card__name">Даждьбог</div><div class="minor-card__domain">Бог Солнца</div><p class="minor-card__desc">Сын Сварога, податель жизни и света. Русичи называли себя «Даждьбожьи внуки». Даёт тепло, урожай, изобилие.</p></div>
+          <div class="minor-card"><img src="../images/gods/god-057.jpg" alt="Даждьбог" style="width:100%;border-radius:var(--radius);margin-bottom:10px;aspect-ratio:4/3;object-fit:cover"><div class="minor-card__name">Даждьбог</div><div class="minor-card__domain">Бог Солнца</div><p class="minor-card__desc">Сын Сварога, податель жизни и света. Русичи называли себя «Даждьбожьи внуки». Даёт тепло, урожай, изобилие.</p></div>
           <div class="minor-card"><div class="minor-card__icon">🌬</div><div class="minor-card__name">Стрибог</div><div class="minor-card__domain">Бог Ветров</div><p class="minor-card__desc">Повелитель всех ветров — от лёгкого бриза до бури. Его внуки — ветры четырёх сторон. Покровитель моряков и путников.</p></div>
           <div class="minor-card"><div class="minor-card__icon">🌅</div><div class="minor-card__name">Хорс</div><div class="minor-card__domain">Бог Солнечного Диска</div><p class="minor-card__desc">Если Даждьбог — свет и тепло, то Хорс — само солнце как небесное тело. Он ведёт солнечную колесницу по небу каждый день.</p></div>
           <div class="minor-card"><div class="minor-card__icon">🔥</div><div class="minor-card__name">Семаргл</div><div class="minor-card__domain">Огнебог · Хранитель Огня</div><p class="minor-card__desc">Вышний Бог, хранитель Вечно живого Огня. Принимает Огненные Дары и безкровные Жертвоприношения. Покровитель Чертога Небесного Змея во Сварожьем Круге. Призывают при лечении заболевших.</p></div>
