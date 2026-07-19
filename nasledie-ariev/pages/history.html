@@ -64,6 +64,43 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+
+    /* ═══ БЛОКИ СТАТЕЙ ═══ */
+    .articles-section{margin-top:64px;padding-top:48px;border-top:1px solid var(--border)}
+    .articles-section__title{font-family:var(--font-head);font-size:1.6rem;color:var(--text);text-align:center;margin-bottom:8px}
+    .articles-section__sub{text-align:center;color:var(--text-muted);font-size:0.9rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+    .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px}
+    @media(max-width:900px){.articles-grid{grid-template-columns:1fr}}
+    .article-block{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:28px 24px;overflow:hidden}
+    .article-block__head{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+    .article-block__icon{font-size:1.4rem}
+    .article-block__name{font-family:var(--font-head);font-size:1rem;color:var(--gold)}
+    .article-block__count{margin-left:auto;font-size:0.7rem;color:var(--text-muted);background:rgba(184,148,46,0.08);padding:4px 10px;border-radius:20px}
+    .ha-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;cursor:pointer;transition:all 0.3s}
+    .ha-item:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+    .ha-item__num{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:0.72rem;color:#fff;font-weight:900}
+    .ha-item__info{flex:1;min-width:0}
+    .ha-item__title{font-family:var(--font-head);font-size:0.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ha-item__status{font-size:0.68rem;color:var(--text-muted);opacity:0.6}
+    .ha-item__arrow{font-size:0.8rem;color:var(--gold);opacity:0.4;transition:all 0.3s}
+    .ha-item:hover .ha-item__arrow{opacity:1;transform:translateX(4px)}
+    .ha-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
+    .ha-modal.active{display:flex}
+    .ha-modal__box{background:var(--bg);border:1px solid var(--gold);border-radius:16px;padding:48px;max-width:820px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.15);position:relative;animation:modalIn 0.3s ease;margin:40px auto;max-height:calc(100vh - 80px);overflow-y:auto}
+    @keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .ha-modal__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--text-muted);cursor:pointer;background:none;border:none;font-family:inherit;transition:color 0.2s}
+    .ha-modal__close:hover{color:var(--gold)}
+    .ha-modal__cat{font-family:var(--font-head);font-size:0.72rem;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+    .ha-modal__title{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:16px}
+    .ha-modal__text{font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:24px}
+    .ha-modal__text strong{color:var(--gold)}
+    .ha-modal__content{display:none;text-align:left;border-top:1px solid var(--border);padding-top:24px;margin-top:8px}
+    .ha-modal__content.has-content{display:block}
+    .ha-modal__content img{max-width:100%;border-radius:var(--radius);margin:12px 0}
+    .ha-body{font-size:0.95rem;color:var(--text);line-height:1.9;word-wrap:break-word}
+    .ha-body img{max-width:100%;height:auto;border-radius:8px;margin:12px 0;display:block}
+    .ha-body p{margin-bottom:10px}
+    .ha-body b,.ha-body strong{color:var(--gold)}
   </style>
 </head>
 <body>
@@ -186,6 +223,87 @@
         </div>
       </div>
 
+      <!-- ═══ СТАТЬИ: СОБЫТИЯ · МИФЫ · ЛЕГЕНДЫ ═══ -->
+      <div class="articles-section">
+        <h2 class="articles-section__title">📖 Материалы и Статьи</h2>
+        <p class="articles-section__sub">Углублённые статьи по трём направлениям. Нажми на строку, чтобы прочитать или написать статью.</p>
+
+        <div class="articles-grid">
+
+          <!-- СОБЫТИЯ -->
+          <div class="article-block">
+            <div class="article-block__head">
+              <span class="article-block__icon">⚔️</span>
+              <span class="article-block__name">События</span>
+              <span class="article-block__count">10 статей</span>
+            </div>
+            <div class="ha-item" onclick="openArticle('events',1)"><div class="ha-item__num">1</div><div class="ha-item__info"><div class="ha-item__title">Статья 1</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',2)"><div class="ha-item__num">2</div><div class="ha-item__info"><div class="ha-item__title">Статья 2</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',3)"><div class="ha-item__num">3</div><div class="ha-item__info"><div class="ha-item__title">Статья 3</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',4)"><div class="ha-item__num">4</div><div class="ha-item__info"><div class="ha-item__title">Статья 4</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',5)"><div class="ha-item__num">5</div><div class="ha-item__info"><div class="ha-item__title">Статья 5</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',6)"><div class="ha-item__num">6</div><div class="ha-item__info"><div class="ha-item__title">Статья 6</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',7)"><div class="ha-item__num">7</div><div class="ha-item__info"><div class="ha-item__title">Статья 7</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',8)"><div class="ha-item__num">8</div><div class="ha-item__info"><div class="ha-item__title">Статья 8</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',9)"><div class="ha-item__num">9</div><div class="ha-item__info"><div class="ha-item__title">Статья 9</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('events',10)"><div class="ha-item__num">10</div><div class="ha-item__info"><div class="ha-item__title">Статья 10</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+          </div>
+
+          <!-- МИФЫ -->
+          <div class="article-block">
+            <div class="article-block__head">
+              <span class="article-block__icon">🐉</span>
+              <span class="article-block__name">Мифы</span>
+              <span class="article-block__count">10 статей</span>
+            </div>
+            <div class="ha-item" onclick="openArticle('myths',1)"><div class="ha-item__num">1</div><div class="ha-item__info"><div class="ha-item__title">Статья 1</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',2)"><div class="ha-item__num">2</div><div class="ha-item__info"><div class="ha-item__title">Статья 2</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',3)"><div class="ha-item__num">3</div><div class="ha-item__info"><div class="ha-item__title">Статья 3</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',4)"><div class="ha-item__num">4</div><div class="ha-item__info"><div class="ha-item__title">Статья 4</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',5)"><div class="ha-item__num">5</div><div class="ha-item__info"><div class="ha-item__title">Статья 5</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',6)"><div class="ha-item__num">6</div><div class="ha-item__info"><div class="ha-item__title">Статья 6</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',7)"><div class="ha-item__num">7</div><div class="ha-item__info"><div class="ha-item__title">Статья 7</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',8)"><div class="ha-item__num">8</div><div class="ha-item__info"><div class="ha-item__title">Статья 8</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',9)"><div class="ha-item__num">9</div><div class="ha-item__info"><div class="ha-item__title">Статья 9</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('myths',10)"><div class="ha-item__num">10</div><div class="ha-item__info"><div class="ha-item__title">Статья 10</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+          </div>
+
+          <!-- ЛЕГЕНДЫ -->
+          <div class="article-block">
+            <div class="article-block__head">
+              <span class="article-block__icon">🌟</span>
+              <span class="article-block__name">Легенды</span>
+              <span class="article-block__count">10 статей</span>
+            </div>
+            <div class="ha-item" onclick="openArticle('legends',1)"><div class="ha-item__num">1</div><div class="ha-item__info"><div class="ha-item__title">Статья 1</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',2)"><div class="ha-item__num">2</div><div class="ha-item__info"><div class="ha-item__title">Статья 2</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',3)"><div class="ha-item__num">3</div><div class="ha-item__info"><div class="ha-item__title">Статья 3</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',4)"><div class="ha-item__num">4</div><div class="ha-item__info"><div class="ha-item__title">Статья 4</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',5)"><div class="ha-item__num">5</div><div class="ha-item__info"><div class="ha-item__title">Статья 5</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',6)"><div class="ha-item__num">6</div><div class="ha-item__info"><div class="ha-item__title">Статья 6</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',7)"><div class="ha-item__num">7</div><div class="ha-item__info"><div class="ha-item__title">Статья 7</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',8)"><div class="ha-item__num">8</div><div class="ha-item__info"><div class="ha-item__title">Статья 8</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',9)"><div class="ha-item__num">9</div><div class="ha-item__info"><div class="ha-item__title">Статья 9</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+            <div class="ha-item" onclick="openArticle('legends',10)"><div class="ha-item__num">10</div><div class="ha-item__info"><div class="ha-item__title">Статья 10</div><div class="ha-item__status">Ожидает публикации</div></div><div class="ha-item__arrow">→</div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Модальное окно статьи -->
+      <div class="ha-modal" id="haModal">
+        <div class="ha-modal__box">
+          <button class="ha-modal__close" onclick="closeArticle()">✕</button>
+          <div class="ha-modal__cat" id="haCat"></div>
+          <div class="ha-modal__title" id="haTitle"></div>
+          <div class="ha-modal__text" id="haPlaceholder">
+            <strong>Статья ещё не опубликована.</strong><br><br>
+            Войди в режим редактора (⚙ в футере), чтобы написать статью.
+          </div>
+          <div class="ha-modal__content" id="haContent"></div>
+        </div>
+      </div>
+
       <!-- ═══ CTA ═══ -->
       <div class="history-cta">
         <p>Узнайте больше о богах, которым поклонялись наши предки, и традициях, которые они хранили веками.</p>
@@ -218,6 +336,160 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+  (function(){
+    var STORAGE_KEY = 'nasledie_history_articles';
+    var ADMIN_KEY = 'nasledie_admin';
+    var isAdmin = localStorage.getItem(ADMIN_KEY) === '1';
+    var CAT_NAMES = {events:'События',myths:'Мифы',legends:'Легенды'};
+    var CAT_ICONS = {events:'⚔️',myths:'🐉',legends:'🌟'};
+
+    function load(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}} }
+    function save(d){ localStorage.setItem(STORAGE_KEY,JSON.stringify(d)) }
+    function key(cat,num){ return cat+'_'+num }
+    function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+    function updateStatuses(){
+      var data = load();
+      document.querySelectorAll('.ha-item').forEach(function(item){
+        var onclick = item.getAttribute('onclick');
+        var m = onclick.match(/openArticle\('(\w+)',(\d+)\)/);
+        if(!m) return;
+        var k = key(m[1],m[2]);
+        var d = data[k];
+        var titleEl = item.querySelector('.ha-item__title');
+        var statusEl = item.querySelector('.ha-item__status');
+        if(d && d.title){
+          titleEl.textContent = d.title;
+          statusEl.textContent = '✓ Опубликовано';
+          statusEl.style.opacity = '1';
+          statusEl.style.color = 'var(--gold)';
+        }
+      });
+    }
+
+    window.openArticle = function(cat,num){
+      var data = load();
+      var d = data[key(cat,num)];
+      document.getElementById('haCat').textContent = CAT_NAMES[cat]+' · Статья '+num;
+      var content = document.getElementById('haContent');
+      var placeholder = document.getElementById('haPlaceholder');
+      var titleEl = document.getElementById('haTitle');
+
+      if(d && (d.body || d.title)){
+        titleEl.textContent = d.title || ('Статья '+num);
+        content.innerHTML = '<div class="ha-body">'+d.body+'</div>';
+        content.classList.add('has-content');
+        placeholder.style.display = 'none';
+      } else {
+        titleEl.textContent = 'Статья '+num;
+        content.innerHTML = '';
+        content.classList.remove('has-content');
+        placeholder.style.display = '';
+      }
+
+      var oldBar = document.getElementById('haAdminBar');
+      if(oldBar) oldBar.remove();
+      if(isAdmin){
+        var bar = document.createElement('div');
+        bar.id = 'haAdminBar';
+        bar.style.cssText = 'margin-top:20px;padding-top:16px;border-top:1px dashed var(--gold);text-align:center';
+        bar.innerHTML = '<button onclick="window.__editArticle(\''+cat+'\','+num+')" class="btn btn--ghost" style="font-size:0.8rem">✏️ Редактировать статью</button>';
+        document.querySelector('.ha-modal__box').appendChild(bar);
+      }
+
+      document.getElementById('haModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeArticle = function(){
+      document.getElementById('haModal').classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    document.getElementById('haModal').addEventListener('click',function(e){
+      if(e.target===this) closeArticle();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape' && document.getElementById('haModal').classList.contains('active')) closeArticle();
+    });
+
+    window.__editArticle = function(cat,num){
+      var data = load();
+      var d = data[key(cat,num)] || {};
+      var box = document.querySelector('.ha-modal__box');
+
+      box.innerHTML = '<button class="ha-modal__close" onclick="closeArticle()">✕</button>'
+        +'<div style="text-align:left;padding:4px">'
+        +'<h3 style="font-family:var(--font-head);color:var(--gold);margin-bottom:16px">✏️ '+CAT_NAMES[cat]+' — Статья '+num+'</h3>'
+        +'<label style="display:block;font-size:0.78rem;color:var(--text-muted);margin-bottom:4px">Название статьи</label>'
+        +'<input id="haEdTitle" value="'+esc(d.title||'')+'" placeholder="Название статьи" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.92rem;margin-bottom:16px;font-family:inherit;background:var(--bg-2);color:var(--text);box-sizing:border-box">'
+        +'<label style="display:block;font-size:0.78rem;color:var(--text-muted);margin-bottom:4px">Текст статьи <span style="opacity:0.6">(вставляй из Word — форматирование сохранится. Скриншоты через Ctrl+V)</span></label>'
+        +'<div id="haEdBody" contenteditable="true" style="width:100%;min-height:300px;max-height:50vh;overflow-y:auto;padding:14px;border:1px solid var(--border);border-radius:8px;font-size:0.92rem;margin-bottom:16px;font-family:inherit;background:var(--bg-2);color:var(--text);line-height:1.8;box-sizing:border-box;outline:none;cursor:text">'+(d.body||'<p style="color:var(--text-muted);opacity:0.5">Вставь текст статьи сюда...</p>')+'</div>'
+        +'<div style="display:flex;gap:10px;flex-wrap:wrap">'
+        +'<button id="haEdSave" class="btn btn--primary" style="font-size:0.85rem">💾 Сохранить</button>'
+        +'<button id="haEdCancel" class="btn btn--ghost" style="font-size:0.85rem">Отмена</button>'
+        +'<button id="haEdDelete" class="btn btn--ghost" style="font-size:0.85rem;color:#c44">🗑 Очистить</button>'
+        +'</div></div>';
+
+      var edBody = document.getElementById('haEdBody');
+
+      edBody.addEventListener('focus',function(){
+        if(edBody.querySelector('p[style*="opacity:0.5"]')) edBody.innerHTML='';
+      });
+
+      edBody.addEventListener('paste',function(e){
+        if(edBody.querySelector('p[style*="opacity:0.5"]')) edBody.innerHTML='';
+        var clip=e.clipboardData||window.clipboardData;
+        if(!clip) return;
+        var imgs=[];
+        if(clip.files&&clip.files.length){
+          for(var i=0;i<clip.files.length;i++){
+            if(clip.files[i].type.indexOf('image/')===0) imgs.push(clip.files[i]);
+          }
+        }
+        var hasH=false;
+        if(clip.types){for(var j=0;j<clip.types.length;j++){if(clip.types[j]==='text/html')hasH=true}}
+        if(imgs.length&&!hasH){
+          e.preventDefault();
+          imgs.forEach(function(f){
+            var r=new FileReader();
+            r.onload=function(ev){document.execCommand('insertHTML',false,'<img src="'+ev.target.result+'" style="max-width:100%;border-radius:8px;margin:8px 0;display:block">')};
+            r.readAsDataURL(f);
+          });
+          return;
+        }
+        if(hasH){
+          e.preventDefault();
+          var html=clip.getData('text/html');
+          html=html.replace(/<!--[\s\S]*?-->/g,'').replace(/<o:p>[\s\S]*?<\/o:p>/gi,'').replace(/class="Mso[^"]*"/gi,'').replace(/style="mso-[^"]*"/gi,'');
+          html=html.replace(/<img[^>]*src="file:\/\/\/[^"]*"[^>]*\/?>/gi,'');
+          html=html.replace(/<v:[^>]*>[\s\S]*?<\/v:[^>]*>/gi,'');
+          html=html.replace(/<!\[if[^>]*>[\s\S]*?<!\[endif\]>/gi,'');
+          document.execCommand('insertHTML',false,html);
+        }
+      });
+
+      document.getElementById('haEdSave').onclick=function(){
+        var t=document.getElementById('haEdTitle').value.trim();
+        var b=edBody.innerHTML.trim();
+        if(b.indexOf('opacity:0.5')!==-1&&b.indexOf('Вставь текст')!==-1) b='';
+        if(!t&&!b){alert('Введите название или текст');return}
+        data[key(cat,num)]={title:t,body:b,updated:new Date().toISOString()};
+        save(data);
+        updateStatuses();
+        closeArticle();
+        openArticle(cat,num);
+      };
+      document.getElementById('haEdCancel').onclick=function(){closeArticle();openArticle(cat,num)};
+      document.getElementById('haEdDelete').onclick=function(){
+        if(confirm('Очистить статью?')){delete data[key(cat,num)];save(data);updateStatuses();closeArticle();openArticle(cat,num)}
+      };
+    };
+
+    updateStatuses();
+  })();
+  </script>
   <script src="../js/page-editor.js" defer></script>
 </body>
 </html>
