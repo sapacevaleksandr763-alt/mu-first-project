@@ -121,9 +121,8 @@
       }
     });
 
-    // При вставке из Word — обработать вставленные изображения
+    // При вставке из Word — обработать содержимое
     edBody.addEventListener('paste', function(e){
-      // Удалить плейсхолдер если есть
       if(edBody.querySelector('p[style*="opacity:0.5"]')){
         edBody.innerHTML = '';
       }
@@ -131,58 +130,73 @@
       var clipData = e.clipboardData || window.clipboardData;
       if(!clipData) return;
 
-      // Если есть файлы-изображения в буфере (скриншот, копия из Paint и т.д.)
-      var hasFiles = false;
+      // Собрать base64-картинки из clipboard files (скриншоты, Paint и т.д.)
+      var imgFiles = [];
       if(clipData.files && clipData.files.length){
         for(var i = 0; i < clipData.files.length; i++){
-          var file = clipData.files[i];
-          if(file.type.indexOf('image/') === 0){
-            hasFiles = true;
-            e.preventDefault();
-            var reader = new FileReader();
-            reader.onload = function(ev){
-              var img = document.createElement('img');
-              img.src = ev.target.result;
-              img.style.cssText = 'max-width:100%;border-radius:8px;margin:8px 0;display:block';
-              var sel = window.getSelection();
-              if(sel.rangeCount){
-                var range = sel.getRangeAt(0);
-                range.deleteContents();
-                range.insertNode(img);
-                range.setStartAfter(img);
-                sel.removeAllRanges();
-                sel.addRange(range);
-              } else {
-                edBody.appendChild(img);
-              }
-            };
-            reader.readAsDataURL(file);
+          if(clipData.files[i].type.indexOf('image/') === 0){
+            imgFiles.push(clipData.files[i]);
           }
         }
       }
 
-      // Если есть HTML в буфере (копия из Word) — вставить как HTML
-      if(!hasFiles && clipData.types){
-        var hasHtml = false;
+      // Если ТОЛЬКО файлы-картинки (без HTML) — вставить как base64
+      var hasHtml = false;
+      if(clipData.types){
         for(var j = 0; j < clipData.types.length; j++){
           if(clipData.types[j] === 'text/html') hasHtml = true;
         }
-        if(hasHtml){
-          e.preventDefault();
-          var htmlContent = clipData.getData('text/html');
-          // Очистить мусорные Word-стили, но сохранить форматирование и изображения
-          htmlContent = htmlContent
-            .replace(/<!--[\s\S]*?-->/g, '')
-            .replace(/<o:p>[\s\S]*?<\/o:p>/gi, '')
-            .replace(/class="Mso[^"]*"/gi, '')
-            .replace(/style="mso-[^"]*"/gi, '');
+      }
 
-          // Конвертировать file:/// ссылки на изображения — их нельзя показать в браузере,
-          // но оставим тег img с предупреждением
-          htmlContent = htmlContent.replace(/<img[^>]*src="file:\/\/\/[^"]*"[^>]*>/gi, function(match){
-            return match.replace(/src="file:\/\/\/([^"]*)"/i, 'src="" alt="[Изображение: $1 — вставь вручную]" style="max-width:100%;border:2px dashed var(--gold);padding:20px;text-align:center;border-radius:8px;background:rgba(184,148,46,0.05)"');
+      if(imgFiles.length && !hasHtml){
+        e.preventDefault();
+        imgFiles.forEach(function(file){
+          var reader = new FileReader();
+          reader.onload = function(ev){
+            document.execCommand('insertHTML', false,
+              '<img src="'+ev.target.result+'" style="max-width:100%;border-radius:8px;margin:8px 0;display:block">');
+          };
+          reader.readAsDataURL(file);
+        });
+        return;
+      }
+
+      // HTML из Word — вставить с очисткой
+      if(hasHtml){
+        e.preventDefault();
+        var htmlContent = clipData.getData('text/html');
+
+        // Очистить Word-мусор
+        htmlContent = htmlContent
+          .replace(/<!--[\s\S]*?-->/g, '')
+          .replace(/<o:p>[\s\S]*?<\/o:p>/gi, '')
+          .replace(/class="Mso[^"]*"/gi, '')
+          .replace(/style="mso-[^"]*"/gi, '');
+
+        // Удалить file:/// картинки — браузер не может их показать
+        htmlContent = htmlContent.replace(/<img[^>]*src="file:\/\/\/[^"]*"[^>]*\/?>/gi, '');
+
+        // Также удалить v:imagedata и VML-теги от Word
+        htmlContent = htmlContent.replace(/<v:[^>]*>[\s\S]*?<\/v:[^>]*>/gi, '');
+        htmlContent = htmlContent.replace(/<!\[if[^>]*>[\s\S]*?<!\[endif\]>/gi, '');
+
+        // Вставить base64-картинки из clipboard files в начало (Word иногда кладёт и HTML, и файлы)
+        if(imgFiles.length){
+          var imgPromises = [];
+          imgFiles.forEach(function(file){
+            imgPromises.push(new Promise(function(resolve){
+              var reader = new FileReader();
+              reader.onload = function(ev){ resolve(ev.target.result); };
+              reader.readAsDataURL(file);
+            }));
           });
-
+          Promise.all(imgPromises).then(function(srcs){
+            var imgTags = srcs.map(function(s){
+              return '<img src="'+s+'" style="max-width:100%;border-radius:8px;margin:8px 0;display:block">';
+            }).join('');
+            document.execCommand('insertHTML', false, imgTags + htmlContent);
+          });
+        } else {
           document.execCommand('insertHTML', false, htmlContent);
         }
       }
