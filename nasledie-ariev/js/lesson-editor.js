@@ -41,7 +41,10 @@
     if(d && (d.body || d.title)){
       title.textContent = d.title || ('Урок ' + num);
       var html = '';
-      if(d.body) html += '<div class="lesson-body">' + d.body + '</div>';
+      if(d.body){
+        var bodyHtml = d.body.indexOf('<') === -1 ? d.body.replace(/\n/g,'<br>') : d.body;
+        html += '<div class="lesson-body" style="font-size:0.95rem;color:var(--text);line-height:1.9;white-space:pre-line;word-wrap:break-word">' + bodyHtml + '</div>';
+      }
       if(d.videoUrl) html += '<div style="margin:16px 0"><video controls style="max-width:100%;border-radius:8px"><source src="'+escHtml(d.videoUrl)+'"></video></div>';
       if(d.videoEmbed) html += '<div style="margin:16px 0">'+d.videoEmbed+'</div>';
       if(d.pdfUrl) html += '<a href="'+escHtml(d.pdfUrl)+'" target="_blank" class="pdf-link">📄 Скачать PDF-материал</a>';
