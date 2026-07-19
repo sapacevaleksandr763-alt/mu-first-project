@@ -46,7 +46,7 @@
     @media(max-width:768px){.course-info{grid-template-columns:1fr;text-align:center}.lesson-modal__box{padding:32px 24px}}
   </style>
 </head>
-<body>
+<body data-course="nasledie">
   <header class="header scrolled" id="header">
     <div class="container header__inner">
       <a href="../index.html" class="logo"><span class="logo__symbol">᛭</span><span class="logo__text">Путь Предков</span></a>
@@ -223,6 +223,7 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
+  <script src="../js/lesson-editor.js" defer></script>
   <script>
   var lessonData = {};
   function openLesson(num) {
