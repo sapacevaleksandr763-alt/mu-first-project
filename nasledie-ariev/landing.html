@@ -808,12 +808,20 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* планшеты */
+    @media (max-width: 768px) {
+      .about-channel__inner { grid-template-columns: 1fr; gap: 24px; }
+      .reviews__grid { grid-template-columns: 1fr; }
+      .topics { grid-template-columns: 1fr; }
+      .card { padding: 48px 24px; }
+    }
     /* мобильные */
     @media (max-width: 480px) {
       .card { padding: 36px 20px; }
       .name { font-size: 1.4rem; }
       .hero-video__actions { flex-direction: column; align-items: center; }
       .btn-hero { width: 100%; max-width: 280px; justify-content: center; }
+      .offers { grid-template-columns: 1fr; }
     }
   </style>
 </head>

@@ -56,3 +56,20 @@
 .page-main{
   padding:64px 0;
 }
+
+/* ═══ RESPONSIVE — PAGES ═══ */
+@media(max-width:768px){
+  .page-hero{min-height:40vh}
+  .page-hero__content{padding:80px 0 32px}
+  .page-hero__title{font-size:clamp(1.5rem,6vw,2.2rem)}
+  .page-hero__sub{font-size:0.9rem}
+  .page-hero__rune{font-size:2rem}
+  .page-main{padding:32px 0}
+}
+
+@media(max-width:480px){
+  .page-hero{min-height:35vh}
+  .page-hero__content{padding:64px 0 24px}
+  .page-hero__title{font-size:1.4rem}
+  .page-hero__sub{font-size:0.85rem;line-height:1.6}
+}
