@@ -11,12 +11,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold:   #c9a84c;
-      --bg:     #0d0804;
-      --bg-2:   #130c05;
-      --bg-3:   #1c1008;
-      --text:   #ede0c8;
-      --muted:  #7a6a50;
+      --gold:   #b8942e;
+      --gold-light: #d4af37;
+      --gold-dark: #8a6a1a;
+      --bg:     #f5f0e8;
+      --bg-2:   #ece5d8;
+      --bg-3:   #e2d9ca;
+      --text:   #2c1e0f;
+      --muted:  #6b5a45;
       --radius: 14px;
     }
 
@@ -35,7 +37,7 @@
       background-image: url('images/volkhv.jpg');
       background-size: cover;
       background-position: center top;
-      filter: brightness(0.15) saturate(0.5);
+      filter: brightness(0.85) saturate(0.4) opacity(0.15);
       pointer-events: none;
       z-index: 0;
     }
@@ -45,7 +47,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(13, 8, 4, 0.92);
+      background: rgba(245, 240, 232, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(201, 168, 76, 0.15);
       padding: 16px 24px;
@@ -140,7 +142,7 @@
       border-radius: var(--radius);
       overflow: hidden;
       margin-bottom: 32px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     }
 
     .player video {
@@ -210,7 +212,7 @@
     .playlist__item:hover,
     .playlist__item.active {
       border-color: rgba(201, 168, 76, 0.5);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.4), 0 0 16px rgba(201,168,76,0.1);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08), 0 0 16px rgba(201,168,76,0.06);
       transform: translateY(-3px);
     }
 
@@ -240,19 +242,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0,0,0,0.25);
       transition: background 0.2s;
     }
 
     .playlist__item:hover .playlist__play,
     .playlist__item.active .playlist__play {
-      background: rgba(0,0,0,0.1);
+      background: rgba(0,0,0,0.08);
     }
 
     .playlist__play svg {
       width: 40px;
       height: 40px;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
     }
 
     .playlist__label {

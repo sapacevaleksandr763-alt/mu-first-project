@@ -12,8 +12,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/style.css?v=3" />
+  <link rel="stylesheet" href="../css/pages.css?v=3" />
   <style>
     .veda-card{
       background:var(--bg-2);
@@ -64,6 +64,26 @@
       line-height:1.7;
     }
     .veda-card__quote strong{color:var(--gold);font-style:normal}
+    .veda-card__buy{
+      display:inline-flex;align-items:center;gap:8px;
+      margin-top:16px;padding:10px 20px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      color:#fff;font-family:var(--font-head);font-size:0.78rem;
+      letter-spacing:0.06em;border-radius:var(--radius);
+      text-decoration:none;transition:all 0.3s;
+    }
+    .veda-card__buy:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,148,46,0.3)}
+    .veda-card__buy svg{width:14px;height:14px;fill:currentColor}
+    .veda-card__shops{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;
+    }
+    .veda-card__shop{
+      display:inline-flex;align-items:center;gap:5px;
+      padding:6px 14px;border:1px solid var(--border);border-radius:20px;
+      font-size:0.72rem;color:var(--text-muted);text-decoration:none;
+      transition:all 0.3s;
+    }
+    .veda-card__shop:hover{border-color:var(--gold);color:var(--gold);background:rgba(184,148,46,0.06)}
     .vedas-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -123,6 +143,10 @@
           <div class="veda-card__body">
             <p class="veda-card__desc">Самый известный и дискуссионный памятник. Написана на деревянных дощечках, найденных (по легенде) в 1919 году. Описывает историю славян за 1500 лет — от праотца Богумира до IX века. Академическая наука считает её подделкой XX века, но для родноверов это священный текст, сохранивший голос предков.</p>
             <div class="veda-card__quote"><strong>Из текста:</strong> «Мы — славяне, и славим Богов наших, и никогда не просим, и никогда не молим о благах для себя. И славим силу Их, ибо они — наши заступники и хранители.»</div>
+            <div class="veda-card__shops">
+              <a href="https://www.labirint.ru/books/595247/" target="_blank" class="veda-card__shop">📚 Лабиринт</a>
+              <a href="https://www.chitai-gorod.ru/product/velesova-kniga-izd-mrrk-muzeum-2601541" target="_blank" class="veda-card__shop">📖 Читай-город</a>
+            </div>
           </div>
         </div>
 
@@ -137,6 +161,10 @@
           <div class="veda-card__body">
             <p class="veda-card__desc">Поэтическое изложение славянской космогонии — как был сотворён мир, как родились боги, как появились люди. Птица Гамаюн — вещая птица, знающая всё обо всём. Кто услышит её песню — обретёт мудрость. Текст восстановлен Александром Асовым на основе фольклорных источников.</p>
             <div class="veda-card__quote"><strong>Из текста:</strong> «Расскажи, Гамаюн, птица вещая, о рождении Рода небесного, расскажи о делах златокрылых Богов. Ты поведай нам о рождении мира, расскажи, Гамаюн, как он сотворён.»</div>
+            <div class="veda-card__shops">
+              <a href="https://moscowbooks.ru/book/566925/" target="_blank" class="veda-card__shop">📚 МосковаBooks</a>
+              <a href="https://veles.bz/products/pesni-ptitsy-gamayun-kniga0060" target="_blank" class="veda-card__shop">📖 Veles.bz</a>
+            </div>
           </div>
         </div>
 
@@ -151,6 +179,10 @@
           <div class="veda-card__body">
             <p class="veda-card__desc">Собрание мифов о годовом круге — от зимнего солнцестояния (Коляды) через весну, лето, осень и обратно к зиме. Каждый миф привязан к сезону и празднику. Коляда — бог молодого солнца, рождающегося в самую длинную ночь. Его книга — это календарь Вселенной, записанный в образах.</p>
             <div class="veda-card__quote"><strong>Суть:</strong> Годовой цикл как история богов — рождение Солнца (Коляда), расцвет (Ярило), пик силы (Купало), угасание (Авсень) и новое рождение. Вечный круговорот жизни.</div>
+            <div class="veda-card__shops">
+              <a href="https://www.labirint.ru/books/27801/" target="_blank" class="veda-card__shop">📚 Лабиринт</a>
+              <a href="https://my-shop.ru/shop/product/2333497.html" target="_blank" class="veda-card__shop">📖 My-shop</a>
+            </div>
           </div>
         </div>
 
@@ -165,6 +197,10 @@
           <div class="veda-card__body">
             <p class="veda-card__desc">Духовный стих в форме вопросов и ответов: «Откуда пошёл белый свет? Откуда солнце красное?» Голубиная (Глубинная) Книга упала с неба — в ней все ответы мироздания. Уникальный пример двоеверия: в ней переплетены дохристианские образы с христианскими наслоениями.</p>
             <div class="veda-card__quote"><strong>Из текста:</strong> «Восходила книга Голубиная, Голубиная книга Божественная. В долину, в ширину она сорок локот, поперёк-то книга двадцать локот, в толщину-то книга тридцать локот.»</div>
+            <div class="veda-card__shops">
+              <a href="https://www.labirint.ru/books/176233/" target="_blank" class="veda-card__shop">📚 Лабиринт</a>
+              <a href="https://book24.ru/product/golubinaya-kniga-slavyanskaya-kosmogoniya-1542970/" target="_blank" class="veda-card__shop">📖 Book24</a>
+            </div>
           </div>
         </div>
 
@@ -179,6 +215,10 @@
           <div class="veda-card__body">
             <p class="veda-card__desc">Литературный памятник, в котором сохранились языческие образы: Боян — внук Велеса, Дева-обида, Стрибожьи внуки (ветры), Даждьбожьи внуки (русичи). Хотя текст написан в христианскую эпоху, автор свободно обращается к богам предков — свидетельство живого двоеверия в XII веке.</p>
             <div class="veda-card__quote"><strong>Из текста:</strong> «Боян бо вещий, аще кому хотяше песнь творити, то растекашется мыслию по древу, серым вълком по земли, шизым орлом под облакы.»</div>
+            <div class="veda-card__shops">
+              <a href="https://www.chitai-gorod.ru/product/slovo-o-polku-igoreve-2218773" target="_blank" class="veda-card__shop">📚 Читай-город</a>
+              <a href="https://azbooka.ru/books/slovo-o-polky-igoreve" target="_blank" class="veda-card__shop">📖 Азбука</a>
+            </div>
           </div>
         </div>
 
@@ -193,6 +233,39 @@
           <div class="veda-card__body">
             <p class="veda-card__desc">Современные попытки восстановить целостную систему славянского мировоззрения. Включают описание 16 чертогов Сварожьего Круга, систему летоисчисления, тотемных животных, обрядовый календарь. Не имеют статуса исторических документов, но формируют живую практику родноверия.</p>
             <div class="veda-card__quote"><strong>Суть:</strong> Сварожий Круг — славянский зодиак из 16 чертогов (вместо 12). Каждый чертог связан с богом-покровителем и священным древом. Даёт основу для славянской астрологии.</div>
+            <div class="veda-card__shops">
+              <a href="https://www.labirint.ru/books/795701/" target="_blank" class="veda-card__shop">📚 Лабиринт</a>
+              <a href="https://www.ozon.ru/category/kniga-slavyanskie-vedy/" target="_blank" class="veda-card__shop">📖 OZON</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="veda-card" style="border-color:rgba(201,168,76,0.35);box-shadow:0 4px 24px rgba(184,148,46,0.08)">
+          <div class="veda-card__header" style="background:rgba(201,168,76,0.08)">
+            <div class="veda-card__icon">⚡</div>
+            <div>
+              <div class="veda-card__name">Славяно-Арийские Веды</div>
+              <div class="veda-card__period">Ред. А.Ю. Хиневич · Изд. «Асгардъ», Омск</div>
+            </div>
+          </div>
+          <div class="veda-card__body">
+            <p class="veda-card__desc">Собрание из пяти книг, изданных Древнерусской Инглиистической Церковью Православных Староверов-Инглингов (Омское духовное училище). Включает древние Сантии (тексты, записанные рунами на золотых пластинах), Харатьи (тексты на пергаменте) и Волхвариники. Серия охватывает космологию, историю расселения народов, духовные заповеди и обрядовую практику.</p>
+            <div style="margin:16px 0 6px;font-family:var(--font-head);font-size:0.82rem;color:var(--gold);letter-spacing:0.04em;">5 книг серии:</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);line-height:2">
+              📕 <strong>Книга 1.</strong> Сантии Веды Перуна (Круг Первый)<br/>
+              📗 <strong>Книга 2.</strong> Книга Света (Харатьи Света)<br/>
+              📘 <strong>Книга 3.</strong> Инглиизм (Древняя Вера)<br/>
+              📙 <strong>Книга 4.</strong> Источник Жизни (Белый Путь)<br/>
+              📓 <strong>Книга 5.</strong> Славянское Миропонимание
+            </div>
+            <div class="veda-card__quote" style="margin-top:16px"><strong>Из Сантий Перуна:</strong> «Почитайте Родителей своих и содержите их в старости, ибо как вы проявите заботу о них, тако же и о вас позаботятся чада ваши. Не берите в жёны брата — сестру свою, ибо Богов прогневите.»</div>
+            <div class="veda-card__shops" style="margin-top:14px">
+              <a href="https://www.ozon.ru/context/detail/id/3353502/" target="_blank" class="veda-card__shop">📚 OZON</a>
+              <a href="https://www.wildberries.ru/catalog/tags/slavjano-ariiskie-vedy-kniga" target="_blank" class="veda-card__shop">📦 Wildberries</a>
+              <a href="https://knigamir.com/catalog/religiya_ID2/slavyano-ariyskie-vedy-kniga-1-santii-vedy-peruna_ID6346/" target="_blank" class="veda-card__shop">🌍 Knigamir</a>
+              <a href="https://www.libex.ru/detail/book1034209.html" target="_blank" class="veda-card__shop">📖 Libex (букинист)</a>
+              <a href="https://www.alib.ru/au-hinevich/nm-slavyano_arijskie_vedy/" target="_blank" class="veda-card__shop">📜 Alib (букинист)</a>
+            </div>
           </div>
         </div>
 
