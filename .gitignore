@@ -1,10 +1,9 @@
 # Ignore nested project dependencies and build output
-russian_tutor_grade2/node_modules/
-russian_tutor_grade2/.next/
-russian_tutor_grade2/out/
-russian_tutor_grade2/.vercel/
-russian_tutor_grade2/.env*
-russian_tutor_grade2/.DS_Store
+node_modules/
+.next/
+out/
+.vercel/
+.DS_Store
 # Secrets
 .env
 *.env
@@ -16,3 +15,6 @@ agent_setup/.env
 *.swo
 .DS_Store
 Thumbs.db
+.gstack/
+english-app/
+*.tsbuildinfo
