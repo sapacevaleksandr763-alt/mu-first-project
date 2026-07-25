@@ -1,19 +1,48 @@
-/*  Lesson Editor — localStorage + JSON export/import
+/*  Lesson Editor — серверное хранение через API
     Подключается на каждой course-*.html
     Атрибут data-course="drevnerusskiy" на <body> определяет курс
 */
 (function(){
   var COURSE = document.body.getAttribute('data-course') || 'default';
-  var STORAGE_KEY = 'nasledie_lessons_' + COURSE;
+  var API = '/api/lessons';
   var ADMIN_KEY = 'nasledie_admin';
   var isAdmin = localStorage.getItem(ADMIN_KEY) === '1';
+  var lessonsCache = {};
 
-  function loadLessons(){
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e){ return {}; }
+  function loadLessonsFromServer(cb){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', API + '?course=' + encodeURIComponent(COURSE), true);
+    xhr.onload = function(){
+      if(xhr.status === 200){
+        try { lessonsCache = JSON.parse(xhr.responseText); } catch(e){ lessonsCache = {}; }
+      }
+      if(cb) cb(lessonsCache);
+    };
+    xhr.onerror = function(){ if(cb) cb(lessonsCache); };
+    xhr.send();
   }
-  function saveLessons(data){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+  function saveLessonToServer(num, lesson, cb){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', API, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function(){
+      if(xhr.status === 200){
+        if(lesson === null){ delete lessonsCache[num]; }
+        else { lessonsCache[num] = lesson; }
+      } else {
+        alert('Ошибка сохранения: ' + xhr.responseText);
+      }
+      if(cb) cb();
+    };
+    xhr.onerror = function(){
+      alert('Нет связи с сервером. Урок не сохранён.');
+      if(cb) cb();
+    };
+    xhr.send(JSON.stringify({ course: COURSE, num: num, lesson: lesson }));
   }
+
+  function loadLessons(){ return lessonsCache; }
 
   function updateListStatuses(){
     var data = loadLessons();
@@ -114,14 +143,12 @@
 
     var edBody = document.getElementById('edBody');
 
-    // Очистить плейсхолдер при фокусе
     edBody.addEventListener('focus', function(){
       if(edBody.querySelector('p[style*="opacity:0.5"]')){
         edBody.innerHTML = '';
       }
     });
 
-    // При вставке из Word — обработать содержимое
     edBody.addEventListener('paste', function(e){
       if(edBody.querySelector('p[style*="opacity:0.5"]')){
         edBody.innerHTML = '';
@@ -130,7 +157,6 @@
       var clipData = e.clipboardData || window.clipboardData;
       if(!clipData) return;
 
-      // Собрать base64-картинки из clipboard files (скриншоты, Paint и т.д.)
       var imgFiles = [];
       if(clipData.files && clipData.files.length){
         for(var i = 0; i < clipData.files.length; i++){
@@ -140,7 +166,6 @@
         }
       }
 
-      // Если ТОЛЬКО файлы-картинки (без HTML) — вставить как base64
       var hasHtml = false;
       if(clipData.types){
         for(var j = 0; j < clipData.types.length; j++){
@@ -161,26 +186,20 @@
         return;
       }
 
-      // HTML из Word — вставить с очисткой
       if(hasHtml){
         e.preventDefault();
         var htmlContent = clipData.getData('text/html');
 
-        // Очистить Word-мусор
         htmlContent = htmlContent
           .replace(/<!--[\s\S]*?-->/g, '')
           .replace(/<o:p>[\s\S]*?<\/o:p>/gi, '')
           .replace(/class="Mso[^"]*"/gi, '')
           .replace(/style="mso-[^"]*"/gi, '');
 
-        // Удалить file:/// картинки — браузер не может их показать
         htmlContent = htmlContent.replace(/<img[^>]*src="file:\/\/\/[^"]*"[^>]*\/?>/gi, '');
-
-        // Также удалить v:imagedata и VML-теги от Word
         htmlContent = htmlContent.replace(/<v:[^>]*>[\s\S]*?<\/v:[^>]*>/gi, '');
         htmlContent = htmlContent.replace(/<!\[if[^>]*>[\s\S]*?<!\[endif\]>/gi, '');
 
-        // Вставить base64-картинки из clipboard files в начало (Word иногда кладёт и HTML, и файлы)
         if(imgFiles.length){
           var imgPromises = [];
           imgFiles.forEach(function(file){
@@ -205,17 +224,20 @@
     document.getElementById('edSave').onclick = function(){
       var t = document.getElementById('edTitle').value.trim();
       var b = edBody.innerHTML.trim();
-      // Не сохранять плейсхолдер
       if(b.indexOf('opacity:0.5') !== -1 && b.indexOf('Вставь текст') !== -1) b = '';
       var v = document.getElementById('edVideo').value.trim();
       var em = document.getElementById('edEmbed').value.trim();
       var p = document.getElementById('edPdf').value.trim();
       if(!t && !b){ alert('Введите хотя бы название или текст'); return; }
-      data[num] = {title:t, body:b, videoUrl:v, videoEmbed:em, pdfUrl:p};
-      saveLessons(data);
-      updateListStatuses();
-      closeLesson();
-      openLesson(num);
+      var lesson = {title:t, body:b, videoUrl:v, videoEmbed:em, pdfUrl:p};
+      var btn = document.getElementById('edSave');
+      btn.textContent = '⏳ Сохранение...';
+      btn.disabled = true;
+      saveLessonToServer(num, lesson, function(){
+        updateListStatuses();
+        closeLesson();
+        openLesson(num);
+      });
     };
     document.getElementById('edCancel').onclick = function(){
       closeLesson();
@@ -223,11 +245,11 @@
     };
     document.getElementById('edDelete').onclick = function(){
       if(confirm('Очистить содержимое урока '+num+'?')){
-        delete data[num];
-        saveLessons(data);
-        updateListStatuses();
-        closeLesson();
-        openLesson(num);
+        saveLessonToServer(num, null, function(){
+          updateListStatuses();
+          closeLesson();
+          openLesson(num);
+        });
       }
     };
   };
@@ -245,8 +267,6 @@
     toggle.style.cssText = 'margin-top:12px;text-align:center';
     toggle.innerHTML = isAdmin
       ? '<span style="font-size:0.7rem;color:var(--gold);cursor:pointer" onclick="window.__toggleAdmin()">🔓 Режим редактора · <u>Выйти</u></span>'
-        + ' <span style="font-size:0.7rem;color:var(--text-muted);cursor:pointer;margin-left:12px" onclick="window.__exportLessons()">📦 Экспорт</span>'
-        + ' <span style="font-size:0.7rem;color:var(--text-muted);cursor:pointer;margin-left:12px" onclick="window.__importLessons()">📥 Импорт</span>'
       : '<span style="font-size:0.68rem;color:var(--text-muted);opacity:0.3;cursor:pointer" onclick="window.__toggleAdmin()">⚙</span>';
     footer.appendChild(toggle);
   }
@@ -266,69 +286,8 @@
     }
   };
 
-  window.__exportLessons = function(){
-    var allData = {};
-    for(var i = 0; i < localStorage.length; i++){
-      var k = localStorage.key(i);
-      if(k.indexOf('nasledie_lessons_') === 0){
-        allData[k] = JSON.parse(localStorage.getItem(k));
-      }
-    }
-    var blob = new Blob([JSON.stringify(allData, null, 2)], {type:'application/json'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'lessons-export.json';
-    a.click();
-  };
-
-  window.__importLessons = function(){
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
-    input.onchange = function(){
-      var file = input.files[0];
-      if(!file) return;
-      var reader = new FileReader();
-      reader.onload = function(){
-        try {
-          var imported = JSON.parse(reader.result);
-          Object.keys(imported).forEach(function(k){
-            localStorage.setItem(k, JSON.stringify(imported[k]));
-          });
-          alert('Импорт завершён! Страница обновится.');
-          location.reload();
-        } catch(e){
-          alert('Ошибка чтения файла: ' + e.message);
-        }
-      };
-      reader.readAsText(file);
-    };
-    input.click();
-  };
-
-  // Auto-load from bundled JSON if exists
-  function loadBundled(){
-    var script = document.querySelector('script[data-lessons-json]');
-    if(!script) return;
-    var url = script.getAttribute('data-lessons-json');
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onload = function(){
-      if(xhr.status === 200){
-        try {
-          var json = JSON.parse(xhr.responseText);
-          var key = 'nasledie_lessons_' + COURSE;
-          if(json[key] && !localStorage.getItem(key)){
-            localStorage.setItem(key, JSON.stringify(json[key]));
-            updateListStatuses();
-          }
-        } catch(e){}
-      }
-    };
-    xhr.send();
-  }
-
-  updateListStatuses();
+  loadLessonsFromServer(function(){
+    updateListStatuses();
+  });
   addAdminToggle();
-  loadBundled();
 })();
