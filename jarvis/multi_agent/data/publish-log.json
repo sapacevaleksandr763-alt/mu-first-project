@@ -1,0 +1,64 @@
+{
+  "publications": [
+    {
+      "post_id": "w1-mon",
+      "date": "2026-07-28",
+      "type": "info",
+      "topic": "Перун — громовержец и защитник Яви. Кто он в славянской традиции, какие символы ему посвящены и почему его день — четверг",
+      "published_at": "2026-07-27T10:54:34.476Z",
+      "message_id": null,
+      "success": false,
+      "error": "OpenAI API error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+      "text_length": 0,
+      "has_image": false
+    },
+    {
+      "post_id": "w1-mon",
+      "date": "2026-07-28",
+      "type": "info",
+      "topic": "Перун — громовержец и защитник Яви. Кто он в славянской традиции, какие символы ему посвящены и почему его день — четверг",
+      "published_at": "2026-07-27T10:58:24.703Z",
+      "message_id": null,
+      "success": false,
+      "error": "OpenAI API error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+      "text_length": 0,
+      "has_image": false
+    },
+    {
+      "post_id": "w1-mon",
+      "date": "2026-07-28",
+      "type": "info",
+      "topic": "Перун — громовержец и защитник Яви. Кто он в славянской традиции, какие символы ему посвящены и почему его день — четверг",
+      "published_at": "2026-07-27T11:00:28.918Z",
+      "message_id": null,
+      "success": false,
+      "error": "OpenAI API error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+      "text_length": 0,
+      "has_image": false
+    },
+    {
+      "post_id": "w1-mon",
+      "date": "2026-07-28",
+      "type": "info",
+      "topic": "Перун — громовержец и защитник Яви. Кто он в славянской традиции, какие символы ему посвящены и почему его день — четверг",
+      "published_at": "2026-07-27T11:33:13.166Z",
+      "message_id": null,
+      "success": false,
+      "error": "OpenAI API error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+      "text_length": 0,
+      "has_image": false
+    },
+    {
+      "post_id": "w1-mon",
+      "date": "2026-07-28",
+      "type": "info",
+      "topic": "Перун — громовержец и защитник Яви. Кто он в славянской традиции, какие символы ему посвящены и почему его день — четверг",
+      "published_at": "2026-07-27T11:53:47.343Z",
+      "message_id": null,
+      "success": false,
+      "error": null,
+      "text_length": 2272,
+      "has_image": false
+    }
+  ]
+}

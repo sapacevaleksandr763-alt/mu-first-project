@@ -1,24 +1,29 @@
 {
-  "name": "multi_agent",
-  "version": "1.0.0",
-  "description": "Мультиагентная система для создания и публикации контента в Telegram",
-  "main": "index.js",
+  "name": "nasledie-content-bot",
+  "version": "2.0.0",
+  "description": "Автоматическая система генерации и публикации контента в Telegram-канал @nasledieariev",
+  "main": "scheduler.js",
   "type": "module",
   "scripts": {
-    "publish": "node publish.js",
+    "start": "node scheduler.js",
+    "publish-today": "node pipeline.js",
+    "publish-dry": "node pipeline.js --dry-run",
+    "publish-post": "node pipeline.js",
     "generate-image": "node generate-image.js",
-    "pipeline": "node pipeline.js"
+    "analytics": "node analytics.js",
+    "test-gen": "node content-generator.js"
   },
   "keywords": [
     "telegram",
     "content",
     "multi-agent",
-    "dall-e"
+    "nasledie-ariev",
+    "slavic-culture"
   ],
   "author": "Alex",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.4.2",
-    "openai": "^6.47.0"
+    "node-cron": "^3.0.3"
   }
 }

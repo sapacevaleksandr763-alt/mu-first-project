@@ -61,6 +61,27 @@ export async function sendPhotoPost(imagePath, caption, channelId = CHANNEL_ID) 
   return result;
 }
 
+export async function sendVideoPost(videoPath, caption, channelId = CHANNEL_ID) {
+  console.log(`Отправка видео в ${channelId}...`);
+
+  const formData = new FormData();
+  formData.append('chat_id', channelId);
+
+  if (caption) {
+    const trimmed = caption.length > 1024 ? caption.slice(0, 1021) + '...' : caption;
+    formData.append('caption', trimmed);
+    formData.append('parse_mode', 'HTML');
+  }
+
+  const videoBuffer = await readFile(videoPath);
+  const blob = new Blob([videoBuffer], { type: 'video/mp4' });
+  formData.append('video', blob, 'video.mp4');
+
+  const result = await tgRequest('sendVideo', formData, true);
+  console.log(`Видео отправлено. Message ID: ${result.message_id}`);
+  return result;
+}
+
 export async function publishPost({ text, imagePath, channelId = CHANNEL_ID }) {
   if (imagePath && existsSync(imagePath)) {
     const captionLimit = 1024;
