@@ -13,6 +13,10 @@ const PLAN_FILE = join(__dirname, 'data', 'content-plan.json');
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const OWNER_CHAT_ID = process.env.OWNER_CHAT_ID;
 
+function getMoscowDate() {
+  return new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Moscow' });
+}
+
 async function loadPlan() {
   const raw = await readFile(PLAN_FILE, 'utf-8');
   return JSON.parse(raw);
@@ -158,7 +162,7 @@ export async function runPipeline(post, options = {}) {
 
 export async function runTodaysPosts(options = {}) {
   const plan = await loadPlan();
-  const today = new Date().toISOString().split('T')[0];
+  const today = getMoscowDate();
   const publishedIds = await getPublishedIds();
 
   const todayPosts = plan.posts.filter(p =>
@@ -183,7 +187,7 @@ export async function runTodaysPosts(options = {}) {
 
 export async function runFunnel(options = {}) {
   const plan = await loadPlan();
-  const today = new Date().toISOString().split('T')[0];
+  const today = getMoscowDate();
   const publishedIds = await getPublishedIds();
 
   const funnelPost = plan.posts.find(p =>
