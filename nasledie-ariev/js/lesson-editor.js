@@ -164,8 +164,21 @@
       title.textContent = d.title || ('Урок ' + num);
       var html = '';
       if(d.body) html += '<div class="lesson-body">' + d.body + '</div>';
-      if(d.videoUrl) html += '<div style="margin:16px 0"><video controls style="max-width:100%;border-radius:8px"><source src="'+escHtml(d.videoUrl)+'"></video></div>';
-      if(d.videoEmbed) html += '<div style="margin:16px 0;position:relative;padding-bottom:56.25%;height:0;overflow:hidden"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" src="'+extractYoutubeEmbed(d.videoEmbed)+'" allowfullscreen></iframe></div>';
+      if(d.videoUrl) {
+        html += '<div class="lesson-video">'
+          + '<div class="lesson-video__label">🎬 Видеоурок</div>'
+          + '<video controls preload="metadata" playsinline style="display:block;width:100%;background:#000;position:relative;z-index:1">'
+          + '<source src="'+escHtml(d.videoUrl)+'" type="video/mp4">'
+          + 'Ваш браузер не поддерживает видео.'
+          + '</video>'
+          + '</div>';
+      }
+      if(d.videoEmbed) {
+        html += '<div class="lesson-video">'
+          + '<div class="lesson-video__label">🎬 Видеоурок</div>'
+          + '<div class="lesson-video__embed"><iframe src="'+extractYoutubeEmbed(d.videoEmbed)+'" allowfullscreen allow="fullscreen"></iframe></div>'
+          + '</div>';
+      }
       if(d.pdfUrl) html += '<a href="'+escHtml(d.pdfUrl)+'" target="_blank" class="pdf-link">📄 Скачать PDF-материал</a>';
       if(d.pdfFiles && d.pdfFiles.length){
         d.pdfFiles.forEach(function(f){
@@ -445,7 +458,12 @@
       + '.ed-body img{max-width:100%;height:auto;border-radius:8px;margin:8px 0;display:block}'
       + '.ed-upload-btn{padding:6px 14px;border:1px solid var(--border);border-radius:6px;background:var(--bg-2);color:var(--text);font-size:0.78rem;cursor:pointer;font-family:inherit;transition:all 0.2s}'
       + '.ed-upload-btn:hover{border-color:var(--gold);color:var(--gold)}'
-      + '.ed-upload-btn:disabled{opacity:0.5;cursor:wait}';
+      + '.ed-upload-btn:disabled{opacity:0.5;cursor:wait}'
+      + '.lesson-video{margin:24px 0;border:1px solid var(--border);border-radius:12px;background:#000}'
+      + '.lesson-video__label{padding:12px 16px;background:var(--bg-2);font-family:var(--font-head);font-size:0.82rem;color:var(--gold);letter-spacing:0.05em}'
+      + '.lesson-video video{display:block;width:100%;background:#000;position:relative;z-index:1}'
+      + '.lesson-video__embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}'
+      + '.lesson-video__embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}';
     document.head.appendChild(s);
   }
 
