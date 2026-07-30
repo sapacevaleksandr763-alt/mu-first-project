@@ -54,28 +54,29 @@
 
 - Чистый HTML/CSS/JS (без фреймворков)
 - Шрифты: Cinzel (заголовки) + Raleway (текст) — Google Fonts
-- Никакого бэкенда — статический сайт
+- Бэкенд: Node.js API на порту 3500 (lessons-api.service) для хранения уроков
+- Статический сайт + серверное API для данных
 
 ## Дизайн-система
 
 ```css
 :root {
-  --gold: #c9a84c;
-  --gold-light: #e8c97a;
+  --gold: #b8942e;
+  --gold-light: #d4af37;
   --gold-dark: #8a6a1a;
-  --bg: #0d0804;
-  --bg-2: #130c05;
-  --bg-3: #1c1008;
-  --text: #e8d8b8;
-  --text-muted: #8a7a60;
-  --border: rgba(201, 168, 76, 0.2);
+  --bg: #f5f0e8;
+  --bg-2: #ece5d8;
+  --bg-3: #e2d9ca;
+  --text: #2c1e0f;
+  --text-muted: #6b5a45;
+  --border: rgba(140, 110, 50, 0.2);
   --font-head: 'Cinzel', serif;
   --font-body: 'Raleway', sans-serif;
   --radius: 8px;
 }
 ```
 
-Тёмная тема + золотой акцент. Этнический стиль, но с современной вёрсткой.
+Светлая бежевая тема + золотой акцент. Этнический стиль, но с современной вёрсткой.
 
 ## Структура проекта
 
