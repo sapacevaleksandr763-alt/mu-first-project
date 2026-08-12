@@ -1,0 +1,647 @@
+{
+  "version": 1,
+  "skills": {
+    "bank-sync": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/bank-sync/SKILL.md",
+      "computedHash": "28084a190b11e7a09436b107b5fc5765f9ee47fefc198dd23a80984b0bfda2ac"
+    },
+    "blog": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog/SKILL.md",
+      "computedHash": "98de009ecfcdb58fd1d62eae4ec6ebc13b6ff9eebb202ef8ca7ea20e37ffd8d6"
+    },
+    "blog-analyze": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-analyze/SKILL.md",
+      "computedHash": "01eb92ff17b98e7f9497e1dd5d943d3b892611e683091512e2ba2fb7c4159dd8"
+    },
+    "blog-audio": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-audio/SKILL.md",
+      "computedHash": "3538ad097ae1368e44ccb001e27e071ce94e3dcdf433a5ffce05b364b63d9181"
+    },
+    "blog-audit": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-audit/SKILL.md",
+      "computedHash": "419f84ee0726e2fdcb9af35c26284a529b664c9ea2d40900726600398e012919"
+    },
+    "blog-brand": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-brand/SKILL.md",
+      "computedHash": "7ecfa1df5e0bebe36d92323f203887f4409947b24714c2bf66f3be86dc65e70b"
+    },
+    "blog-brief": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-brief/SKILL.md",
+      "computedHash": "7740b6b8dbd62c0c871191b55b6f0d33ca37ed17bdde49067f31b4982fdb23e9"
+    },
+    "blog-calendar": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-calendar/SKILL.md",
+      "computedHash": "742d9f34a40b117a2b648f7acfab4ffdc83bf2b12f720760360269d2e7c16b82"
+    },
+    "blog-cannibalization": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-cannibalization/SKILL.md",
+      "computedHash": "07961d38cc1c041d0c6c35187801963aa0778521a7124d97d6f0f45b24544b49"
+    },
+    "blog-chart": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-chart/SKILL.md",
+      "computedHash": "8286a73f2394e04299b9ead37541170edd703384c618a96f5c69d578237bf6a7"
+    },
+    "blog-cluster": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-cluster/SKILL.md",
+      "computedHash": "3fa8685bdcc664f0965ad542cf1e4224fd17f06ba1376a9ec3cd18ebe6e73d44"
+    },
+    "blog-decay": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-decay/SKILL.md",
+      "computedHash": "e83e726ea61a63701733de0535fe233790670f2b13642b7f7c36368c136003b2"
+    },
+    "blog-discourse": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-discourse/SKILL.md",
+      "computedHash": "c418a7e1ff111aa232ad6f7b28553aa5032786e2a6384969218d6816c33990a2"
+    },
+    "blog-factcheck": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-factcheck/SKILL.md",
+      "computedHash": "dcf944b921393990566d3de3f38383dbf9fe69b0e1581ff1dd14fc43f2e2c06d"
+    },
+    "blog-flow": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-flow/SKILL.md",
+      "computedHash": "0d841b468fb6ab7eeb169f2fba5bbf2ee535a735f11da96bb1475c301205c1cb"
+    },
+    "blog-geo": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-geo/SKILL.md",
+      "computedHash": "e75994eedb45a13036904923d9a39bfc66273e650c6038594c9c5d613dcccc0a"
+    },
+    "blog-google": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-google/SKILL.md",
+      "computedHash": "203e277c2829ef108fceee805bdd8410dedf2bf865264fc3dac7735bc9bd6807"
+    },
+    "blog-image": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-image/SKILL.md",
+      "computedHash": "dce4e8ce9a2ce4fce79d060303dfef0dca062e1508cdadd0dc98d847afbcc036"
+    },
+    "blog-locale-audit": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-locale-audit/SKILL.md",
+      "computedHash": "6d5075df6ea43bcbc5b90f022d29dfed67f01ff1913fa8c5b2dcecc613916649"
+    },
+    "blog-localize": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-localize/SKILL.md",
+      "computedHash": "015214048b470ed8c5c0fb36a46f90045a07a4330301dc1d09baaf2a58687d42"
+    },
+    "blog-multilingual": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-multilingual/SKILL.md",
+      "computedHash": "0f43a44bc6bab65ec951dec77bce43431261fe398ae621b359a66787213307c4"
+    },
+    "blog-notebooklm": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-notebooklm/SKILL.md",
+      "computedHash": "03888e78b32ada59399263596804e722f861adb6ea3df01e3ef7d3172e88bd18"
+    },
+    "blog-outline": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-outline/SKILL.md",
+      "computedHash": "8720fb7f6864e261ef3618db63939270920cf9c476b9f8869fc97f9f34f2a810"
+    },
+    "blog-persona": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-persona/SKILL.md",
+      "computedHash": "cc1599d7b250e1482891a3999c4eaf77ec8d3cacbb7ba86d8be0b6f68d6c1ada"
+    },
+    "blog-repurpose": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-repurpose/SKILL.md",
+      "computedHash": "be63b362992f07f3e0d2e0383274862b5759f309c26652a3dcf46a78998420a9"
+    },
+    "blog-rewrite": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-rewrite/SKILL.md",
+      "computedHash": "50d80aeeb64ed226bd43dff862886d68c7d058893bb1f66ba3e4b1ecb1c56634"
+    },
+    "blog-schema": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-schema/SKILL.md",
+      "computedHash": "849644455063bb966ea3d26a24c8a8299d96eefb03cc3aa541c3cc863222a295"
+    },
+    "blog-seo-check": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-seo-check/SKILL.md",
+      "computedHash": "a552301d2ed9c3e43bde8d1f88eac3a7e827b54b8b7ef19a6770dbd3c2ccaa0e"
+    },
+    "blog-strategy": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-strategy/SKILL.md",
+      "computedHash": "a1dd6e7af2c35aaa4722a8ef6bc2c24b2fd9ff63692ca2496aa21dc9aa3e4137"
+    },
+    "blog-style": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-style/SKILL.md",
+      "computedHash": "fd17fd22e3cfc91ba666b538d983bdc9d55204aa74c3768e08a20b84a80f7afb"
+    },
+    "blog-taxonomy": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-taxonomy/SKILL.md",
+      "computedHash": "0ef3ae2e720f713f4af1605f46b0a5debe17673ff79a62874cbee669532713d3"
+    },
+    "blog-translate": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-translate/SKILL.md",
+      "computedHash": "90ba7a1452b7c64fc7106d419dfda3d9e0ca490b8072f3316f9e1b12f8b17ebe"
+    },
+    "blog-write": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-write/SKILL.md",
+      "computedHash": "f5268b07b6b6f64f40ffec9785efb94be4c51030f23bc07639b56fe14f9cce2b"
+    },
+    "break-even-calc": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/break-even-calc/SKILL.md",
+      "computedHash": "59389550d7bb4f809e8efb2ce368266a407babbc1a904443796a0a46a01f79c9"
+    },
+    "carousel": {
+      "source": "tenfoldmarc/carousel-suite-skill",
+      "sourceType": "github",
+      "skillPath": "carousel/SKILL.md",
+      "computedHash": "e38f837afaee710ca1f0f728a3389d291f40dd247a535497e12623a7f54dc2d4"
+    },
+    "carousel-copy": {
+      "source": "tenfoldmarc/carousel-suite-skill",
+      "sourceType": "github",
+      "skillPath": "carousel-copy/SKILL.md",
+      "computedHash": "576c191312a199ee3caab8f57b8a747c899e7c4387cdd409273ba02fd117f604"
+    },
+    "carousel-design": {
+      "source": "tenfoldmarc/carousel-suite-skill",
+      "sourceType": "github",
+      "skillPath": "carousel-design/SKILL.md",
+      "computedHash": "f18b2b7210a16da6f507e78893278c61cf012da4e42a43f3eb5149d2dfc67d26"
+    },
+    "carousel-idea": {
+      "source": "tenfoldmarc/carousel-suite-skill",
+      "sourceType": "github",
+      "skillPath": "carousel-idea/SKILL.md",
+      "computedHash": "54f849b5e33a98f8b3495396e6aaefcd67987b3f36f140f62639767c6a7939ce"
+    },
+    "cash-flow-forecast": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/cash-flow-forecast/SKILL.md",
+      "computedHash": "3077794a09a28945ec25b0a1955052e6ae8c8fdee03c2bb5891c9a1ec7c53210"
+    },
+    "charitable-giving": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/charitable-giving/SKILL.md",
+      "computedHash": "58045980d66ed676bbc5f55c0d8b4f0f2c295527779255e98fbe3580d9a9f772"
+    },
+    "claude-blog-brain": {
+      "source": "AgriciDaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "brain/SKILL.md",
+      "computedHash": "ae8f918b429dd6b77db56972f9b28ef026de77bffd4b22c7e82c5b91d1f308ad"
+    },
+    "client-profitability": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/client-profitability/SKILL.md",
+      "computedHash": "47d8f751d773eadc06b690cb82cc25a3d3bd9794145539a8ccf1967d37d3dbbc"
+    },
+    "contractor-tracking": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/contractor-tracking/SKILL.md",
+      "computedHash": "0c11f6540c7ea77b84d95700faa90c916d130dcbf8bb211d7858921b027b97a4"
+    },
+    "custom-report": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/custom-report/SKILL.md",
+      "computedHash": "034ef575dae201cef35725f869da27508df9111d261c16b23fd7459037523e19"
+    },
+    "debt-payoff": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/debt-payoff/SKILL.md",
+      "computedHash": "af75d352f1d68dab3516f2f3a22bbcaced7c762531feb70a0831c401ecafe8ad"
+    },
+    "depreciation-schedule": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/depreciation-schedule/SKILL.md",
+      "computedHash": "9c1525aaf565b1d8ec88a01a53548b4cef2575aeb63a454047945062c6236a8c"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "899b84384f74f540ea5284d9b2e9234e050998b42eacc805410b518d4226c0b3"
+    },
+    "emergency-fund": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/emergency-fund/SKILL.md",
+      "computedHash": "53edf8d64feda5b554b1638022070a6b0f37bfd9bd2feef86cd8d45fd4dfe819"
+    },
+    "expense-optimizer": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/expense-optimizer/SKILL.md",
+      "computedHash": "980450637f422594615268c259e1deb23d07cb116afa524c812b16c073f8d79e"
+    },
+    "financial-goals": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/financial-goals/SKILL.md",
+      "computedHash": "6219aff9a35db062957ff77a5ac74fed8c8e35e50a080c51926d65b327e17d24"
+    },
+    "home-office-deduction": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/home-office-deduction/SKILL.md",
+      "computedHash": "3d3e32fdfa66ad29d02d63f9c79f89374356fdf7de08f3d7c7745b692451598b"
+    },
+    "import-transactions": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/import-transactions/SKILL.md",
+      "computedHash": "1ff3a7af7aa9cb6ba5da12685ea2f8dc9079ea169011640219ec10220c8ea501"
+    },
+    "insurance-audit": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/insurance-audit/SKILL.md",
+      "computedHash": "425017c61ff987472023738423a2f54882499f5b720ac8f341ea0453f1e82c83"
+    },
+    "invoice-aging": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/invoice-aging/SKILL.md",
+      "computedHash": "5e58269a9d2051eac47fbe2253f56214ed1ef2d1aed5bef98cf3810fbb130536"
+    },
+    "lifestyle-creep": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/lifestyle-creep/SKILL.md",
+      "computedHash": "bc90a9f619cb1dd278792f59aaa74bb844a320f96a74b627a2318ceaa6478104"
+    },
+    "mileage-tracker": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/mileage-tracker/SKILL.md",
+      "computedHash": "a7b0c78795fddc3d47cf1d16e91dda17f1b551300f6b5d69be07b4a7ea1805ed"
+    },
+    "month-end-close": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/month-end-close/SKILL.md",
+      "computedHash": "a0bebca699661d15f7be8065a913ae0fffb5cce25b1e35d4537e6865be2dd8bc"
+    },
+    "monthly-digest": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/monthly-digest/SKILL.md",
+      "computedHash": "bc6c15cc324130b726df5a87c7e9d5466a36e24e450144d7128dbf27ca10e69e"
+    },
+    "multi-entity": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/multi-entity/SKILL.md",
+      "computedHash": "947195259196c52311f242152307c37b07420e591e24852ead189512e1403842"
+    },
+    "net-worth": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/net-worth/SKILL.md",
+      "computedHash": "8f12004aff598d997613a7e73b6a773bae2356761ea070dbe9ab4f2ee48acb76"
+    },
+    "paypal-import": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/paypal-import/SKILL.md",
+      "computedHash": "dec82ce4a440c4db308fc929a70312ab3297187c1f5585695d113d9af87457e9"
+    },
+    "pricing-optimizer": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/pricing-optimizer/SKILL.md",
+      "computedHash": "b82edef5d7a809108091adc8a61bf9b979f264387809935307178fcd1a637090"
+    },
+    "profit-loss": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/profit-loss/SKILL.md",
+      "computedHash": "d62b4f3dc31762fa22878acd7e6e8ba135076fe3eab489c70c6c75466d10205a"
+    },
+    "quarterly-taxes": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/quarterly-taxes/SKILL.md",
+      "computedHash": "1e402d6995c68b52b3a8ec7f0728f25cffaab425428800c8d128cfcef800e144"
+    },
+    "rental-property": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/rental-property/SKILL.md",
+      "computedHash": "96e61ee3da93e00248b71a07019b40cc961e1772637215dd8cbbf276d0c8713a"
+    },
+    "revenue-concentration": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/revenue-concentration/SKILL.md",
+      "computedHash": "0f29ec8a77bb2f6e28ba64a5274cbf3d6c7c7bc4ee3577b5d53670d40ee2947e"
+    },
+    "runway-calculator": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/runway-calculator/SKILL.md",
+      "computedHash": "7ebecef5be9e692ab15e0f11eaee51ed55ca472ff462a0664001b80a71670647"
+    },
+    "sales-tax-nexus": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/sales-tax-nexus/SKILL.md",
+      "computedHash": "a4bae34482909d0157291c806d9f45532b6c028565e0845f6f8b731766872498"
+    },
+    "seasonal-patterns": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/seasonal-patterns/SKILL.md",
+      "computedHash": "d831ae9b3faff9b25695f248142656d41c875325611bce16a2ca580bcee4b063"
+    },
+    "seo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo/SKILL.md",
+      "computedHash": "77d8c4f4695848c47ca82c0cb49a6741851e1ab94a623b55e394d3bd9f96e3fd"
+    },
+    "seo-audit": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-audit/SKILL.md",
+      "computedHash": "38caf4a11f2ace0b3ae24ff9462d032de11fecb14b3320a11b97233238b95d81"
+    },
+    "seo-backlinks": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-backlinks/SKILL.md",
+      "computedHash": "d4ff9dd8c14d2379445a295a2a550c4019fd72365a40d9de14bdc1d7d38c39eb"
+    },
+    "seo-cluster": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-cluster/SKILL.md",
+      "computedHash": "3da813a30a7060a344088fa4e8a56fbebfbd0358d82202be0eb69efa271e1b98"
+    },
+    "seo-competitor-pages": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-competitor-pages/SKILL.md",
+      "computedHash": "c2247e46691b852f7d65b924b994d1a1e3afab39b494e0d664798b749e961c7a"
+    },
+    "seo-content": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-content/SKILL.md",
+      "computedHash": "0cd12471015f38e16f9853f2e91aa860abbeb8a8d82cb02609470a1c49913daa"
+    },
+    "seo-content-brief": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-content-brief/SKILL.md",
+      "computedHash": "d1d29ce79f14af2c3765f5621bb9500f147f35946e7905444623cfaf49c0b2d8"
+    },
+    "seo-dataforseo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-dataforseo/SKILL.md",
+      "computedHash": "42fedc9fd5ec4b6cd287edacc0f3b7d56c9f7a3efd88b2d370e12a5595a98141"
+    },
+    "seo-drift": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-drift/SKILL.md",
+      "computedHash": "63f113ad75b32b9cfd9ac3c4623ec0c97e16d784750c2cfb0099ab993fd5c58f"
+    },
+    "seo-ecommerce": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-ecommerce/SKILL.md",
+      "computedHash": "ac0b634c7e7c9507478c42db21db3c29110bd38721083fab0a5d7d783d9d57a0"
+    },
+    "seo-flow": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-flow/SKILL.md",
+      "computedHash": "48e086eb55994f6828a8a5d75a26a46e2cab632a46a7d38a369ee5ba6cc9c986"
+    },
+    "seo-geo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-geo/SKILL.md",
+      "computedHash": "4a411c5a15f073431bc70363b2863de3dad479a6ac4aa4d7cba1e8b27332a8f6"
+    },
+    "seo-google": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-google/SKILL.md",
+      "computedHash": "eca5e541abf76b11a4128bf13d032a746bb544393add77794ae28a7029280ed0"
+    },
+    "seo-hreflang": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-hreflang/SKILL.md",
+      "computedHash": "4c3643cf2f67138033dd5fd13d6c96e29b44c808bd40fd9c9c4affc41e86e876"
+    },
+    "seo-image-gen": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-image-gen/SKILL.md",
+      "computedHash": "5373ac8e664bc8796e7f25463bc8a2035316a3a9077918de29e38f394bcc24fb"
+    },
+    "seo-images": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-images/SKILL.md",
+      "computedHash": "c66be6acb573be26763e792e25a18b10515a4293b87a9b22854e13a97677dc4e"
+    },
+    "seo-local": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-local/SKILL.md",
+      "computedHash": "8890fb1c32bf48ba1c432c5420af4f5ac67aa30637cb8568c2454862e1f67c66"
+    },
+    "seo-maps": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-maps/SKILL.md",
+      "computedHash": "9c2ad1181b8769650e8c5d75c5414011cdb6c02bcbacc40647465c636b880776"
+    },
+    "seo-page": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-page/SKILL.md",
+      "computedHash": "669c4cba07f2559d0ae70201407e0ab9dc66b88aca0a007782a922825a6735c3"
+    },
+    "seo-plan": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-plan/SKILL.md",
+      "computedHash": "037ec1185e878f8e6b3f022a7385e5277f86d891bbcb795289016fb23cbbd680"
+    },
+    "seo-programmatic": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-programmatic/SKILL.md",
+      "computedHash": "b682498458cd93b48d751b869a3a25bf95fdc59723d013bc0c3af520c3557dba"
+    },
+    "seo-schema": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-schema/SKILL.md",
+      "computedHash": "040a9873e606203293302d54e6ca0794497935a6699d1085bf7a062d51903b11"
+    },
+    "seo-sitemap": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-sitemap/SKILL.md",
+      "computedHash": "77aa4ff513ba758e112f839510306c6ac5f97b543123f553c20d8e754918c4d9"
+    },
+    "seo-sxo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-sxo/SKILL.md",
+      "computedHash": "db31d476d8fb534f106146c13b88c4f041ccbbcf95ad8ae2970a0d12c4f884bd"
+    },
+    "seo-technical": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-technical/SKILL.md",
+      "computedHash": "bd55469581e075c156550dc81d0d00c359c3f4dd0dd1ef9d30031c5c6f9f4361"
+    },
+    "smart-categorize": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/smart-categorize/SKILL.md",
+      "computedHash": "194767d1d8ed7ca562bed22d472b50cdb4d1e34a42306accc88e773c37fcd123"
+    },
+    "smart-split": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/smart-split/SKILL.md",
+      "computedHash": "183a88dcd5f8a1f6b4b91a4fcd9c934bded8680451d88e1c2c9ecbc68203bda2"
+    },
+    "spending-review": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/spending-review/SKILL.md",
+      "computedHash": "4c64081c97d94652144db9a237442a98f9507d98b1f8c6db8ae03d2d42f02435"
+    },
+    "square-import": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/square-import/SKILL.md",
+      "computedHash": "233dd2a0484249d5b08defc02f07e74ad230662975b12d56b945065eda8ddc9c"
+    },
+    "state-tax-estimator": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/state-tax-estimator/SKILL.md",
+      "computedHash": "912432c60bbada4d15db12a9c42f0b78251ab2e0b1745d6183e7a8103010d277"
+    },
+    "stripe-import": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/stripe-import/SKILL.md",
+      "computedHash": "a214aafa3d5a928aa77cf0059ecd2cf800c8e066fc95244b9e9b7a91a320b495"
+    },
+    "subscription-audit": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/subscription-audit/SKILL.md",
+      "computedHash": "750b173a79b749030243bfbdefdf787fde9dde4a7e5ed563a67495edb642b58f"
+    },
+    "tax-penalty-calc": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/tax-penalty-calc/SKILL.md",
+      "computedHash": "c0d8d2fa164be5cada8b3d4fadb597f29f9b7be3328bd0a58011ab8d0370515c"
+    },
+    "tax-prep": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/tax-prep/SKILL.md",
+      "computedHash": "2fd242537dbd843782a069ee9a78cc17a1dec91c112a53539446118284448abf"
+    },
+    "venmo-reconciler": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/venmo-reconciler/SKILL.md",
+      "computedHash": "c902f5d6f5146be21c2630ac6575c14f52f5a098f13890ddea4c6edc6f2e9005"
+    },
+    "wise-import": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "business/wise-import/SKILL.md",
+      "computedHash": "359ab41097cd95e5fa8a2bee5642186b76346c3e994c47f7ad48fe174372a38e"
+    },
+    "year-end-summary": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "shared/year-end-summary/SKILL.md",
+      "computedHash": "b87d3a854f00b9b9d9afae4d6a79881aa881f236812b3d3458c2eee7f2cb820c"
+    },
+    "zero-based-budget": {
+      "source": "openaccountant/skills",
+      "sourceType": "github",
+      "skillPath": "personal/zero-based-budget/SKILL.md",
+      "computedHash": "80adf084c210974b8aa70b8eeb8ca1528cb5148a55cb9c066767f03fb6846001"
+    }
+  }
+}

@@ -31,9 +31,13 @@
 
   function loadLessonsFromServer(cb){
     var local = localLoad();
+    if(Object.keys(local).length > 0){
+      lessonsCache = local;
+      updateListStatuses();
+    }
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', API + '?course=' + encodeURIComponent(COURSE), true);
-    xhr.timeout = 5000;
+    xhr.open('GET', API + '?course=' + encodeURIComponent(COURSE) + '&t=' + Date.now(), true);
+    xhr.timeout = 30000;
     xhr.onload = function(){
       if(xhr.status === 200){
         try {
@@ -450,6 +454,26 @@
     buildModalContent(num);
   };
 
+  function showLoadingState(){
+    var items = document.querySelectorAll('.lesson-item');
+    items.forEach(function(item){
+      var status = item.querySelector('.lesson-item__status');
+      if(status && status.textContent === 'Ожидает публикации'){
+        status.textContent = 'Загрузка...';
+        status.style.opacity = '0.5';
+      }
+    });
+  }
+  function hideLoadingState(){
+    var items = document.querySelectorAll('.lesson-item');
+    items.forEach(function(item){
+      var status = item.querySelector('.lesson-item__status');
+      if(status && status.textContent === 'Загрузка...'){
+        status.textContent = 'Ожидает публикации';
+        status.style.opacity = '';
+      }
+    });
+  }
   function addEditorStyles(){
     var s = document.createElement('style');
     s.textContent = '.ed-label{display:block;font-size:0.78rem;color:var(--text-muted);margin-bottom:4px}'
@@ -494,6 +518,7 @@
   };
 
   addEditorStyles();
-  loadLessonsFromServer(function(){ updateListStatuses(); });
+  showLoadingState();
+  loadLessonsFromServer(function(){ updateListStatuses(); hideLoadingState(); });
   addAdminToggle();
 })();
