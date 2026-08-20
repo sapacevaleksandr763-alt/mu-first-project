@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ведическая Мастерская — авторские книги по славяно-арийской культуре, ведическому наследию, рунам и оберегам." />
+  <meta name="description" content="Ведическая Мастерская — книги по славяно-арийской культуре, ведическому наследию, рунам и оберегам в формате PDF." />
   <meta property="og:title" content="Ведическая Мастерская — Путь Предков" />
-  <meta property="og:description" content="Авторские книги по славяно-арийской культуре, ведическому наследию, рунам и оберегам." />
+  <meta property="og:description" content="Книги по славяно-арийской культуре, ведическому наследию, рунам и оберегам." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://nasledieariev.ru/pages/masterskaya.html" />
   <meta property="og:image" content="https://nasledieariev.ru/images/hero-volkhv-phoenix.png" />
@@ -17,429 +17,599 @@
   <link rel="stylesheet" href="../css/style.css?v=3" />
   <link rel="stylesheet" href="../css/pages.css?v=3" />
   <style>
-    .master-hero{min-height:50vh;display:flex;align-items:flex-end;position:relative;overflow:hidden}
-    .master-hero__bg{position:absolute;inset:0;background:url('../images/hero-volkhv-phoenix.png') center/cover no-repeat;filter:brightness(0.4) saturate(0.8)}
-    .master-hero__overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,20,10,0.25) 0%,rgba(30,20,10,0.8) 100%)}
-    .master-hero__content{position:relative;z-index:2;padding:120px 0 56px;max-width:640px}
-    .master-hero__title{font-family:var(--font-head);font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.15;color:#fff;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,0.4)}
-    .master-hero__title em{font-style:normal;color:var(--gold);display:block}
-    .master-hero__sub{font-size:1rem;color:rgba(255,255,255,0.75);line-height:1.7;max-width:520px}
-    .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:64px 0}
-    .shop-card{border-radius:var(--radius);overflow:hidden;background:var(--bg-2);border:1px solid var(--border);transition:transform 0.3s,box-shadow 0.3s;display:flex;flex-direction:column}
-    .shop-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12)}
-    .shop-card__cover{aspect-ratio:3/4;background:var(--bg-3);display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .shop-card__cover img{width:100%;height:100%;object-fit:cover}
-    .shop-card__cover-empty{color:var(--text-muted);font-size:0.85rem}
-    .shop-card__body{padding:16px;flex:1;display:flex;flex-direction:column}
-    .shop-card__title{font-family:var(--font-head);font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:8px;min-height:2.4em}
-    .shop-card__desc{font-size:0.82rem;color:var(--text-muted);line-height:1.5;margin-bottom:12px;flex:1}
-    .shop-card__footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
-    .shop-card__price{font-family:var(--font-head);font-size:1.1rem;font-weight:600;color:var(--gold)}
-    .shop-card__format{font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em}
-    .btn-buy{display:inline-block;padding:8px 18px;background:var(--gold);color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:0.85rem;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;transition:background 0.2s;width:100%;box-sizing:border-box}
+    .shop-info{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:var(--bg-2);border-radius:var(--radius);padding:28px 32px;margin-bottom:32px;border:1px solid var(--border)}
+    .shop-info__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.8}
+    .shop-info__stats{text-align:center}
+    .shop-info__count{font-family:var(--font-head);font-size:2.8rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .shop-info__label{font-size:0.78rem;color:var(--text-muted);margin-top:4px}
+    .book-list{margin-bottom:48px}
+    .book-item{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;cursor:pointer;transition:all 0.3s}
+    .book-item:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+    .book-item__num{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-head);font-weight:700;font-size:0.85rem}
+    .book-item__cover{width:48px;height:64px;border-radius:4px;flex-shrink:0;overflow:hidden;background:var(--bg-3);display:flex;align-items:center;justify-content:center}
+    .book-item__cover img{width:100%;height:100%;object-fit:cover}
+    .book-item__cover-empty{font-size:1.4rem}
+    .book-item__info{flex:1}
+    .book-item__title{font-family:var(--font-head);font-size:0.92rem;color:var(--text);margin-bottom:2px}
+    .book-item__status{font-size:0.72rem;color:var(--text-muted);opacity:0.6}
+    .book-item__price{font-family:var(--font-head);font-size:0.95rem;color:var(--gold);font-weight:600;white-space:nowrap}
+    .book-item__arrow{font-size:0.85rem;color:var(--gold);opacity:0.4;transition:all 0.3s}
+    .book-item:hover .book-item__arrow{opacity:1;transform:translateX(4px)}
+
+    .book-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+    .book-modal.active{display:flex}
+    .book-modal__box{background:var(--bg);border:1px solid var(--gold);border-radius:16px;padding:48px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalIn 0.3s ease;text-align:center}
+    @keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .book-modal__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--text-muted);cursor:pointer;background:none;border:none;padding:4px 8px;transition:color 0.2s}
+    .book-modal__close:hover{color:var(--gold)}
+    .book-modal__cover{max-width:200px;max-height:280px;border-radius:8px;margin:0 auto 20px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+    .book-modal__title{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:8px}
+    .book-modal__author{font-size:0.85rem;color:var(--text-muted);margin-bottom:16px}
+    .book-modal__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:20px;text-align:left}
+    .book-modal__price{font-family:var(--font-head);font-size:1.5rem;color:var(--gold);font-weight:700;margin-bottom:8px}
+    .book-modal__format{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px}
+    .book-modal__card-info{font-size:0.85rem;color:var(--text-muted);background:var(--bg-2);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;line-height:1.6;text-align:left}
+    .book-modal__card-info strong{color:var(--gold)}
+    .btn-buy{display:inline-block;padding:12px 32px;background:var(--gold);color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:0.95rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background 0.2s}
     .btn-buy:hover{background:var(--gold-dark)}
-    .btn-code{display:inline-block;padding:6px 14px;background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:var(--radius);font-size:0.8rem;cursor:pointer;transition:all 0.2s;margin-top:8px;width:100%;text-align:center;box-sizing:border-box}
-    .btn-code:hover{background:var(--gold);color:#fff}
-    .code-form{margin-top:8px;display:none}
-    .code-form.active{display:block}
-    .code-input{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;text-align:center;box-sizing:border-box}
+    .code-section{margin-top:20px;padding-top:16px;border-top:1px dashed var(--border)}
+    .code-section__title{font-size:0.85rem;color:var(--text-muted);margin-bottom:10px}
+    .code-input-wrap{display:flex;gap:8px;max-width:320px;margin:0 auto}
+    .code-input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:0.95rem;text-transform:uppercase;letter-spacing:0.12em;text-align:center}
     .code-input:focus{outline:none;border-color:var(--gold)}
-    .code-msg{font-size:0.78rem;margin-top:6px;text-align:center}
+    .code-msg{font-size:0.82rem;margin-top:8px;text-align:center}
     .code-msg.ok{color:#3a7d44}
     .code-msg.err{color:#b83030}
-    .empty-state{text-align:center;padding:80px 20px;color:var(--text-muted)}
-    .empty-state h3{font-family:var(--font-head);color:var(--text);margin-bottom:12px}
-    .admin-toggle{position:fixed;bottom:20px;right:20px;z-index:100;width:48px;height:48px;border-radius:50%;background:var(--gold);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.2);display:none}
-    .admin-panel{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.6)}
-    .admin-panel.active{display:flex;align-items:center;justify-content:center}
-    .admin-box{background:var(--bg);border-radius:12px;padding:32px;max-width:560px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,0.3)}
-    .admin-box h2{font-family:var(--font-head);color:var(--gold);margin-bottom:20px;font-size:1.3rem}
-    .admin-field{margin-bottom:16px}
-    .admin-field label{display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:4px}
-    .admin-field input,.admin-field textarea{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:0.9rem;background:var(--bg-2);box-sizing:border-box}
-    .admin-field textarea{resize:vertical;min-height:60px}
-    .admin-field input:focus,.admin-field textarea:focus{outline:none;border-color:var(--gold)}
-    .admin-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-    .admin-btn{padding:10px 24px;border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.2s}
-    .admin-btn--save{background:var(--gold);color:#fff}
-    .admin-btn--save:hover{background:var(--gold-dark)}
-    .admin-btn--cancel{background:var(--bg-3);color:var(--text)}
-    .admin-btn--delete{background:#b83030;color:#fff;margin-left:auto}
-    .admin-codes{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
-    .admin-codes h3{font-family:var(--font-head);font-size:1rem;margin-bottom:12px}
-    .code-list{font-family:monospace;font-size:0.85rem;background:var(--bg-2);padding:12px;border-radius:var(--radius);max-height:120px;overflow-y:auto}
-    .code-item{padding:3px 0;display:flex;justify-content:space-between}
-    .code-item.used{color:var(--text-muted);text-decoration:line-through}
-    .admin-gen{display:flex;gap:8px;margin-bottom:12px;align-items:center}
-    .admin-gen input{width:60px;text-align:center}
-    .admin-file-info{font-size:0.82rem;color:var(--text-muted);margin-top:4px}
-    @media(max-width:900px){.shop-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
-    @media(max-width:600px){.shop-grid{grid-template-columns:repeat(2,1fr);gap:12px}.shop-card__title{font-size:0.85rem}.shop-card__body{padding:12px}}
+
+    .editor-modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px}
+    .editor-modal.active{display:flex}
+    .editor-box{background:var(--bg);border-radius:12px;padding:32px;max-width:600px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,0.3)}
+    .editor-box h3{font-family:var(--font-head);color:var(--gold);margin-bottom:20px;font-size:1.1rem}
+    .ed-label{display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:4px;margin-top:14px}
+    .ed-input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:0.9rem;background:var(--bg-2);box-sizing:border-box}
+    .ed-input:focus{outline:none;border-color:var(--gold)}
+    .ed-textarea{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:0.9rem;background:var(--bg-2);box-sizing:border-box;resize:vertical;min-height:60px}
+    .ed-upload-btn{display:inline-block;padding:6px 14px;background:rgba(184,148,46,0.1);color:var(--gold);border:1px dashed var(--gold);border-radius:var(--radius);font-size:0.8rem;cursor:pointer;transition:all 0.2s;margin-top:6px}
+    .ed-upload-btn:hover{background:rgba(184,148,46,0.2)}
+    .ed-file-info{font-size:0.78rem;color:var(--text-muted);margin-top:4px}
+    .ed-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .ed-codes{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+    .ed-codes h4{font-family:var(--font-head);font-size:0.9rem;color:var(--gold);margin-bottom:10px}
+    .ed-code-list{font-family:monospace;font-size:0.82rem;background:var(--bg-2);padding:10px;border-radius:var(--radius);max-height:120px;overflow-y:auto}
+    .ed-code-item{padding:3px 0;display:flex;justify-content:space-between}
+    .ed-code-item.used{color:var(--text-muted);text-decoration:line-through}
+    .ed-gen{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+    .ed-gen input{width:50px;text-align:center}
+    @media(max-width:768px){.shop-info{grid-template-columns:1fr;text-align:center}.book-modal__box{padding:32px 20px}.book-item{gap:10px;padding:14px 12px}.book-item__cover{width:40px;height:54px}}
   </style>
 </head>
-<body>
-  <header class="header" id="header">
+<body data-shop="masterskaya">
+  <header class="header scrolled" id="header">
     <div class="container header__inner">
-      <a href="../index.html" class="logo">
-        <span class="logo__symbol">&#x16ED;</span>
-        <span class="logo__text">Путь Предков</span>
-      </a>
+      <a href="../index.html" class="logo"><span class="logo__symbol">&#x16ED;</span><span class="logo__text">Путь Предков</span></a>
       <nav class="nav" id="nav">
-        <a href="../landing.html" class="nav__link">Визитка</a>
+        <a href="../index.html" class="nav__link">Главная</a>
         <a href="../index.html#explore" class="nav__link">База Знаний</a>
-        <a href="../index.html#interactive" class="nav__link">Интерактивы</a>
-        <a href="../index.html#azbuka" class="nav__link">Азбука</a>
         <a href="../index.html#lessons" class="nav__link">Уроки</a>
         <a href="masterskaya.html" class="nav__link nav__link--active">Ведическая Мастерская</a>
-        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Telegram &#x2197;</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="nav__link nav__link--cta">Telegram</a>
       </nav>
       <button class="burger" id="burger"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <section class="master-hero">
-    <div class="master-hero__bg"></div>
-    <div class="master-hero__overlay"></div>
-    <div class="container">
-      <div class="master-hero__content">
-        <h1 class="master-hero__title">Ведическая<em>Мастерская</em></h1>
-        <p class="master-hero__sub">Книги по славяно-арийской культуре, ведическому наследию, рунам и оберегам</p>
-      </div>
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background-image:url('../images/hero-volkhv-phoenix.png')"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+      <span class="page-hero__rune">📚</span>
+      <h1 class="page-hero__title">Ведическая Мастерская</h1>
+      <p class="page-hero__sub">Книги по славяно-арийской культуре, ведическому наследию, рунам и оберегам</p>
     </div>
   </section>
 
   <main class="page-main">
     <div class="container">
-      <div id="shopGrid" class="shop-grid"></div>
-      <div id="emptyState" class="empty-state" style="display:none">
-        <h3>Скоро здесь появятся книги</h3>
-        <p>Мы готовим коллекцию для вас</p>
+      <div class="shop-info">
+        <div class="shop-info__desc">Собрание книг по древним знаниям, традициям предков и славянской мудрости. Каждая книга доступна в формате PDF для скачивания после оплаты.</div>
+        <div class="shop-info__stats">
+          <div class="shop-info__count" id="bookCount">0</div>
+          <div class="shop-info__label">книг</div>
+        </div>
+      </div>
+
+      <div class="book-list" id="bookList"></div>
+
+      <div style="text-align:center;padding:24px 0">
+        <a href="../index.html" class="btn btn--ghost">← На главную</a>
+        <a href="https://t.me/nasledieariev" target="_blank" class="btn btn--primary" style="margin-left:12px">Telegram-канал →</a>
       </div>
     </div>
   </main>
 
-  <button class="admin-toggle" id="adminToggle" title="Админ-панель">&#x2699;</button>
-
-  <div class="admin-panel" id="adminPanel">
-    <div class="admin-box">
-      <h2 id="adminTitle">Добавить книгу</h2>
-      <input type="hidden" id="editId" />
-      <div class="admin-field">
-        <label>Название книги</label>
-        <input type="text" id="adm-title" placeholder="Введите название" />
+  <div class="book-modal" id="bookModal">
+    <div class="book-modal__box">
+      <button class="book-modal__close" id="bmClose">✕</button>
+      <img class="book-modal__cover" id="bmCover" src="" alt="" style="display:none" />
+      <div class="book-modal__title" id="bmTitle"></div>
+      <div class="book-modal__author" id="bmAuthor"></div>
+      <div class="book-modal__desc" id="bmDesc"></div>
+      <div class="book-modal__price" id="bmPrice"></div>
+      <div class="book-modal__format">электронная книга · скачивание</div>
+      <div class="book-modal__card-info" id="bmCardInfo" style="display:none"></div>
+      <a id="bmBuyBtn" href="https://t.me/nasledieariev" target="_blank" class="btn-buy">Купить в Telegram</a>
+      <div id="bmAdminBar" style="display:none;margin-top:16px;padding-top:12px;border-top:1px dashed var(--gold)">
+        <button class="btn btn--ghost" id="bmEditBtn" style="font-size:0.8rem">✏️ Редактировать</button>
       </div>
-      <div class="admin-field">
-        <label>Описание (2-3 строки)</label>
-        <textarea id="adm-desc" placeholder="Краткое описание книги"></textarea>
-      </div>
-      <div class="admin-field">
-        <label>Цена (руб.)</label>
-        <input type="number" id="adm-price" placeholder="490" min="0" />
-      </div>
-      <div class="admin-field">
-        <label>Обложка (URL картинки или оставить пустым)</label>
-        <input type="text" id="adm-cover" placeholder="/images/library/kartinki/book.jpg" />
-      </div>
-      <div class="admin-field">
-        <label>PDF-файл</label>
-        <input type="file" id="adm-pdf" accept=".pdf" />
-        <div id="adm-pdf-info" class="admin-file-info"></div>
-      </div>
-      <div class="admin-field">
-        <label>Telegram для покупки</label>
-        <input type="text" id="adm-tg" value="https://t.me/nasledieariev" />
-      </div>
-      <div id="adminCodesSection" class="admin-codes" style="display:none">
-        <h3>Коды для скачивания</h3>
-        <div class="admin-gen">
-          <input type="number" id="codeCount" value="5" min="1" max="50" />
-          <button class="admin-btn admin-btn--save" id="btnGenCodes">Создать коды</button>
+      <div class="code-section">
+        <div class="code-section__title">Уже оплатили? Введите код:</div>
+        <div class="code-input-wrap">
+          <input class="code-input" id="bmCodeInput" maxlength="8" placeholder="КОД" />
+          <button class="btn-buy" id="bmCodeBtn" style="padding:10px 20px;font-size:0.85rem">Скачать</button>
         </div>
-        <div id="codeList" class="code-list"></div>
+        <div class="code-msg" id="bmCodeMsg"></div>
       </div>
-      <div class="admin-actions">
-        <button class="admin-btn admin-btn--save" id="btnSave">Сохранить</button>
-        <button class="admin-btn admin-btn--cancel" id="btnCancel">Отмена</button>
-        <button class="admin-btn admin-btn--delete" id="btnDelete" style="display:none">Удалить</button>
+    </div>
+  </div>
+
+  <div class="editor-modal" id="editorModal">
+    <div class="editor-box">
+      <h3 id="edTitle">Добавить книгу</h3>
+      <input type="hidden" id="edId" />
+      <label class="ed-label">Название книги</label>
+      <input class="ed-input" id="edName" placeholder="Введите название" />
+      <label class="ed-label">Автор</label>
+      <input class="ed-input" id="edAuthor" placeholder="Автор книги" />
+      <label class="ed-label">Описание</label>
+      <textarea class="ed-textarea" id="edDesc" placeholder="Краткое описание книги (2-3 строки)"></textarea>
+      <label class="ed-label">Цена (руб.) — 0 = бесплатно</label>
+      <input class="ed-input" id="edPrice" type="number" placeholder="490" min="0" />
+      <label class="ed-label">Номер карты Сбербанка для оплаты</label>
+      <input class="ed-input" id="edCard" placeholder="0000 0000 0000 0000" />
+      <label class="ed-label">Telegram для связи</label>
+      <input class="ed-input" id="edTg" value="https://t.me/nasledieariev" />
+      <label class="ed-label">Обложка</label>
+      <img id="edCoverPreview" src="" alt="" style="display:none;max-width:120px;max-height:160px;border-radius:6px;margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />
+      <div id="edCoverInfo" class="ed-file-info"></div>
+      <button class="ed-upload-btn" id="btnUploadCover">📁 Загрузить обложку</button>
+      <input class="ed-input" id="edCoverUrl" placeholder="или URL картинки" style="margin-top:6px" />
+      <label class="ed-label">Файл книги (PDF, EPUB, FB2, DJVU, ZIP и др.)</label>
+      <div id="edPdfInfo" class="ed-file-info"></div>
+      <a id="edPdfCheck" href="#" target="_blank" style="display:none;font-size:0.78rem;color:var(--gold);margin-bottom:4px">Проверить загруженный файл</a>
+      <button class="ed-upload-btn" id="btnUploadPdf">📁 Загрузить файл</button>
+      <div id="uploadProgress" style="font-size:0.75rem;color:var(--gold);margin-top:6px"></div>
+      <div id="edCodesSection" class="ed-codes" style="display:none">
+        <h4>Коды для скачивания</h4>
+        <div class="ed-gen">
+          <input type="number" id="edCodeCount" value="5" min="1" max="50" class="ed-input" style="width:60px" />
+          <button class="btn btn--primary" id="btnGenCodes" style="font-size:0.8rem;padding:8px 16px">Создать коды</button>
+        </div>
+        <div id="edCodeList" class="ed-code-list"></div>
+      </div>
+      <div class="ed-actions">
+        <button class="btn btn--primary" id="edSave" style="font-size:0.85rem">💾 Сохранить</button>
+        <button class="btn btn--ghost" id="edCancel" style="font-size:0.85rem">Отмена</button>
+        <button class="btn btn--ghost" id="edDelete" style="font-size:0.85rem;color:#c44;display:none">🗑 Удалить</button>
       </div>
     </div>
   </div>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="../index.html" class="footer__brand">
-        <span class="logo__symbol">&#x16ED;</span>
-        <span class="logo__text">Путь Предков</span>
-      </a>
+      <a href="../index.html" class="footer__brand"><span class="logo__symbol">&#x16ED;</span><span class="logo__text">Путь Предков</span></a>
       <nav class="footer__nav">
-        <a href="history.html">История</a>
-        <a href="gods.html">Боги</a>
-        <a href="traditions.html">Традиции</a>
-        <a href="runes.html">Руны</a>
-        <a href="vedas.html">Веды</a>
-        <a href="../videos.html">Видео</a>
+        <a href="history.html">История</a><a href="gods.html">Боги</a><a href="traditions.html">Традиции</a>
+        <a href="runes.html">Руны</a><a href="vedas.html">Веды</a>
         <a href="https://t.me/nasledieariev" target="_blank">Telegram</a>
         <a href="https://vk.com/club240817357" target="_blank">VK</a>
         <a href="https://youtube.com/@nasledieariev" target="_blank">YouTube</a>
         <a href="https://rutube.ru/channel/80521999" target="_blank">RuTube</a>
         <a href="https://dzen.ru/nasledieariev" target="_blank">Дзен</a>
       </nav>
-      <p class="footer__copy">&#169; 2026 Александр Сапачёв &#183; Наследие Ариев</p>
+      <p class="footer__copy">© 2026 Александр Сапачёв · Наследие Ариев</p>
     </div>
   </footer>
   <script src="../js/main.js"></script>
   <script>
+  (function(){
     var API = '/api/shop';
-    var isAdmin = false;
+    var ADMIN_KEY = 'nasledie_admin';
+    var isAdmin = localStorage.getItem(ADMIN_KEY) === '1';
     var products = [];
+    var currentBookId = null;
 
-    document.querySelector('.logo').addEventListener('click', function(e) {
-      if (e.detail === 3) {
-        isAdmin = !isAdmin;
-        document.getElementById('adminToggle').style.display = isAdmin ? 'block' : 'none';
-        renderGrid();
-      }
-    });
+    function escH(s){var d=document.createElement('div');d.appendChild(document.createTextNode(s||''));return d.innerHTML;}
 
-    document.getElementById('adminToggle').addEventListener('click', function() {
-      openEditor(null);
-    });
-
-    document.getElementById('btnSave').addEventListener('click', saveProduct);
-    document.getElementById('btnCancel').addEventListener('click', closeAdmin);
-    document.getElementById('btnDelete').addEventListener('click', deleteProduct);
-    document.getElementById('btnGenCodes').addEventListener('click', generateCodes);
-
-    document.getElementById('adminPanel').addEventListener('click', function(e) {
-      if (e.target === this) closeAdmin();
-    });
-
-    function loadProducts() {
-      fetch(API + '/products').then(function(r) { return r.json(); }).then(function(data) {
-        products = data;
-        renderGrid();
-      });
-    }
-
-    function renderGrid() {
-      var grid = document.getElementById('shopGrid');
-      var empty = document.getElementById('emptyState');
-      grid.innerHTML = '';
-
-      if (products.length === 0 && !isAdmin) {
-        empty.style.display = 'block';
-        return;
-      }
-      empty.style.display = 'none';
-
-      products.forEach(function(p) {
-        var card = document.createElement('div');
-        card.className = 'shop-card';
-        var coverHtml = p.cover
-          ? '<img src="' + escH(p.cover) + '" alt="' + escH(p.title || '') + '">'
-          : '<span class="shop-card__cover-empty">Обложка</span>';
-        var priceText = p.price ? Number(p.price).toLocaleString('ru-RU') + ' &#8381;' : 'Цена уточняется';
-        var tgLink = p.tgLink || 'https://t.me/nasledieariev';
-        var pid = escH(p.id);
-
-        card.innerHTML =
-          '<div class="shop-card__cover">' + coverHtml + '</div>' +
-          '<div class="shop-card__body">' +
-            '<div class="shop-card__title">' + escH(p.title || 'Без названия') + '</div>' +
-            '<div class="shop-card__desc">' + escH(p.desc || '') + '</div>' +
-            '<div class="shop-card__footer">' +
-              '<span class="shop-card__price">' + priceText + '</span>' +
-              '<span class="shop-card__format">PDF</span>' +
-            '</div>' +
-            '<a href="' + escH(tgLink) + '" target="_blank" class="btn-buy">Купить в Telegram</a>' +
-            '<button class="btn-code" data-pid="' + pid + '">У меня есть код</button>' +
-            '<div class="code-form" id="cf-' + pid + '">' +
-              '<input class="code-input" id="ci-' + pid + '" maxlength="8" placeholder="ВВЕДИТЕ КОД" />' +
-              '<button class="btn-buy" data-redeem="' + pid + '" style="margin-top:6px">Скачать</button>' +
-              '<div class="code-msg" id="cm-' + pid + '"></div>' +
-            '</div>' +
-          '</div>';
-
-        if (isAdmin) {
-          card.style.cursor = 'pointer';
-          card.setAttribute('data-edit-id', p.id);
-        }
-        grid.appendChild(card);
-      });
-
-      if (isAdmin) {
-        var addCard = document.createElement('div');
-        addCard.className = 'shop-card';
-        addCard.style.cursor = 'pointer';
-        addCard.style.border = '2px dashed var(--gold)';
-        addCard.setAttribute('data-add', 'true');
-        addCard.innerHTML =
-          '<div class="shop-card__cover" style="background:transparent">' +
-            '<span style="font-size:3rem;color:var(--gold)">+</span>' +
-          '</div>' +
-          '<div class="shop-card__body" style="text-align:center">' +
-            '<div class="shop-card__title" style="color:var(--gold)">Добавить книгу</div>' +
-          '</div>';
-        grid.appendChild(addCard);
-      }
-    }
-
-    document.addEventListener('click', function(e) {
-      var codeBtn = e.target.closest('.btn-code');
-      if (codeBtn) {
-        var pid = codeBtn.getAttribute('data-pid');
-        var form = document.getElementById('cf-' + pid);
-        form.classList.toggle('active');
-        if (form.classList.contains('active')) document.getElementById('ci-' + pid).focus();
-        return;
-      }
-      var redeemBtn = e.target.closest('[data-redeem]');
-      if (redeemBtn) {
-        redeemCode(redeemBtn.getAttribute('data-redeem'));
-        return;
-      }
-      if (isAdmin) {
-        var addCard = e.target.closest('[data-add]');
-        if (addCard) { openEditor(null); return; }
-        var editCard = e.target.closest('[data-edit-id]');
-        if (editCard && !e.target.closest('.btn-buy') && !e.target.closest('.btn-code') && !e.target.closest('.code-form')) {
-          var editId = editCard.getAttribute('data-edit-id');
-          var prod = products.find(function(p) { return p.id === editId; });
-          if (prod) openEditor(prod);
-        }
-      }
-    });
-
-    function escH(s) {
-      var d = document.createElement('div');
-      d.appendChild(document.createTextNode(s));
-      return d.innerHTML;
-    }
-
-    function redeemCode(productId) {
-      var input = document.getElementById('ci-' + productId);
-      var msg = document.getElementById('cm-' + productId);
-      var code = input.value.trim();
-      if (!code) { msg.textContent = 'Введите код'; msg.className = 'code-msg err'; return; }
-      fetch(API + '/redeem', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ code: code })
-      }).then(function(r) { return r.json(); }).then(function(data) {
-        if (data.ok && data.downloadUrl) {
-          msg.innerHTML = 'Код принят! <a href="' + data.downloadUrl + '" download style="color:var(--gold);font-weight:600">Скачать файл</a>';
-          msg.className = 'code-msg ok';
-        } else {
-          msg.textContent = data.error || 'Ошибка';
-          msg.className = 'code-msg err';
-        }
-      });
-    }
-
-    function openEditor(product) {
-      document.getElementById('adminPanel').classList.add('active');
-      document.getElementById('adminTitle').textContent = product ? 'Редактировать книгу' : 'Добавить книгу';
-      document.getElementById('editId').value = product ? product.id : '';
-      document.getElementById('adm-title').value = product ? (product.title || '') : '';
-      document.getElementById('adm-desc').value = product ? (product.desc || '') : '';
-      document.getElementById('adm-price').value = product ? (product.price || '') : '';
-      document.getElementById('adm-cover').value = product ? (product.cover || '') : '';
-      document.getElementById('adm-tg').value = product ? (product.tgLink || 'https://t.me/nasledieariev') : 'https://t.me/nasledieariev';
-      document.getElementById('adm-pdf').value = '';
-      document.getElementById('adm-pdf-info').textContent = product && product.pdfFile ? 'Загружен: ' + product.pdfFile : '';
-      document.getElementById('btnDelete').style.display = product ? 'block' : 'none';
-      var cs = document.getElementById('adminCodesSection');
-      cs.style.display = product ? 'block' : 'none';
-      if (product) loadCodes(product.id);
-    }
-
-    function closeAdmin() {
-      document.getElementById('adminPanel').classList.remove('active');
-    }
-
-    function saveProduct() {
-      var id = document.getElementById('editId').value || ('book-' + Date.now());
-      var pdfInput = document.getElementById('adm-pdf');
-      var existingPdf = '';
-      var info = document.getElementById('adm-pdf-info').textContent;
-      if (info.indexOf('Загружен:') === 0) existingPdf = info.replace('Загружен: ', '').trim();
-
-      function doSave(pdfFile) {
-        var product = {
-          id: id,
-          title: document.getElementById('adm-title').value,
-          desc: document.getElementById('adm-desc').value,
-          price: parseInt(document.getElementById('adm-price').value) || 0,
-          cover: document.getElementById('adm-cover').value,
-          tgLink: document.getElementById('adm-tg').value,
-          pdfFile: pdfFile || existingPdf
-        };
-        fetch(API + '/products', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(product)
-        }).then(function(r) { return r.json(); }).then(function() {
-          closeAdmin();
-          loadProducts();
-        });
-      }
-
-      if (pdfInput.files.length > 0) {
-        var fd = new FormData();
-        fd.append('file', pdfInput.files[0]);
-        fetch(API + '/upload-pdf', { method: 'POST', body: fd })
-          .then(function(r) { return r.json(); })
-          .then(function(data) { doSave(data.filename); });
+    window.__toggleShopAdmin = function(){
+      if(isAdmin){
+        localStorage.removeItem(ADMIN_KEY);
+        location.reload();
       } else {
-        doSave(null);
+        var pwd = prompt('Введите пароль редактора:');
+        if(pwd === 'nasledie2026'){
+          localStorage.setItem(ADMIN_KEY, '1');
+          location.reload();
+        } else if(pwd !== null){
+          alert('Неверный пароль');
+        }
+      }
+    };
+
+    function addAdminToggle(){
+      var footer = document.querySelector('.footer__inner');
+      if(!footer) return;
+      var toggle = document.createElement('div');
+      toggle.style.cssText = 'margin-top:12px;text-align:center';
+      toggle.innerHTML = isAdmin
+        ? '<span style="font-size:0.7rem;color:var(--gold);cursor:pointer" onclick="window.__toggleShopAdmin()">🔓 Режим редактора · <u>Выйти</u></span>'
+        : '<span style="font-size:0.68rem;color:var(--text-muted);opacity:0.3;cursor:pointer" onclick="window.__toggleShopAdmin()">⚙</span>';
+      footer.appendChild(toggle);
+    }
+    addAdminToggle();
+
+    function showNotice(text, type){
+      var old = document.getElementById('shopNotice');
+      if(old) old.remove();
+      var div = document.createElement('div');
+      div.id = 'shopNotice';
+      var bg = type === 'success' ? 'rgba(46,125,50,0.95)' : 'rgba(180,120,20,0.95)';
+      div.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:var(--radius);background:'+bg+';color:#fff;font-size:0.85rem;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,0.2)';
+      div.textContent = text;
+      document.body.appendChild(div);
+      setTimeout(function(){div.style.opacity='0';div.style.transition='opacity 0.5s';},3500);
+      setTimeout(function(){div.remove();},4000);
+    }
+
+    function loadProducts(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', API + '/products?t=' + Date.now(), true);
+      xhr.onload = function(){
+        if(xhr.status === 200){
+          try { products = JSON.parse(xhr.responseText); } catch(e){ products = []; }
+        }
+        renderList();
+      };
+      xhr.onerror = function(){ renderList(); };
+      xhr.send();
+    }
+
+    function renderList(){
+      var list = document.getElementById('bookList');
+      list.innerHTML = '';
+      document.getElementById('bookCount').textContent = products.length;
+
+      products.forEach(function(p, i){
+        var item = document.createElement('div');
+        item.className = 'book-item';
+        item.setAttribute('data-id', p.id);
+        var coverHtml = p.cover
+          ? '<img src="'+escH(p.cover)+'" alt="'+escH(p.title)+'">'
+          : '<span class="book-item__cover-empty">📖</span>';
+        var priceText = p.price > 0 ? p.price.toLocaleString('ru-RU') + ' ₽' : 'Бесплатно';
+        item.innerHTML =
+          '<div class="book-item__num">'+(i+1)+'</div>'
+          + '<div class="book-item__cover">'+coverHtml+'</div>'
+          + '<div class="book-item__info">'
+          +   '<div class="book-item__title">'+escH(p.title || 'Без названия')+'</div>'
+          +   '<div class="book-item__status">'+escH(p.author || 'PDF')+'</div>'
+          + '</div>'
+          + '<div class="book-item__price">'+priceText+'</div>'
+          + '<div class="book-item__arrow">→</div>';
+        item.onclick = function(){ openBook(p.id); };
+        list.appendChild(item);
+      });
+
+      if(isAdmin){
+        var addItem = document.createElement('div');
+        addItem.className = 'book-item';
+        addItem.style.border = '2px dashed var(--gold)';
+        addItem.innerHTML =
+          '<div class="book-item__num" style="background:transparent;border:2px dashed var(--gold);color:var(--gold)">+</div>'
+          + '<div class="book-item__info"><div class="book-item__title" style="color:var(--gold)">Добавить книгу</div></div>';
+        addItem.onclick = function(){ openEditor(null); };
+        list.appendChild(addItem);
       }
     }
 
-    function deleteProduct() {
-      var id = document.getElementById('editId').value;
-      if (!id || !confirm('Удалить эту книгу?')) return;
-      fetch(API + '/products', {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ id: id })
-      }).then(function() {
-        closeAdmin();
+    function openBook(id){
+      var p = products.find(function(x){return x.id === id;});
+      if(!p) return;
+      currentBookId = id;
+      var cover = document.getElementById('bmCover');
+      if(p.cover){ cover.src = p.cover; cover.alt = p.title; cover.style.display = 'block'; }
+      else { cover.style.display = 'none'; }
+      document.getElementById('bmTitle').textContent = p.title || 'Без названия';
+      document.getElementById('bmAuthor').textContent = p.author || '';
+      document.getElementById('bmDesc').textContent = p.desc || '';
+      var priceEl = document.getElementById('bmPrice');
+      priceEl.textContent = p.price > 0 ? p.price.toLocaleString('ru-RU') + ' ₽' : 'Бесплатно';
+      var cardInfo = document.getElementById('bmCardInfo');
+      if(p.card && p.price > 0){
+        cardInfo.innerHTML = '<strong>Для оплаты:</strong> переведите ' + p.price.toLocaleString('ru-RU') + ' ₽ на карту Сбербанка:<br><strong>' + escH(p.card) + '</strong><br>После оплаты напишите в Telegram — получите код для скачивания.';
+        cardInfo.style.display = 'block';
+      } else { cardInfo.style.display = 'none'; }
+      var buyBtn = document.getElementById('bmBuyBtn');
+      buyBtn.href = p.tgLink || 'https://t.me/nasledieariev';
+      var adminBar = document.getElementById('bmAdminBar');
+      adminBar.style.display = isAdmin ? 'block' : 'none';
+      document.getElementById('bmCodeInput').value = '';
+      document.getElementById('bmCodeMsg').textContent = '';
+      document.getElementById('bookModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBook(){
+      document.getElementById('bookModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('bmClose').onclick = closeBook;
+    document.getElementById('bookModal').addEventListener('click', function(e){
+      if(e.target === this) closeBook();
+    });
+
+    document.getElementById('bmCodeBtn').onclick = function(){
+      var input = document.getElementById('bmCodeInput');
+      var msg = document.getElementById('bmCodeMsg');
+      var code = input.value.trim();
+      if(!code){ msg.textContent = 'Введите код'; msg.className = 'code-msg err'; return; }
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API + '/redeem', true);
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.onload = function(){
+        try{
+          var data = JSON.parse(xhr.responseText);
+          if(data.ok && data.downloadToken){
+            msg.innerHTML = '✅ Код принят! <a href="/api/shop/download?token='+data.downloadToken+'" style="color:var(--gold);font-weight:600">⬇ Скачать книгу</a><br><span style="font-size:0.72rem;color:var(--text-muted)">Ссылка одноразовая, действует 10 минут</span>';
+            msg.className = 'code-msg ok';
+          } else {
+            msg.textContent = data.error || 'Неверный код';
+            msg.className = 'code-msg err';
+          }
+        }catch(e){ msg.textContent = 'Ошибка'; msg.className = 'code-msg err'; }
+      };
+      xhr.send(JSON.stringify({code:code}));
+    };
+
+    document.getElementById('bmEditBtn').onclick = function(){
+      closeBook();
+      var p = products.find(function(x){return x.id === currentBookId;});
+      if(p) openEditor(p);
+    };
+
+    function openEditor(p){
+      document.getElementById('edTitle').textContent = p ? '✏️ Редактировать книгу' : '📖 Добавить книгу';
+      document.getElementById('edId').value = p ? p.id : '';
+      document.getElementById('edName').value = p ? (p.title||'') : '';
+      document.getElementById('edAuthor').value = p ? (p.author||'') : '';
+      document.getElementById('edDesc').value = p ? (p.desc||'') : '';
+      document.getElementById('edPrice').value = p ? (p.price||'') : '';
+      document.getElementById('edCard').value = p ? (p.card||'') : '';
+      document.getElementById('edTg').value = p ? (p.tgLink||'https://t.me/nasledieariev') : 'https://t.me/nasledieariev';
+      document.getElementById('edCoverUrl').value = p ? (p.cover||'') : '';
+      document.getElementById('edCoverInfo').textContent = '';
+      showCoverPreview(p ? p.cover : '');
+      var pdfInfo = document.getElementById('edPdfInfo');
+      var pdfCheck = document.getElementById('edPdfCheck');
+      if(p && p.pdfFile){
+        pdfInfo.textContent = 'Загружен: '+p.pdfFile;
+        pdfCheck.href = '/uploads/shop-pdf/' + p.pdfFile;
+        pdfCheck.style.display = 'inline-block';
+      } else {
+        pdfInfo.textContent = '';
+        pdfCheck.style.display = 'none';
+      }
+      document.getElementById('uploadProgress').textContent = '';
+      document.getElementById('edDelete').style.display = p ? 'inline-block' : 'none';
+      var cs = document.getElementById('edCodesSection');
+      cs.style.display = p ? 'block' : 'none';
+      if(p) loadCodes(p.id);
+      document.getElementById('editorModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEditor(){
+      document.getElementById('editorModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('edCancel').onclick = closeEditor;
+    document.getElementById('editorModal').addEventListener('click', function(e){
+      if(e.target === this) closeEditor();
+    });
+
+    function showCoverPreview(url){
+      var img = document.getElementById('edCoverPreview');
+      if(url){ img.src = url; img.style.display = 'block'; }
+      else { img.src = ''; img.style.display = 'none'; }
+    }
+
+    document.getElementById('edCoverUrl').addEventListener('input', function(){
+      showCoverPreview(this.value);
+    });
+
+    document.getElementById('btnUploadCover').onclick = function(){
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = function(){
+        var file = input.files[0];
+        if(!file) return;
+        document.getElementById('edCoverInfo').textContent = '⏳ Загрузка обложки...';
+        var fd = new FormData();
+        fd.append('file', file);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', API + '/upload-cover', true);
+        xhr.onload = function(){
+          try{
+            var resp = JSON.parse(xhr.responseText);
+            if(resp.url){
+              document.getElementById('edCoverUrl').value = resp.url;
+              document.getElementById('edCoverInfo').textContent = '✅ Обложка загружена';
+              showCoverPreview(resp.url);
+            } else {
+              document.getElementById('edCoverInfo').textContent = '❌ Ошибка: ' + (resp.error || 'неизвестная');
+            }
+          }catch(e){ document.getElementById('edCoverInfo').textContent = '❌ Ошибка'; }
+        };
+        xhr.onerror = function(){
+          document.getElementById('edCoverInfo').textContent = '❌ Нет связи с сервером';
+        };
+        xhr.send(fd);
+      };
+      input.click();
+    };
+
+    document.getElementById('btnUploadPdf').onclick = function(){
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.pdf,.epub,.fb2,.djvu,.doc,.docx,.zip,.rar,.txt';
+      input.onchange = function(){
+        var file = input.files[0];
+        if(!file) return;
+        var btn = document.getElementById('btnUploadPdf');
+        btn.textContent = '⏳ Загрузка...';
+        btn.disabled = true;
+        var fd = new FormData();
+        fd.append('file', file);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', API + '/upload-pdf', true);
+        xhr.upload.onprogress = function(e){
+          if(e.lengthComputable){
+            document.getElementById('uploadProgress').textContent = '📄 Загрузка: ' + Math.round(e.loaded/e.total*100) + '%';
+          }
+        };
+        xhr.onload = function(){
+          btn.textContent = '📁 Загрузить PDF';
+          btn.disabled = false;
+          try{
+            var resp = JSON.parse(xhr.responseText);
+            if(resp.filename){
+              document.getElementById('edPdfInfo').textContent = '✅ Загружен: ' + resp.filename;
+              document.getElementById('uploadProgress').textContent = '';
+              document.getElementById('edPdfInfo').setAttribute('data-filename', resp.filename);
+              var pdfCheck = document.getElementById('edPdfCheck');
+              pdfCheck.href = '/uploads/shop-pdf/' + resp.filename;
+              pdfCheck.style.display = 'inline-block';
+            }
+          }catch(e){ document.getElementById('uploadProgress').textContent = '❌ Ошибка'; }
+        };
+        xhr.onerror = function(){
+          btn.textContent = '📁 Загрузить PDF';
+          btn.disabled = false;
+          document.getElementById('uploadProgress').textContent = '❌ Нет связи';
+        };
+        xhr.send(fd);
+      };
+      input.click();
+    };
+
+    document.getElementById('edSave').onclick = function(){
+      var id = document.getElementById('edId').value || ('book-' + Date.now());
+      var pdfInfo = document.getElementById('edPdfInfo');
+      var existingPdf = '';
+      var p = products.find(function(x){return x.id === id;});
+      if(p && p.pdfFile) existingPdf = p.pdfFile;
+      var newPdf = pdfInfo.getAttribute('data-filename');
+
+      var product = {
+        id: id,
+        title: document.getElementById('edName').value.trim(),
+        author: document.getElementById('edAuthor').value.trim(),
+        desc: document.getElementById('edDesc').value.trim(),
+        price: parseInt(document.getElementById('edPrice').value) || 0,
+        card: document.getElementById('edCard').value.trim(),
+        tgLink: document.getElementById('edTg').value.trim(),
+        cover: document.getElementById('edCoverUrl').value.trim(),
+        pdfFile: newPdf || existingPdf
+      };
+      if(!product.title){ alert('Введите название книги'); return; }
+      var btn = document.getElementById('edSave');
+      btn.textContent = '⏳ Сохранение...';
+      btn.disabled = true;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API + '/products', true);
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.onload = function(){
+        btn.textContent = '💾 Сохранить';
+        btn.disabled = false;
+        if(xhr.status === 200){
+          showNotice('Книга сохранена!', 'success');
+          closeEditor();
+          loadProducts();
+        } else {
+          showNotice('Ошибка сервера: ' + xhr.status, 'warn');
+        }
+      };
+      xhr.onerror = function(){
+        btn.textContent = '💾 Сохранить';
+        btn.disabled = false;
+        showNotice('Нет связи', 'warn');
+      };
+      xhr.send(JSON.stringify(product));
+    };
+
+    document.getElementById('edDelete').onclick = function(){
+      var id = document.getElementById('edId').value;
+      if(!id || !confirm('Удалить эту книгу?')) return;
+      var xhr = new XMLHttpRequest();
+      xhr.open('DELETE', API + '/products', true);
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.onload = function(){
+        showNotice('Книга удалена', 'success');
+        closeEditor();
         loadProducts();
-      });
+      };
+      xhr.send(JSON.stringify({id:id}));
+    };
+
+    function loadCodes(productId){
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', API + '/codes?productId=' + productId, true);
+      xhr.onload = function(){
+        try{
+          var codes = JSON.parse(xhr.responseText);
+          var list = document.getElementById('edCodeList');
+          if(codes.length === 0){
+            list.innerHTML = '<em style="color:var(--text-muted)">Нет кодов. Создайте новые.</em>';
+            return;
+          }
+          list.innerHTML = codes.map(function(c){
+            return '<div class="ed-code-item'+(c.used?' used':'')+'"><span>'+c.code+'</span><span>'+(c.used?'использован':'активен')+'</span></div>';
+          }).join('');
+        }catch(e){}
+      };
+      xhr.send();
     }
 
-    function loadCodes(productId) {
-      fetch(API + '/codes?productId=' + productId).then(function(r) { return r.json(); }).then(function(codes) {
-        var list = document.getElementById('codeList');
-        if (codes.length === 0) {
-          list.innerHTML = '<em style="color:var(--text-muted)">Нет кодов. Создайте новые.</em>';
-          return;
-        }
-        list.innerHTML = codes.map(function(c) {
-          return '<div class="code-item' + (c.used ? ' used' : '') + '">' +
-            '<span>' + c.code + '</span>' +
-            '<span>' + (c.used ? 'использован' : 'активен') + '</span>' +
-          '</div>';
-        }).join('');
-      });
-    }
+    document.getElementById('btnGenCodes').onclick = function(){
+      var id = document.getElementById('edId').value;
+      if(!id){ alert('Сначала сохраните книгу'); return; }
+      var count = parseInt(document.getElementById('edCodeCount').value) || 5;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API + '/codes', true);
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.onload = function(){
+        try{
+          var data = JSON.parse(xhr.responseText);
+          if(data.codes){
+            alert('Созданы коды:\n' + data.codes.join('\n'));
+            loadCodes(id);
+          }
+        }catch(e){}
+      };
+      xhr.send(JSON.stringify({productId:id, count:count}));
+    };
 
-    function generateCodes() {
-      var id = document.getElementById('editId').value;
-      var count = parseInt(document.getElementById('codeCount').value) || 5;
-      fetch(API + '/codes', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ productId: id, count: count })
-      }).then(function(r) { return r.json(); }).then(function(data) {
-        if (data.codes) {
-          alert('Созданы коды:\n' + data.codes.join('\n'));
-          loadCodes(id);
-        }
-      });
-    }
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        if(document.getElementById('editorModal').classList.contains('active')) closeEditor();
+        else closeBook();
+      }
+    });
 
     loadProducts();
+  })();
   </script>
 </body>
 </html>
