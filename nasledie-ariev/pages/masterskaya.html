@@ -393,8 +393,7 @@
       var pdfCheck = document.getElementById('edPdfCheck');
       if(p && p.pdfFile){
         pdfInfo.textContent = 'Загружен: '+p.pdfFile;
-        pdfCheck.href = '/uploads/shop-pdf/' + p.pdfFile;
-        pdfCheck.style.display = 'inline-block';
+        updatePdfCheckLink(p.pdfFile);
       } else {
         pdfInfo.textContent = '';
         pdfCheck.style.display = 'none';
@@ -417,6 +416,21 @@
     document.getElementById('editorModal').addEventListener('click', function(e){
       if(e.target === this) closeEditor();
     });
+
+    function updatePdfCheckLink(filename){
+      var pdfCheck = document.getElementById('edPdfCheck');
+      var ext = (filename || '').split('.').pop().toLowerCase();
+      var canPreview = (ext === 'pdf' || ext === 'png' || ext === 'jpg' || ext === 'jpeg');
+      pdfCheck.href = '/uploads/shop-pdf/' + filename;
+      pdfCheck.style.display = 'inline-block';
+      if(canPreview){
+        pdfCheck.textContent = 'Открыть файл для проверки';
+        pdfCheck.onclick = null;
+      } else {
+        pdfCheck.textContent = 'Скачать файл для проверки (' + ext.toUpperCase() + ')';
+        pdfCheck.onclick = null;
+      }
+    }
 
     function showCoverPreview(url){
       var img = document.getElementById('edCoverPreview');
@@ -488,9 +502,7 @@
               document.getElementById('edPdfInfo').textContent = '✅ Загружен: ' + resp.filename;
               document.getElementById('uploadProgress').textContent = '';
               document.getElementById('edPdfInfo').setAttribute('data-filename', resp.filename);
-              var pdfCheck = document.getElementById('edPdfCheck');
-              pdfCheck.href = '/uploads/shop-pdf/' + resp.filename;
-              pdfCheck.style.display = 'inline-block';
+              updatePdfCheckLink(resp.filename);
             }
           }catch(e){ document.getElementById('uploadProgress').textContent = '❌ Ошибка'; }
         };
