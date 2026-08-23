@@ -8,8 +8,32 @@
   var UPLOAD_API = '/api/upload';
   var ADMIN_KEY = 'nasledie_admin';
   var LOCAL_KEY = 'nasledie_lessons_' + COURSE;
+  var ACCESS_KEY = 'nasledie_access_' + COURSE;
   var isAdmin = localStorage.getItem(ADMIN_KEY) === '1';
   var lessonsCache = {};
+
+  var FREE_LESSONS = 4;
+  var LESSON_PRICE = 100;
+  var FREE_COURSES = ['rita'];
+
+  function isPaidLesson(num){
+    if(FREE_COURSES.indexOf(COURSE) !== -1) return false;
+    return parseInt(num) > FREE_LESSONS;
+  }
+
+  function getAccessMap(){
+    try { return JSON.parse(localStorage.getItem(ACCESS_KEY)) || {}; } catch(e){ return {}; }
+  }
+  function saveAccess(num){
+    var map = getAccessMap();
+    map[String(num)] = true;
+    try { localStorage.setItem(ACCESS_KEY, JSON.stringify(map)); } catch(e){}
+  }
+  function hasAccess(num){
+    if(isAdmin) return true;
+    if(!isPaidLesson(num)) return true;
+    return getAccessMap()[String(num)] === true;
+  }
 
   function localSave(data){
     try { localStorage.setItem(LOCAL_KEY, JSON.stringify(data)); } catch(e){}
@@ -153,10 +177,127 @@
         status.style.opacity = '1';
         status.style.color = 'var(--gold)';
       }
+      if(isPaidLesson(num)){
+        var arrow = item.querySelector('.lesson-item__arrow');
+        if(hasAccess(num)){
+          if(!item.querySelector('.lesson-item__unlocked')){
+            var tag = document.createElement('span');
+            tag.className = 'lesson-item__unlocked';
+            tag.style.cssText = 'font-size:0.68rem;color:var(--green,#3a7d44);opacity:0.7;margin-left:auto;white-space:nowrap';
+            tag.textContent = '✓ Доступ открыт';
+            if(arrow) item.insertBefore(tag, arrow);
+            else item.appendChild(tag);
+          }
+        } else {
+          if(!item.querySelector('.lesson-item__price')){
+            var price = document.createElement('span');
+            price.className = 'lesson-item__price';
+            price.style.cssText = 'font-size:0.78rem;color:var(--gold);font-weight:600;margin-left:auto;white-space:nowrap';
+            price.textContent = '🔒 ' + LESSON_PRICE + ' ₽';
+            if(arrow) item.insertBefore(price, arrow);
+            else item.appendChild(price);
+          }
+        }
+      }
+    });
+  }
+
+  function buildPaywall(num){
+    var ce = document.getElementById('lmContent');
+    var title = document.getElementById('lmTitle');
+    var tgBlock = document.querySelector('.lesson-modal__text');
+    var tgBtn = document.querySelector('.lesson-modal__box > .btn--primary');
+
+    title.textContent = 'Урок ' + num + ' · Платный доступ';
+    if(tgBlock) tgBlock.style.display = 'none';
+    if(tgBtn) tgBtn.style.display = 'none';
+
+    ce.innerHTML = '<div style="text-align:center;padding:24px 0">'
+      + '<div style="font-size:2.5rem;margin-bottom:12px">🔒</div>'
+      + '<div style="font-family:var(--font-head);font-size:1.1rem;color:var(--text);margin-bottom:8px">Платный урок</div>'
+      + '<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:20px;line-height:1.7">'
+      + 'Для доступа к этому уроку оплатите <strong style="color:var(--gold)">' + LESSON_PRICE + ' ₽</strong><br>'
+      + 'и введите полученный код ниже.'
+      + '</div>'
+      + '<div style="max-width:320px;margin:0 auto">'
+      + '<input id="payCodeInput" placeholder="Введите код доступа" '
+      + 'style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;text-align:center;letter-spacing:0.15em;text-transform:uppercase;background:var(--bg-2);color:var(--text);box-sizing:border-box;margin-bottom:10px">'
+      + '<button id="payCodeBtn" style="width:100%;padding:12px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-family:var(--font-head);font-size:0.9rem;cursor:pointer;letter-spacing:0.05em;transition:opacity 0.2s">'
+      + 'Активировать доступ</button>'
+      + '<div id="payCodeError" style="font-size:0.8rem;color:#c44;margin-top:8px;display:none"></div>'
+      + '</div>'
+      + '<div style="margin-top:24px;padding:16px;background:var(--bg-2);border:1px solid var(--border);border-radius:10px;font-size:0.82rem;color:var(--text-muted);line-height:1.8">'
+      + '<div style="font-family:var(--font-head);font-size:0.75rem;color:var(--gold);margin-bottom:6px;letter-spacing:0.08em">Как оплатить:</div>'
+      + '1. Переведите <strong style="color:var(--text)">' + LESSON_PRICE + ' ₽</strong> на карту:<br>'
+      + '<span style="font-family:monospace;font-size:1rem;color:var(--text);letter-spacing:0.12em;font-weight:600">5469 9801 5259 1729</span><br>'
+      + '2. Напишите в Telegram: <a href="https://t.me/nasledieariev" target="_blank" style="color:var(--gold)">@nasledieariev</a><br>'
+      + '3. Получите код и введите его выше'
+      + '</div>'
+      + '</div>';
+    ce.classList.add('has-content');
+
+    document.getElementById('payCodeBtn').onclick = function(){
+      var code = document.getElementById('payCodeInput').value.trim();
+      if(!code){ document.getElementById('payCodeError').textContent = 'Введите код'; document.getElementById('payCodeError').style.display = 'block'; return; }
+      var btn = document.getElementById('payCodeBtn');
+      btn.textContent = 'Проверка...';
+      btn.disabled = true;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/lesson-redeem', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.timeout = 10000;
+      xhr.onload = function(){
+        try {
+          var resp = JSON.parse(xhr.responseText);
+          if(resp.ok){
+            saveAccess(num);
+            showNotice('Доступ открыт! Урок ' + num + ' доступен навсегда.', 'success');
+            closeLesson();
+            updateListStatuses();
+            setTimeout(function(){ openLesson(parseInt(num)); }, 300);
+          } else {
+            document.getElementById('payCodeError').textContent = resp.error || 'Ошибка';
+            document.getElementById('payCodeError').style.display = 'block';
+            btn.textContent = 'Активировать доступ';
+            btn.disabled = false;
+          }
+        } catch(e){
+          document.getElementById('payCodeError').textContent = 'Ошибка связи';
+          document.getElementById('payCodeError').style.display = 'block';
+          btn.textContent = 'Активировать доступ';
+          btn.disabled = false;
+        }
+      };
+      xhr.onerror = function(){
+        document.getElementById('payCodeError').textContent = 'Нет связи с сервером';
+        document.getElementById('payCodeError').style.display = 'block';
+        btn.textContent = 'Активировать доступ';
+        btn.disabled = false;
+      };
+      xhr.send(JSON.stringify({ code: code }));
+    };
+
+    document.getElementById('payCodeInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter') document.getElementById('payCodeBtn').click();
     });
   }
 
   function buildModalContent(num){
+    if(isPaidLesson(num) && !hasAccess(num)){
+      buildPaywall(num);
+      var oldBar = document.getElementById('adminBar');
+      if(oldBar) oldBar.remove();
+      if(isAdmin){
+        var bar = document.createElement('div');
+        bar.id = 'adminBar';
+        bar.style.cssText = 'margin-top:20px;padding-top:16px;border-top:1px dashed var(--gold);text-align:center';
+        bar.innerHTML = '<button onclick="window.__editLesson('+num+')" class="btn btn--ghost" style="font-size:0.8rem">✏️ Редактировать урок</button>'
+          + ' <button onclick="window.__genLessonCodes('+num+')" class="btn btn--ghost" style="font-size:0.8rem;margin-left:8px">🎟️ Коды доступа</button>';
+        document.querySelector('.lesson-modal__box').appendChild(bar);
+      }
+      return;
+    }
+
     var data = loadLessons();
     var d = data[num];
     var ce = document.getElementById('lmContent');
@@ -207,9 +348,87 @@
       var bar = document.createElement('div');
       bar.id = 'adminBar';
       bar.style.cssText = 'margin-top:20px;padding-top:16px;border-top:1px dashed var(--gold);text-align:center';
-      bar.innerHTML = '<button onclick="window.__editLesson('+num+')" class="btn btn--ghost" style="font-size:0.8rem">✏️ Редактировать урок</button>';
+      var btns = '<button onclick="window.__editLesson('+num+')" class="btn btn--ghost" style="font-size:0.8rem">✏️ Редактировать урок</button>';
+      if(isPaidLesson(num)){
+        btns += ' <button onclick="window.__genLessonCodes('+num+')" class="btn btn--ghost" style="font-size:0.8rem;margin-left:8px">🎟️ Коды доступа</button>';
+      }
+      bar.innerHTML = btns;
       document.querySelector('.lesson-modal__box').appendChild(bar);
     }
+  }
+
+  window.__genLessonCodes = function(num){
+    var box = document.querySelector('.lesson-modal__box');
+    box.innerHTML = '<button class="lesson-modal__close" onclick="closeLesson()">✕</button>'
+      + '<div style="text-align:left;padding:4px">'
+      + '<h3 style="font-family:var(--font-head);color:var(--gold);margin-bottom:16px">🎟️ Коды доступа — Урок ' + num + '</h3>'
+      + '<div style="display:flex;gap:10px;align-items:center;margin-bottom:16px">'
+      + '<label style="font-size:0.85rem;color:var(--text)">Количество кодов:</label>'
+      + '<input id="codeCount" type="number" value="5" min="1" max="100" style="width:80px;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:0.9rem;background:var(--bg-2);color:var(--text)">'
+      + '<button id="genCodesBtn" class="btn btn--primary" style="font-size:0.82rem">Сгенерировать</button>'
+      + '</div>'
+      + '<div id="codesResult" style="font-size:0.82rem;color:var(--text-muted)">Загрузка существующих кодов...</div>'
+      + '<div style="margin-top:16px"><button onclick="closeLesson();openLesson('+num+')" class="btn btn--ghost" style="font-size:0.8rem">← Назад к уроку</button></div>'
+      + '</div>';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/lesson-codes?course=' + encodeURIComponent(COURSE) + '&lessonNum=' + num, true);
+    xhr.onload = function(){
+      try {
+        var list = JSON.parse(xhr.responseText);
+        renderCodesList(list);
+      } catch(e){ document.getElementById('codesResult').textContent = 'Ошибка загрузки'; }
+    };
+    xhr.send();
+
+    document.getElementById('genCodesBtn').onclick = function(){
+      var count = parseInt(document.getElementById('codeCount').value) || 5;
+      var btn = document.getElementById('genCodesBtn');
+      btn.textContent = 'Генерация...';
+      btn.disabled = true;
+      var xhr2 = new XMLHttpRequest();
+      xhr2.open('POST', '/api/lesson-codes', true);
+      xhr2.setRequestHeader('Content-Type', 'application/json');
+      xhr2.onload = function(){
+        btn.textContent = 'Сгенерировать';
+        btn.disabled = false;
+        try {
+          var resp = JSON.parse(xhr2.responseText);
+          if(resp.ok){
+            showNotice('Сгенерировано ' + resp.codes.length + ' кодов', 'success');
+            var xhr3 = new XMLHttpRequest();
+            xhr3.open('GET', '/api/lesson-codes?course=' + encodeURIComponent(COURSE) + '&lessonNum=' + num, true);
+            xhr3.onload = function(){
+              try { renderCodesList(JSON.parse(xhr3.responseText)); } catch(e){}
+            };
+            xhr3.send();
+          }
+        } catch(e){}
+      };
+      xhr2.send(JSON.stringify({ course: COURSE, lessonNum: String(num), count: count }));
+    };
+  };
+
+  function renderCodesList(list){
+    var res = document.getElementById('codesResult');
+    if(!list.length){ res.innerHTML = '<div style="padding:12px;text-align:center;color:var(--text-muted)">Кодов пока нет</div>'; return; }
+    var unused = list.filter(function(c){ return !c.used; });
+    var used = list.filter(function(c){ return c.used; });
+    var html = '<div style="margin-bottom:8px;font-size:0.78rem;color:var(--text-muted)">Всего: ' + list.length + ' · Свободных: ' + unused.length + ' · Использованных: ' + used.length + '</div>';
+    if(unused.length){
+      html += '<div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:8px">';
+      html += '<div style="font-size:0.75rem;color:var(--gold);margin-bottom:6px;font-weight:600">Свободные коды (можно копировать):</div>';
+      html += '<div style="font-family:monospace;font-size:0.85rem;line-height:2;word-break:break-all;user-select:all">';
+      unused.forEach(function(c){ html += '<span style="display:inline-block;padding:2px 8px;background:rgba(46,125,50,0.1);border:1px solid rgba(46,125,50,0.2);border-radius:4px;margin:2px">' + c.code + '</span> '; });
+      html += '</div></div>';
+    }
+    if(used.length){
+      html += '<details style="margin-top:8px"><summary style="font-size:0.75rem;color:var(--text-muted);cursor:pointer">Использованные (' + used.length + ')</summary>';
+      html += '<div style="margin-top:6px;font-family:monospace;font-size:0.78rem;line-height:1.8;color:var(--text-muted)">';
+      used.forEach(function(c){ html += '<span style="text-decoration:line-through;opacity:0.5">' + c.code + '</span> '; });
+      html += '</div></details>';
+    }
+    res.innerHTML = html;
   }
 
   function extractYoutubeEmbed(val){
@@ -361,7 +580,6 @@
       }
     });
 
-    // Upload video button
     document.getElementById('btnUploadVideo').onclick = function(){
       var input = document.createElement('input');
       input.type = 'file';
@@ -390,7 +608,6 @@
       input.click();
     };
 
-    // Upload PDF button
     document.getElementById('btnUploadPdf').onclick = function(){
       var input = document.createElement('input');
       input.type = 'file';

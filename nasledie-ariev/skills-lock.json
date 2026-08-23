@@ -1,6 +1,96 @@
 {
   "version": 1,
   "skills": {
+    "actualize": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/actualize/SKILL.md",
+      "computedHash": "727a537895866a8c305f0baf4aa9438790826bd2c3cb6d6b661a8ea636448750"
+    },
+    "add-bug": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-bug/SKILL.md",
+      "computedHash": "a6d172a474a4156670b685e54f3eaf92561c39fc131c8f8336e7196e97fd60c9"
+    },
+    "add-cli-option": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-cli-option/SKILL.md",
+      "computedHash": "cb73b36e92e928b5ae1f018ef8376321b0318724836d8f0d234048f999d29232"
+    },
+    "add-effect": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-effect/SKILL.md",
+      "computedHash": "7fd88bd16613f446a45153bc550d2d5ee54e708826da29eaeedc8bd4145c93d0"
+    },
+    "add-expert": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-expert/SKILL.md",
+      "computedHash": "e19d0cfe02cff6e24ed11c298e600e7a5bf62040bbb422b3a618a7a29ecd58a2"
+    },
+    "add-new-package": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-new-package/SKILL.md",
+      "computedHash": "e89857e414c2b4a73163bb5bf451a0110cde68cc612fdb9ff8113fbe71dd4e16"
+    },
+    "add-sfx": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-sfx/SKILL.md",
+      "computedHash": "f27e830204fc09307818eda754020714d013eb01e297962df852b51fd4459070"
+    },
+    "add-task": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/add-task/SKILL.md",
+      "computedHash": "50c2c1b7e06bf4d255fb64ffadcfd59725793de1eb5bb15dcb5232ce555420d2"
+    },
+    "add-webcodecs-bug": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/add-webcodecs-bug/SKILL.md",
+      "computedHash": "3d3e1de99cb008b64591f3ba3df985e3c129d72b43d650647f18a21a28767a2b"
+    },
+    "agent-evaluation": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/agent-evaluation/SKILL.md",
+      "computedHash": "6f3a17ec5741abc19ef755eebbf5d4ec7651bb103158778386d92d5e26bc17fb"
+    },
+    "analyse": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/analyse/SKILL.md",
+      "computedHash": "124869d3608965a8623ef602aa6e52c55151304b2613158956716278f73eefc1"
+    },
+    "analyse-problem": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/analyse-problem/SKILL.md",
+      "computedHash": "1c7f08992e2ff920bb62607203d9a4d0811ef4caa1dc9b720d30b5aa68415790"
+    },
+    "analyze-issue": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/analyze-issue/SKILL.md",
+      "computedHash": "98cfd1e5f8f294b1c48b216304755cac85f4a89c715eb17b221a298a2d369fdf"
+    },
+    "apply-anthropic-skill-best-practices": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/apply-anthropic-skill-best-practices/SKILL.md",
+      "computedHash": "361e29c37b0360596e0ba119a26d67e31e88a58ff5333b4c709e9937222d7fd4"
+    },
+    "attach-review-to-pr": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/attach-review-to-pr/SKILL.md",
+      "computedHash": "91a1860f1116c4ea5d1333dd3346b0b6cde0c95ee73f2c53864c991ec5c7500e"
+    },
     "bank-sync": {
       "source": "openaccountant/skills",
       "sourceType": "github",
@@ -199,11 +289,29 @@
       "skillPath": "skills/blog-write/SKILL.md",
       "computedHash": "f5268b07b6b6f64f40ffec9785efb94be4c51030f23bc07639b56fe14f9cce2b"
     },
+    "brainstorm": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorm/SKILL.md",
+      "computedHash": "25811b18370e35cdea7677e1304b65a2b587fa99549ee9e863c8c83dc9c07eae"
+    },
     "break-even-calc": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/break-even-calc/SKILL.md",
       "computedHash": "59389550d7bb4f809e8efb2ce368266a407babbc1a904443796a0a46a01f79c9"
+    },
+    "build-mcp": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/build-mcp/SKILL.md",
+      "computedHash": "369d7a51f48fd2bf6911bec39aebf07e2d8ef65b08777f178a355065f271b541"
+    },
+    "canvas-capture-extension": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/canvas-capture-extension/SKILL.md",
+      "computedHash": "4662f202861e89c7598ebdccea2f2ac43e7cc8d7ff842b06097b29974278d5ec"
     },
     "carousel": {
       "source": "tenfoldmarc/carousel-suite-skill",
@@ -235,11 +343,23 @@
       "skillPath": "business/cash-flow-forecast/SKILL.md",
       "computedHash": "3077794a09a28945ec25b0a1955052e6ae8c8fdee03c2bb5891c9a1ec7c53210"
     },
+    "cause-and-effect": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/cause-and-effect/SKILL.md",
+      "computedHash": "845718291e10fa86f5920313ee688baca3c5cbea235c3f420b9a165da2ec1235"
+    },
     "charitable-giving": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "personal/charitable-giving/SKILL.md",
       "computedHash": "58045980d66ed676bbc5f55c0d8b4f0f2c295527779255e98fbe3580d9a9f772"
+    },
+    "checkout": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/checkout/SKILL.md",
+      "computedHash": "0a177f60d8d3a500632c412bcd8bd9f52cd236372cccac6620ecc4160ef8a7e5"
     },
     "claude-blog-brain": {
       "source": "AgriciDaniel/claude-blog",
@@ -253,11 +373,83 @@
       "skillPath": "business/client-profitability/SKILL.md",
       "computedHash": "47d8f751d773eadc06b690cb82cc25a3d3bd9794145539a8ccf1967d37d3dbbc"
     },
+    "commit": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/commit/SKILL.md",
+      "computedHash": "0a39209424e08912a7f0878c55efd9f4bde16b11649703ed4743fd17833e0186"
+    },
+    "context-engineering": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/context-engineering/SKILL.md",
+      "computedHash": "519fd602caeee0107be2d83d45f4243e41eabc68d6c3793729699170705954e0"
+    },
     "contractor-tracking": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/contractor-tracking/SKILL.md",
       "computedHash": "0c11f6540c7ea77b84d95700faa90c916d130dcbf8bb211d7858921b027b97a4"
+    },
+    "convert": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/convert/SKILL.md",
+      "computedHash": "de43e14a51a8c46796d0821535b7c0530fef159a5e8767213d8996f391dd0b79"
+    },
+    "create-agent": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-agent/SKILL.md",
+      "computedHash": "7280302deee1cd1e850c424cc461b1d5d082bb222ed0ff37136b2c4af75351ee"
+    },
+    "create-command": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-command/SKILL.md",
+      "computedHash": "3d5ff57b71747daef87e2a00ee7dbad426c8cb1316e395c2e2c2ad91981407cc"
+    },
+    "create-hook": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-hook/SKILL.md",
+      "computedHash": "298e7d3a982f80feeaf6ac5ce9dcb9b7dc15cfb9e912ac0bea7217c1546cc71e"
+    },
+    "create-ideas": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-ideas/SKILL.md",
+      "computedHash": "202030b1304c20efc4964ac5d44e821887d26e2a67cb5b032a0234a675af6947"
+    },
+    "create-pr": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-pr/SKILL.md",
+      "computedHash": "e46212c201faafb7c70656f4750ab61b620179fd7b8df50781e6a26e59bed4fb"
+    },
+    "create-rule": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-rule/SKILL.md",
+      "computedHash": "0774ca6452000ecb06dd30dffe0ec1980c9e1d9803da4447f563ec4e61e5f34a"
+    },
+    "create-skill": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-skill/SKILL.md",
+      "computedHash": "7d23eacb70f76aa0577fa5b1adc75de3b94baa846e5e8998555ed1be3e8a35e1"
+    },
+    "create-workflow-command": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/create-workflow-command/SKILL.md",
+      "computedHash": "fba3399447b0f41dee3bb520692f3c19e9be44cfde39e01085d5c874f7c8ec8f"
+    },
+    "critique": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/critique/SKILL.md",
+      "computedHash": "1d27a1752a02f40aed10deef398d4ededb85349477bd0aa9fa6b6142cd640207"
     },
     "custom-report": {
       "source": "openaccountant/skills",
@@ -271,11 +463,29 @@
       "skillPath": "personal/debt-payoff/SKILL.md",
       "computedHash": "af75d352f1d68dab3516f2f3a22bbcaced7c762531feb70a0831c401ecafe8ad"
     },
+    "decay": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/decay/SKILL.md",
+      "computedHash": "8352c47d647e04821e3d05450584fb1a9aef4b9733b0e8b20a6bfb59fc093e63"
+    },
+    "deprecate-api": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/deprecate-api/SKILL.md",
+      "computedHash": "b1297418a20cd98d7653b64ac18006a1b86d0052fe0570b5a6c021888134831b"
+    },
     "depreciation-schedule": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "shared/depreciation-schedule/SKILL.md",
       "computedHash": "9c1525aaf565b1d8ec88a01a53548b4cef2575aeb63a454047945062c6236a8c"
+    },
+    "design-md": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-utilities/skills/design-md/SKILL.md",
+      "computedHash": "44af3e6e89a42a765d9cebf943f1e2ff3cdf43d1958341eb43fb7b74116f6691"
     },
     "design-taste-frontend": {
       "source": "Leonxlnx/taste-skill",
@@ -283,11 +493,59 @@
       "skillPath": "skills/taste-skill/SKILL.md",
       "computedHash": "899b84384f74f540ea5284d9b2e9234e050998b42eacc805410b518d4226c0b3"
     },
+    "design-testing-strategy": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/design-testing-strategy/SKILL.md",
+      "computedHash": "00934eb0bcc302ab281dd146b1ec7de9adac7cb3ec6921472e24844c22cd0e33"
+    },
+    "do-and-judge": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/do-and-judge/SKILL.md",
+      "computedHash": "6515b0dafc035b118b803629caeaf96c92aa1c28809dca3e37ef54c5d700438c"
+    },
+    "do-competitively": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/do-competitively/SKILL.md",
+      "computedHash": "a98f7e4ae51c171ae5656e09cd0662d21601c61f9f9413ccd0a1645683f21ed8"
+    },
+    "do-in-parallel": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/do-in-parallel/SKILL.md",
+      "computedHash": "e33cfa92c89c82e9aed8c93691fc76782389c1797c1357ef2fe0e695274e213d"
+    },
+    "do-in-steps": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/do-in-steps/SKILL.md",
+      "computedHash": "7f8955465f16b28d17dc0603ad33bea8061be31dac9fc4d5dbd7d8cd91bbd0f5"
+    },
+    "docs": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/docs/SKILL.md",
+      "computedHash": "34201a9cea75c6abb0c1f4f6b659a9c726240b4da1ed55506a255c4377cf51ca"
+    },
+    "docs-demo": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/docs-demo/SKILL.md",
+      "computedHash": "3aaa7f68e599346e46862d19e356387b236b823a09919a8035d62672cec4870f"
+    },
     "emergency-fund": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "personal/emergency-fund/SKILL.md",
       "computedHash": "53edf8d64feda5b554b1638022070a6b0f37bfd9bd2feef86cd8d45fd4dfe819"
+    },
+    "enhance-prompt": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-utilities/skills/enhance-prompt/SKILL.md",
+      "computedHash": "28c47bcbc0e8d81f48fbbbe41d227efe4018a32c5d4674b0d052a70d215072d3"
     },
     "expense-optimizer": {
       "source": "openaccountant/skills",
@@ -295,11 +553,65 @@
       "skillPath": "shared/expense-optimizer/SKILL.md",
       "computedHash": "980450637f422594615268c259e1deb23d07cb116afa524c812b16c073f8d79e"
     },
+    "experts": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/experts/SKILL.md",
+      "computedHash": "c6fe8adf2430139ce4b7765e12869ab776517f1a01bd27437cb0964f06c19b4f"
+    },
     "financial-goals": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "personal/financial-goals/SKILL.md",
       "computedHash": "6219aff9a35db062957ff77a5ac74fed8c8e35e50a080c51926d65b327e17d24"
+    },
+    "find-unplanned-issues": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/find-unplanned-issues/SKILL.md",
+      "computedHash": "16178ab7aeaf67340df105a38c6001090a3f35903c34aed5fad81241e3201623"
+    },
+    "fix-dependabot": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/fix-dependabot/SKILL.md",
+      "computedHash": "6bb237e1042a65bc2f56c1bf66defd89fed584acbd6d169e4edbd521eb9936c1"
+    },
+    "fix-tests": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/fix-tests/SKILL.md",
+      "computedHash": "66ea85bd36a09e5ff5c01bca8f22d51966094ee1759a1e7f42cb1d244363d4e0"
+    },
+    "flake": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/flake/SKILL.md",
+      "computedHash": "9de9ee2684e2ffe969faf40a60d686f42cd5e10c38b74e4e568f8340be6e9691"
+    },
+    "formatting": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/formatting/SKILL.md",
+      "computedHash": "8f198ff6e1c44468fcf5d0c55633a0e7ff300d3274a2e362707d38e772c83586"
+    },
+    "gh-stack": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gh-stack/SKILL.md",
+      "computedHash": "171b1338cfd5a27789731b225c1e797a1849ed694a64bed087512139d006f8f2"
+    },
+    "git-notes": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/git-notes/SKILL.md",
+      "computedHash": "477cdfcd820bd30fce30ef4d89f64a039da7cd6b9eb4f63b1046ba414c65d4eb"
+    },
+    "git-worktrees": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/git-worktrees/SKILL.md",
+      "computedHash": "edd0e47a59defe6bdef98a389721e96b2c56e819ecd6a495c65da7ddce9236b5"
     },
     "home-office-deduction": {
       "source": "openaccountant/skills",
@@ -307,11 +619,29 @@
       "skillPath": "shared/home-office-deduction/SKILL.md",
       "computedHash": "3d3e32fdfa66ad29d02d63f9c79f89374356fdf7de08f3d7c7745b692451598b"
     },
+    "homepage-video-assets": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/homepage-video-assets/SKILL.md",
+      "computedHash": "22b2a2ad317c77f3c91afd862dd24ec25997839d1689f7e2170fdaf4d4892e45"
+    },
+    "implement-task": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/implement-task/SKILL.md",
+      "computedHash": "63541bb6d2def309a09baa2c41e589ab211c666c2d18deedf2268b733ec0621b"
+    },
     "import-transactions": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "shared/import-transactions/SKILL.md",
       "computedHash": "1ff3a7af7aa9cb6ba5da12685ea2f8dc9079ea169011640219ec10220c8ea501"
+    },
+    "install-canvas-capture-browser": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/install-canvas-capture-browser/SKILL.md",
+      "computedHash": "35f568fceb568a9cb853179e144b310ed6cd0e6dbdac85d9277cf4a457195167"
     },
     "insurance-audit": {
       "source": "openaccountant/skills",
@@ -319,17 +649,83 @@
       "skillPath": "personal/insurance-audit/SKILL.md",
       "computedHash": "425017c61ff987472023738423a2f54882499f5b720ac8f341ea0453f1e82c83"
     },
+    "interactivity-best-practices": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/interactivity-best-practices/SKILL.md",
+      "computedHash": "23efb48c60d716f0616fe288dcc432ee74329d6e6c8bfb3ae494e64c0b2b16f9"
+    },
     "invoice-aging": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/invoice-aging/SKILL.md",
       "computedHash": "5e58269a9d2051eac47fbe2253f56214ed1ef2d1aed5bef98cf3810fbb130536"
     },
+    "issue": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/issue/SKILL.md",
+      "computedHash": "85a56c6dd19e42606b5a595fe25386b8509ce641844a6b4dc022543e4b701c94"
+    },
+    "issue-management": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/issue-management/SKILL.md",
+      "computedHash": "56dcfe8d6e5094ad8ad2a01cd4ae0f19c344004bdabe7a120292c6fef996f29b"
+    },
+    "judge": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/judge/SKILL.md",
+      "computedHash": "670ada2162a00f6c318e170f2d8d1799468d43c1b7cd1592f1bc1161e9360f8e"
+    },
+    "judge-with-debate": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/judge-with-debate/SKILL.md",
+      "computedHash": "1bd66057c97e31e432d24adb08b6f3a73b82789edc8894b645c6a1e9fd200099"
+    },
+    "kaizen": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/kaizen/SKILL.md",
+      "computedHash": "3f744d5c1178409aa6b50828131854b10c34ccb4c61f2f226c7ae48d039b0ea8"
+    },
+    "launch-sub-agent": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/launch-sub-agent/SKILL.md",
+      "computedHash": "64a02d3be9ebe17571b054c0035b73003250c92e2643bc5466aa7ab2a495d1cf"
+    },
     "lifestyle-creep": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "personal/lifestyle-creep/SKILL.md",
       "computedHash": "bc90a9f619cb1dd278792f59aaa74bb844a320f96a74b627a2318ceaa6478104"
+    },
+    "load-issues": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/load-issues/SKILL.md",
+      "computedHash": "b429fdee443587802b6d7d9be73011f05c8daeed2ba45886be23d0c84abe42fd"
+    },
+    "load-pr-comments": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/load-pr-comments/SKILL.md",
+      "computedHash": "c0d472ace86e98b2259909cb2438b281beacdb4e7376cef253425f7206c7b389"
+    },
+    "memorize": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/memorize/SKILL.md",
+      "computedHash": "530122b6362d688adfc06602e6aa75a59ac11d68ab9fa75dcb3f6a259985d560"
+    },
+    "merge": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/merge/SKILL.md",
+      "computedHash": "cf6253b6cfe0498d2fccf2e74c0ce1e1f4d9519e791c57d42b8ba355afd5e2a8"
     },
     "mileage-tracker": {
       "source": "openaccountant/skills",
@@ -349,6 +745,12 @@
       "skillPath": "shared/monthly-digest/SKILL.md",
       "computedHash": "bc6c15cc324130b726df5a87c7e9d5466a36e24e450144d7128dbf27ca10e69e"
     },
+    "multi-agent-patterns": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/multi-agent-patterns/SKILL.md",
+      "computedHash": "40a17100f0a1edcc64bfd9fe53ad8a846d0241c628cba0dd7bd345a9925bc04c"
+    },
     "multi-entity": {
       "source": "openaccountant/skills",
       "sourceType": "github",
@@ -361,11 +763,65 @@
       "skillPath": "personal/net-worth/SKILL.md",
       "computedHash": "8f12004aff598d997613a7e73b6a773bae2356761ea070dbe9ab4f2ee48acb76"
     },
+    "no-pointer": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/no-pointer/SKILL.md",
+      "computedHash": "4d4c959ebce4fef21a66d9fc64e959e40f050d9f761b4e9c6bea2c9ab0346041"
+    },
+    "nullable-new-params": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/nullable-new-params/SKILL.md",
+      "computedHash": "d4b86b2f7660c21ec7842888989f3f25a163bffca670cf5c86fcc5ada58cd3e1"
+    },
+    "offload-r2": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/offload-r2/SKILL.md",
+      "computedHash": "5ca04af3c399ae888d195582f6fa357b7adc983d6ad4f6e288aff492a46f6f62"
+    },
     "paypal-import": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/paypal-import/SKILL.md",
       "computedHash": "dec82ce4a440c4db308fc929a70312ab3297187c1f5585695d113d9af87457e9"
+    },
+    "plan-do-check-act": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/plan-do-check-act/SKILL.md",
+      "computedHash": "ef75ab6349d32ab6ee7802eb07125b9aab63cf581802e1c92f04076bb95b527b"
+    },
+    "plan-task": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/plan-task/SKILL.md",
+      "computedHash": "2fe62b5c0c5e55d652c83f4549e6e5de6279203d6cb81be949c477e460f937ef"
+    },
+    "player-example": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/player-example/SKILL.md",
+      "computedHash": "57e274aeed3186367588393786cd733e3a36fdbdf11a64ef65b76352ee2e38ea"
+    },
+    "pr": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/pr/SKILL.md",
+      "computedHash": "4cb4f5d5ac6c94d177416961c6c404c19735002068fd44afa23854a02604b094"
+    },
+    "pr-name": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/pr-name/SKILL.md",
+      "computedHash": "b2220e601dd90f79f44fbe5b9f567462328d2fc4c518db3d85d918257dd22236"
+    },
+    "pr-ready": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/pr-ready/SKILL.md",
+      "computedHash": "3784136aceb9b0aafabfc90fbfb3c05f2a4390ac82ac55fafdfef205bde3a8dd"
     },
     "pricing-optimizer": {
       "source": "openaccountant/skills",
@@ -379,11 +835,65 @@
       "skillPath": "business/profit-loss/SKILL.md",
       "computedHash": "d62b4f3dc31762fa22878acd7e6e8ba135076fe3eab489c70c6c75466d10205a"
     },
+    "prompt-engineering": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/prompt-engineering/SKILL.md",
+      "computedHash": "3f90a49fb619e376abba61198082bb4f18f46f6ea7dfb0ab589a2504072ea9e0"
+    },
+    "propose-hypotheses": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/propose-hypotheses/SKILL.md",
+      "computedHash": "b86ee8a1c0dd493355da9752e087f86e58eb10dd8bec8dd38a372c3d9911a868"
+    },
     "quarterly-taxes": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "shared/quarterly-taxes/SKILL.md",
       "computedHash": "1e402d6995c68b52b3a8ec7f0728f25cffaab425428800c8d128cfcef800e144"
+    },
+    "query": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/query/SKILL.md",
+      "computedHash": "51ed8efdd31fff670738a3f24c4f5b9cef0312e7f60bbbbbc8341eb6e20c6c32"
+    },
+    "react-scan": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/react-scan/SKILL.md",
+      "computedHash": "89ac4a2d8b490baee5366dda3ff1512e48daa7d2a6f9adf260bbea3441381f33"
+    },
+    "react-vite-dashboard": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-build/skills/react-vite-dashboard/SKILL.md",
+      "computedHash": "b6f866588eb36baf119a57c529bff89bdce9d1b8d3b608f0e4f8c39e09af5195"
+    },
+    "reflect": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/reflect/SKILL.md",
+      "computedHash": "ed0149bea4a8571e282a0f59ced11b35660b6303d9657e5182e8699e93ed06aa"
+    },
+    "release": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/release/SKILL.md",
+      "computedHash": "2a8306afdbadfea46ebfa02fe74ca901f1bb4d0d8e995b28bf373a3a22cfdc5a"
+    },
+    "remotion": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-build/skills/remotion/SKILL.md",
+      "computedHash": "86c72dff442c4f725107924f48298391e33eaf9788f0faefe360f3061b25fcec"
+    },
+    "remotion-video": {
+      "source": "mathews-tom/armory",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-video/SKILL.md",
+      "computedHash": "385f8d0ea142818be0e22b1e95c8e812eab4aa6e07a82e6bed90aa6829e36117"
     },
     "rental-property": {
       "source": "openaccountant/skills",
@@ -391,11 +901,41 @@
       "skillPath": "business/rental-property/SKILL.md",
       "computedHash": "96e61ee3da93e00248b71a07019b40cc961e1772637215dd8cbbf276d0c8713a"
     },
+    "reset": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/reset/SKILL.md",
+      "computedHash": "c32df872d5bd9475fd8bf0df0d800ab26f28f8846f7cc661d2af6a9510b14383"
+    },
+    "resolve-fixed-pr-comments": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/resolve-fixed-pr-comments/SKILL.md",
+      "computedHash": "5bb1b98e55c8c9591e59da0ce7ebc536864a6cad26b073f5bbac88b067ecf75a"
+    },
     "revenue-concentration": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/revenue-concentration/SKILL.md",
       "computedHash": "0f29ec8a77bb2f6e28ba64a5274cbf3d6c7c7bc4ee3577b5d53670d40ee2947e"
+    },
+    "review-local-changes": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/review-local-changes/SKILL.md",
+      "computedHash": "4efa3f1cc5493cceef92a795cdd09a25d1feac2e600043986ad268e5ba902cb2"
+    },
+    "review-pr": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/review-pr/SKILL.md",
+      "computedHash": "1721e9028210831c8a0a97cecad1df9aa3a6758dd02e1fe18d534331596f3f16"
+    },
+    "root-cause-tracing": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/root-cause-tracing/SKILL.md",
+      "computedHash": "875481ab371c2e827036ff2abe168a411267b6697b5493b4c961b63d804f29f8"
     },
     "runway-calculator": {
       "source": "openaccountant/skills",
@@ -408,6 +948,12 @@
       "sourceType": "github",
       "skillPath": "shared/sales-tax-nexus/SKILL.md",
       "computedHash": "a4bae34482909d0157291c806d9f45532b6c028565e0845f6f8b731766872498"
+    },
+    "scaffold-element": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/scaffold-element/SKILL.md",
+      "computedHash": "cd48509afb94222cab53073102d6c3dcbb4091911eabe2f0a1b1c4426ea741c4"
     },
     "seasonal-patterns": {
       "source": "openaccountant/skills",
@@ -565,6 +1111,48 @@
       "skillPath": "skills/seo-technical/SKILL.md",
       "computedHash": "bd55469581e075c156550dc81d0d00c359c3f4dd0dd1ef9d30031c5c6f9f4361"
     },
+    "setup-arxiv-mcp": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/setup-arxiv-mcp/SKILL.md",
+      "computedHash": "79ce7dd28bedfb7896d1105e42bb6156024c5db4d545437ae06e61dfd1029843"
+    },
+    "setup-codemap-cli": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/setup-codemap-cli/SKILL.md",
+      "computedHash": "2e08fd268e97805449c1f6f3e376ba76d1eefe012b6721e3b7031a8eae69b86d"
+    },
+    "setup-context7-mcp": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/setup-context7-mcp/SKILL.md",
+      "computedHash": "495bf1f87f7b5918112e8bdc57afdad55a8470689a0d6f9317c5cfda92141942"
+    },
+    "setup-serena-mcp": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/setup-serena-mcp/SKILL.md",
+      "computedHash": "985eb46b2e98d77e141a6d745b26292e58042ec44ebb56f6048e80555be65e8d"
+    },
+    "shadcn-ui": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-build/skills/shadcn-ui/SKILL.md",
+      "computedHash": "57e2cc881eb395418d28f1529e2d453b85f1d77a8de000c8af59512fab7b318d"
+    },
+    "site-md": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-utilities/skills/site-md/SKILL.md",
+      "computedHash": "8661ca3a2a43795296cc66091a2ed16a087521e47ca9b8aa6a2f5e10e609d586"
+    },
+    "skill-locations": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/skill-locations/SKILL.md",
+      "computedHash": "d4865f85547413c178b63cc161cf9030da55a0d7685e9b43d75f086add2879ef"
+    },
     "smart-categorize": {
       "source": "openaccountant/skills",
       "sourceType": "github",
@@ -595,17 +1183,119 @@
       "skillPath": "personal/state-tax-estimator/SKILL.md",
       "computedHash": "912432c60bbada4d15db12a9c42f0b78251ab2e0b1745d6183e7a8103010d277"
     },
+    "status": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/status/SKILL.md",
+      "computedHash": "68578de136aae403be56ccfd05b2044dded944c2bdea5aaa4ff96dc5ea754bd4"
+    },
+    "stitch-loop": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-utilities/skills/stitch-loop/SKILL.md",
+      "computedHash": "cf47da05045ce0c11f1a8b21dc4ef9bbfed0122d68548a48786cb1608257d574"
+    },
+    "stitch::code-to-design": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/code-to-design/SKILL.md",
+      "computedHash": "fc0343ee91bb255ad29b6a02155c1eb77dce58002273f9308bb2ea43be0ffbc3"
+    },
+    "stitch::extract-design-md": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/extract-design-md/SKILL.md",
+      "computedHash": "73cddd92063421923afbe00b423b0027aecd251a2c84bfda9c31bf992baf006b"
+    },
+    "stitch::extract-static-html": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/extract-static-html/SKILL.md",
+      "computedHash": "94aa19fa4f7554351bbeef9ef237bd21c982bd9541b6ebd0e7751ab3b9a9d6b5"
+    },
+    "stitch::generate-design": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/generate-design/SKILL.md",
+      "computedHash": "b854eb1747fbd02220bb7323590030fa644b8de126f8f6311749905ea09d7ae9"
+    },
+    "stitch::manage-design-system": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/manage-design-system/SKILL.md",
+      "computedHash": "0a2ff4062197344c76c418f0a8ee09b15fb644565825ecbe4fd7598b06fe14e7"
+    },
+    "stitch::react-components": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-build/skills/react-components/SKILL.md",
+      "computedHash": "a0dbfa0ed6c0425a175ec25460625f7cdabfdb034b09f523f4d06d8cdb09f5b7"
+    },
+    "stitch::react-native": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-build/skills/react-native/SKILL.md",
+      "computedHash": "8fb779a0449a4dd0e9fe4b8b78973033f5977716903c2e291f896bf43c392411"
+    },
+    "stitch::upload-to-stitch": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/upload-to-stitch/SKILL.md",
+      "computedHash": "956ce2eff922fb56eb4fa04393c4508bd7e393fe368833b3a97b7083887ae975"
+    },
+    "stop-slop": {
+      "source": "hardikpandya/stop-slop",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "09acd38f01d6c643bce871a739141c01a06a04f43d8b55959ef73550476e771c"
+    },
     "stripe-import": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/stripe-import/SKILL.md",
       "computedHash": "a214aafa3d5a928aa77cf0059ecd2cf800c8e066fc95244b9e9b7a91a320b495"
     },
+    "studio": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/studio/SKILL.md",
+      "computedHash": "fbe32cdf574036ced09a994b76aad9d233c153b09a1ef8f53690ed59874de542"
+    },
+    "studio-config-option-lifecycle": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/studio-config-option-lifecycle/SKILL.md",
+      "computedHash": "6d4b3032fb2fe1fbcb6a21afbe0758eb71e159b063a9551ddf531e00ffe4d6c9"
+    },
+    "studio-css-reset": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/studio-css-reset/SKILL.md",
+      "computedHash": "9de8a502eb6204c4f39514061446ac67942d4c5f74d11245f4c4de4a4fbb1cfb"
+    },
+    "studio-perf": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/studio-perf/SKILL.md",
+      "computedHash": "ebd0ad7dd9f8d2225731c8a91c73014e6422e6bdbf5d157dbf27a1133b8736f4"
+    },
+    "subagent-driven-development": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/subagent-driven-development/SKILL.md",
+      "computedHash": "4efd5a667d9f792fffa2e916d121df45c9c80ae1d1003bb921d7c8d9185bf892"
+    },
     "subscription-audit": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "personal/subscription-audit/SKILL.md",
       "computedHash": "750b173a79b749030243bfbdefdf787fde9dde4a7e5ed563a67495edb642b58f"
+    },
+    "taste-design": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-utilities/skills/taste-design/SKILL.md",
+      "computedHash": "3772ea408777070865890e10d693118baa1e1de14ee5bacdf6ab46fdea7359bb"
     },
     "tax-penalty-calc": {
       "source": "openaccountant/skills",
@@ -619,17 +1309,185 @@
       "skillPath": "shared/tax-prep/SKILL.md",
       "computedHash": "2fd242537dbd843782a069ee9a78cc17a1dec91c112a53539446118284448abf"
     },
+    "test-coverage": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/test-coverage/SKILL.md",
+      "computedHash": "23428c90dd0f6c52c9795eac0127eddbc7c11beef0fed536e00a3104283023a3"
+    },
+    "test-driven-development": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "computedHash": "131bb17b2deafa1bb1bb0883a1ceca7b8d5cd110bbb53f8100feb6e3971f358f"
+    },
+    "test-prompt": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/test-prompt/SKILL.md",
+      "computedHash": "f2b76c3956e9582d90c20e73132d7190dc7fd10965ab62f487bb31d3ba199125"
+    },
+    "test-skill": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/test-skill/SKILL.md",
+      "computedHash": "60c585ddf02a0e0168844e04c53fa97f308cd64a20c5226b666c1ac2592f8233"
+    },
+    "thought-based-reasoning": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/thought-based-reasoning/SKILL.md",
+      "computedHash": "6e6926dddcd183388d9bcb89154995adab888e1d0a4e0e4a72703c4b5305b790"
+    },
+    "traiage-review": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/traiage-review/SKILL.md",
+      "computedHash": "9c69d88daa573b136294a3487059bb3b2776c1dc3b584dbae75c0398ad172734"
+    },
+    "tree-of-thoughts": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/tree-of-thoughts/SKILL.md",
+      "computedHash": "9d33532ddce22ca51bbc5caf792d14c31e608e21007ee491878b3a799473c1d3"
+    },
+    "update-chrome-binaries-test-region": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/update-chrome-binaries-test-region/SKILL.md",
+      "computedHash": "2153a94b12b0ad075128b23645c8fea355c3356b5f6e41d47ec4d70582edfb18"
+    },
+    "update-docs": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/update-docs/SKILL.md",
+      "computedHash": "8ee944ede72e2b616b183ada47cc548c4da1cb12fbb5d9009468865d7663ea5b"
+    },
+    "update-from-upstream-main": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/update-from-upstream-main/SKILL.md",
+      "computedHash": "7dd7a6e1428aab177ce4c4eac2e86cba74b8cb4b3eb08dad026e8cfe16186c14"
+    },
+    "update-remotion-rust-ffmpeg": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/update-remotion-rust-ffmpeg/SKILL.md",
+      "computedHash": "0c04f9b75b10ba9a235d776d5fdbfb2a40cb61f237dddb2172ee784cd9345b50"
+    },
+    "update-stars": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/update-stars/SKILL.md",
+      "computedHash": "df732149e778111409cef0abbbf63d61c529e6ac7dbc519f6b022468b8cb246e"
+    },
+    "update-version": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/update-version/SKILL.md",
+      "computedHash": "e32ebd28dc4eb7a74929eceac15272dd137806c919ce6c377da806205ba43b37"
+    },
+    "upgrade-caniuse": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/upgrade-caniuse/SKILL.md",
+      "computedHash": "085c385f374fba65b018204589476099670f8182e3c19af713dad8d3845a3327"
+    },
+    "upgrade-mediabunny": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/upgrade-mediabunny/SKILL.md",
+      "computedHash": "b0d5af8921f034396e147202dc76ddac00fe691bb9aacb7511f00b5cf60077ae"
+    },
+    "upload-element-previews": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/upload-element-previews/SKILL.md",
+      "computedHash": "926d5771f34e5a76e147848672c9d1bbbc734e9ea19f8dcf3b902b1742dd2322"
+    },
+    "upload-r2": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/upload-r2/SKILL.md",
+      "computedHash": "447ecc9057070651ef1ebc4332c8277b4396e8d612d59c9a9ac6a004db102289"
+    },
+    "v5-breaking-changes": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/v5-breaking-changes/SKILL.md",
+      "computedHash": "2379f6fcef563251a26757c9ec1b8c2f3a068f7f7079eb8e7e851b3378da71d4"
+    },
     "venmo-reconciler": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/venmo-reconciler/SKILL.md",
       "computedHash": "c902f5d6f5146be21c2630ac6575c14f52f5a098f13890ddea4c6edc6f2e9005"
     },
+    "vercel": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/vercel/SKILL.md",
+      "computedHash": "58581669e37c20dff5ea072bd6ae73a08d5ca0cdf321b64ecbf5506b43c2dfa2"
+    },
+    "version": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/version/SKILL.md",
+      "computedHash": "4d4fe2a55fc670ae8bef180dee1ab143231ddaa5a45f275be940250ef1d3f1fc"
+    },
+    "video-report": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-report/SKILL.md",
+      "computedHash": "c5137bb16eb0a011ab9446fd790c9ffd724ee6a564e264c62663efafae5b9d75"
+    },
+    "visual-mode": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/visual-mode/SKILL.md",
+      "computedHash": "8275d37b61062bdce9f95accf9ee86f3977a8de8003ad7a49dda1caedf6e4916"
+    },
+    "web-renderer-test": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/web-renderer-test/SKILL.md",
+      "computedHash": "c713f1df3522cdb27ecb9f33ea62f9b6a5b1cbe8b184913a8800cb4304641d35"
+    },
+    "why": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/why/SKILL.md",
+      "computedHash": "cafc2cfb28f209cff137fafae85103675ce7c2525083e4581c1a9d021413213d"
+    },
     "wise-import": {
       "source": "openaccountant/skills",
       "sourceType": "github",
       "skillPath": "business/wise-import/SKILL.md",
       "computedHash": "359ab41097cd95e5fa8a2bee5642186b76346c3e994c47f7ad48fe174372a38e"
+    },
+    "write-concisely": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/write-concisely/SKILL.md",
+      "computedHash": "6652403d64979380d4681659598a2e3998b5b2a4cc62a23b0f10ef0b196ada52"
+    },
+    "write-tests": {
+      "source": "neolabhq/context-engineering-kit",
+      "sourceType": "github",
+      "skillPath": "skills/write-tests/SKILL.md",
+      "computedHash": "b072100cd2764d58f8094bd48e238b01634fa3bdc21661e984fc409d8af9d43b"
+    },
+    "writing-docs": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/writing-docs/SKILL.md",
+      "computedHash": "b2e7e5e6b48ff96617f2cef78615e76241137da6184c4e15b7dd8ba7d8c26312"
+    },
+    "writing-tests": {
+      "source": "remotion-dev/remotion",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/writing-tests/SKILL.md",
+      "computedHash": "db19f77ea7d7c6da933bd97230f3a3b2184ace15de19c95a7e52cc2b1e9bcd0f"
     },
     "year-end-summary": {
       "source": "openaccountant/skills",

@@ -43,6 +43,13 @@
     .book-modal__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--text-muted);cursor:pointer;background:none;border:none;padding:4px 8px;transition:color 0.2s}
     .book-modal__close:hover{color:var(--gold)}
     .book-modal__cover{max-width:200px;max-height:280px;border-radius:8px;margin:0 auto 20px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+    .book-modal__covers{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+    .book-modal__covers img{max-width:200px;max-height:280px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.15);cursor:pointer;transition:transform 0.2s}
+    .book-modal__covers img:hover{transform:scale(1.05)}
+    .ed-covers{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+    .ed-cover-item{position:relative;width:80px;height:110px;border-radius:6px;overflow:hidden;border:1px solid var(--border);flex-shrink:0}
+    .ed-cover-item img{width:100%;height:100%;object-fit:cover}
+    .ed-cover-item__del{position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:rgba(180,40,40,0.85);color:#fff;border:none;font-size:0.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
     .book-modal__title{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:8px}
     .book-modal__author{font-size:0.85rem;color:var(--text-muted);margin-bottom:16px}
     .book-modal__desc{font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:20px;text-align:left}
@@ -130,7 +137,7 @@
   <div class="book-modal" id="bookModal">
     <div class="book-modal__box">
       <button class="book-modal__close" id="bmClose">✕</button>
-      <img class="book-modal__cover" id="bmCover" src="" alt="" style="display:none" />
+      <div class="book-modal__covers" id="bmCovers"></div>
       <div class="book-modal__title" id="bmTitle"></div>
       <div class="book-modal__author" id="bmAuthor"></div>
       <div class="book-modal__desc" id="bmDesc"></div>
@@ -168,11 +175,11 @@
       <input class="ed-input" id="edCard" placeholder="0000 0000 0000 0000" />
       <label class="ed-label">Telegram для связи</label>
       <input class="ed-input" id="edTg" value="https://t.me/nasledieariev" />
-      <label class="ed-label">Обложка</label>
-      <img id="edCoverPreview" src="" alt="" style="display:none;max-width:120px;max-height:160px;border-radius:6px;margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15)" />
+      <label class="ed-label">Обложки (можно загрузить несколько)</label>
+      <div class="ed-covers" id="edCoversGallery"></div>
       <div id="edCoverInfo" class="ed-file-info"></div>
-      <button class="ed-upload-btn" id="btnUploadCover">📁 Загрузить обложку</button>
-      <input class="ed-input" id="edCoverUrl" placeholder="или URL картинки" style="margin-top:6px" />
+      <button class="ed-upload-btn" id="btnUploadCover">📁 Добавить обложку</button>
+      <input class="ed-input" id="edCoverUrl" placeholder="или вставить URL картинки + Enter" style="margin-top:6px" />
       <label class="ed-label">Файл книги (PDF, EPUB, FB2, DJVU, ZIP и др.)</label>
       <div id="edPdfInfo" class="ed-file-info"></div>
       <a id="edPdfCheck" href="#" target="_blank" style="display:none;font-size:0.78rem;color:var(--gold);margin-bottom:4px">Проверить загруженный файл</a>
@@ -219,6 +226,33 @@
     var currentBookId = null;
 
     function escH(s){var d=document.createElement('div');d.appendChild(document.createTextNode(s||''));return d.innerHTML;}
+
+    var editorCovers = [];
+
+    function getCovers(p){
+      if(p.covers && p.covers.length) return p.covers;
+      if(p.cover) return [p.cover];
+      return [];
+    }
+
+    function renderEditorCovers(){
+      var gal = document.getElementById('edCoversGallery');
+      gal.innerHTML = '';
+      editorCovers.forEach(function(url, i){
+        var item = document.createElement('div');
+        item.className = 'ed-cover-item';
+        item.innerHTML = '<img src="'+escH(url)+'" alt="Обложка '+(i+1)+'">'
+          + '<button class="ed-cover-item__del" data-idx="'+i+'">✕</button>';
+        gal.appendChild(item);
+      });
+      gal.querySelectorAll('.ed-cover-item__del').forEach(function(btn){
+        btn.onclick = function(e){
+          e.preventDefault();
+          editorCovers.splice(parseInt(this.getAttribute('data-idx')), 1);
+          renderEditorCovers();
+        };
+      });
+    }
 
     window.__toggleShopAdmin = function(){
       if(isAdmin){
@@ -282,8 +316,9 @@
         var item = document.createElement('div');
         item.className = 'book-item';
         item.setAttribute('data-id', p.id);
-        var coverHtml = p.cover
-          ? '<img src="'+escH(p.cover)+'" alt="'+escH(p.title)+'">'
+        var covers = getCovers(p);
+        var coverHtml = covers.length
+          ? '<img src="'+escH(covers[0])+'" alt="'+escH(p.title)+'">'
           : '<span class="book-item__cover-empty">📖</span>';
         var priceText = p.price > 0 ? p.price.toLocaleString('ru-RU') + ' ₽' : 'Бесплатно';
         item.innerHTML =
@@ -315,9 +350,11 @@
       var p = products.find(function(x){return x.id === id;});
       if(!p) return;
       currentBookId = id;
-      var cover = document.getElementById('bmCover');
-      if(p.cover){ cover.src = p.cover; cover.alt = p.title; cover.style.display = 'block'; }
-      else { cover.style.display = 'none'; }
+      var coversBox = document.getElementById('bmCovers');
+      var covers = getCovers(p);
+      coversBox.innerHTML = covers.map(function(url){
+        return '<img src="'+escH(url)+'" alt="'+escH(p.title)+'">';
+      }).join('');
       document.getElementById('bmTitle').textContent = p.title || 'Без названия';
       document.getElementById('bmAuthor').textContent = p.author || '';
       document.getElementById('bmDesc').textContent = p.desc || '';
@@ -386,9 +423,10 @@
       document.getElementById('edPrice').value = p ? (p.price||'') : '';
       document.getElementById('edCard').value = p ? (p.card||'') : '';
       document.getElementById('edTg').value = p ? (p.tgLink||'https://t.me/nasledieariev') : 'https://t.me/nasledieariev';
-      document.getElementById('edCoverUrl').value = p ? (p.cover||'') : '';
+      document.getElementById('edCoverUrl').value = '';
       document.getElementById('edCoverInfo').textContent = '';
-      showCoverPreview(p ? p.cover : '');
+      editorCovers = p ? getCovers(p).slice() : [];
+      renderEditorCovers();
       var pdfInfo = document.getElementById('edPdfInfo');
       var pdfCheck = document.getElementById('edPdfCheck');
       if(p && p.pdfFile){
@@ -432,44 +470,55 @@
       }
     }
 
-    function showCoverPreview(url){
-      var img = document.getElementById('edCoverPreview');
-      if(url){ img.src = url; img.style.display = 'block'; }
-      else { img.src = ''; img.style.display = 'none'; }
-    }
-
-    document.getElementById('edCoverUrl').addEventListener('input', function(){
-      showCoverPreview(this.value);
+    document.getElementById('edCoverUrl').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        var url = this.value.trim();
+        if(url){
+          editorCovers.push(url);
+          renderEditorCovers();
+          this.value = '';
+          document.getElementById('edCoverInfo').textContent = '✅ Обложка добавлена';
+        }
+      }
     });
 
     document.getElementById('btnUploadCover').onclick = function(){
       var input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
+      input.multiple = true;
       input.onchange = function(){
-        var file = input.files[0];
-        if(!file) return;
-        document.getElementById('edCoverInfo').textContent = '⏳ Загрузка обложки...';
-        var fd = new FormData();
-        fd.append('file', file);
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', API + '/upload-cover', true);
-        xhr.onload = function(){
-          try{
-            var resp = JSON.parse(xhr.responseText);
-            if(resp.url){
-              document.getElementById('edCoverUrl').value = resp.url;
-              document.getElementById('edCoverInfo').textContent = '✅ Обложка загружена';
-              showCoverPreview(resp.url);
-            } else {
-              document.getElementById('edCoverInfo').textContent = '❌ Ошибка: ' + (resp.error || 'неизвестная');
+        var files = Array.from(input.files);
+        if(!files.length) return;
+        var uploaded = 0;
+        document.getElementById('edCoverInfo').textContent = '⏳ Загрузка обложек (' + files.length + ')...';
+        files.forEach(function(file){
+          var fd = new FormData();
+          fd.append('file', file);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', API + '/upload-cover', true);
+          xhr.onload = function(){
+            uploaded++;
+            try{
+              var resp = JSON.parse(xhr.responseText);
+              if(resp.url){
+                editorCovers.push(resp.url);
+                renderEditorCovers();
+              }
+            }catch(e){}
+            if(uploaded === files.length){
+              document.getElementById('edCoverInfo').textContent = '✅ Загружено обложек: ' + uploaded;
             }
-          }catch(e){ document.getElementById('edCoverInfo').textContent = '❌ Ошибка'; }
-        };
-        xhr.onerror = function(){
-          document.getElementById('edCoverInfo').textContent = '❌ Нет связи с сервером';
-        };
-        xhr.send(fd);
+          };
+          xhr.onerror = function(){
+            uploaded++;
+            if(uploaded === files.length){
+              document.getElementById('edCoverInfo').textContent = '⚠ Загружено: ' + editorCovers.length;
+            }
+          };
+          xhr.send(fd);
+        });
       };
       input.click();
     };
@@ -532,7 +581,8 @@
         price: parseInt(document.getElementById('edPrice').value) || 0,
         card: document.getElementById('edCard').value.trim(),
         tgLink: document.getElementById('edTg').value.trim(),
-        cover: document.getElementById('edCoverUrl').value.trim(),
+        cover: editorCovers.length ? editorCovers[0] : '',
+        covers: editorCovers.slice(),
         pdfFile: newPdf || existingPdf
       };
       if(!product.title){ alert('Введите название книги'); return; }
