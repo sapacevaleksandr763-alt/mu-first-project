@@ -88,29 +88,96 @@
     xhr.send(JSON.stringify({ course: COURSE, num: num, lesson: lesson }));
   }
 
+  function uploadBase64Image(num, dataUri, cb){
+    var m = dataUri.match(/^data:image\/([^;]+);base64,(.+)$/);
+    if(!m) return cb(dataUri);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/upload-base64', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.timeout = 60000;
+    xhr.onload = function(){
+      if(xhr.status === 200){
+        try { var r = JSON.parse(xhr.responseText); cb(r.url || dataUri); } catch(e){ cb(dataUri); }
+      } else { cb(dataUri); }
+    };
+    xhr.onerror = function(){ cb(dataUri); };
+    xhr.ontimeout = function(){ cb(dataUri); };
+    xhr.send(JSON.stringify({ course: COURSE, num: String(num), data: m[2], ext: m[1] }));
+  }
+
+  function extractImages(html, num, done){
+    var re = /data:image\/[^;]+;base64,[A-Za-z0-9+\/=]+/g;
+    var matches = html.match(re);
+    if(!matches || matches.length === 0) return done(html);
+    var pending = matches.length;
+    var map = {};
+    matches.forEach(function(uri){
+      if(map[uri] !== undefined){ pending--; if(!pending) finish(); return; }
+      map[uri] = null;
+      uploadBase64Image(num, uri, function(url){
+        map[uri] = url;
+        pending--;
+        if(!pending) finish();
+      });
+    });
+    function finish(){
+      var result = html;
+      Object.keys(map).forEach(function(orig){
+        if(map[orig] && map[orig] !== orig){
+          while(result.indexOf(orig) !== -1) result = result.replace(orig, map[orig]);
+        }
+      });
+      done(result);
+    }
+  }
+
   function saveLessonToServer(num, lesson, cb){
     if(lesson === null){ delete lessonsCache[num]; }
     else { lessonsCache[num] = lesson; }
     localSave(lessonsCache);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', API, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.timeout = 10000;
-    xhr.onload = function(){
-      if(xhr.status === 200) showNotice('Урок сохранён', 'success');
-      else showNotice('Сохранено локально. Ошибка сервера: ' + xhr.status, 'warn');
-      if(cb) cb();
-    };
-    xhr.onerror = function(){
-      showNotice('Нет связи — сохранено локально', 'warn');
-      if(cb) cb();
-    };
-    xhr.ontimeout = function(){
-      showNotice('Сервер не ответил — сохранено локально', 'warn');
-      if(cb) cb();
-    };
-    xhr.send(JSON.stringify({ course: COURSE, num: num, lesson: lesson }));
+    function doSave(lessonData){
+      var payload = JSON.stringify({ course: COURSE, num: String(num), lesson: lessonData });
+      console.log('Saving lesson', num, 'payload size:', payload.length, 'bytes');
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.timeout = 120000;
+      xhr.onload = function(){
+        if(xhr.status === 200){
+          showNotice('Урок ' + num + ' сохранён на сервере', 'success');
+        } else {
+          var errMsg = '';
+          try { errMsg = JSON.parse(xhr.responseText).error; } catch(e){ errMsg = xhr.statusText; }
+          showNotice('Ошибка сервера ' + xhr.status + ': ' + errMsg, 'warn');
+          console.error('Save error:', xhr.status, xhr.responseText);
+        }
+        if(cb) cb();
+      };
+      xhr.onerror = function(){
+        showNotice('Нет связи — сохранено локально', 'warn');
+        console.error('Save XHR error');
+        if(cb) cb();
+      };
+      xhr.ontimeout = function(){
+        showNotice('Сервер не ответил — сохранено локально', 'warn');
+        console.error('Save timeout, payload was', payload.length, 'bytes');
+        if(cb) cb();
+      };
+      xhr.send(payload);
+    }
+
+    if(lesson && lesson.body && lesson.body.indexOf('data:image/') !== -1){
+      extractImages(lesson.body, num, function(cleanBody){
+        lesson.body = cleanBody;
+        lessonsCache[num] = lesson;
+        localSave(lessonsCache);
+        doSave(lesson);
+      });
+    } else {
+      doSave(lesson);
+    }
   }
 
   function uploadFile(num, file, type, cb){
