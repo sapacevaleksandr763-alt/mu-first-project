@@ -568,6 +568,7 @@
     };
 
     document.getElementById('edSave').onclick = function(){
+      if(!isAdmin){ alert('Требуется режим редактора'); return; }
       console.log('[Save] Начало сохранения книги...');
       var id = document.getElementById('edId').value || ('book-' + Date.now());
       var pdfInfo = document.getElementById('edPdfInfo');
@@ -603,6 +604,8 @@
           showNotice('Книга сохранена!', 'success');
           closeEditor();
           loadProducts();
+        } else if(xhr.status === 401){
+          showNotice('Ошибка: требуется авторизация администратора', 'warn');
         } else {
           console.error('API error:', xhr.status, xhr.responseText);
           showNotice('Ошибка сервера: ' + xhr.status, 'warn');
@@ -625,20 +628,26 @@
     };
 
     document.getElementById('edDelete').onclick = function(){
+      if(!isAdmin){ alert('Требуется режим редактора'); return; }
       var id = document.getElementById('edId').value;
       if(!id || !confirm('Удалить эту книгу?')) return;
       var xhr = new XMLHttpRequest();
       xhr.open('DELETE', API + '/products', true);
       xhr.setRequestHeader('Content-Type','application/json');
       xhr.onload = function(){
-        showNotice('Книга удалена', 'success');
-        closeEditor();
-        loadProducts();
+        if(xhr.status === 200){
+          showNotice('Книга удалена', 'success');
+          closeEditor();
+          loadProducts();
+        } else {
+          showNotice('Ошибка удаления: ' + xhr.status, 'warn');
+        }
       };
       xhr.send(JSON.stringify({id:id}));
     };
 
     function loadCodes(productId){
+      if(!isAdmin) return;
       var xhr = new XMLHttpRequest();
       xhr.open('GET', API + '/codes?productId=' + productId, true);
       xhr.onload = function(){
@@ -658,21 +667,27 @@
     }
 
     document.getElementById('btnGenCodes').onclick = function(){
+      if(!isAdmin){ alert('Требуется режим редактора'); return; }
       var id = document.getElementById('edId').value;
       if(!id){ alert('Сначала сохраните книгу'); return; }
       var count = parseInt(document.getElementById('edCodeCount').value) || 5;
+      if(count < 1 || count > 100){ alert('Количество должно быть от 1 до 100'); return; }
       var xhr = new XMLHttpRequest();
       xhr.open('POST', API + '/codes', true);
       xhr.setRequestHeader('Content-Type','application/json');
+      xhr.timeout = 15000;
       xhr.onload = function(){
         try{
           var data = JSON.parse(xhr.responseText);
+          if(data.error){ alert('Ошибка: ' + data.error); return; }
           if(data.codes){
             alert('Созданы коды:\n' + data.codes.join('\n'));
             loadCodes(id);
           }
-        }catch(e){}
+        }catch(e){ alert('Ошибка обработки ответа'); }
       };
+      xhr.onerror = function(){ alert('Нет связи с сервером'); };
+      xhr.ontimeout = function(){ alert('Сервер не отвечает'); };
       xhr.send(JSON.stringify({productId:id, count:count}));
     };
 

@@ -4,11 +4,29 @@ const path = require('path');
 const { execFile } = require('child_process');
 const Busboy = require('busboy');
 
+function loadEnv() {
+  try {
+    const envPath = path.join(__dirname, '..', '.env');
+    const envFile = fs.readFileSync(envPath, 'utf8');
+    envFile.split('\n').forEach(line => {
+      const [key, ...valueParts] = line.trim().split('=');
+      if (key && !process.env[key]) {
+        process.env[key] = valueParts.join('=');
+      }
+    });
+  } catch (e) {
+    console.warn('Warning: .env file not found');
+  }
+}
+loadEnv();
+
 const DATA_DIR = path.join(__dirname, 'data');
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads', 'courses');
 const PORT = 3500;
 const SITE_ORIGIN = 'http://155.212.208.32';
 const MAX_FILE_SIZE = 1024 * 1024 * 1024;
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
+const MAX_BODY_SIZE = 1024 * 1024;
 
 [DATA_DIR, UPLOAD_DIR].forEach(d => {
   if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
@@ -228,6 +246,163 @@ const server = http.createServer((req, res) => {
 
   if (url.pathname === '/api/upload' && req.method === 'POST') {
     return handleUpload(req, res);
+  }
+
+  // ═══ SHOP API ═══
+  const SHOP_DATA = path.join(DATA_DIR, 'shop.json');
+  const CODES_DATA = path.join(DATA_DIR, 'codes.json');
+
+  function checkAdminAuth(req) {
+    if (!ADMIN_TOKEN) return true;
+    const authHeader = req.headers['x-admin-token'] || req.headers['authorization'] || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
+    return token === ADMIN_TOKEN;
+  }
+
+  if (url.pathname === '/api/shop/products' && req.method === 'GET') {
+    const data = readJSON(SHOP_DATA);
+    return sendJSON(res, 200, data);
+  }
+
+  if (url.pathname === '/api/shop/products' && req.method === 'POST') {
+    if (!checkAdminAuth(req)) {
+      return sendJSON(res, 401, { error: 'Unauthorized' });
+    }
+    let body = '';
+    let bodySize = 0;
+    req.on('data', c => {
+      bodySize += c.length;
+      if (bodySize > MAX_BODY_SIZE) {
+        return sendJSON(res, 413, { error: 'Payload too large' });
+      }
+      body += c;
+    });
+    req.on('end', () => {
+      if (bodySize > MAX_BODY_SIZE) return;
+      try {
+        const product = JSON.parse(body);
+        if (!product.id || !product.title) return sendJSON(res, 400, { error: 'missing id or title' });
+        const data = readJSON(SHOP_DATA);
+        data[product.id] = product;
+        fs.writeFileSync(SHOP_DATA, JSON.stringify(data, null, 2), 'utf8');
+        return sendJSON(res, 200, { ok: true, id: product.id });
+      } catch (e) {
+        return sendJSON(res, 400, { error: 'Invalid request' });
+      }
+    });
+    return;
+  }
+
+  if (url.pathname === '/api/shop/products' && req.method === 'DELETE') {
+    if (!checkAdminAuth(req)) {
+      return sendJSON(res, 401, { error: 'Unauthorized' });
+    }
+    let body = '';
+    let bodySize = 0;
+    req.on('data', c => {
+      bodySize += c.length;
+      if (bodySize > MAX_BODY_SIZE) {
+        return sendJSON(res, 413, { error: 'Payload too large' });
+      }
+      body += c;
+    });
+    req.on('end', () => {
+      if (bodySize > MAX_BODY_SIZE) return;
+      try {
+        const { id } = JSON.parse(body);
+        if (!id) return sendJSON(res, 400, { error: 'missing id' });
+        const data = readJSON(SHOP_DATA);
+        if (!data[id]) return sendJSON(res, 404, { error: 'product not found' });
+        delete data[id];
+        fs.writeFileSync(SHOP_DATA, JSON.stringify(data, null, 2), 'utf8');
+        return sendJSON(res, 200, { ok: true });
+      } catch (e) {
+        return sendJSON(res, 400, { error: 'Invalid request' });
+      }
+    });
+    return;
+  }
+
+  if (url.pathname === '/api/shop/codes' && req.method === 'GET') {
+    if (!checkAdminAuth(req)) {
+      return sendJSON(res, 401, { error: 'Unauthorized' });
+    }
+    const productId = url.searchParams.get('productId');
+    if (!productId) return sendJSON(res, 400, { error: 'missing productId' });
+    const data = readJSON(CODES_DATA);
+    if (!data[productId]) return sendJSON(res, 404, { error: 'product not found' });
+    const productCodes = data[productId].map(c => ({ code: c.code, used: c.used }));
+    return sendJSON(res, 200, productCodes);
+  }
+
+  if (url.pathname === '/api/shop/codes' && req.method === 'POST') {
+    if (!checkAdminAuth(req)) {
+      return sendJSON(res, 401, { error: 'Unauthorized' });
+    }
+    let body = '';
+    let bodySize = 0;
+    req.on('data', c => {
+      bodySize += c.length;
+      if (bodySize > MAX_BODY_SIZE) {
+        return sendJSON(res, 413, { error: 'Payload too large' });
+      }
+      body += c;
+    });
+    req.on('end', () => {
+      if (bodySize > MAX_BODY_SIZE) return;
+      try {
+        const { productId, count } = JSON.parse(body);
+        if (!productId || count === undefined) return sendJSON(res, 400, { error: 'missing productId or count' });
+        if (!Number.isInteger(count) || count < 1 || count > 100) {
+          return sendJSON(res, 400, { error: 'count must be integer between 1 and 100' });
+        }
+        const codes = [];
+        for (let i = 0; i < count; i++) {
+          codes.push({
+            code: crypto.randomBytes(16).toString('hex').slice(0, 24).toUpperCase(),
+            used: false,
+            createdAt: new Date().toISOString()
+          });
+        }
+        const data = readJSON(CODES_DATA);
+        if (!data[productId]) data[productId] = [];
+        data[productId].push(...codes);
+        fs.writeFileSync(CODES_DATA, JSON.stringify(data, null, 2), 'utf8');
+        return sendJSON(res, 200, { ok: true, codes: codes.map(c => c.code) });
+      } catch (e) {
+        return sendJSON(res, 400, { error: 'Invalid request' });
+      }
+    });
+    return;
+  }
+
+  if (url.pathname === '/api/shop/download' && req.method === 'GET') {
+    const token = url.searchParams.get('token');
+    if (!token) return sendJSON(res, 400, { error: 'missing token' });
+    const data = readJSON(CODES_DATA);
+    let found = null;
+    for (const productId in data) {
+      const code = data[productId].find(c => c.code === token && !c.used);
+      if (code) {
+        found = { productId, code };
+        break;
+      }
+    }
+    if (!found) return sendJSON(res, 401, { error: 'invalid or used code' });
+    found.code.used = true;
+    fs.writeFileSync(CODES_DATA, JSON.stringify(data, null, 2), 'utf8');
+    const products = readJSON(SHOP_DATA);
+    const product = products[found.productId];
+    if (!product || !product.pdfFile) return sendJSON(res, 404, { error: 'file not found' });
+    const filePath = path.join(__dirname, '..', 'uploads', 'shop', product.pdfFile);
+    if (!fs.existsSync(filePath)) return sendJSON(res, 404, { error: 'pdf not found' });
+    res.writeHead(200, {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename="${product.title}.pdf"`,
+      'Access-Control-Allow-Origin': '*'
+    });
+    fs.createReadStream(filePath).pipe(res);
+    return;
   }
 
   sendJSON(res, 404, { error: 'not found' });
