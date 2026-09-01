@@ -1920,6 +1920,12 @@
       "sourceType": "github",
       "skillPath": "personal/zero-based-budget/SKILL.md",
       "computedHash": "80adf084c210974b8aa70b8eeb8ca1528cb5148a55cb9c066767f03fb6846001"
+    },
+    "razbor-servisa": {
+      "source": "Ntmib/razbor-servisa",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/razbor-servisa/SKILL.md",
+      "computedHash": "53cbfef7eab48d23318525db586f14ca02f153228755ec5d29a2795acfb693e6"
     }
   }
 }
