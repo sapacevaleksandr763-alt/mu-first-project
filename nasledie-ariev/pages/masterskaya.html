@@ -223,6 +223,8 @@
     var ADMIN_KEY = 'nasledie_admin';
     var isAdmin = localStorage.getItem(ADMIN_KEY) === '1';
     var products = [];
+    console.log('[Shop API] Инициализация. isAdmin:', isAdmin, 'API:', API);
+    if(!isAdmin) console.warn('[Shop] Используйте пароль редактора для администратора');
     var currentBookId = null;
 
     function escH(s){var d=document.createElement('div');d.appendChild(document.createTextNode(s||''));return d.innerHTML;}
@@ -566,6 +568,7 @@
     };
 
     document.getElementById('edSave').onclick = function(){
+      console.log('[Save] Начало сохранения книги...');
       var id = document.getElementById('edId').value || ('book-' + Date.now());
       var pdfInfo = document.getElementById('edPdfInfo');
       var existingPdf = '';
