@@ -592,6 +592,7 @@
       var xhr = new XMLHttpRequest();
       xhr.open('POST', API + '/products', true);
       xhr.setRequestHeader('Content-Type','application/json');
+      xhr.timeout = 30000;
       xhr.onload = function(){
         btn.textContent = '💾 Сохранить';
         btn.disabled = false;
@@ -600,14 +601,23 @@
           closeEditor();
           loadProducts();
         } else {
+          console.error('API error:', xhr.status, xhr.responseText);
           showNotice('Ошибка сервера: ' + xhr.status, 'warn');
         }
       };
       xhr.onerror = function(){
         btn.textContent = '💾 Сохранить';
         btn.disabled = false;
-        showNotice('Нет связи', 'warn');
+        console.error('Network error:', xhr.statusText);
+        showNotice('Нет связи с сервером', 'warn');
       };
+      xhr.ontimeout = function(){
+        btn.textContent = '💾 Сохранить';
+        btn.disabled = false;
+        console.error('Request timeout');
+        showNotice('Сервер не отвечает (timeout)', 'warn');
+      };
+      console.log('Сохранение книги:', product);
       xhr.send(JSON.stringify(product));
     };
 
