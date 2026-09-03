@@ -253,7 +253,9 @@ const server = http.createServer((req, res) => {
   const CODES_DATA = path.join(DATA_DIR, 'codes.json');
 
   function checkAdminAuth(req) {
-    if (!ADMIN_TOKEN) return true;
+    const isLocalhost = req.headers.host && req.headers.host.includes('localhost');
+    if (isLocalhost && !ADMIN_TOKEN) return true;
+    if (!ADMIN_TOKEN) return false;
     const authHeader = req.headers['x-admin-token'] || req.headers['authorization'] || '';
     const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
     return token === ADMIN_TOKEN;
