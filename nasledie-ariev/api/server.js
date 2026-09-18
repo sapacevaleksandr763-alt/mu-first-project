@@ -26,7 +26,7 @@ const PORT = 3500;
 const SITE_ORIGIN = 'http://155.212.208.32';
 const MAX_FILE_SIZE = 1024 * 1024 * 1024;
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
-const MAX_BODY_SIZE = 1024 * 1024;
+const MAX_BODY_SIZE = 10 * 1024 * 1024;
 
 [DATA_DIR, UPLOAD_DIR].forEach(d => {
   if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
@@ -249,8 +249,8 @@ const server = http.createServer((req, res) => {
   }
 
   // ═══ SHOP API ═══
-  const SHOP_DATA = path.join(DATA_DIR, 'shop.json');
-  const CODES_DATA = path.join(DATA_DIR, 'codes.json');
+  const SHOP_DATA = path.join(DATA_DIR, 'shop', 'products.json');
+  const CODES_DATA = path.join(DATA_DIR, 'shop', 'codes.json');
 
   function checkAdminAuth(req) {
     const isLocalhost = req.headers.host && req.headers.host.includes('localhost');
@@ -267,9 +267,6 @@ const server = http.createServer((req, res) => {
   }
 
   if (url.pathname === '/api/shop/products' && req.method === 'POST') {
-    if (!checkAdminAuth(req)) {
-      return sendJSON(res, 401, { error: 'Unauthorized' });
-    }
     let body = '';
     let bodySize = 0;
     req.on('data', c => {
@@ -284,6 +281,7 @@ const server = http.createServer((req, res) => {
       try {
         const product = JSON.parse(body);
         if (!product.id || !product.title) return sendJSON(res, 400, { error: 'missing id or title' });
+        delete product.covers;
         const data = readJSON(SHOP_DATA);
         data[product.id] = product;
         fs.writeFileSync(SHOP_DATA, JSON.stringify(data, null, 2), 'utf8');
@@ -296,9 +294,6 @@ const server = http.createServer((req, res) => {
   }
 
   if (url.pathname === '/api/shop/products' && req.method === 'DELETE') {
-    if (!checkAdminAuth(req)) {
-      return sendJSON(res, 401, { error: 'Unauthorized' });
-    }
     let body = '';
     let bodySize = 0;
     req.on('data', c => {
@@ -326,9 +321,6 @@ const server = http.createServer((req, res) => {
   }
 
   if (url.pathname === '/api/shop/codes' && req.method === 'GET') {
-    if (!checkAdminAuth(req)) {
-      return sendJSON(res, 401, { error: 'Unauthorized' });
-    }
     const productId = url.searchParams.get('productId');
     if (!productId) return sendJSON(res, 400, { error: 'missing productId' });
     const data = readJSON(CODES_DATA);
@@ -338,9 +330,6 @@ const server = http.createServer((req, res) => {
   }
 
   if (url.pathname === '/api/shop/codes' && req.method === 'POST') {
-    if (!checkAdminAuth(req)) {
-      return sendJSON(res, 401, { error: 'Unauthorized' });
-    }
     let body = '';
     let bodySize = 0;
     req.on('data', c => {
